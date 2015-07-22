@@ -55,6 +55,10 @@
     <Compile Include="Migrations\201507201619477_Primeiro Teste.Designer.cs">
       <DependentUpon>201507201619477_Primeiro Teste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507221851276_20150722 1550.cs" />
+    <Compile Include="Migrations\201507221851276_20150722 1550.Designer.cs">
+      <DependentUpon>201507221851276_20150722 1550.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PerfilConfig.cs" />
@@ -77,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507201619477_Primeiro Teste.resx">
       <DependentUpon>201507201619477_Primeiro Teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507221851276_20150722 1550.resx">
+      <DependentUpon>201507221851276_20150722 1550.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
