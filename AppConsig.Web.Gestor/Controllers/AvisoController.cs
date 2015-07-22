@@ -7,7 +7,7 @@ using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
-    public class AvisoController : Controller
+    public class AvisoController : BaseController
     {
         IServicoAviso _servicoAviso;
 

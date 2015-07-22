@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
-    public class VisaoGeralController : Controller
+    public class VisaoGeralController : BaseController
     {
         // GET: VisaoGeral
         public ActionResult Index()

@@ -7,6 +7,7 @@ using AppConsig.Web.Gestor.Models;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: Login

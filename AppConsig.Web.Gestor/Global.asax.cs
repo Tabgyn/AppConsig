@@ -25,7 +25,7 @@ namespace AppConsig.Web.Gestor
             var builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
-            
+
             builder.RegisterModule(new ModuloServico());
             builder.RegisterModule(new ModuloEF());
 
@@ -36,24 +36,25 @@ namespace AppConsig.Web.Gestor
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
-            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            if (authCookie != null)
-            {
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+            if (authCookie == null) return;
+            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
+            var serializer = new JavaScriptSerializer();
 
-                AppPrincipalSerializedModel serializeModel = serializer.Deserialize<AppPrincipalSerializedModel>(authTicket.UserData);
+            if (authTicket == null) return;
+            var serializeModel = serializer.Deserialize<AppPrincipalSerializedModel>(authTicket.UserData);
 
-                AppPrincipal newUser = new AppPrincipal(authTicket.Name);
-                newUser.Id = serializeModel.Id;
-                newUser.Nome = serializeModel.Nome;
-                newUser.Sobrenome = serializeModel.Sobrenome;
-                newUser.Permissoes = serializeModel.Permissoes;
+            var newUser = new AppPrincipal(authTicket.Name)
+                          {
+                              Id = serializeModel.Id,
+                              Nome = serializeModel.Nome,
+                              Sobrenome = serializeModel.Sobrenome,
+                              Permissoes = serializeModel.Permissoes
+                          };
 
-                HttpContext.Current.User = newUser;
-            }
+            HttpContext.Current.User = newUser;
         }
     }
 }
