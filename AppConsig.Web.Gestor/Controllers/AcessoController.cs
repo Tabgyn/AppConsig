@@ -32,7 +32,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // POST: ReeviarSenha
         [HttpPost]
-        public ActionResult NovaSenha(NovaSenha model)
+        public ActionResult NovaSenha(NovaSenhaModel model)
         {
             if (ModelState.IsValid)
             {

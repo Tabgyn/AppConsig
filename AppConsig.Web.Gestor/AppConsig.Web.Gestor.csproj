@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Views\Shared\Error\401.aspx.cs">
       <DependentUpon>401.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,7 +187,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AcessoController.cs" />
     <Compile Include="Controllers\VisaoGeralController.cs" />
-    <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Seguranca\AppPrincipal.cs" />
     <Compile Include="Seguranca\AppPrincipalSerializedModel.cs" />
     <Compile Include="Seguranca\IAppPrincipal.cs" />
