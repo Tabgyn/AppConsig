@@ -1,0 +1,25 @@
+﻿@model AppConsig.Web.Gestor.Models.NovaSenha
+@{
+    ViewBag.Title = "Esqueceu sua senha?";
+}
+
+<div class="login-container animated fadeIn">
+    <div class="loginbox bg-white">
+        <div class="loginbox-title">SOLICITAR NOVA SENHA</div>
+        @using (var form = Html.Bootstrap().Begin(new Form().Type(FormType.Vertical)))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+            <div class="loginbox-textbox">
+                @Html.Bootstrap().TextBoxFor(t => t.Email).Placeholder("E-mail")
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="loginbox-submit">
+                @Html.Bootstrap().SubmitButton().Text("Solicitar").Color(BootstrapColors.Primary).ButtonBlock()
+            </div>
+        }
+    </div>
+</div>
+@section PageScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
