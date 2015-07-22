@@ -1,0 +1,13 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapPathHelperModel
+@using System.Web.Mvc.Html
+@using System.Linq
+@using MvcSiteMapProvider.Web.Html.Models
+
+<ul class="breadcrumb">
+    @foreach (var node in Model.Skip(1))
+    {
+        <li class="@(node != Model.Last() ? "active" : null)">
+            @node.Title
+        </li>
+    }
+</ul>

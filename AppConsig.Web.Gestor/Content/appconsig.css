@@ -1,0 +1,54 @@
+﻿.navbar .navbar-brand {
+    border: 0;
+    margin: 0;
+    padding: 2px 0;
+    line-height: 38px;
+}
+
+.navbar .navbar-brand i {
+    
+}
+
+    .navbar  .navbar-brand small {
+        font-size: 14px;
+        font-weight: bold;
+        vertical-align: top;
+        margin-left: 3px;
+    }
+
+    .page-breadcrumb-bordered {
+        float: left;
+        width: 4px;
+        height: 40px;
+    }
+
+.navbar .sidebar-collapse {
+    float: left;
+    top: auto;
+    left: auto;
+    position: relative;
+    margin-left: 10px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area > li .dropdown-menu.dropdown-notifications li .notification-body {
+    line-height: 32px;
+}
+
+.page-sidebar.menu-compact {
+  width: 47px;
+}
+
+.page-sidebar.menu-compact ~ .page-content {
+  margin-left: 47px;
+}
+
+.table .text-overflow {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.dataTables_paginate {
+    padding-top: 8px;
+}
