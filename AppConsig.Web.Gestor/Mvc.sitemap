@@ -7,6 +7,8 @@
     <mvcSiteMapNode key="VisaoGeral" title="Visão Geral" controller="VisaoGeral" action="Index" imageUrl="fa fa-dashboard" description="Dados e estatísticas"/>
     <mvcSiteMapNode title="Administrativo" url="#" imageUrl="fa fa-cogs">
       <mvcSiteMapNode title="Avisos" controller="Aviso" action="Index" description="Avisos e notícias"/>
+      <mvcSiteMapNode title="Perfis" controller="Perfil" action="Index" description="Perfis de usuários"/>
+      <mvcSiteMapNode title="Usuários" controller="Usuario" action="Index" description="Controle de usuários"/>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
 </mvcSiteMap>
