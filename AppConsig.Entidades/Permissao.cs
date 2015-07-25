@@ -6,17 +6,32 @@ using AppConsig.Comum;
 namespace AppConsig.Entidades
 {
     [Table("Permissao")]
-    public class Permissao : EntidadeAuditavel<long>
+    public class Permissao : Entidade<long>
     {
         [Required]
         [MaxLength(256)]
         public string Nome { get; set; }
+        
+        [Required]
         [MaxLength(256)]
         public string Descricao { get; set; }
+        
+        [MaxLength(256)]
+        public string Url { get; set; }
+        
         [MaxLength(256)]
         public string Action { get; set; }
+        
         [MaxLength(256)]
         public string Controller { get; set; }
+        
+        [MaxLength(256)]
+        public string UrlImagem { get; set; }
+
+        public long Parente { get; set; }
+        
+        public int Ordem { get; set; }
+        
         public ICollection<Perfil> Perfis { get; set; }
     }
 }
