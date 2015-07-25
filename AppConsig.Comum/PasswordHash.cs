@@ -9,29 +9,28 @@ namespace AppConsig.Comum
     /// </summary>
     public class PasswordHash
     {
-        // The following constants may be changed without breaking existing hashes.
+        // As seguintes constantes podem ser alteradas sem quebrar hashes existentes.
         public const int SALT_BYTE_SIZE = 24;
         public const int HASH_BYTE_SIZE = 24;
         public const int PBKDF2_ITERATIONS = 9999;
-
         public const int ITERATION_INDEX = 0;
         public const int SALT_INDEX = 1;
         public const int PBKDF2_INDEX = 2;
 
         /// <summary>
-        /// Creates a salted PBKDF2 hash of the password.
+        /// Cria uma criptografia PBKDF2 com salt da senha.
         /// </summary>
-        /// <param name="password">The password to hash.</param>
-        /// <returns>The hash of the password.</returns>
-        public static string CreateHash(string password)
+        /// <param name="senha">A senha para criptografar.</param>
+        /// <returns>A criptografia da senha.</returns>
+        public static string CriarCriptografia(string senha)
         {
-            // Generate a random salt
-            RNGCryptoServiceProvider csprng = new RNGCryptoServiceProvider();
-            byte[] salt = new byte[SALT_BYTE_SIZE];
+            // Gerar um salt aleatório.
+            var csprng = new RNGCryptoServiceProvider();
+            var salt = new byte[SALT_BYTE_SIZE];
             csprng.GetBytes(salt);
 
-            // Hash the password and encode the parameters
-            byte[] hash = PBKDF2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+            // Criptografar a senha e codificar os parâmetros.
+            var hash = PBKDF2(senha, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
 
             return PBKDF2_ITERATIONS + ":" +
                 Convert.ToBase64String(salt) + ":" +
@@ -39,21 +38,20 @@ namespace AppConsig.Comum
         }
 
         /// <summary>
-        /// Validates a password given a hash of the correct one.
+        /// Valida uma senha com sua criptografia correta.
         /// </summary>
-        /// <param name="password">The password to check.</param>
-        /// <param name="correctHash">A hash of the correct password.</param>
-        /// <returns>True if the password is correct. False otherwise.</returns>
-        public static bool ValidatePassword(string password, string correctHash)
+        /// <param name="senha">A senha para validar.</param>
+        /// <param name="criptografiaCorreta">a criptografia correta da senha.</param>
+        /// <returns>True se a senha está correta. False caso contrário.</returns>
+        public static bool ValidarSenha(string senha, string criptografiaCorreta)
         {
-            // Extract the parameters from the hash
+            // Extrair os parâmetros a partir da criptografia
             char[] delimiter = { ':' };
-            string[] split = correctHash.Split(delimiter);
-            int iterations = Int32.Parse(split[ITERATION_INDEX]);
-            byte[] salt = Convert.FromBase64String(split[SALT_INDEX]);
-            byte[] hash = Convert.FromBase64String(split[PBKDF2_INDEX]);
-
-            byte[] testHash = PBKDF2(password, salt, iterations, hash.Length);
+            var split = criptografiaCorreta.Split(delimiter);
+            var iterations = Int32.Parse(split[ITERATION_INDEX]);
+            var salt = Convert.FromBase64String(split[SALT_INDEX]);
+            var hash = Convert.FromBase64String(split[PBKDF2_INDEX]);
+            var testHash = PBKDF2(senha, salt, iterations, hash.Length);
 
             return SlowEquals(hash, testHash);
         }
@@ -68,8 +66,8 @@ namespace AppConsig.Comum
         /// <returns>True if both byte arrays are equal. False otherwise.</returns>
         private static bool SlowEquals(byte[] a, byte[] b)
         {
-            uint diff = (uint)a.Length ^ (uint)b.Length;
-            for (int i = 0; i < a.Length && i < b.Length; i++)
+            var diff = (uint)a.Length ^ (uint)b.Length;
+            for (var i = 0; i < a.Length && i < b.Length; i++)
                 diff |= (uint)(a[i] ^ b[i]);
 
             return diff == 0;
@@ -85,8 +83,7 @@ namespace AppConsig.Comum
         /// <returns>A hash of the password.</returns>
         private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
         {
-            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt);
-            pbkdf2.IterationCount = iterations;
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt) { IterationCount = iterations };
 
             return pbkdf2.GetBytes(outputBytes);
         }

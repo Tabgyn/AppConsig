@@ -7,11 +7,11 @@ namespace AppConsig.Comum
 {
     public class EmailHelper
     {
-        public string From { get; set; }
-        public string To { get; set; }
-        public string ToCopy { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
+        public string De { get; set; }
+        public string Para { get; set; }
+        public string ComCopia { get; set; }
+        public string Assunto { get; set; }
+        public string Corpo { get; set; }
         public string AttachmentFile { get; set; }
 
         public void Send()
@@ -19,11 +19,11 @@ namespace AppConsig.Comum
             try
             {
                 Attachment att = null;
-                var message = new MailMessage(From, To, Subject, Body) { IsBodyHtml = true };
+                var message = new MailMessage(De, Para, Assunto, Corpo) { IsBodyHtml = true };
 
-                if (ToCopy != null)
+                if (ComCopia != null)
                 {
-                    message.Bcc.Add(ToCopy);
+                    message.Bcc.Add(ComCopia);
                 }
 
                 if (!String.IsNullOrEmpty(AttachmentFile))
@@ -36,7 +36,7 @@ namespace AppConsig.Comum
                 }
 
                 var smtp = new SmtpClient();
-                
+
                 smtp.Send(message);
 
                 if (att != null)
@@ -47,11 +47,18 @@ namespace AppConsig.Comum
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format("Não foi possível enviar o e-mail para {0}", To), ex.InnerException);
+                throw new Exception(string.Format("Não foi possível enviar o e-mail para {0}", Para), ex.InnerException);
             }
         }
 
-        public string CorpoNovaSenha(string nome, string sobrenome, string senha)
+        /// <summary>
+        /// Retorna string formatada para corpo de e-mail de senha
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="sobrenome"></param>
+        /// <param name="senha"></param>
+        /// <returns></returns>
+        public string CorpoSenha(string nome, string sobrenome, string senha)
         {
             var strEmailBody = new StringBuilder();
 
