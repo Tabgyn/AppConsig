@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AppConsig.Comum;
 using AppConsig.Dados;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
@@ -10,37 +11,61 @@ namespace AppConsig.Servicos
         public ServicoUsuario(IContexto contexto)
             : base(contexto)
         {
-            _Contexto = contexto;
-            _Dbset = _Contexto.Set<Usuario>();
+            Contexto = contexto;
+            Dbset = Contexto.Set<Usuario>();
         }
 
-        public override void Criar(Usuario entidade)
+        public override void Criar(Usuario usuario)
         {
-            //Todo Setar senha criptografada
+            // Gera uma nova senha.
+            var strSenha = StringHelper.ObterTextoAleatorio();
+            // Criptografa a senha.
+            usuario.Senha = PasswordHash.CriarCriptografia(strSenha);
 
-            base.Criar(entidade);
-        }
+            // Envia um e-mail ao usuário informando sua senha.
+            var email = new EmailHelper
+            {
+                De = "",
+                Para = usuario.Email,
+                ComCopia = null,
+                Assunto = "AppConsig - Senha de acesso"
+            };
 
-        public Usuario ObterPeloId(long id)
-        {
-            return _Dbset.FirstOrDefault(x => x.Id == id);
+            //Obtem corpo formatado para senha
+            email.Corpo = email.CorpoSenha(usuario.Nome, usuario.Sobrenome, strSenha);
+            email.Send();
+
+            base.Criar(usuario);
         }
 
         public bool ValidarUsuario(string login, string senha)
         {
-            var usuario = _Dbset.FirstOrDefault(x => x.Login == login);
+            var usuario = Dbset.FirstOrDefault(x => x.Login == login);
 
-            if (usuario == null)
+            return usuario != null && PasswordHash.ValidarSenha(senha, usuario.Senha);
+        }
+
+        public void ReeviarSenha(Usuario usuario)
+        {
+            // Gera uma nova senha.
+            var strSenha = StringHelper.ObterTextoAleatorio();
+            // Criptografa a senha.
+            usuario.Senha = PasswordHash.CriarCriptografia(strSenha);
+
+            // Envia um e-mail ao usuário informando sua senha.
+            var email = new EmailHelper
             {
-                return false;
-            }
+                De = "",
+                Para = usuario.Email,
+                ComCopia = null,
+                Assunto = "AppConsig - Senha de acesso"
+            };
 
-            if (usuario.Senha != senha)
-            {
-                return false;
-            }
+            //Obtem corpo formatado para senha
+            email.Corpo = email.CorpoSenha(usuario.Nome, usuario.Sobrenome, strSenha);
+            email.Send();
 
-            return true;
+            base.Atualizar(usuario);
         }
     }
 }
