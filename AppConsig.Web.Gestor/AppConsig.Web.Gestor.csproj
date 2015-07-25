@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDynamicNodeProvider.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Views\Shared\Error\401.aspx.cs">
       <DependentUpon>401.aspx</DependentUpon>
@@ -203,9 +204,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\simpleWeather.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.simpleWeather.js" />
+    <Content Include="Scripts\jquery.simpleWeather.min.js" />
     <Content Include="Views\Shared\Error\401.aspx" />
     <Content Include="Views\Shared\Error\401.html" />
     <Content Include="Views\Shared\Error\500.aspx" />
@@ -233,19 +237,13 @@
     <Content Include="Content\skins\purple.min.css" />
     <Content Include="Content\skins\skins-mixins.min.css" />
     <Content Include="Content\skins\teal.min.css" />
-    <Content Include="Content\weather-icons.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\weathericons-regular-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\weathericons-regular-webfont.eot" />
-    <Content Include="fonts\weathericons-regular-webfont.ttf" />
-    <Content Include="fonts\weathericons-regular-webfont.woff" />
-    <Content Include="fonts\WeatherIcons-Regular.otf" />
     <Content Include="Scripts\beyond.js" />
     <Content Include="Scripts\beyond.min.js" />
     <Content Include="Scripts\bootstrapValidator.min.js.map" />
@@ -316,7 +314,7 @@
     <Content Include="Views\VisaoGeral\Index.cshtml" />
     <Content Include="Views\Acesso\Index.cshtml" />
     <Content Include="Views\Shared\_Unauthorized.cshtml" />
-    <Content Include="Views\Acesso\NovaSenha.cshtml" />
+    <Content Include="Views\Acesso\CriarNovaSenha.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />

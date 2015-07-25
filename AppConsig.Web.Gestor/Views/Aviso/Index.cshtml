@@ -1,9 +1,5 @@
 ﻿@model PagedList.IPagedList<AppConsig.Entidades.Aviso>
 @using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-@{
-    ViewBag.Title = "Avisos";
-}
 
 @using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
 {
@@ -80,5 +76,6 @@
     </div>
 }
 @section PageStyles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
 }

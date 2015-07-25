@@ -9,7 +9,7 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class AvisoController : BaseController
     {
-        IServicoAviso _servicoAviso;
+        readonly IServicoAviso _servicoAviso;
 
         public AvisoController(IServicoAviso servicoAviso)
         {
@@ -157,7 +157,7 @@ namespace AppConsig.Web.Gestor.Controllers
         {
             Aviso person = _servicoAviso.ObterPeloId(id);
 
-            _servicoAviso.Deletar(person);
+            _servicoAviso.Excluir(person);
 
             return RedirectToAction("Index");
         }

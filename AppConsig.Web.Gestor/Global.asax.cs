@@ -21,7 +21,7 @@ namespace AppConsig.Web.Gestor
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Autofac Configuration 
+            // Autofac Configuration.
             var builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();

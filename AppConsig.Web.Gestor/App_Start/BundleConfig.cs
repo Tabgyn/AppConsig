@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace AppConsig.Web.Gestor
 {
@@ -19,12 +18,15 @@ namespace AppConsig.Web.Gestor
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/jquery.slimscroll.js"));
-            
+
             bundles.Add(new ScriptBundle("~/bundles/skin").Include(
                       "~/Scripts/skins.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/beyond").Include(
                 "~/Scripts/beyond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/weather").Include(
+                "~/Scripts/jquery.simpleWeather.min.js"));
 
             //Styles
             bundles.Add(new StyleBundle("~/css/bootstrap").Include(
@@ -36,9 +38,11 @@ namespace AppConsig.Web.Gestor
             bundles.Add(new StyleBundle("~/css/beyond").Include(
                 "~/Content/beyond.min.css",
                 "~/Content/font-awesome.min.css",
-                "~/Content/weather-icons.min.css",
                 "~/Content/animate.min.css"
                 ));
+
+            bundles.Add(new StyleBundle("~/css/weather").Include(
+                "~/Content/simpleWather.css"));
         }
     }
 }
