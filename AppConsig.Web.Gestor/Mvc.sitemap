@@ -3,7 +3,7 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="root" clickable="false" dynamicNodeProvider="AppConsig.Web.Gestor.AppDynamicNodeProvider, AppDynamicNodeProvider">
+  <mvcSiteMapNode title="root" clickable="false" dynamicNodeProvider="AppConsig.Web.Gestor.AppDynamicNodeProvider, AppConsig.Web.Gestor">
     <mvcSiteMapNode key="VisaoGeral" title="Visão Geral" controller="VisaoGeral" action="Index" imageUrl="fa fa-dashboard" description="Dados e estatísticas"/>
   </mvcSiteMapNode>
 </mvcSiteMap>

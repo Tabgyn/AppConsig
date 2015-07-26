@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -7,9 +8,9 @@ using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor
 {
-    public class AppDynamicNodeProvider : DynamicNodeProviderBase
+    public class AppDynamicNodeProvider : IDynamicNodeProvider
     {
-        public override IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
+        public IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
             var permissoes = ((AppPrincipal)HttpContext.Current.User).Permissoes;
 
@@ -25,6 +26,14 @@ namespace AppConsig.Web.Gestor
                 ImageUrl = permissao.UrlImagem,
                 Order = permissao.Ordem
             });
+        }
+
+        public bool AppliesTo(string providerName)
+        {
+            if (string.IsNullOrEmpty(providerName))
+                return false;
+
+            return GetType() == Type.GetType(providerName, false);
         }
     }
 }

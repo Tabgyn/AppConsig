@@ -59,7 +59,7 @@
                         <ul class="account-area">
                             <li>
                                 <a class=" dropdown-toggle" data-toggle="dropdown" title="Suporte" href="#">
-                                    <i class="icon fa fa-question-circle"></i>
+                                    <i class="icon fa fa-info-circle"></i>
                                 </a>
                                 <!--Notification Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
@@ -91,7 +91,7 @@
                                         <span>
                                             @diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")
                                         </span>
-                                        <span id="weather" class="pull-right"></span>
+                                        <span id="weather" class="weather pull-right"></span>
                                     </li>
                                 </ul>
                                 <!--/Notification Dropdown-->
@@ -279,7 +279,7 @@
                     //<i class="wi wi-cloudy"></i>
                     var html = '';
                     html += weather.temp + '&deg;' + weather.units.temp;
-                    html += '<i class=".weather-icon-' + weather.code + '"></i>';
+                    html += '<i class="fa weather-icon-' + weather.code + ' fa-fw"></i>';
 
                     $("#weather").html(html);
                 },

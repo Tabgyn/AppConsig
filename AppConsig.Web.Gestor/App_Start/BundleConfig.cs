@@ -42,7 +42,7 @@ namespace AppConsig.Web.Gestor
                 ));
 
             bundles.Add(new StyleBundle("~/css/weather").Include(
-                "~/Content/simpleWather.css"));
+                "~/Content/simpleWeather.css"));
         }
     }
 }
