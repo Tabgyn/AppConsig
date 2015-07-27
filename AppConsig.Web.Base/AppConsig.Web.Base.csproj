@@ -71,7 +71,6 @@
     <Compile Include="AppExtensions.cs" />
     <Compile Include="DataGrid\ColumnBuilder.cs" />
     <Compile Include="DataGrid\DataTableBuilder.cs" />
-    <Compile Include="DataGrid\DataTableColumn.cs" />
     <Compile Include="DataGrid\IDataTableBuilder.cs" />
     <Compile Include="DataGrid\IDataTableColumn .cs" />
     <Compile Include="DataGrid\IDataTableColumnInternal.cs" />

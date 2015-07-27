@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Servicos", "AppCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Testes", "AppConsig.Testes\AppConsig.Testes.csproj", "{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Web.Base", "AppConsig.Web.Base\AppConsig.Web.Base.csproj", "{3442998E-457D-4E14-9D73-063CBF5C90FB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3442998E-457D-4E14-9D73-063CBF5C90FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3442998E-457D-4E14-9D73-063CBF5C90FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3442998E-457D-4E14-9D73-063CBF5C90FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3442998E-457D-4E14-9D73-063CBF5C90FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
