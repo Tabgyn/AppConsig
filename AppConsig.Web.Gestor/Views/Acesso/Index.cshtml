@@ -1,5 +1,8 @@
 ﻿@model AcessoModel
-
+@{
+    ViewBag.Title = "Acesso";
+    ViewBag.Description = "Acesso de usuarios";
+}
 <div class="login-container animated fadeIn">
     <div class="loginbox bg-white">
         <div class="loginbox-title">ACESSO</div>
@@ -16,7 +19,7 @@
                 @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
             </div>
             <div class="loginbox-forgot">
-                @Html.ActionLink("Solicitar nova senha?", "NovaSenha")
+                @Html.ActionLink("Solicitar nova senha?", "CriarNovaSenha")
             </div>
             <div class="loginbox-submit">
                 @Html.Bootstrap().SubmitButton().Text("Acessar").Color(BootstrapColors.Primary).ButtonBlock()

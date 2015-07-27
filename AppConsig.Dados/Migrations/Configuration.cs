@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
+using AppConsig.Comum;
 using AppConsig.Entidades;
 
 namespace AppConsig.Dados.Migrations
@@ -13,58 +15,89 @@ namespace AppConsig.Dados.Migrations
 
         protected override void Seed(AppContexto context)
         {
-            //var listaPermissoes = new List<Permissao>
-            //                      {
-            //                          new Permissao()
-            //                          {
-            //                              Nome = "Visão Geral",
-            //                              Descricao = "Dados e estatísticas",
-            //                              Action = "Index",
-            //                              Controller = "VisaoGeral"
-            //                          },
-            //                          new Permissao()
-            //                          {
-            //                              Nome = "Acessos",
-            //                              Descricao = "Controle de acessos de usuários",
-            //                              Action = "Index",
-            //                              Controller = "Acesso"
-            //                          },
-            //                          new Permissao()
-            //                          {
-            //                              Nome = "Avisos",
-            //                              Descricao = "Avisos e notícias",
-            //                              Action = "Index",
-            //                              Controller = "Aviso"
-            //                          },
-            //                          new Permissao()
-            //                          {
-            //                              Nome = "Perfis",
-            //                              Descricao = "Controle de perfis de usuários",
-            //                              Action = "Index",
-            //                              Controller = "Perfil"
-            //                          }
-            //                      };
+            //var listaPermissoesPai = new List<Permissao>
+            //{
+            //    new Permissao
+            //    {
+            //        Nome = "Administrativo",
+            //        Descricao = "",
+            //        Url = "#",
+            //        Action = "",
+            //        Controller = "",
+            //        ParenteId = 0,
+            //        UrlImagem = "fa fa-cogs",
+            //        Ordem = 1
+            //    }
+            //};
 
-            //foreach (var perm in listaPermissoes)
+            //foreach (var perm in listaPermissoesPai)
             //{
             //    context.Permissoes.Add(perm);
             //}
+
+            //context.SaveChanges();
+
+            //var idAdministrativo = context.Permissoes.First(p => p.Nome == "Administrativo").Id;
+
+            //var lsitaPermissoesFilho = new List<Permissao>
+            //{
+            //    new Permissao
+            //    {
+            //        Nome = "Acessos",
+            //        Descricao = "Controle de acessos de usuários",
+            //        Url = "",
+            //        Action = "Index",
+            //        Controller = "Acesso",
+            //        ParenteId = idAdministrativo,
+            //        UrlImagem = "",
+            //        Ordem = 1
+            //    },
+            //    new Permissao
+            //    {
+            //        Nome = "Avisos",
+            //        Descricao = "Avisos e notícias",
+            //        Action = "Index",
+            //        Controller = "Aviso",
+            //        ParenteId = idAdministrativo,
+            //        UrlImagem = "",
+            //        Ordem = 2
+            //    },
+            //    new Permissao
+            //    {
+            //        Nome = "Perfis",
+            //        Descricao = "Controle de perfis de usuários",
+            //        Action = "Index",
+            //        Controller = "Perfil",
+            //        ParenteId = idAdministrativo,
+            //        UrlImagem = "",
+            //        Ordem = 3
+            //    }
+            //};
+            
+            //foreach (var perm in lsitaPermissoesFilho)
+            //{
+            //    context.Permissoes.Add(perm);
+            //}
+
+            //var permissoes = context.Permissoes.ToList();
 
             //var perfil = new Perfil()
             //{
             //    Nome = "Master",
             //    Descricao = "Perfil master dos usuários",
-            //    Permissoes = listaPermissoes
+            //    Permissoes = permissoes
             //};
 
             //context.Perfil.Add(perfil);
 
-            //var usuario = new Usuario()
+            //var usuario = new Usuario
             //{
-            //    Login = "admin",
-            //    Senha = "123",
+            //    Nome = "Tiago",
+            //    Sobrenome = "Azevedo Borges",
+            //    Login = "admin@appconsig.com.br",
+            //    Senha = PasswordHash.CriarCriptografia("123"),
             //    Email = "admin@appconsig.com.br",
-            //    Perfil = perfil
+            //    Perfil = context.Perfil.Find(1)
             //};
 
             //context.Usuarios.Add(usuario);

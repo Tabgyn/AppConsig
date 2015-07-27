@@ -17,7 +17,7 @@ namespace AppConsig.Web.Gestor
             return permissoes.Select(permissao => new DynamicNode
             {
                 Key = permissao.Id.ToString(CultureInfo.InvariantCulture),
-                ParentKey = permissao.Parente.ToString(CultureInfo.InvariantCulture),
+                ParentKey = permissao.ParenteId.ToString(CultureInfo.InvariantCulture),
                 Title = permissao.Nome,
                 Description = permissao.Descricao,
                 Url = permissao.Url,

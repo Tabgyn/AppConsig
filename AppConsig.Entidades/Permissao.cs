@@ -28,10 +28,8 @@ namespace AppConsig.Entidades
         [MaxLength(256)]
         public string UrlImagem { get; set; }
 
-        public long Parente { get; set; }
+        public long ParenteId { get; set; }
         
         public int Ordem { get; set; }
-        
-        public ICollection<Perfil> Perfis { get; set; }
     }
 }

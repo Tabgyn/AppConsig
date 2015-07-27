@@ -8,7 +8,7 @@ namespace AppConsig.Dados
         public UsuarioConfig()
         {
             HasRequired(u => u.Perfil)
-                .WithMany(p => p.Usuarios)
+                .WithMany()
                 .HasForeignKey(u => u.PerfilId);
         }
     }

@@ -8,7 +8,7 @@ namespace AppConsig.Dados
         public PerfilConfig()
         {
             HasMany(u => u.Permissoes)
-                .WithMany(p => p.Perfis)
+                .WithMany()
                 .Map(up =>
                      {
                          up.MapLeftKey("PerfilId");

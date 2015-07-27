@@ -1,5 +1,5 @@
 ﻿
 @{
-    ViewBag.Title = "Visão Geral";
-    ViewBag.Description = "Dados e estatísticas";
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }

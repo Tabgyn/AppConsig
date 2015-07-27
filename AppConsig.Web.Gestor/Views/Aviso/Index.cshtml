@@ -1,6 +1,9 @@
 ﻿@model PagedList.IPagedList<AppConsig.Entidades.Aviso>
 @using PagedList.Mvc;
-
+@{
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
+}
 @using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
 {
     <div class="row">

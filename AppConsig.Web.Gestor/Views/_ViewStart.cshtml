@@ -1,4 +1,4 @@
 ﻿@{
-    //Layout = HttpContext.Current.User.Identity.IsAuthenticated ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_Unauthorized.cshtml";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = HttpContext.Current.User.Identity.IsAuthenticated ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_Unauthorized.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }

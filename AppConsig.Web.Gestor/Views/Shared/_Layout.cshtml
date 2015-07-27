@@ -1,18 +1,18 @@
 ﻿@using System.Globalization
-@{
+@*@{
     var data = DateTime.Now;
     var culture = new CultureInfo("pt-BR");
     var dtfi = culture.DateTimeFormat;
     var diaDaSemana = dtfi.GetDayName(data.DayOfWeek).ToUpperInvariant();
-}
+}*@
 <!DOCTYPE html>
 <html>
 <head lang="pt-br">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@Html.MvcSiteMap().SiteMap.CurrentNode.Description" />
+    <meta name="description" content="@ViewBag.Description" />
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
-    <title>@Html.MvcSiteMap().SiteMap.CurrentNode.Title - AppConsig</title>
+    <title>@ViewBag.Title - AppConsig</title>
     <!--Basic Styles-->
     @Styles.Render("~/css/bootstrap")
     <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
@@ -43,7 +43,7 @@
             <div class="navbar-container">
                 <!-- Navbar Barnd -->
                 <div class="navbar-header pull-left">
-                    <a href="/" class="navbar-brand">
+                    <a href="@Url.Action("Index", "VisaoGeral")" class="navbar-brand">
                         <i class="fa fa-at"></i>ppconsig<small class="themesecondary">Gestor</small>
                     </a>
                 </div>
@@ -89,7 +89,7 @@
                                     </li>
                                     <li class="dropdown-footer">
                                         <span>
-                                            @diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")
+                                            @*@diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")*@
                                         </span>
                                         <span id="weather" class="weather pull-right"></span>
                                     </li>

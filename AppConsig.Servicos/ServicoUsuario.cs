@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using AppConsig.Comum;
 using AppConsig.Dados;
 using AppConsig.Entidades;
@@ -66,6 +68,18 @@ namespace AppConsig.Servicos
             email.Send();
 
             base.Atualizar(usuario);
+        }
+
+        public List<Permissao> ObterPermissoesDoUsuario(long usuarioId)
+        {
+            var usuario = Dbset.Find(usuarioId);
+            var permissoes =
+                Contexto.Perfil.Where(p => p.Id == usuario.PerfilId)
+                    .Include(p => p.Permissoes)
+                    .First()
+                    .Permissoes.ToList();
+
+            return permissoes;
         }
     }
 }

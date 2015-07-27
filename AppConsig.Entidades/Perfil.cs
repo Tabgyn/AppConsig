@@ -14,8 +14,6 @@ namespace AppConsig.Entidades
         [MaxLength(256)]
         public string Descricao { get; set; }
 
-        public ICollection<Usuario> Usuarios { get; set; }
         public ICollection<Permissao> Permissoes { get; set; }
-
     }
 }

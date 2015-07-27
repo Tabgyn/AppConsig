@@ -7,11 +7,12 @@ using System.Web.Security;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Seguranca;
+using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
     [AllowAnonymous]
-    public class AcessoController : Controller
+    public class AcessoController : BaseController
     {
         readonly IServicoUsuario _servicoUsuario;
 
@@ -43,7 +44,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             Id = usuario.Id,
                             Nome = usuario.Nome,
                             Sobrenome = usuario.Sobrenome,
-                            Permissoes = usuario.Perfil.Permissoes
+                            Permissoes = _servicoUsuario.ObterPermissoesDoUsuario(usuario.Id)
                         };
 
                         var serializer = new JavaScriptSerializer();
@@ -54,7 +55,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             1,
                             usuario.Email,
                             DateTime.Now,
-                            DateTime.Now.AddMinutes(15),
+                            DateTime.Now.AddMinutes(30),
                             false,
                             userData);
 
@@ -62,7 +63,7 @@ namespace AppConsig.Web.Gestor.Controllers
                         var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
 
-                        if (!String.IsNullOrEmpty(returnUrl))
+                        if (!string.IsNullOrEmpty(returnUrl))
                         {
                             return Redirect(returnUrl);
                         }
@@ -101,7 +102,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     {
                         _servicoUsuario.ReeviarSenha(usuario);
 
-                        return RedirectToAction("Index", "Acesso");
+                        return RedirectToAction("Index");
                     }
                     catch (Exception exception)
                     {
@@ -113,6 +114,13 @@ namespace AppConsig.Web.Gestor.Controllers
             ModelState.AddModelError("Email", "Não há usuário cadastrado para o e-mail informado");
 
             return View(model);
+        }
+
+        public ActionResult Sair()
+        {
+            SiteMaps.ReleaseSiteMap();
+
+            return RedirectToAction("Index");
         }
     }
 }
