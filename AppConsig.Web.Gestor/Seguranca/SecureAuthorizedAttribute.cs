@@ -27,7 +27,8 @@ namespace AppConsig.Web.Gestor.Seguranca
             var action = httpContext.Request.RequestContext.RouteData.Values["action"].ToString();
             var controller = httpContext.Request.RequestContext.RouteData.Values["controller"].ToString();
 
-            return usuarioLogado.Permissoes.Any(permissao => permissao.Controller == controller && permissao.Action == action);
+            var autorizado = usuarioLogado.Permissoes.Any(permissao => permissao.Controller == controller && permissao.Action == action);
+            return autorizado;
         }
     }
 }

@@ -34,7 +34,7 @@
                 <h2>ooops!!</h2>
                 <p class="description">ALGO DEU ERRADO.</p>
             </div>
-            <a href="/" class="return-btn"><i class="fa fa-home"></i>Voltar</a>
+            <a href="javascript:history.back(1)" class="return-btn"><i class="fa fa-home"></i>Voltar</a>
         </section>
     </div>
     <!--Basic Scripts-->

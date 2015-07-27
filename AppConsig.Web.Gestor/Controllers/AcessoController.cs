@@ -44,6 +44,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             Id = usuario.Id,
                             Nome = usuario.Nome,
                             Sobrenome = usuario.Sobrenome,
+                            Email = usuario.Email,
                             Permissoes = _servicoUsuario.ObterPermissoesDoUsuario(usuario.Id)
                         };
 
@@ -53,7 +54,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
                         var authTicket = new FormsAuthenticationTicket(
                             1,
-                            usuario.Email,
+                            usuario.Login,
                             DateTime.Now,
                             DateTime.Now.AddMinutes(30),
                             false,
@@ -120,6 +121,8 @@ namespace AppConsig.Web.Gestor.Controllers
         {
             SiteMaps.ReleaseSiteMap();
 
+            FormsAuthentication.SignOut();
+            
             return RedirectToAction("Index");
         }
     }

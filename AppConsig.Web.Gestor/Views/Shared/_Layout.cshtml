@@ -1,10 +1,12 @@
 ﻿@using System.Globalization
-@*@{
+@using AppConsig.Web.Gestor.Seguranca
+@{
     var data = DateTime.Now;
     var culture = new CultureInfo("pt-BR");
     var dtfi = culture.DateTimeFormat;
     var diaDaSemana = dtfi.GetDayName(data.DayOfWeek).ToUpperInvariant();
-}*@
+    var usuarioLogado = (AppPrincipal) User;
+}
 <!DOCTYPE html>
 <html>
 <head lang="pt-br">
@@ -30,13 +32,18 @@
 
     <!--AppConsig styles-->
     @Styles.Render("~/css/appconsig")
-    
+
     <!--Weather styles-->
     @Styles.Render("~/css/weather")
 
     @RenderSection("PageStyles", required: false)
 </head>
 <body>
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+    <!--  /Loading Container -->
     <!-- Navbar -->
     <div class="navbar">
         <div class="navbar-inner">
@@ -89,7 +96,7 @@
                                     </li>
                                     <li class="dropdown-footer">
                                         <span>
-                                            @*@diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")*@
+                                            @diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")
                                         </span>
                                         <span id="weather" class="weather pull-right"></span>
                                     </li>
@@ -102,13 +109,13 @@
                                         <img src="~/Content/Images/no_image_available.png">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>Administrador</span></span></h2>
+                                        <h2><span class="profile"><span>@usuarioLogado.Nome @usuarioLogado.Sobrenome</span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>Administrador</a></li>
-                                    <li class="email"><a>admin@appconsig.com.br</a></li>
+                                    <li class="username"><a>@usuarioLogado.Identity.Name</a></li>
+                                    <li class="email"><a>@usuarioLogado.Email</a></li>
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
@@ -122,23 +129,23 @@
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="~/Content/skins/blue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="~/Content/skins/azure.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="~/Content/skins/teal.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="~/Content/skins/green.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="~/Content/skins/orange.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="~/Content/skins/pink.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="~/Content/skins/darkred.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="~/Content/skins/purple.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="~/Content/skins/darkblue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="~/Content/skins/gray.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="~/Content/skins/black.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="~/Content/skins/deepblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/Content/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/Content/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/Content/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/Content/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/Content/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/Content/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/Content/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/Content/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/Content/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/Content/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/Content/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/Content/skins/deepblue.min.css"></a></li>
                                         </ul>
                                     </li>
                                     <!--/Theme Selector Area-->
                                     <li class="dropdown-footer">
-                                        <a href="#">
+                                        <a href="@Url.Action("Sair", "Acesso")">
                                             Sair
                                         </a>
                                     </li>
@@ -149,11 +156,13 @@
                             <!--Note: notice that setting div must start right after account area list.
                             no space must be between these elements-->
                             <!-- Settings -->
-                        </ul><div class="setting">
+                        </ul>
+                        <div class="setting">
                             <a id="btn-setting" title="Setting" href="#">
                                 <i class="icon glyphicon glyphicon-cog"></i>
                             </a>
-                        </div><div class="setting-container">
+                        </div>
+                        <div class="setting-container">
                             <label>
                                 <input type="checkbox" id="checkbox_fixednavbar">
                                 <span class="text">Fixed Navbar</span>
@@ -199,11 +208,6 @@
             <!-- /Page Sidebar -->
             <!-- Page Content -->
             <div class="page-content">
-                <!-- Loading Container -->
-                @*<div class="loading-container">
-                        <div class="loader"></div>
-                    </div>*@
-                <!--  /Loading Container -->
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <div class="page-breadcrumb-bordered  bg-themeprimary"></div>
@@ -247,7 +251,7 @@
 
     <!--Beyond Scripts-->
     @Scripts.Render("~/bundles/beyond")
-    
+
     <!--Weather Scripts-->
     @Scripts.Render("~/bundles/weather")
     <script type="text/javascript">
@@ -290,7 +294,6 @@
             });
         }
     </script>
-
     <!--Page Related Scripts-->
     @RenderSection("PageScripts", required: false)
 </body>

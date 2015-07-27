@@ -34,7 +34,7 @@
                 <h2>Página não encotrada</h2>
                 <p class="description">Não foi possível encontrar esta página</p>
             </div>
-            <a href="/" class="return-btn"><i class="fa fa-home"></i>Voltar</a>
+            <a href="javascript:history.back(1)" class="return-btn"><i class="fa fa-home"></i>Voltar</a>
         </section>
     </div>
     <!--Basic Scripts-->

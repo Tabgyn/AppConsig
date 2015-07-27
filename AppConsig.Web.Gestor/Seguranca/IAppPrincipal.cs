@@ -9,6 +9,7 @@ namespace AppConsig.Web.Gestor.Seguranca
         long Id { get; set; }
         string Nome { get; set; }
         string Sobrenome { get; set; }
+        string Email { get; set; }
         ICollection<Permissao> Permissoes { get; set; } 
     }
 }

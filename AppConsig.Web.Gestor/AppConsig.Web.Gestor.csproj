@@ -293,7 +293,9 @@
     <Content Include="Scripts\skins.min.js" />
     <Content Include="Scripts\ZeroClipboard.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -305,10 +307,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Aviso\Index.cshtml" />
-    <Content Include="Views\Aviso\Detalhes.cshtml" />
+    <Content Include="Views\Aviso\Detalhar.cshtml" />
     <Content Include="Views\Aviso\Criar.cshtml" />
     <Content Include="Views\Aviso\Editar.cshtml" />
-    <Content Include="Views\Aviso\Deletar.cshtml" />
+    <Content Include="Views\Aviso\Excluir.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />

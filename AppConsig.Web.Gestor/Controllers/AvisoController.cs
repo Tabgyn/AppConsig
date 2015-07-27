@@ -132,8 +132,8 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // GET: Aviso/Deletar/5
-        public ActionResult Deletar(long? id)
+        // GET: Aviso/Excluir/5
+        public ActionResult Excluir(long? id)
         {
             if (id == null)
             {
@@ -150,10 +150,10 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // POST: /Aviso/Deletar/5 
-        [HttpPost, ActionName("Deletar")]
+        // POST: /Aviso/Excluir/5 
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarDeletar(long id)
+        public ActionResult ConfirmarExcluir(long id)
         {
             Aviso person = _servicoAviso.ObterPeloId(id);
 

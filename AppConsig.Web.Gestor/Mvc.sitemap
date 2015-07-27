@@ -3,7 +3,12 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode key="0" title="root" clickable="false" dynamicNodeProvider="AppConsig.Web.Gestor.AppDynamicNodeProvider, AppConsig.Web.Gestor">
+  <mvcSiteMapNode title="root">
     <mvcSiteMapNode title="Visão Geral" controller="VisaoGeral" action="Index" imageUrl="fa fa-dashboard" description="Dados e estatísticas"/>
+    <mvcSiteMapNode title="Controles" url="/0" imageUrl="fa fa-cogs">
+      <mvcSiteMapNode title="Acessos" controller="Acesso" action="Index" description="Controle de acessos dos usuários"/>
+      <mvcSiteMapNode title="Avisos" controller="Aviso" action="Index" description="Controle de avisos aos usuários"/>
+      <mvcSiteMapNode title="Perfis" controller="Perfil" action="Index" description="Controle de perfis dos usuários"/>
+    </mvcSiteMapNode>
   </mvcSiteMapNode>
 </mvcSiteMap>
