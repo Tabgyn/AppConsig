@@ -118,6 +118,8 @@ function InitiateSideMenu() {
     $(".sidebar-toggler").on('click', function () {
         $("#sidebar").toggleClass("hide");
         $(".sidebar-toggler").toggleClass("active");
+        $("#collapse-icon").toggleClass("fa-angle-double-left");
+        $("#collapse-icon").toggleClass("fa-angle-double-right");
         return false;
     });
     //End Sidebar Toggler
@@ -454,10 +456,10 @@ function setCookiesForFixedSettings() {
         if (!$('.page-sidebar').hasClass('menu-compact')) {
             //Slim Scrolling for Sidebar Menu in fix state
             $('.sidebar-menu').slimscroll({
+                height: 'auto',
                 position: 'left',
                 size: '3px',
-                color: themeprimary,
-                height: 'auto',
+                color: themeprimary
             });
         }
     } else {
@@ -485,16 +487,16 @@ $('.page-chatbar .chatbar-messages .back').on('click', function (e) {
 });
 
 $('.chatbar-messages .messages-list').slimscroll({
+    height: $(window).height() - 250,
     position: 'left',
     size: '4px',
-    color: themeprimary,
-    height: $(window).height() - 250,
+    color: themeprimary
 });
 $('.chatbar-contacts .contacts-list').slimscroll({
+    height: $(window).height() - 86,
     position: 'left',
     size: '4px',
-    color: themeprimary,
-    height: $(window).height() - 86,
+    color: themeprimary
 });
 //End Chat
 

@@ -3,12 +3,34 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="root">
+  <mvcSiteMapNode title="root" clickable="false">
     <mvcSiteMapNode title="Visão Geral" controller="VisaoGeral" action="Index" imageUrl="fa fa-dashboard" description="Dados e estatísticas"/>
-    <mvcSiteMapNode title="Controles" url="/0" imageUrl="fa fa-cogs">
-      <mvcSiteMapNode title="Acessos" controller="Acesso" action="Index" description="Controle de acessos dos usuários"/>
-      <mvcSiteMapNode title="Avisos" controller="Aviso" action="Index" description="Controle de avisos aos usuários"/>
-      <mvcSiteMapNode title="Perfis" controller="Perfil" action="Index" description="Controle de perfis dos usuários"/>
+    <mvcSiteMapNode title="Arquivos" url="/0" imageUrl="fa fa-archive">
+      <mvcSiteMapNode title="Folha" controller="Arquivo" action="Folha" description="Importação de arquivos da folha"/>
+      <mvcSiteMapNode title="Lote" controller="Arquivo" action="Lote" description="Importação de arquivos em lote"/>
+      <mvcSiteMapNode title="Movimento" controller="Arquivo" action="Folha" description="Exportação de arquivos de movimento"/>
+      <mvcSiteMapNode title="Retorno" controller="Arquivo" action="Folha" description="Exportação de arquivos de retorno"/>
     </mvcSiteMapNode>
+    <mvcSiteMapNode title="Controles" url="/1" imageUrl="fa fa-cogs">
+      <mvcSiteMapNode title="Acessos" controller="Usuario" action="Index" description="Controle de acessos dos usuários"/>
+      <mvcSiteMapNode title="Auditoria" controller="Auditoria" action="Index" description="Controle de auditoria"/>
+      <mvcSiteMapNode key="Avisos" title="Avisos" controller="Aviso" action="Index" description="Controle de avisos aos usuários">
+        <mvcSiteMapNode title="Criar aviso" controller="Aviso" action="Criar" description="Criar aviso aos usuários" visibility="!MenuHelper"/>
+        <mvcSiteMapNode title="Detalhar aviso" controller="Aviso" action="Detalhar" description="Detalhar aviso aos usuários" visibility="!MenuHelper" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Editar aviso" controller="Aviso" action="Editar" description="Editar aviso aos usuários" visibility="!MenuHelper" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Excluir aviso" controller="Aviso" action="Excluir" description="Excluir aviso aos usuários" visibility="!MenuHelper" preservedRouteParameters="id"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Orgãos" controller="Orgao" action="Index" description="Controle de orgãos dos servidores"/>
+      <mvcSiteMapNode title="Parâmetros" controller="Parametro" action="Index" description="Controle de parâmetros do portal"/>
+      <mvcSiteMapNode title="Perfis" controller="Perfil" action="Index" description="Controle de perfis dos usuários"/>
+      <mvcSiteMapNode title="Serviços" controller="Servico" action="Index" description="Controle de tipos de serviços"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Consignações" controller="Consignacao" action="Index" imageUrl="fa fa-certificate" description="Consignações"/>
+    <mvcSiteMapNode title="Consignatárias" controller="Consignataria" action="Index" imageUrl="fa fa-bank" description="Consignatárias"/>
+    <mvcSiteMapNode title="Contratos" controller="Contrato" action="Index" imageUrl="fa fa-money" description="Contratos e propostas"/>
+    <mvcSiteMapNode title="Relatórios" url="/2" imageUrl="fa fa-bar-chart">
+      <mvcSiteMapNode title="Contratos" controller="Relatorio" action="Contrato" description="Relatórios de contratos"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Servidores" controller="Servidor" action="Index" imageUrl="fa fa-users" description="Servidores"/>
   </mvcSiteMapNode>
 </mvcSiteMap>

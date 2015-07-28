@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entidades;
@@ -19,47 +20,49 @@ namespace AppConsig.Web.Gestor.Controllers
         // GET: Aviso
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
+            //ViewBag.CurrentSort = sortOrder;
+            //ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+            //if (searchString != null)
+            //{
+            //    page = 1;
+            //}
+            //else
+            //{
+            //    searchString = currentFilter;
+            //}
 
-            var avisos = _servicoAviso.ObterTodos().ToList();
+            //var avisos = _servicoAviso.ObterTodos().ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
-                || a.Texto.Contains(searchString)).ToList();
-            }
+            //if (!string.IsNullOrEmpty(searchString))
+            //{
+            //    avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
+            //    || a.Texto.Contains(searchString)).ToList();
+            //}
 
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
-                    break;
-                case "Date":
-                    avisos = avisos.OrderBy(a => a.DataCriacao).ToList();
-                    break;
-                case "date_desc":
-                    avisos = avisos.OrderByDescending(a => a.DataCriacao).ToList();
-                    break;
-                default:
-                    avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
-                    break;
-            }
+            //switch (sortOrder)
+            //{
+            //    case "name_desc":
+            //        avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
+            //        break;
+            //    case "Date":
+            //        avisos = avisos.OrderBy(a => a.DataCriacao).ToList();
+            //        break;
+            //    case "date_desc":
+            //        avisos = avisos.OrderByDescending(a => a.DataCriacao).ToList();
+            //        break;
+            //    default:
+            //        avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
+            //        break;
+            //}
 
-            const int pageSize = 5;
-            int pageNumber = (page ?? 1);
+            //const int pageSize = 5;
+            //int pageNumber = (page ?? 1);
 
-            return View(avisos.ToPagedList(pageNumber, pageSize));
+            //return View(avisos.ToPagedList(pageNumber, pageSize));
+
+            return View(new List<Aviso>().ToPagedList(1, 10));
         }
 
         // GET: Aviso/Detalhar/5

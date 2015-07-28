@@ -67,5 +67,7 @@ namespace AppConsig.Dados
 
             return base.SaveChanges();
         }
+
+        public System.Data.Entity.DbSet<AppConsig.Entidades.Perfil> Perfils { get; set; }
     }
 }

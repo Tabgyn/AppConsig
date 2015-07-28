@@ -53,7 +53,7 @@
                                         <td class="col-md-4 col-lg-3 text-align-center">
                                             <a href="@Url.Action("Editar", new {id = @item.Id})" class="btn btn-info btn-xs"><i class="fa fa-edit"></i>Editar</a>
                                             <a href="@Url.Action("Detalhar", new {id = @item.Id})" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i>Detalhar</a>
-                                            <a href="@Url.Action("Deletar", new {id = @item.Id})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Deletar</a>
+                                            <a href="@Url.Action("Excluir", new {id = @item.Id})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Deletar</a>
                                         </td>
                                     </tr>
                                 }
@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <div class="dataTables_info">
-                                    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                                    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">

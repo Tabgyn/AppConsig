@@ -23,7 +23,8 @@ namespace AppConsig.Web.Gestor
                       "~/Scripts/skins.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/beyond").Include(
-                "~/Scripts/beyond.js"));
+                "~/Scripts/beyond.js",
+                "~/Scripts/toastr.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/weather").Include(
                 "~/Scripts/jquery.simpleWeather.min.js"));

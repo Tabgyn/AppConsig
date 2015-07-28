@@ -18481,25 +18481,37 @@ tr.fc-last td {
     background: #2dc3e8;
 }
 
-    .loading-container.loading-inactive {
+.loading-container.loading-inactive {
+    display: none;
+}
+
+    .loading-container.loading-inactive .loader {
         display: none;
     }
 
-        .loading-container.loading-inactive .loader {
-            display: none;
-        }
+.loading-container .loader {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    -webkit-animation: typing 1s linear infinite alternate;
+    -moz-animation: Typing 1s linear infinite alternate;
+    animation: typing 1s linear infinite alternate;
+    margin: 50vh auto;
+    position: relative;
+    left: -12px;
+}
 
-    .loading-container .loader {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        -webkit-animation: typing 1s linear infinite alternate;
-        -moz-animation: Typing 1s linear infinite alternate;
-        animation: typing 1s linear infinite alternate;
-        margin: 50vh auto;
-        position: relative;
-        left: -12px;
-    }
+.page-content .loading-container {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+}
+
+.page-content .loading-container .loader{
+    left: auto;
+}
 
 #chat-link.open {
     -webkit-box-shadow: 0 -6px 40px rgba(0,0,0,.4);

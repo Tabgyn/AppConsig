@@ -3,7 +3,7 @@ using AppConsig.Web.Gestor.Seguranca;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
-    [SecureAuthorized]
+    //[SecureAuthorized]
     public class BaseController : Controller
     {
         
