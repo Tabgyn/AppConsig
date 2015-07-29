@@ -12,7 +12,7 @@ using MvcSiteMapProvider;
 namespace AppConsig.Web.Gestor.Controllers
 {
     [AllowAnonymous]
-    public class AcessoController : BaseController
+    public class AcessoController : Controller
     {
         readonly IServicoUsuario _servicoUsuario;
 
@@ -45,7 +45,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             Nome = usuario.Nome,
                             Sobrenome = usuario.Sobrenome,
                             Email = usuario.Email,
-                            Permissoes = _servicoUsuario.ObterPermissoesDoUsuario(usuario.Id)
+                            //Permissoes = _servicoUsuario.ObterPermissoesDoUsuario(usuario.Id)
                         };
 
                         var serializer = new JavaScriptSerializer();

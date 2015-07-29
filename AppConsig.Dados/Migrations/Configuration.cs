@@ -88,16 +88,16 @@ namespace AppConsig.Dados.Migrations
             //    Permissoes = permissoes
             //};
 
-            //context.Perfil.Add(perfil);
+            //context.Perfis.Add(perfil);
 
             //var usuario = new Usuario
             //{
-            //    Nome = "Tiago",
-            //    Sobrenome = "Azevedo Borges",
+            //    Nome = "Administrador",
+            //    Sobrenome = "",
             //    Login = "admin@appconsig.com.br",
             //    Senha = PasswordHash.CriarCriptografia("123"),
             //    Email = "admin@appconsig.com.br",
-            //    Perfil = context.Perfil.Find(1)
+            //    Perfil = context.Perfis.Find(1)
             //};
 
             //context.Usuarios.Add(usuario);

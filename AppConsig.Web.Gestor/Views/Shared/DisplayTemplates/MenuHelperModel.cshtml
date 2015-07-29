@@ -37,9 +37,9 @@
             {
                 //@Html.Bootstrap().SidebarMenuItem(node.Title, node.Area, node.Action, node.Controller).Icon(node.ImageUrl).IsDropDown();
                 <a class="menu-dropdown" href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
-                    @if (!string.IsNullOrEmpty(node.ImageUrl))
+                    @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
                     {
-                        <i class="menu-icon @Html.Raw(node.ImageUrl.ToString().Remove(0, 1))"></i>
+                        <i class="menu-icon @Html.Raw(node.Attributes["icone"])"></i>
                     }
                     <span class="menu-text">@Html.Raw(node.Title)</span>
                     <i class="menu-expand"></i>
@@ -49,9 +49,9 @@
             {
                 //@Html.Bootstrap().SidebarMenuItem(node.Title, node.Area, node.Action, node.Controller).Icon(node.ImageUrl);
                 <a href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
-                    @if (!string.IsNullOrEmpty(node.ImageUrl))
+                    @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
                     {
-                        <i class="menu-icon @Html.Raw(node.ImageUrl.ToString().Remove(0, 1))"></i>
+                        <i class="menu-icon @Html.Raw(node.Attributes["icone"])"></i>
                     }
                     <span class="menu-text">@Html.Raw(node.Title)</span>
                 </a>

@@ -5,7 +5,7 @@
     var culture = new CultureInfo("pt-BR");
     var dtfi = culture.DateTimeFormat;
     var diaDaSemana = dtfi.GetDayName(data.DayOfWeek).ToUpperInvariant();
-    //var usuarioLogado = (AppPrincipal) User;
+    var usuarioLogado = (AppPrincipal) User;
 }
 <!DOCTYPE html>
 <html>
@@ -109,13 +109,13 @@
                                         <img src="~/Content/Images/no_image_available.png">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>Administrador</span></span></h2>
+                                        <h2><span class="profile"><span>@usuarioLogado.Nome @usuarioLogado.Sobrenome</span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>Administrador</a></li>
-                                    <li class="email"><a>admin@appconsig.com.br</a></li>
+                                    <li class="username"><a>@usuarioLogado.Identity.Name</a></li>
+                                    <li class="email"><a>@usuarioLogado.Email</a></li>
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">

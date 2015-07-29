@@ -7,7 +7,7 @@ namespace AppConsig.Dados
     public interface IContexto
     {
         IDbSet<Aviso> Avisos { get; set; }
-        IDbSet<Perfil> Perfil { get; set; }
+        IDbSet<Perfil> Perfis { get; set; }
         IDbSet<Permissao> Permissoes { get; set; }
         IDbSet<Usuario> Usuarios { get; set; }
         

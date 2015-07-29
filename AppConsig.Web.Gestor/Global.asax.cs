@@ -37,7 +37,7 @@ namespace AppConsig.Web.Gestor
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
             var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
+            
             if (authCookie == null) return;
             var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
@@ -52,7 +52,7 @@ namespace AppConsig.Web.Gestor
                               Nome = serializeModel.Nome,
                               Sobrenome = serializeModel.Sobrenome,
                               Email = serializeModel.Email,
-                              Permissoes = serializeModel.Permissoes
+                              //Permissoes = serializeModel.Permissoes
                           };
 
             HttpContext.Current.User = newUser;

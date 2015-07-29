@@ -74,7 +74,7 @@ namespace AppConsig.Servicos
         {
             var usuario = Dbset.Find(usuarioId);
             var permissoes =
-                Contexto.Perfil.Where(p => p.Id == usuario.PerfilId)
+                Contexto.Perfis.Where(p => p.Id == usuario.PerfilId)
                     .Include(p => p.Permissoes)
                     .First()
                     .Permissoes.ToList();

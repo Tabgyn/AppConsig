@@ -3,9 +3,9 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="root" clickable="false">
-    <mvcSiteMapNode title="Visão Geral" controller="VisaoGeral" action="Index" imageUrl="fa fa-dashboard" description="Dados e estatísticas"/>
-    <mvcSiteMapNode title="Arquivos" url="/0" imageUrl="fa fa-archive">
+  <mvcSiteMapNode key="0" title="root" clickable="false" dynamicNodeProvider="AppConsig.Web.Gestor.AppDynamicNodeProvider, AppConsig.Web.Gestor"/>
+  <!--<mvcSiteMapNode title="Visão Geral" controller="VisaoGeral" action="Index" icone="fa fa-dashboard" description="Dados e estatísticas"/>
+  <mvcSiteMapNode title="Arquivos" url="/0" imageUrl="fa fa-archive">
       <mvcSiteMapNode title="Folha" controller="Arquivo" action="Folha" description="Importação de arquivos da folha"/>
       <mvcSiteMapNode title="Lote" controller="Arquivo" action="Lote" description="Importação de arquivos em lote"/>
       <mvcSiteMapNode title="Movimento" controller="Arquivo" action="Folha" description="Exportação de arquivos de movimento"/>
@@ -32,5 +32,5 @@
       <mvcSiteMapNode title="Contratos" controller="Relatorio" action="Contrato" description="Relatórios de contratos"/>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Servidores" controller="Servidor" action="Index" imageUrl="fa fa-users" description="Servidores"/>
-  </mvcSiteMapNode>
+    </mvcSiteMapNode>-->
 </mvcSiteMap>

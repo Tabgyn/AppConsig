@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AppConsig.Comum;
 
@@ -26,10 +25,12 @@ namespace AppConsig.Entidades
         public string Controller { get; set; }
         
         [MaxLength(256)]
-        public string UrlImagem { get; set; }
+        public string Icone { get; set; }
 
         public long ParenteId { get; set; }
         
         public int Ordem { get; set; }
+
+        public bool VisivelNoMenu { get; set; }
     }
 }

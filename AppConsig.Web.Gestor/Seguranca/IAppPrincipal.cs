@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.Principal;
-using AppConsig.Entidades;
+﻿using System.Security.Principal;
 
 namespace AppConsig.Web.Gestor.Seguranca
 {
@@ -10,6 +8,5 @@ namespace AppConsig.Web.Gestor.Seguranca
         string Nome { get; set; }
         string Sobrenome { get; set; }
         string Email { get; set; }
-        ICollection<Permissao> Permissoes { get; set; } 
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Web;
+using AppConsig.Dados;
 using AppConsig.Web.Gestor.Seguranca;
 using MvcSiteMapProvider;
 
@@ -10,22 +10,35 @@ namespace AppConsig.Web.Gestor
 {
     public class AppDynamicNodeProvider : IDynamicNodeProvider
     {
+        private readonly AppContexto _contexto = new AppContexto();
+
         public IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
-            var permissoes = ((AppPrincipal)HttpContext.Current.User).Permissoes;
+            var usuarioLogado = ((AppPrincipal)HttpContext.Current.User);
+            var permissoes = _contexto.Usuarios.Find(usuarioLogado.Id).Perfil.Permissoes;
 
-            return permissoes.Select(permissao => new DynamicNode
+            var nodeList = new List<DynamicNode>();
+            foreach (var permissao in permissoes)
             {
-                Key = permissao.Id.ToString(CultureInfo.InvariantCulture),
-                ParentKey = permissao.ParenteId.ToString(CultureInfo.InvariantCulture),
-                Title = permissao.Nome,
-                Description = permissao.Descricao,
-                Url = permissao.Url,
-                Action = permissao.Action,
-                Controller = permissao.Controller,
-                ImageUrl = permissao.UrlImagem,
-                Order = permissao.Ordem
-            });
+                var dNode = new DynamicNode
+                {
+                    Key = permissao.Id.ToString(CultureInfo.InvariantCulture),
+                    ParentKey = permissao.ParenteId.ToString(CultureInfo.InvariantCulture),
+                    Title = permissao.Nome,
+                    Description = permissao.Descricao,
+                    Url = permissao.Url,
+                    Action = permissao.Action,
+                    Controller = permissao.Controller,
+                    Order = permissao.Ordem,
+                    VisibilityProvider = permissao.VisivelNoMenu ? "*" : "!MenuHelper"
+                };
+
+                dNode.Attributes.Add("icone", permissao.Icone);
+
+                nodeList.Add(dNode);
+            }
+
+            return nodeList;
         }
 
         public bool AppliesTo(string providerName)

@@ -19,7 +19,7 @@ namespace AppConsig.Dados
         }
 
         public IDbSet<Aviso> Avisos { get; set; }
-        public IDbSet<Perfil> Perfil { get; set; }
+        public IDbSet<Perfil> Perfis { get; set; }
         public IDbSet<Permissao> Permissoes { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
 
@@ -67,7 +67,5 @@ namespace AppConsig.Dados
 
             return base.SaveChanges();
         }
-
-        public System.Data.Entity.DbSet<AppConsig.Entidades.Perfil> Perfils { get; set; }
     }
 }
