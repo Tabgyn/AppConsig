@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
+using System.Linq;
 using System.Web;
 using AppConsig.Dados;
 using AppConsig.Web.Gestor.Seguranca;
@@ -15,7 +17,10 @@ namespace AppConsig.Web.Gestor
         public IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
             var usuarioLogado = ((AppPrincipal)HttpContext.Current.User);
-            var permissoes = _contexto.Usuarios.Find(usuarioLogado.Id).Perfil.Permissoes;
+            var permissoes =
+                _contexto.Usuarios.Include(u => u.Perfil)
+                    .Include(u => u.Perfil.Permissoes)
+                    .First(u => u.Id == usuarioLogado.Id).Perfil.Permissoes;
 
             var nodeList = new List<DynamicNode>();
             foreach (var permissao in permissoes)
@@ -30,7 +35,7 @@ namespace AppConsig.Web.Gestor
                     Action = permissao.Action,
                     Controller = permissao.Controller,
                     Order = permissao.Ordem,
-                    VisibilityProvider = permissao.VisivelNoMenu ? "*" : "!MenuHelper"
+                    VisibilityProvider = permissao.VisivelNoMenu ? "" : "!MenuHelper"
                 };
 
                 dNode.Attributes.Add("icone", permissao.Icone);

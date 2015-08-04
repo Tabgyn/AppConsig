@@ -118,8 +118,6 @@ function InitiateSideMenu() {
     $(".sidebar-toggler").on('click', function () {
         $("#sidebar").toggleClass("hide");
         $(".sidebar-toggler").toggleClass("active");
-        $("#collapse-icon").toggleClass("fa-angle-double-left");
-        $("#collapse-icon").toggleClass("fa-angle-double-right");
         return false;
     });
     //End Sidebar Toggler
@@ -492,6 +490,7 @@ $('.chatbar-messages .messages-list').slimscroll({
     size: '4px',
     color: themeprimary
 });
+
 $('.chatbar-contacts .contacts-list').slimscroll({
     height: $(window).height() - 86,
     position: 'left',

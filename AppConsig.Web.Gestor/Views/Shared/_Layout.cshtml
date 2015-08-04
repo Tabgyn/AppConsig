@@ -25,7 +25,7 @@
 
     <!--Beyond styles-->
     @Styles.Render("~/css/beyond")
-    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/skins/black.css" rel="stylesheet" type="text/css" />
 
     <!--AppConsig styles-->
     @Styles.Render("~/css/appconsig")
@@ -45,7 +45,7 @@
     </div>*@
     <!--  /Loading Container -->
     <!-- Navbar -->
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar">
         <div class="navbar-inner">
             <div class="navbar-container">
                 <!-- Navbar Barnd -->
@@ -56,16 +56,16 @@
                 </div>
                 <!-- /Navbar Barnd -->
                 <!-- Sidebar Collapse -->
-                @*<div class="sidebar-collapse" id="sidebar-collapse" title="Menu compacto">
+                <div class="sidebar-collapse" id="sidebar-collapse" title="Menu compacto">
                     <i class="collapse-icon fa fa-bars"></i>
-                </div>*@
+                </div>
                 <!-- /Sidebar Collapse -->
                 <!-- Account Area and Settings --->
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
                         <ul class="account-area">
                             <li>
-                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Suporte" href="#">
+                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Informação" href="#">
                                     <i class="icon fa fa-info-circle"></i>
                                 </a>
                                 <!--Notification Dropdown-->
@@ -129,18 +129,18 @@
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/Content/skins/blue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/Content/skins/azure.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/Content/skins/teal.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/Content/skins/green.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/Content/skins/orange.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/Content/skins/pink.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/Content/skins/darkred.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/Content/skins/purple.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/Content/skins/darkblue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/Content/skins/gray.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/Content/skins/black.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/Content/skins/deepblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/Content/skins/blue.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/Content/skins/azure.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/Content/skins/teal.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/Content/skins/green.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/Content/skins/orange.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/Content/skins/pink.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/Content/skins/darkred.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/Content/skins/purple.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/Content/skins/darkblue.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/Content/skins/gray.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/Content/skins/black.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/Content/skins/deepblue.css"></a></li>
                                         </ul>
                                     </li>
                                     <!--/Theme Selector Area-->
@@ -193,7 +193,7 @@
         <!-- Page Container -->
         <div class="page-container">
             <!-- Page Sidebar -->
-            <div class="page-sidebar sidebar-fixed" id="sidebar">
+            <div class="page-sidebar" id="sidebar">
                 <!-- Page Sidebar Header-->
                 @*<div class="sidebar-header-wrapper">
                         <input type="text" class="searchinput" />
@@ -204,11 +204,6 @@
                 <!-- Sidebar Menu -->
                 @Html.MvcSiteMap().Menu(false)
                 <!-- /Sidebar Menu -->
-                <!-- Sidebar Collapse -->
-                <div class="sidebar-collapse sidebar-toggler" id="sidebar-collapse" title="Menu compacto">
-                    <i class="collapse-icon fa fa-angle-double-left" id="collapse-icon"></i>
-                </div>
-                <!-- /Sidebar Collapse -->
             </div>
             <!-- /Page Sidebar -->
             <!-- Page Content -->
@@ -229,13 +224,13 @@
                     @Html.MvcSiteMap().SiteMapTitle()
                     <!--Header Buttons-->
                     <div class="header-buttons">
-                        <a class="sidebar-toggler" href="#">
+                        <a class="sidebar-toggler" href="#" title="Remover menu">
                             <i class="fa fa-arrows-h"></i>
                         </a>
-                        <a class="refresh" id="refresh-toggler" href="">
+                        <a class="refresh" id="refresh-toggler" href="" title="Atualizar">
                             <i class="glyphicon glyphicon-refresh"></i>
                         </a>
-                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <a class="fullscreen" id="fullscreen-toggler" href="#" title="Maximizar">
                             <i class="glyphicon glyphicon-fullscreen"></i>
                         </a>
                     </div>

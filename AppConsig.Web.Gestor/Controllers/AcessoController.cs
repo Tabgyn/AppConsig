@@ -44,8 +44,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             Id = usuario.Id,
                             Nome = usuario.Nome,
                             Sobrenome = usuario.Sobrenome,
-                            Email = usuario.Email,
-                            //Permissoes = _servicoUsuario.ObterPermissoesDoUsuario(usuario.Id)
+                            Email = usuario.Email
                         };
 
                         var serializer = new JavaScriptSerializer();

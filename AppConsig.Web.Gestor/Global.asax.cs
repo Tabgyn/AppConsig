@@ -51,8 +51,7 @@ namespace AppConsig.Web.Gestor
                               Id = serializeModel.Id,
                               Nome = serializeModel.Nome,
                               Sobrenome = serializeModel.Sobrenome,
-                              Email = serializeModel.Email,
-                              //Permissoes = serializeModel.Permissoes
+                              Email = serializeModel.Email
                           };
 
             HttpContext.Current.User = newUser;

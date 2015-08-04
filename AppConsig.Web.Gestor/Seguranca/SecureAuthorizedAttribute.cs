@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AppConsig.Dados;
-using AppConsig.Entidades;
 
 namespace AppConsig.Web.Gestor.Seguranca
 {
