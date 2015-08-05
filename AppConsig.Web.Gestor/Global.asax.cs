@@ -9,6 +9,7 @@ using AppConsig.Web.Gestor.Modulos;
 using AppConsig.Web.Gestor.Seguranca;
 using Autofac;
 using Autofac.Integration.Mvc;
+using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor
 {
@@ -34,7 +35,7 @@ namespace AppConsig.Web.Gestor
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
-        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
         {
             var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             

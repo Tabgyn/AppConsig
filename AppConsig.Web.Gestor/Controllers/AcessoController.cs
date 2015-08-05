@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -121,7 +122,15 @@ namespace AppConsig.Web.Gestor.Controllers
             SiteMaps.ReleaseSiteMap();
             FormsAuthentication.SignOut();
             Session.Abandon();
-            
+
+            // clear authentication cookie
+            var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
+            Response.Cookies.Add(cookie1);
+
+            // clear session cookie
+            var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
+            Response.Cookies.Add(cookie2);
+
             return RedirectToAction("Index");
         }
     }

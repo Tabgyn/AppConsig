@@ -7,7 +7,7 @@ using AppConsig.Dados;
 
 namespace AppConsig.Web.Gestor.Seguranca
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class SecureAuthorizedAttribute : AuthorizeAttribute
     {
         private readonly AppContexto _contexto = new AppContexto();

@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,14 +55,6 @@
     </Reference>
     <Reference Include="BeyondThemes.Bootstrap">
       <HintPath>..\lib\BeyondThemes.Bootstrap.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -204,10 +197,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
+    <Content Include="Content\animate.min.css">
+      <DependentUpon>animate.css</DependentUpon>
+    </Content>
+    <Content Include="Content\appconsig.min.css">
+      <DependentUpon>appconsig.css</DependentUpon>
+    </Content>
     <Content Include="Content\beyond.css" />
+    <Content Include="Content\beyond.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css">
+      <DependentUpon>bootstrap-theme.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\dataTables.bootstrap.min.css">
+      <DependentUpon>dataTables.bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
+    <Content Include="Content\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
     <Content Include="Content\simpleWeather.css" />
+    <Content Include="Content\simpleWeather.min.css">
+      <DependentUpon>simpleWeather.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\azure.css" />
     <Content Include="Content\skins\black.css" />
     <Content Include="Content\skins\blue.css" />
@@ -222,12 +240,74 @@
     <Content Include="Content\skins\skins-mixins.css" />
     <Content Include="Content\skins\teal.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\appconsig.js" />
+    <Content Include="Scripts\appconsig.min.js">
+      <DependentUpon>appconsig.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\beyond.js" />
+    <Content Include="Scripts\beyond.min.js">
+      <DependentUpon>beyond.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrapValidator.min.js">
+      <DependentUpon>bootstrapValidator.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\datatables-init.min.js">
+      <DependentUpon>datatables-init.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.bootstrap.min.js">
+      <DependentUpon>dataTables.bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.tableTools.min.js">
+      <DependentUpon>dataTables.tableTools.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.4.intellisense.min.js">
+      <DependentUpon>jquery-2.1.4.intellisense.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.4.min.js">
+      <DependentUpon>jquery-2.1.4.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.dataTables.min.js">
+      <DependentUpon>jquery.dataTables.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.simpleWeather.js" />
-    <Content Include="Scripts\jquery.simpleWeather.min.js" />
+    <Content Include="Scripts\jquery.simpleWeather.min.js">
+      <DependentUpon>jquery.simpleWeather.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.slimscroll.min.js">
+      <DependentUpon>jquery.slimscroll.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate-vsdoc.min.js">
+      <DependentUpon>jquery.validate-vsdoc.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
+      <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\modernizr-2.8.3.min.js">
+      <DependentUpon>modernizr-2.8.3.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js">
+      <DependentUpon>respond.matchmedia.addListener.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.min.js">
+      <DependentUpon>respond.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\skins.min.js">
+      <DependentUpon>skins.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\toastr.min.js">
+      <DependentUpon>toastr.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\zeroclipboard.min.js">
+      <DependentUpon>zeroclipboard.js</DependentUpon>
+    </Content>
     <Content Include="Views\Shared\Error\401.aspx" />
     <Content Include="Views\Shared\Error\401.html" />
     <Content Include="Views\Shared\Error\500.aspx" />
@@ -246,9 +326,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="Scripts\beyond.js" />
-    <Content Include="Scripts\beyond.min.js" />
-    <Content Include="Scripts\bootstrapValidator.min.js.map" />
     <Content Include="Mvc.sitemap">
       <SubType>Designer</SubType>
     </Content>
@@ -256,41 +333,122 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\beyond.min.js.map" />
-    <Content Include="Scripts\dataTables.bootstrap.min.js.map" />
-    <Content Include="Scripts\dataTables.tableTools.min.js.map" />
+    <Content Include="Content\animate.min.css.gz">
+      <DependentUpon>animate.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-theme.min.css.gz">
+      <DependentUpon>bootstrap-theme.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.min.css.gz">
+      <DependentUpon>bootstrap.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\dataTables.bootstrap.min.css.gz">
+      <DependentUpon>dataTables.bootstrap.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\font-awesome.min.css.gz">
+      <DependentUpon>font-awesome.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\PagedList.min.css.gz">
+      <DependentUpon>PagedList.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\simpleWeather.min.css.gz">
+      <DependentUpon>simpleWeather.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\appconsig.min.css.gz">
+      <DependentUpon>appconsig.min.css</DependentUpon>
+    </Content>
+    <Content Include="Content\beyond.css.map" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\bootstrap.min.js.gz">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrapValidator.min.js.gz">
+      <DependentUpon>bootstrapValidator.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrapValidator.min.js.map">
+      <DependentUpon>bootstrapValidator.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\datatables-init.min.js.gz">
+      <DependentUpon>datatables-init.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\datatables-init.min.js.map">
+      <DependentUpon>datatables-init.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.bootstrap.min.js.gz">
+      <DependentUpon>dataTables.bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.bootstrap.min.js.map">
+      <DependentUpon>dataTables.bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.tableTools.min.js.gz">
+      <DependentUpon>dataTables.tableTools.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dataTables.tableTools.min.js.map">
+      <DependentUpon>dataTables.tableTools.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\appconsig.min.js.gz">
+      <DependentUpon>appconsig.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\appconsig.min.js.map">
+      <DependentUpon>appconsig.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\beyond.min.js.gz">
+      <DependentUpon>beyond.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\beyond.min.js.map">
+      <DependentUpon>beyond.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrapValidator.js" />
-    <Content Include="Scripts\bootstrapValidator.min.js" />
     <Content Include="Scripts\datatables-init.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
-    <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\dataTables.tableTools.js" />
-    <Content Include="Scripts\dataTables.tableTools.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <Content Include="Scripts\jquery.dataTables.min.js.map" />
+    <Content Include="Scripts\jquery-2.1.4.intellisense.min.js.gz">
+      <DependentUpon>jquery-2.1.4.intellisense.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.4.intellisense.min.js.map">
+      <DependentUpon>jquery-2.1.4.intellisense.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.4.min.js.gz">
+      <DependentUpon>jquery-2.1.4.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.4.min.js.map">
+      <DependentUpon>jquery-2.1.4.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.dataTables.min.js.gz">
+      <DependentUpon>jquery.dataTables.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.dataTables.min.js.map">
+      <DependentUpon>jquery.dataTables.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.simpleWeather.min.js.gz">
+      <DependentUpon>jquery.simpleWeather.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.simpleWeather.min.js.map">
+      <DependentUpon>jquery.simpleWeather.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.slimscroll.min.js.gz">
+      <DependentUpon>jquery.slimscroll.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.slimscroll.min.js.map">
+      <DependentUpon>jquery.slimscroll.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
-    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\skins.js" />
-    <Content Include="Scripts\skins.min.js" />
-    <Content Include="Scripts\ZeroClipboard.js" />
+    <Content Include="Scripts\zeroclipboard.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -324,7 +482,60 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
-    <Content Include="Scripts\toastr.min.js.map" />
+    <Content Include="Scripts\jquery.validate-vsdoc.min.js.gz">
+      <DependentUpon>jquery.validate-vsdoc.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate-vsdoc.min.js.map">
+      <DependentUpon>jquery.validate-vsdoc.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.min.js.gz">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js.gz">
+      <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js.map">
+      <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\modernizr-2.8.3.min.js.gz">
+      <DependentUpon>modernizr-2.8.3.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\modernizr-2.8.3.min.js.map">
+      <DependentUpon>modernizr-2.8.3.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.min.js.gz">
+      <DependentUpon>respond.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.min.js.map">
+      <DependentUpon>respond.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js.gz">
+      <DependentUpon>respond.matchmedia.addListener.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js.map">
+      <DependentUpon>respond.matchmedia.addListener.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\skins.min.js.gz">
+      <DependentUpon>skins.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\skins.min.js.map">
+      <DependentUpon>skins.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\toastr.min.js.gz">
+      <DependentUpon>toastr.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\toastr.min.js.map">
+      <DependentUpon>toastr.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\zeroclipboard.min.js.gz">
+      <DependentUpon>zeroclipboard.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\zeroclipboard.min.js.map">
+      <DependentUpon>zeroclipboard.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

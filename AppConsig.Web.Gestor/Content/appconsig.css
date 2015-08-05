@@ -46,9 +46,47 @@
         margin-left: 47px;
     }
 
+.page-sidebar .sidebar-collapse.sidebar-toggler {
+    text-align: center;
+    padding: 5px 0;
+    position: relative;
+    margin-left: 5px;
+    z-index: 1;
+}
+
+.page-sidebar .sidebar-collapse.sidebar-toggler:before {
+    content: "";
+    display: block;
+    height: 0;
+    border-top: 1px solid;
+    border-color: #dddddd;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 15px;
+}
+
+.page-sidebar .sidebar-collapse.sidebar-toggler .collapse-icon {
+    padding: 0 5px;
+    line-height: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    -ms-border-radius: 100%;
+    border-radius: 100%;
+    border: 1px solid #bbbbbb;
+    position: relative;
+    background-color: #ffffff;
+    color: #bbbbbb;
+}
+
+.page-sidebar:hover .sidebar-collapse .collapse-icon {
+    color: #bbbbbb!important;
+}
+
 .table .text-overflow {
     max-width: 0;
     overflow: hidden;
+    -moz-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

@@ -9,41 +9,44 @@ namespace AppConsig.Web.Gestor
         {
             //Scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-2.1.4.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/bootstrap.js",
-                        "~/Scripts/respond.js",
-                        "~/Scripts/jquery.slimscroll.js"));
+                        "~/Scripts/bootstrap.min.js",
+                        "~/Scripts/respond.min.js",
+                        "~/Scripts/jquery.slimscroll.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/skin").Include(
-                      "~/Scripts/skins.js"));
+                      "~/Scripts/skins.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/beyond").Include(
-                "~/Scripts/beyond.js",
-                "~/Scripts/toastr.js"));
+                "~/Scripts/beyond.min.js",
+                "~/Scripts/toastr.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/weather").Include(
-                "~/Scripts/jquery.simpleWeather.js"));
+                "~/Scripts/jquery.simpleWeather.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/appconsig").Include(
+                "~/Scripts/appconsig.min.js"));
 
             //Styles
             bundles.Add(new StyleBundle("~/css/bootstrap").Include(
-                "~/Content/bootstrap.css"));
+                "~/Content/bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/css/appconsig").Include(
-                "~/Content/appconsig.css"));
+                "~/Content/appconsig.min.css"));
 
             bundles.Add(new StyleBundle("~/css/beyond").Include(
-                "~/Content/beyond.css",
-                "~/Content/font-awesome.css",
-                "~/Content/animate.css"
+                "~/Content/beyond.min.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/animate.min.css"
                 ));
 
             bundles.Add(new StyleBundle("~/css/weather").Include(
-                "~/Content/simpleWeather.css"));
+                "~/Content/simpleWeather.min.css"));
         }
     }
 }
