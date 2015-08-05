@@ -1,4 +1,4 @@
-﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+﻿@model MenuHelperModel
 @using System.Web.Mvc.Html
 @using MvcSiteMapProvider.Web.Html.Models
 
@@ -35,7 +35,6 @@
         <li class="@(!string.IsNullOrEmpty(nodeclass) ? Html.Raw(nodeclass) : null)">
             @if (node.Children.Any())
             {
-                //@Html.Bootstrap().SidebarMenuItem(node.Title, node.Area, node.Action, node.Controller).Icon(node.ImageUrl).IsDropDown();
                 <a class="menu-dropdown" href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
                     @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
                     {
@@ -47,7 +46,6 @@
             }
             else
             {
-                //@Html.Bootstrap().SidebarMenuItem(node.Title, node.Area, node.Action, node.Controller).Icon(node.ImageUrl);
                 <a href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
                     @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
                     {

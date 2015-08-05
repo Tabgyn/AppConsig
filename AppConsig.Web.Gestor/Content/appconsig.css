@@ -60,3 +60,7 @@ div.dataTables_paginate {
 .tooltip.in {
     z-index: 99999;
 }
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    border-color: #f3f3f3;
+}

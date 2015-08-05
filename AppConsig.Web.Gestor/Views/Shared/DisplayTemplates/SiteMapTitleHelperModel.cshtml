@@ -1,22 +1,18 @@
-﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapTitleHelperModel
-@using System.Web.Mvc.Html
-@using MvcSiteMapProvider.Web.Html.Models
+﻿@model SiteMapTitleHelperModel
+
 @if (Model.CurrentNode != null)
 {
     <div class="header-title">
         <h1>
-            @*@Model.CurrentNode.Title*@
-            @if (!String.IsNullOrEmpty(Model.CurrentNode.Description))
+            @if (!string.IsNullOrEmpty(Model.CurrentNode.Description))
             {
                 <small>
-                    @*<i class="fa fa-angle-right"></i>*@
                     @Model.CurrentNode.Description
                 </small>
             }
             else
             {
                 <small>
-                    @*<i class="fa fa-angle-right"></i>*@
                     @Model.CurrentNode.Title
                 </small>
             }

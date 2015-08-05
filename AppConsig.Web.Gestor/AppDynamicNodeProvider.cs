@@ -34,11 +34,11 @@ namespace AppConsig.Web.Gestor
                     Url = permissao.Url,
                     Action = permissao.Action,
                     Controller = permissao.Controller,
-                    Order = permissao.Ordem,
-                    VisibilityProvider = permissao.VisivelNoMenu ? "" : "!MenuHelper"
+                    Order = permissao.Ordem
                 };
 
                 dNode.Attributes.Add("icone", permissao.Icone);
+                dNode.Attributes.Add("visibility", permissao.VisivelNoMenu ? "" : "!MenuHelper");
 
                 nodeList.Add(dNode);
             }

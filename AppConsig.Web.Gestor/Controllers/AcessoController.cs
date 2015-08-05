@@ -119,8 +119,8 @@ namespace AppConsig.Web.Gestor.Controllers
         public ActionResult Sair()
         {
             SiteMaps.ReleaseSiteMap();
-
             FormsAuthentication.SignOut();
+            Session.Abandon();
             
             return RedirectToAction("Index");
         }
