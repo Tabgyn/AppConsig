@@ -16,7 +16,7 @@
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
             <div class="loginbox-textbox">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Senha" })
+                @Html.PasswordFor(m => m.Senha, new { @class = "form-control", @placeholder = "Senha" })
                 @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
             </div>
             <div class="loginbox-forgot">

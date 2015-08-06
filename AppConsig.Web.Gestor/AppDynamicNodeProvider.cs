@@ -37,6 +37,14 @@ namespace AppConsig.Web.Gestor
                     Order = permissao.Ordem
                 };
 
+                //Quando for CRUD
+                if (permissao.VisivelNoMenu == false)
+                {
+                    var cList = new List<string>();
+                    cList.Add("id");
+                    dNode.PreservedRouteParameters = cList;
+                }
+
                 dNode.Attributes.Add("icone", permissao.Icone);
                 dNode.Attributes.Add("visibility", permissao.VisivelNoMenu ? "" : "!MenuHelper");
 

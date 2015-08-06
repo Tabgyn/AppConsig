@@ -131,6 +131,48 @@ INSERT INTO [dbo].[Permissao]
             ('Contratos','Relatórios de contratos','','Contrato','Relatorio','',@id,1,1)
 GO
 
+--ADICIONAR CRUD
+
+--Acessos
+DECLARE @id bigint;
+SET @id = (SELECT [Id] FROM [dbo].[Permissao] WHERE [Nome] = 'Acessos')
+INSERT INTO [dbo].[Permissao]
+           ([Nome]
+           ,[Descricao]
+           ,[Url]
+           ,[Action]
+           ,[Controller]
+           ,[Icone]
+           ,[ParenteId]
+           ,[Ordem]
+           ,[VisivelNoMenu])
+     VALUES
+            ('Criar','Criar novo acesso de usuário','','Criar','Usuario','',@id,1,0)
+		   ,('Detalhar','Detalhar acesso do usuário','','Detalhar','Usuario','',@id,2,0)
+		   ,('Editar','Editar acesso do usuário','','Editar','Usuario','',@id,3,0)
+		   ,('Excluir','Excluir acesso do usuário','','Excluir','Usuario','',@id,4,0)
+GO
+
+--Avisos
+DECLARE @id bigint;
+SET @id = (SELECT [Id] FROM [dbo].[Permissao] WHERE [Nome] = 'Avisos')
+INSERT INTO [dbo].[Permissao]
+           ([Nome]
+           ,[Descricao]
+           ,[Url]
+           ,[Action]
+           ,[Controller]
+           ,[Icone]
+           ,[ParenteId]
+           ,[Ordem]
+           ,[VisivelNoMenu])
+     VALUES
+            ('Criar','Criar novo aviso aos usuários','','Criar','Aviso','',@id,1,0)
+		   ,('Detalhar','Detalhar aviso aos usuários','','Detalhar','Aviso','',@id,2,0)
+		   ,('Editar','Editar aviso aos usuários','','Editar','Aviso','',@id,3,0)
+		   ,('Excluir','Excluir aviso aos usuários','','Excluir','Aviso','',@id,4,0)
+GO
+
 --ADICIONAR PERMISSOES AO PERFIL MASTER
 DECLARE @id bigint;
 SET @id = (SELECT Top 1 [Id] FROM [dbo].[Perfil] WHERE [Nome] = 'Master')

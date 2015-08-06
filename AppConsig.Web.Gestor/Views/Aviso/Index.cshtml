@@ -4,12 +4,12 @@
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }
-@using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
-{
-    <div class="row">
-        <div class="col-xs-12 col-md-12">
-            <div class="widget">
-                <div class="widget-body">
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                @using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
+                {
                     <div class="table-toolbar">
                         <a href="@Url.Action("Criar")" class="btn btn-default">
                             Criar novo
@@ -19,7 +19,6 @@
                         <div class="dataTables_filter">
                             <label>
                                 @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-sm", @type = "search" })
-                                @*<input type="search" class="form-control input-sm">*@
                             </label>
                         </div>
                         <div class="dataTables_length">
@@ -53,7 +52,7 @@
                                         <td class="col-md-4 col-lg-3 text-align-center">
                                             <a href="@Url.Action("Editar", new {id = @item.Id})" class="btn btn-info btn-xs"><i class="fa fa-edit"></i>Editar</a>
                                             <a href="@Url.Action("Detalhar", new {id = @item.Id})" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i>Detalhar</a>
-                                            <a href="@Url.Action("Excluir", new {id = @item.Id})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Deletar</a>
+                                            <a href="@Url.Action("Excluir", new {id = @item.Id})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Excluir</a>
                                         </td>
                                     </tr>
                                 }
@@ -68,16 +67,16 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="dataTables_paginate">
                                     @Html.PagedListPager(Model, page => Url.Action("Index",
-                                   new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
-}
+</div>
 @section PageStyles{
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
