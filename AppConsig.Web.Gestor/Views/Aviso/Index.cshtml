@@ -5,7 +5,7 @@
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }
 <div class="row">
-    <div class="col-xs-12 col-md-12">
+    <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
                 @using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
@@ -24,20 +24,13 @@
                         <div class="dataTables_length">
                             <label>
                                 @Html.DropDownList("ItemsPerPage",
-                               new List<SelectListItem>
-                               {
-                                   new SelectListItem { Text = "5", Value = "5", Selected = @Model.PageSize == 5},
-                                   new SelectListItem { Text = "10", Value = "10", Selected = @Model.PageSize == 10 },
-                                   new SelectListItem { Text = "25", Value = "25", Selected = @Model.PageSize == 25 },
-                                   new SelectListItem { Text = "50", Value = "50", Selected = @Model.PageSize == 50 }
-                               }, new { @class = "form-control input-sm", onchange = "this.form.submit();" })
-                                @*<select class="form-control input-sm">
-                                        <option value="5">5</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="100">100</option>
-                                        <option value="0">Todos</option>
-                                    </select>*@
+                                    new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "5", Value = "5", Selected = @Model.PageSize == 5},
+                                        new SelectListItem {Text = "10", Value = "10", Selected = @Model.PageSize == 10},
+                                        new SelectListItem {Text = "25", Value = "25", Selected = @Model.PageSize == 25},
+                                        new SelectListItem {Text = "50", Value = "50", Selected = @Model.PageSize == 50}
+                                    }, new { @class = "form-control input-sm", onchange = "this.form.submit();" })
                             </label>
                         </div>
                         <table class="table table-responsive table-striped table-hover table-bordered">
@@ -75,7 +68,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="dataTables_paginate">
                                     @Html.PagedListPager(Model, page => Url.Action("Index",
-                                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                                 </div>
                             </div>
                         </div>
@@ -85,6 +78,7 @@
         </div>
     </div>
 </div>
+
 @section PageStyles{
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />

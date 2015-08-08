@@ -147,10 +147,10 @@ INSERT INTO [dbo].[Permissao]
            ,[Ordem]
            ,[VisivelNoMenu])
      VALUES
-            ('Criar','Criar novo acesso de usuário','','Criar','Usuario','',@id,1,0)
-		   ,('Detalhar','Detalhar acesso do usuário','','Detalhar','Usuario','',@id,2,0)
-		   ,('Editar','Editar acesso do usuário','','Editar','Usuario','',@id,3,0)
-		   ,('Excluir','Excluir acesso do usuário','','Excluir','Usuario','',@id,4,0)
+            ('Criar acesso','Criar novo acesso de usuário','','Criar','Usuario','',@id,1,0)
+		   ,('Detalhar acesso','Detalhar acesso do usuário','','Detalhar','Usuario','',@id,2,0)
+		   ,('Editar acesso','Editar acesso do usuário','','Editar','Usuario','',@id,3,0)
+		   ,('Excluir acesso','Excluir acesso do usuário','','Excluir','Usuario','',@id,4,0)
 GO
 
 --Avisos
@@ -167,10 +167,10 @@ INSERT INTO [dbo].[Permissao]
            ,[Ordem]
            ,[VisivelNoMenu])
      VALUES
-            ('Criar','Criar novo aviso aos usuários','','Criar','Aviso','',@id,1,0)
-		   ,('Detalhar','Detalhar aviso aos usuários','','Detalhar','Aviso','',@id,2,0)
-		   ,('Editar','Editar aviso aos usuários','','Editar','Aviso','',@id,3,0)
-		   ,('Excluir','Excluir aviso aos usuários','','Excluir','Aviso','',@id,4,0)
+            ('Criar aviso','Criar novo aviso aos usuários','','Criar','Aviso','',@id,1,0)
+		   ,('Detalhar aviso','Detalhar aviso aos usuários','','Detalhar','Aviso','',@id,2,0)
+		   ,('Editar aviso','Editar aviso aos usuários','','Editar','Aviso','',@id,3,0)
+		   ,('Excluir aviso','Excluir aviso aos usuários','','Excluir','Aviso','',@id,4,0)
 GO
 
 --ADICIONAR PERMISSOES AO PERFIL MASTER
