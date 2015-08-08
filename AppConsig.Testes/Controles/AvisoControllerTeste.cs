@@ -38,7 +38,7 @@ namespace AppConsig.Testes.Controles
             _servicoMock.Setup(x => x.ObterTodos(null)).Returns(_listaAvisos);
 
             //Act 
-            var result = ((_avisoController.Index("", "", "", null) as ViewResult).Model) as List<Aviso>;
+            var result = ((_avisoController.Index("", "", "", null, null) as ViewResult).Model) as List<Aviso>;
 
             //Assert 
             Assert.AreEqual(result.Count, 3);

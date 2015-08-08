@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -17,8 +18,9 @@ namespace AppConsig.Web.Gestor.Controllers
             _servicoAviso = servicoAviso;
         }
 
-        // GET: Aviso
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        // GET: /Aviso
+        [HttpGet]
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -33,7 +35,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var avisos = _servicoAviso.ObterTodos().ToList();
+            var avisos = _servicoAviso.ObterTodos(a => a.Excluido == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -57,13 +59,14 @@ namespace AppConsig.Web.Gestor.Controllers
                     break;
             }
 
-            const int pageSize = 5;
+            var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
             return View(avisos.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Aviso/Detalhar/5
+        // GET: /Aviso/Detalhar/5
+        [HttpGet]
         public ActionResult Detalhar(long? id)
         {
             if (id == null)
@@ -81,13 +84,14 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // GET: Aviso/Criar
+        // GET: /Aviso/Criar
+        [HttpGet]
         public ActionResult Criar()
         {
             return View();
         }
 
-        // POST: Aviso/Criar
+        // POST: /Aviso/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar([Bind(Include = "Texto")] Aviso aviso)
@@ -108,7 +112,8 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // GET: Aviso/Editar/5
+        // GET: /Aviso/Editar/5
+        [HttpGet]
         public ActionResult Editar(long? id)
         {
             if (id == null)
@@ -126,7 +131,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // POST: Aviso/Editar/5
+        // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar([Bind(Include = "Id,Texto")] Aviso aviso)
@@ -147,7 +152,8 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(aviso);
         }
 
-        // GET: Aviso/Excluir/5
+        // GET: /Aviso/Excluir/5
+        [HttpGet]
         public ActionResult Excluir(long? id)
         {
             if (id == null)
@@ -168,7 +174,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmaExcluir(long id)
+        public ActionResult ConfirmarExcluir(long id)
         {
             var aviso = _servicoAviso.ObterPeloId(id);
 

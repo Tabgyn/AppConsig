@@ -66,7 +66,7 @@ namespace AppConsig.Servicos
         {
             if (entidade == null)
             {
-                throw new ArgumentNullException("entidade");
+                throw new ArgumentNullException(nameof(entidade));
             }
 
             Dbset.Add(entidade);
@@ -79,7 +79,7 @@ namespace AppConsig.Servicos
         /// <param name="entidade"></param>
         public virtual void Atualizar(T entidade)
         {
-            if (entidade == null) throw new ArgumentNullException("entidade");
+            if (entidade == null) throw new ArgumentNullException(nameof(entidade));
 
             Contexto.Entry(entidade).State = EntityState.Modified;
             Contexto.SaveChanges();
@@ -91,11 +91,11 @@ namespace AppConsig.Servicos
         /// <param name="entidade"></param>
         public virtual void Excluir(T entidade)
         {
-            if (entidade == null) throw new ArgumentNullException("entidade");
+            if (entidade == null) throw new ArgumentNullException(nameof(entidade));
 
             // Entidades auditaveis não podem ser excluidas da fonte de dados.
             // Será setado como verdadeiro na coluna "Excluido" e então atualizado.
-            if (entidade is EntidadeAuditavel<T>)
+            if (entidade is EntidadeAuditavel<long>)
             {
                 var t = entidade.GetType();
                 var propInfo = t.GetProperty("Excluido");
@@ -107,7 +107,7 @@ namespace AppConsig.Servicos
             }
             else
             {
-                // Entidade é excluida permanentemente da fonte de dado.
+                // Entidade é excluida permanentemente da fonte de dados.
                 Dbset.Remove(entidade);
                 Contexto.SaveChanges();
             }
