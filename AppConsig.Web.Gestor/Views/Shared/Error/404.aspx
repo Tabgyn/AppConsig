@@ -1,4 +1,4 @@
-﻿<% Response.StatusCode = 404 %>
+﻿<% Response.StatusCode = 404%>
 <!DOCTYPE html>
 
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
@@ -22,7 +22,7 @@
     <link href="~/Content/beyond.min.css" rel="stylesheet" type="text/css" />
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
-    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/skins/black.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body class="body-404">

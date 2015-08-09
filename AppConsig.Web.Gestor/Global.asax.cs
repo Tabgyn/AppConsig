@@ -9,7 +9,6 @@ using AppConsig.Web.Gestor.Modulos;
 using AppConsig.Web.Gestor.Seguranca;
 using Autofac;
 using Autofac.Integration.Mvc;
-using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor
 {

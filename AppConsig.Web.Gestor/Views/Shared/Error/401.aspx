@@ -22,7 +22,7 @@
     <link href="~/Content/beyond.min.css" rel="stylesheet" type="text/css" />
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
-    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/skins/black.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body class="body-500">
