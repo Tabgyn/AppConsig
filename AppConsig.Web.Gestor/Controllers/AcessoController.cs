@@ -22,13 +22,15 @@ namespace AppConsig.Web.Gestor.Controllers
         }
 
         // GET: Acesso
-        public ActionResult Index()
+        public ActionResult Index(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         // POST: Acesso
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(AcessoModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -53,7 +55,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
                         var authTicket = new FormsAuthenticationTicket(
                             1,
-                            usuario.Login,
+                            usuario.Email,
                             DateTime.Now,
                             DateTime.Now.AddMinutes(30),
                             false,
@@ -63,7 +65,7 @@ namespace AppConsig.Web.Gestor.Controllers
                         var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
 
-                        if (!string.IsNullOrEmpty(returnUrl))
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         {
                             return Redirect(returnUrl);
                         }
@@ -90,6 +92,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // POST: ReeviarSenha
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CriarNovaSenha(CriarNovaSenhaModel model)
         {
             if (ModelState.IsValid)

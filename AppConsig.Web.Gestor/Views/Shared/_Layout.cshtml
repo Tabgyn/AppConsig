@@ -44,7 +44,7 @@
     </div>*@
     <!--  /Loading Container -->
     <!-- Navbar -->
-    <div class="navbar">
+    <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="navbar-container">
                 <!-- Navbar Barnd -->
@@ -108,7 +108,7 @@
                                         <img src="~/Content/Images/no_image_available.png">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>@usuarioLogado.Nome @usuarioLogado.Sobrenome</span></span></h2>
+                                        <h2><span class="profile"><span>@usuarioLogado.Nome</span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
@@ -123,7 +123,7 @@
                                     </li>
                                     <!--Avatar Area-->
                                     <li class="edit">
-                                        <a href="#" class="pull-left">Perfil</a>
+                                        <a href="@Url.Action("Conta","Usuario")" class="pull-left">Minha conta</a>
                                     </li>
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
@@ -192,7 +192,7 @@
         <!-- Page Container -->
         <div class="page-container">
             <!-- Page Sidebar -->
-            <div class="page-sidebar" id="sidebar">
+            <div class="page-sidebar sidebar-fixed" id="sidebar">
                 <!-- Page Sidebar Header-->
                 @*<div class="sidebar-header-wrapper">
                         <input type="text" class="searchinput" />
@@ -218,13 +218,13 @@
                 </div>
                 <!--  /Loading Container -->
                 <!-- Page Breadcrumb -->
-                <div class="page-breadcrumbs">
+                <div class="page-breadcrumbs breadcrumbs-fixed">
                     <div class="page-breadcrumb-bordered  bg-themeprimary"></div>
                     @Html.MvcSiteMap().SiteMapPath()
                 </div>
                 <!-- /Page Breadcrumb -->
                 <!-- Page Header -->
-                <div class="page-header position-relative">
+                <div class="page-header position-relative page-header-fixed">
                     @Html.MvcSiteMap().SiteMapTitle()
                     <!--Header Buttons-->
                     <div class="header-buttons">

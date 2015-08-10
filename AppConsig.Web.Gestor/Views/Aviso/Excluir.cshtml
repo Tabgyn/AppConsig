@@ -12,6 +12,7 @@
                 {
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
 
                     <p>Deseja realmente excluir?</p>
                     <div class="form-group">
@@ -19,7 +20,7 @@
                         @Html.TextAreaFor(m => m.Texto, new { @class = "form-control", disabled = "disabled" })
                     </div>
                     <div class="form-group">
-                        <button class="btn" type="submit">Excluir</button>
+                        <button type="submit" class="btn btn-primary">Excluir</button>
                         @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
                     </div>
                 }

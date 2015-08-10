@@ -38,15 +38,14 @@ namespace AppConsig.Web.Gestor
                 };
 
                 //Quando for CRUD
-                if (permissao.VisivelNoMenu == false)
+                if (permissao.IsCrud)
                 {
-                    var cList = new List<string>();
-                    cList.Add("id");
+                    var cList = permissao.Atributos.Split(';');
                     dNode.PreservedRouteParameters = cList;
                 }
 
                 dNode.Attributes.Add("icone", permissao.Icone);
-                dNode.Attributes.Add("visibility", permissao.VisivelNoMenu ? "" : "!MenuHelper");
+                dNode.Attributes.Add("visibility", permissao.Visivel ? "" : "!MenuHelper");
 
                 nodeList.Add(dNode);
             }

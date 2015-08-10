@@ -7,13 +7,19 @@ namespace AppConsig.Comum
     public abstract class EntidadeAuditavel<T> : Entidade<T>, IEntidadeAuditavel
     {
         [ScaffoldColumn(false)]
+        [MaxLength(256)]
         public string CriadoPor { get; set; }
+
         [ScaffoldColumn(false)]
         public DateTime DataCriacao { get; set; }
+
         [ScaffoldColumn(false)]
+        [MaxLength(256)]
         public string AtualizadoPor { get; set; }
+
         [ScaffoldColumn(false)]
         public DateTime DataAtualizacao { get; set; }
+
         [ScaffoldColumn(false)]
         public bool Excluido { get; set; }
     }

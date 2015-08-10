@@ -40,9 +40,9 @@ namespace AppConsig.Servicos
             base.Criar(usuario);
         }
 
-        public bool ValidarUsuario(string login, string senha)
+        public bool ValidarUsuario(string email, string senha)
         {
-            var usuario = Dbset.FirstOrDefault(x => x.Login == login);
+            var usuario = Dbset.FirstOrDefault(x => x.Email == email);
 
             return usuario != null && PasswordHash.ValidarSenha(senha, usuario.Senha);
         }
@@ -67,7 +67,7 @@ namespace AppConsig.Servicos
             email.Corpo = email.CorpoSenha(usuario.Nome, usuario.Sobrenome, strSenha);
             email.Send();
 
-            base.Atualizar(usuario);
+            Atualizar(usuario);
         }
 
         public List<Permissao> ObterPermissoesDoUsuario(long usuarioId)

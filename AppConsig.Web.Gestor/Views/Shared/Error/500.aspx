@@ -11,19 +11,15 @@
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
 
     <!--Basic Styles-->
-    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
         rel="stylesheet" type="text/css" />
 
     <!--Beyond styles-->
-    <link href="Content/beyond.min.css" rel="stylesheet" type="text/css" />
-
-    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
-    <link href="Content/skins/black.css" rel="stylesheet" type="text/css" />
-
+    <link href="~/Content/beyond.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="body-500">
     <div class="error-header"> </div>
@@ -37,12 +33,5 @@
             <a href="javascript:history.back(1)" class="return-btn"><i class="fa fa-home"></i>Voltar</a>
         </section>
     </div>
-    <!--Basic Scripts-->
-    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <!--Beyond Scripts-->
-    <script src="~/Scripts/beyond.min.js"></script>
-
 </body>
 </html>

@@ -147,9 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDynamicNodeProvider.cs" />
+    <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Models\AcessoModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Views\Shared\Error\401.aspx.cs">
       <DependentUpon>401.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -455,7 +457,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Aviso\Index.cshtml" />
     <Content Include="Views\Aviso\Detalhar.cshtml" />
@@ -530,6 +531,12 @@
     <Content Include="Scripts\zeroclipboard.min.js.map">
       <DependentUpon>zeroclipboard.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\Arquivo\Folha.cshtml" />
+    <Content Include="Views\Arquivo\Lote.cshtml" />
+    <Content Include="Views\Arquivo\Movimento.cshtml" />
+    <Content Include="Views\Arquivo\Retorno.cshtml" />
+    <Content Include="Views\Usuario\Conta.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

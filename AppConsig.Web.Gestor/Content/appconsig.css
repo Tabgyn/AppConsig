@@ -179,3 +179,42 @@ input[type="tel"].disabled,
 input[type="color"].disabled {
     color: rgba(0, 0, 0, 0.4);
 }
+
+.conta-cabecalho, .conta-corpo {
+    padding: 0 15px;
+}
+
+.conta-corpo {
+    margin-top: 10px;
+}
+
+    .conta-cabecalho .conta-foto {
+        width: 125px;
+        height: 125px;
+        -webkit-border-radius: 50%;
+        -webkit-background-clip: padding-box;
+        -moz-border-radius: 50%;
+        -moz-background-clip: padding;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        -ms-background-clip: padding-box;
+        background-clip: padding-box;
+        border: 5px solid #f5f5f5;
+        -webkit-box-shadow: 0 0 10px rgba(0,0,0,.15);
+        -moz-box-shadow: 0 0 10px rgba(0,0,0,.15);
+        -ms-box-shadow: 0 0 10px rgba(0,0,0,.15);
+        box-shadow: 0 0 10px rgba(0,0,0,.15);
+        margin: 25px auto;
+    }
+
+    .conta-cabecalho .cabecalho-nome {
+        font: 21px 'Roboto','Lucida Sans','trebuchet MS',Arial,Helvetica;
+        margin-top: 27px;
+        display: inline-block;
+    }
+
+    .conta-cabecalho .cabecalho-info {
+        line-height: 23px;
+        margin-top: 15px;
+        text-align: justify;
+    }

@@ -31,6 +31,10 @@ namespace AppConsig.Entidades
         
         public int Ordem { get; set; }
 
-        public bool VisivelNoMenu { get; set; }
+        public bool Visivel { get; set; }
+
+        public bool IsCrud { get; set; }
+
+        public string Atributos { get; set; }
     }
 }
