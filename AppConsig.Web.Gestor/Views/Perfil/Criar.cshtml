@@ -1,0 +1,71 @@
+﻿@model AppConsig.Entidades.Perfil
+@{
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @using (Html.BeginForm("Criar", "Perfil", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Permissoes, new { @class = "control-label" })
+                        <div id="tree">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageStyles{
+    <link href="~/Content/jstree/style.css" rel="stylesheet" type="text/css" />
+}
+
+@section PageScripts{
+    <script src="~/Scripts/jstree.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $('#tree').jstree({
+                    "plugins": ["checkbox", "realcheckboxes"],
+                    "core": {
+                        "data": getJSonObject("@ViewBag.Permissoes"),
+                        "themes": {
+                            "icons": false,
+                            "dots": false
+                        },
+                        "expand_selected_onload": true
+                    },
+                    "checkbox": {
+                        "keep_selected_style": false
+                    }
+                });
+            });
+        });
+
+        function getJSonObject(value) {
+            return $.parseJSON(value.replace(/&quot;/ig, '"'));
+        }
+    </script>
+}

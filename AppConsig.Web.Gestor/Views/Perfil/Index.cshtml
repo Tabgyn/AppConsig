@@ -1,5 +1,85 @@
-﻿@model IEnumerable<AppConsig.Entidades.Perfil>
+﻿@model PagedList.IPagedList<AppConsig.Entidades.Perfil>
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @using (Html.BeginForm("Index", "Perfil", FormMethod.Get))
+                {
+                    <div class="table-toolbar">
+                        <a href="@Url.Action("Criar")" class="btn btn-default">
+                            Criar novo
+                        </a>
+                    </div>
+                    <div class="dataTables_wrapper">
+                        <div class="dataTables_filter">
+                            <label>
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-sm", @type = "search" })
+                            </label>
+                        </div>
+                        <div class="dataTables_length">
+                            <label>
+                                @Html.DropDownList("ItemsPerPage",
+                                    new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "5", Value = "5", Selected = @Model.PageSize == 5},
+                                        new SelectListItem {Text = "10", Value = "10", Selected = @Model.PageSize == 10},
+                                        new SelectListItem {Text = "25", Value = "25", Selected = @Model.PageSize == 25},
+                                        new SelectListItem {Text = "50", Value = "50", Selected = @Model.PageSize == 50}
+                                    }, new { @class = "form-control input-sm", onchange = "this.form.submit();" })
+                            </label>
+                        </div>
+                        <table class="table table-responsive table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-5 col-lg-5">@Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+                                    <th class="col-md-3 col-lg-2">@Html.ActionLink("Criado por", "Index", new { sortOrder = ViewBag.OwnerSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+                                    <th class="hidden-md col-lg-2">@Html.ActionLink("Criado em", "Index", new { sortOrder = ViewBag.DateSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+                                    <th class="col-md-4 col-lg-3"></th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="col-md-5 col-lg-5 text-overflow">@item.Nome</td>
+                                        <td class="col-md-3 col-lg-2">@item.CriadoPor</td>
+                                        <td class="hidden-md col-lg-2">@item.DataCriacao</td>
+                                        <td class="col-md-4 col-lg-3 text-align-center">
+                                            <a href="@Url.Action("Editar", new {id = @item.Id})" class="btn btn-info btn-xs"><i class="fa fa-edit"></i>Editar</a>
+                                            <a href="@Url.Action("Detalhar", new {id = @item.Id})" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i>Detalhar</a>
+                                            <a href="@Url.Action("Excluir", new {id = @item.Id})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Excluir</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="dataTables_info">
+                                    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="dataTables_paginate">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageStyles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+}

@@ -194,6 +194,11 @@
     <Content Include="Content\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
+    <Content Include="Content\jstree\32px.png" />
+    <Content Include="Content\jstree\40px.png" />
+    <Content Include="Content\jstree\style.css" />
+    <Content Include="Content\jstree\style.min.css" />
+    <Content Include="Content\jstree\throbber.gif" />
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
     </Content>
@@ -264,6 +269,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\jstree.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.min.js">
       <DependentUpon>modernizr-2.8.3.js</DependentUpon>
     </Content>
@@ -513,6 +519,10 @@
     <Content Include="Views\Shared\Error\401.cshtml" />
     <Content Include="Views\Shared\Error\404.cshtml" />
     <Content Include="Views\Shared\Error\500.cshtml" />
+    <Content Include="Views\Perfil\Detalhar.cshtml" />
+    <Content Include="Views\Perfil\Criar.cshtml" />
+    <Content Include="Views\Perfil\Editar.cshtml" />
+    <Content Include="Views\Perfil\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

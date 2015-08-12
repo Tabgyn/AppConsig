@@ -46,6 +46,7 @@
     <Compile Include="EntidadeAuditavel.cs" />
     <Compile Include="Interfaces\IEntidade.cs" />
     <Compile Include="Interfaces\IEntidadeAuditavel.cs" />
+    <Compile Include="JsTreeNode.cs" />
     <Compile Include="PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />

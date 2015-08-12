@@ -22,8 +22,8 @@ namespace AppConsig.Web.Gestor.Controllers
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
+            ViewBag.OwnerSortParam = sortOrder == "own" ? "own_desc" : "own";
+            ViewBag.DateSortParam = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
 
             if (searchString != null)
             {
@@ -44,10 +44,10 @@ namespace AppConsig.Web.Gestor.Controllers
 
             switch (sortOrder)
             {
-                case "name_desc":
+                case "own_desc":
                     avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
-                case "Date":
+                case "date":
                     avisos = avisos.OrderBy(a => a.DataCriacao).ToList();
                     break;
                 case "date_desc":

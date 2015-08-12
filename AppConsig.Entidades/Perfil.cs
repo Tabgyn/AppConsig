@@ -11,9 +11,12 @@ namespace AppConsig.Entidades
         [Required]
         [MaxLength(256)]
         public string Nome { get; set; }
+
         [MaxLength(256)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [Display(Name = "Permissões")]
         public ICollection<Permissao> Permissoes { get; set; }
     }
 }

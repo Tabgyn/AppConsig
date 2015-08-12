@@ -1,0 +1,30 @@
+﻿@model AppConsig.Entidades.Perfil
+@{
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @using (Html.BeginForm("Excluir", "Perfil", new { id = @Model.Id }, FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+
+                    <p>Deseja realmente excluir?</p>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                        @Html.TextAreaFor(m => m.Nome, new { @class = "form-control", disabled = "disabled" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Excluir</button>
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
