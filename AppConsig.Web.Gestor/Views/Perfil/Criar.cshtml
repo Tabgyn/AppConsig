@@ -46,26 +46,7 @@
     <script src="~/Scripts/jstree.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(function () {
-                $('#tree').jstree({
-                    "plugins": ["checkbox", "realcheckboxes"],
-                    "core": {
-                        "data": getJSonObject("@ViewBag.Permissoes"),
-                        "themes": {
-                            "icons": false,
-                            "dots": false
-                        },
-                        "expand_selected_onload": true
-                    },
-                    "checkbox": {
-                        "keep_selected_style": false
-                    }
-                });
-            });
+            
         });
-
-        function getJSonObject(value) {
-            return $.parseJSON(value.replace(/&quot;/ig, '"'));
-        }
     </script>
 }
