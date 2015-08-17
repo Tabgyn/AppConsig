@@ -12,7 +12,7 @@ using MvcSiteMapProvider;
 namespace AppConsig.Web.Gestor.Controllers
 {
     [AllowAnonymous]
-    public class AcessoController : Controller
+    public class AcessoController : BaseController
     {
         readonly IServicoUsuario _servicoUsuario;
 
