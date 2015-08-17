@@ -8,20 +8,20 @@
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
-                @using (Html.BeginForm("Excluir", "Aviso", new { id = @Model.Id }, FormMethod.Post))
+                @{ Html.RenderPartial("_Alerta"); }
+                @using (Html.BeginForm("Excluir", "Aviso", new {id = @Model.Id}, FormMethod.Post))
                 {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
 
                     <p>Deseja realmente excluir?</p>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Texto, new { @class = "control-label" })
-                        @Html.TextAreaFor(m => m.Texto, new { @class = "form-control", disabled = "disabled" })
+                        @Html.LabelFor(m => m.Texto, new {@class = "control-label"})
+                        @Html.TextAreaFor(m => m.Texto, new {@class = "form-control", disabled = "disabled"})
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Excluir</button>
-                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                        @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-link"})
                     </div>
                 }
             </div>

@@ -8,7 +8,7 @@ namespace AppConsig.Entidades
     [Table("Perfil")]
     public class Perfil : EntidadeAuditavel<long>
     {
-        [Required]
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [MaxLength(256)]
         public string Nome { get; set; }
 

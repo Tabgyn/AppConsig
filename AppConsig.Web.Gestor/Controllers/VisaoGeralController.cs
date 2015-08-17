@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
@@ -11,6 +7,18 @@ namespace AppConsig.Web.Gestor.Controllers
         // GET: VisaoGeral
         public ActionResult Index()
         {
+            Atencao(
+                "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
+                true);
+            Successo(
+                "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
+                true);
+            Informacao(
+                "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
+                true);
+            Erro(
+                "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
+                true);
             return View();
         }
     }

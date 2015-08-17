@@ -8,20 +8,20 @@
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
+                @{ Html.RenderPartial("_Alerta"); }
                 @using (Html.BeginForm("Editar", "Aviso", FormMethod.Post))
                 {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Texto, new { @class = "control-label" })
-                        @Html.TextAreaFor(m => m.Texto, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Texto, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Texto, new {@class = "control-label"})
+                        @Html.TextAreaFor(m => m.Texto, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Texto, "", new {@class = "text-danger"})
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                        @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-link"})
                     </div>
                 }
             </div>

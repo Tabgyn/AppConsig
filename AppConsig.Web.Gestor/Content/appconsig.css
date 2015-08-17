@@ -188,33 +188,103 @@ input[type="color"].disabled {
     margin-top: 10px;
 }
 
-    .conta-cabecalho .conta-foto {
-        width: 125px;
-        height: 125px;
-        -webkit-border-radius: 50%;
-        -webkit-background-clip: padding-box;
-        -moz-border-radius: 50%;
-        -moz-background-clip: padding;
-        -ms-border-radius: 50%;
-        border-radius: 50%;
-        -ms-background-clip: padding-box;
-        background-clip: padding-box;
-        border: 5px solid #f5f5f5;
-        -webkit-box-shadow: 0 0 10px rgba(0,0,0,.15);
-        -moz-box-shadow: 0 0 10px rgba(0,0,0,.15);
-        -ms-box-shadow: 0 0 10px rgba(0,0,0,.15);
-        box-shadow: 0 0 10px rgba(0,0,0,.15);
-        margin: 25px auto;
-    }
+.conta-cabecalho .conta-foto {
+    width: 125px;
+    height: 125px;
+    -webkit-border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50%;
+    -moz-background-clip: padding;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    -ms-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 5px solid #f5f5f5;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.15);
+    -ms-box-shadow: 0 0 10px rgba(0,0,0,.15);
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+    margin: 25px auto;
+}
 
-    .conta-cabecalho .cabecalho-nome {
-        font: 21px 'Roboto','Lucida Sans','trebuchet MS',Arial,Helvetica;
-        margin-top: 27px;
-        display: inline-block;
-    }
+.conta-cabecalho .cabecalho-nome {
+    font: 21px 'Roboto','Lucida Sans','trebuchet MS',Arial,Helvetica;
+    margin-top: 27px;
+    display: inline-block;
+}
 
-    .conta-cabecalho .cabecalho-info {
-        line-height: 23px;
-        margin-top: 15px;
-        text-align: justify;
-    }
+.conta-cabecalho .cabecalho-info {
+    line-height: 23px;
+    margin-top: 15px;
+    text-align: justify;
+}
+
+#tree ul, #tree li {
+    list-style: none;
+}
+
+.jstree .radio, .jstree .checkbox {
+    display: inline-block;
+    margin: 0;
+}
+
+.jstree input[type=checkbox] ~ .text:before, .jstree input[type=radio] ~ .text:before {
+    vertical-align: text-bottom;
+}
+
+.jstree-default .jstree-clicked {
+    background: transparent !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.jstree-default .jstree-hovered {
+    background: transparent !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.jstree i {
+    display: inline-block;
+    text-decoration: none;
+    width: 18px;
+    height: 18px;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+input[type=checkbox]~.text, input[type=radio]~.text {
+    color: #262626;
+}
+
+input[type=checkbox]:disabled ~ .text, 
+input[type=radio]:disabled ~ .text, 
+input[type=checkbox][disabled] ~ .text, 
+input[type=radio][disabled] ~ .text, 
+input[type=checkbox].disabled ~ .text, 
+input[type=radio].disabled ~ .text {
+    color: #858585;
+}
+
+input[type=checkbox]:disabled~.text:before, 
+input[type=radio]:disabled~.text:before, 
+input[type=checkbox][disabled]~.text:before, 
+input[type=radio][disabled]~.text:before, 
+input[type=checkbox].disabled~.text:before, 
+input[type=radio].disabled~.text:before 
+input[type=checkbox]:disabled~.text:before, 
+input[type=radio]:disabled~.text:before, 
+input[type=checkbox][disabled]~.text:before, 
+input[type=radio][disabled]~.text:before, 
+input[type=checkbox].disabled~.text:before, 
+input[type=radio].disabled~.text:before {
+    color: rgba(0,0,0,0.4);
+}
+
+.alert {
+    margin-bottom: 5px;
+}

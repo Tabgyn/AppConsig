@@ -100,11 +100,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Criar(aviso);
+                    Successo("Novo aviso aos usuarios criado", true);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
 
@@ -140,11 +142,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Atualizar(aviso);
+                    Successo("Aviso aos usuarios atualizado", true);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
 
@@ -185,12 +189,13 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoAviso.Excluir(aviso);
+                Successo("Aviso aos usuarios excluido", true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                ModelState.AddModelError("", exception);
+                Erro(exception.Message, true);
             }
 
             return View(aviso);

@@ -4,4 +4,13 @@
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }
 
-<p>Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</p>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @{ Html.RenderPartial("_Alerta"); }
+                <p>Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</p>
+            </div>
+        </div>
+    </div>
+</div>

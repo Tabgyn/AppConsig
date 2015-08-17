@@ -1,4 +1,6 @@
-﻿@model AppConsig.Entidades.Perfil
+﻿@using AppConsig.Web.Base.Entidades
+@using AppConsig.Web.Base.Helpers
+@model AppConsig.Entidades.Perfil
 @{
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
@@ -14,10 +16,21 @@
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
 
-                    <p>Deseja realmente excluir?</p>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
-                        @Html.TextAreaFor(m => m.Nome, new { @class = "form-control", disabled = "disabled" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Permissoes, new { @class = "control-label" })
+                        <div id="tree">
+                            @Html.TreeView(@ViewBag.Permissoes as List<TreeViewNode>).EmptyContent("").Children(m => m.Filhos).HtmlAttributes(new { id = "treeList" }).ChildrenHtmlAttributes(new { @class = "subItem" }).ItemText(m => m.Texto).ItemTemplate(@<div class="checkbox"><label><input id="@Html.Raw("ckb-" + item.Id)" name="ckbPermissoes" type="checkbox" value="@item.Id" @Html.Raw(item.Selecionado ? "checked" : "") disabled="disabled"><span class="text">@item.Texto</span></label></div>)
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Excluir</button>
@@ -28,3 +41,46 @@
         </div>
     </div>
 </div>
+
+@section PageStyles{
+    <link href="~/Content/jstree/style.css" rel="stylesheet" type="text/css" />
+}
+
+@section PageScripts{
+    <script src="~/Scripts/jstree.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tree').jstree({
+                "themes": {
+                    "theme" : "default",
+                    "dots" : false
+                }
+            });
+        });
+
+        $('li :checkbox').on('click', function () {
+            var $chk = $(this),
+                $li = $chk.closest('li'),
+                $ul, $parent;
+
+            //check all children nodes
+            if ($li.has('ul')) {
+                $li.find(':checkbox').not(this).prop('checked', this.checked);
+                if ($chk.is(':checked')) {
+                    if ($li.is('.jstree-closed')) {
+                        $li.removeClass('jstree-closed').addClass('jstree-open');
+                        $li.find('.jstree-closed').removeClass('jstree-closed').addClass('jstree-open');
+                    }
+                }
+            }
+            //check all parents nodes
+            do {
+                $ul = $li.parent();
+                $parent = $ul.siblings().find(':checkbox');
+                $parent.prop('checked', $ul.find(':checkbox:checked').length > 0);
+                $chk = $parent;
+                $li = $chk.closest('li');
+            } while ($ul.is(':not(.jstree-no-dots)'));
+        });
+    </script>
+}

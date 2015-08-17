@@ -194,10 +194,9 @@
     <Content Include="Content\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
-    <Content Include="Content\jstree\32px.png" />
-    <Content Include="Content\jstree\40px.png" />
+    <Content Include="Content\jstree\d.gif" />
+    <Content Include="Content\jstree\d.png" />
     <Content Include="Content\jstree\style.css" />
-    <Content Include="Content\jstree\style.min.css" />
     <Content Include="Content\jstree\throbber.gif" />
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
@@ -269,7 +268,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Scripts\jstree.js" />
     <Content Include="Scripts\modernizr-2.8.3.min.js">
       <DependentUpon>modernizr-2.8.3.js</DependentUpon>
     </Content>
@@ -523,6 +522,7 @@
     <Content Include="Views\Perfil\Criar.cshtml" />
     <Content Include="Views\Perfil\Editar.cshtml" />
     <Content Include="Views\Perfil\Excluir.cshtml" />
+    <Content Include="Views\Shared\_Alerta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -546,6 +546,10 @@
     <ProjectReference Include="..\AppConsig.Servicos\AppConsig.Servicos.csproj">
       <Project>{955288B4-D19C-438E-AC64-0F5E35CB6DDD}</Project>
       <Name>AppConsig.Servicos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppConsig.Web.Base\AppConsig.Web.Base.csproj">
+      <Project>{a784d30c-b21c-437a-80f3-14a4a30cb075}</Project>
+      <Name>AppConsig.Web.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

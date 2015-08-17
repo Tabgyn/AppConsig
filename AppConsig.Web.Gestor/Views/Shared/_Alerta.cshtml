@@ -1,0 +1,20 @@
+﻿@using AppConsig.Web.Base.Entidades
+@{
+    var alertas = TempData.ContainsKey(Alerta.TempDataKey)
+                ? (List<Alerta>)TempData[Alerta.TempDataKey]
+                : new List<Alerta>();
+    
+    foreach (var alerta in alertas)
+    {
+        <div class="alert alert-@alerta.EstiloAlerta fade in">
+            @if (alerta.Descartavel)
+            {
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+            }
+            <i class="fa-fw fa fa-@alerta.EstiloIcone"></i>
+            <strong>@Html.Raw(alerta.Titulo)</strong> @Html.Raw(alerta.Texto)
+        </div>
+    }
+}
