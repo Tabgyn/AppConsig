@@ -523,6 +523,10 @@
     <Content Include="Views\Perfil\Editar.cshtml" />
     <Content Include="Views\Perfil\Excluir.cshtml" />
     <Content Include="Views\Shared\_Alerta.cshtml" />
+    <Content Include="Views\Usuario\Detalhar.cshtml" />
+    <Content Include="Views\Usuario\Criar.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Usuario\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

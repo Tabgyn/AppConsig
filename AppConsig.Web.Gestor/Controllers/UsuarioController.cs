@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Seguranca;
+using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
@@ -16,11 +19,60 @@ namespace AppConsig.Web.Gestor.Controllers
             _servicoUsuario = servicoUsuario;
         }
 
-        // GET: Usuario
+        // GET: /Usuario
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
-            return View();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.OwnerSortParam = sortOrder == "own" ? "own_desc" : "own";
+            ViewBag.DateSortParam = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false).ToList();
+            var models = usuarios.Select(usuario => new UsuarioEditaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
+                CriadoPor = usuario.CriadoPor,
+                DataCriacao = usuario.DataCriacao
+            }).ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                models = models.Where(a => a.CriadoPor.Contains(searchString)
+                || a.NomeCompleto.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "own_desc":
+                    models = models.OrderByDescending(a => a.CriadoPor).ToList();
+                    break;
+                case "date":
+                    models = models.OrderBy(a => a.DataCriacao).ToList();
+                    break;
+                case "date_desc":
+                    models = models.OrderByDescending(a => a.DataCriacao).ToList();
+                    break;
+                default:
+                    models = models.OrderBy(a => a.CriadoPor).ToList();
+                    break;
+            }
+
+            var pageSize = itemsPerPage ?? 5;
+            var pageNumber = (page ?? 1);
+
+            return View(models.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Usuario/Conta
@@ -41,7 +93,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var model = new UsuarioModel
+            var model = new UsuarioContaModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
@@ -61,7 +113,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: Usuario/Conta
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Conta(UsuarioModel model)
+        public ActionResult Conta(UsuarioContaModel model)
         {
             if (ModelState.IsValid)
             {
@@ -85,12 +137,195 @@ namespace AppConsig.Web.Gestor.Controllers
                     usuario.Twitter = model.Twitter;
 
                     _servicoUsuario.Atualizar(usuario);
+                    Successo("Dados atualizados", true);
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
+
+            return View(model);
+        }
+
+        // GET: /Usuario/Detalhar/5
+        [HttpGet]
+        public ActionResult Detalhar(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new UsuarioEditaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
+            };
+
+            return View(model);
+        }
+
+        // GET: /Usuario/Criar
+        [HttpGet]
+        public ActionResult Criar()
+        {
+            return View();
+        }
+
+        // POST: /Usuario/Criar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditaModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var usuario = new Usuario
+                    {
+                        Nome = model.Nome,
+                        Sobrenome = model.Sobrenome,
+                        Email = model.Email
+                    };
+
+                    _servicoUsuario.Criar(usuario);
+                    Successo("Novo acesso de usuário criado", true);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception exception)
+                {
+                    Erro(exception.Message, true);
+                }
+            }
+
+            return View(model);
+        }
+
+        // GET: /Usuario/Editar/5
+        [HttpGet]
+        public ActionResult Editar(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new UsuarioEditaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
+            };
+
+            return View(model);
+        }
+
+        // POST: /Usuario/Editar/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditaModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var usuario = _servicoUsuario.ObterPeloId(model.Id);
+
+                    usuario.Nome = model.Nome;
+                    usuario.Sobrenome = model.Sobrenome;
+                    usuario.Email = model.Email;
+
+                    _servicoUsuario.Atualizar(usuario);
+                    Successo("Acesso de usuário atualizado", true);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception exception)
+                {
+                    Erro(exception.Message, true);
+                }
+            }
+
+            return View(model);
+        }
+
+        // GET: /Usuario/Excluir/5
+        [HttpGet]
+        public ActionResult Excluir(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new UsuarioEditaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
+            };
+
+            return View(model);
+        }
+
+        // POST: /Usuario/Excluir/5
+        [HttpPost, ActionName("Excluir")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarExcluir(long id)
+        {
+            var usuario = _servicoUsuario.ObterPeloId(id);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+
+            try
+            {
+                _servicoUsuario.Excluir(usuario);
+                Successo("Acesso de usuário excluído", true);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception exception)
+            {
+                Erro(exception.Message, true);
+            }
+
+            var model = new UsuarioEditaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
+            };
 
             return View(model);
         }

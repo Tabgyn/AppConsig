@@ -18,7 +18,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         public void Atencao(string message, bool dismissable = false)
         {
-            AddAlerta(EstiloAlerta.Atencao, "warning", "Atencao!", message, dismissable);
+            AddAlerta(EstiloAlerta.Atencao, "warning", "Atenção!", message, dismissable);
         }
 
         public void Erro(string message, bool dismissable = false)

@@ -10,7 +10,7 @@ using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
-    public class PerfilController : Controller
+    public class PerfilController : BaseController
     {
         readonly IServicoPerfil _servicoPerfil;
         readonly IServicoPermissao _servicoPermissao;
@@ -123,12 +123,13 @@ namespace AppConsig.Web.Gestor.Controllers
                     perfil.Permissoes = ckbSelecionadas;
 
                     _servicoPerfil.Criar(perfil);
+                    Successo("Novo perfil de usuário criado", true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
 
@@ -182,11 +183,13 @@ namespace AppConsig.Web.Gestor.Controllers
                     oldPerfil.Permissoes = oldPerfil.Permissoes.Where(p => ckbSelecionadas.Contains(p)).ToList();
 
                     _servicoPerfil.Atualizar(oldPerfil);
+                    Successo("Perfil de usuário atualizado", true);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
 
@@ -235,12 +238,13 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoPerfil.Excluir(perfil);
+                Successo("Perfil de usuário excluído", true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                ModelState.AddModelError("", exception);
+                Erro(exception.Message, true);
             }
 
             return View(perfil);

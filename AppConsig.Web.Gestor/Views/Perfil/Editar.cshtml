@@ -10,9 +10,9 @@
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
+                @{ Html.RenderPartial("_Alerta"); }
                 @using (Html.BeginForm("Editar", "Perfil", FormMethod.Post))
                 {
-                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
 

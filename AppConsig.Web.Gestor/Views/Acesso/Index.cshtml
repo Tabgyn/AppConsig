@@ -4,12 +4,12 @@
     ViewBag.Description = "Acesso de usuarios";
     Layout = "~/Views/Shared/_Unauthorized.cshtml";
 }
+@{ Html.RenderPartial("_Alerta"); }
 <div class="login-container animated fadeIn">
     <div class="loginbox bg-white">
         <div class="loginbox-title">ACESSO</div>
         @using (Html.BeginForm("Index", "Acesso", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
         {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.AntiForgeryToken()
             <div class="loginbox-textbox">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-mail" })

@@ -100,7 +100,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Criar(aviso);
-                    Successo("Novo aviso aos usuarios criado", true);
+                    Successo("Novo aviso aos usuários criado", true);
 
                     return RedirectToAction("Index");
                 }
@@ -142,7 +142,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Atualizar(aviso);
-                    Successo("Aviso aos usuarios atualizado", true);
+                    Successo("Aviso aos usuários atualizado", true);
 
                     return RedirectToAction("Index");
                 }
@@ -189,7 +189,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoAviso.Excluir(aviso);
-                Successo("Aviso aos usuarios excluido", true);
+                Successo("Aviso aos usuários excluído", true);
 
                 return RedirectToAction("Index");
             }

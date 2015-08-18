@@ -57,7 +57,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             1,
                             usuario.Email,
                             DateTime.Now,
-                            DateTime.Now.AddMinutes(30),
+                            DateTime.Now.AddMinutes(20),
                             false,
                             userData);
 
