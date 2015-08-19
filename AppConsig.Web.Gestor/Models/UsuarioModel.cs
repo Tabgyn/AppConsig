@@ -6,6 +6,7 @@ namespace AppConsig.Web.Gestor.Models
     public class UsuarioContaModel
     {
         public long Id { get; set; }
+
         [Required(ErrorMessage = "{0} é obrigatório")]
         [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
         public string Nome { get; set; }

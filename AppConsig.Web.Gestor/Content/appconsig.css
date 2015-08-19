@@ -42,6 +42,49 @@
     right: 10px;
 }
 
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area > li .dropdown-menu.dropdown-login-area > li.edit {
+        min-height: 37px;
+    }
+
+        .navbar .navbar-inner .navbar-header .navbar-account .account-area > li .dropdown-menu.dropdown-login-area > li.edit a:hover {
+            color: #717171;
+        }
+
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area > li .dropdown-menu.dropdown-login-area > li.dropdown-footer a {
+        color: #999999;
+        font-weight: normal;
+    }
+
+        .navbar .navbar-inner .navbar-header .navbar-account .account-area > li .dropdown-menu.dropdown-login-area > li.dropdown-footer a:hover {
+            color: #717171;
+        }
+
+@media only screen and (max-width: 760px) {
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area {
+        -moz-min-width: inherit !important;
+        -ms-min-width: inherit !important;
+        -o-min-width: inherit !important;
+        -webkit-min-width: inherit !important;
+        min-width: inherit !important;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area + .dropdown-menu {
+        -moz-min-width: 186px;
+        -ms-min-width: 186px;
+        -o-min-width: 186px;
+        -webkit-min-width: 186px;
+        min-width: 186px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area + .dropdown-menu:before {
+        width: 46px;
+    }
+}
+
 .page-sidebar.menu-compact {
     width: 47px;
 }
@@ -326,13 +369,13 @@ input[type=radio].disabled ~ .text {
     background-color: #fbfbfb;
 }
 
-.widget .widget-footer a {
-    margin: 0 auto;
-    font-size: 11px;
-    color: #999;
-    font-weight: 500;
-}
+    .widget .widget-footer a {
+        margin: 0 auto;
+        font-size: 11px;
+        color: #999;
+        font-weight: 500;
+    }
 
-.widget .widget-footer a:hover {
-    text-decoration: none;
-}
+        .widget .widget-footer a:hover {
+            text-decoration: none;
+        }
