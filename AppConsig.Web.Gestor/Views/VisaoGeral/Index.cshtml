@@ -5,6 +5,309 @@
 }
 
 <div class="row">
+    @*Grafico Propostas*@
+    <div class="col-lg-3 col-md-3">
+        <div class="databox databox-shadowed bg-white radius-bordered">
+            <div class="databox-left bg-themesecondary">
+                <div class="databox-piechart">
+                    <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="56" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;">
+                        <span class="white font-90">56%</span><canvas width="47" height="47"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="databox-right">
+                <span class="databox-number themesecondary">112</span>
+                <div class="databox-text darkgray">Propostas</div>
+                <div class="databox-stat themesecondary radius-bordered">
+                    <i class="stat-icon icon-lg fa fa-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Grafico Ativos*@
+    <div class="col-lg-3 col-md-3">
+        <div class="databox databox-shadowed bg-white radius-bordered">
+            <div class="databox-left bg-themethirdcolor">
+                <div class="databox-piechart">
+                    <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="13.5" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.2)" style="width: 47px; height: 47px; line-height: 47px;">
+                        <span class="white font-90">13,5%</span><canvas width="47" height="47"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="databox-right">
+                <span class="databox-number themethirdcolor">27</span>
+                <div class="databox-text darkgray">Novos</div>
+                <div class="databox-stat themethirdcolor radius-bordered">
+                    <i class="stat-icon icon-lg fa fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Grafico Renegociações*@
+    <div class="col-lg-3 col-md-3">
+        <div class="databox databox-shadowed bg-white radius-bordered">
+            <div class="databox-left bg-themefourthcolor">
+                <div class="databox-piechart">
+                    <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="22" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;">
+                        <span class="white font-90">22%</span><canvas width="47" height="47"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="databox-right">
+                <span class="databox-number themefourthcolor">44</span>
+                <div class="databox-text darkgray">Renegociações</div>
+                <div class="databox-stat themefourthcolor radius-bordered">
+                    <i class="stat-icon icon-lg fa fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Grafico Liquidados*@
+    <div class="col-lg-3 col-md-3">
+        <div class="databox databox-shadowed bg-white radius-bordered">
+            <div class="databox-left bg-themeprimary">
+                <div class="databox-piechart">
+                    <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="8.5" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;">
+                        <span class="white font-90">8,5%</span><canvas width="47" height="47"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="databox-right">
+                <span class="databox-number themeprimary">17</span>
+                <div class="databox-text darkgray">Liquidações</div>
+                <div class="databox-stat themeprimary radius-bordered">
+                    <i class="stat-icon icon-lg fa fa-arrow-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @*Trilha de auditoria*@
+    <div class="col-lg-9 col-md-9">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-themeprimary">
+                <i class="widget-icon fa fa-tasks themeprimary"></i>
+                <span class="widget-caption themeprimary">Trilha de auditoria</span>
+            </div><!--Widget Header-->
+            <div class="widget-body no-padding">
+                <div class="tickets-container">
+                    <ul class="tickets-list">
+                        <li class="ticket-item">
+                            <div class="row">
+                                <a href="#">
+                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                        <img src="~/Content/Images/no_image_available.png" class="user-avatar">
+                                        <span class="user-name">Maria Joaquina</span>
+                                        <span class="user-at">do</span>
+                                        <span class="user-company">Banco do Brasil</span>
+                                    </div>
+                                    <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="time">1 hora atrás</span>
+                                    </div>
+                                    <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                        <span class="divider hidden-xs"></span>
+                                        <span class="type">Proposta</span>
+                                    </div>
+                                    <div class="ticket-state bg-palegreen">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="ticket-item">
+                            <div class="row">
+                                <a href="#">
+                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                        <img src="~/Content/Images/no_image_available.png" class="user-avatar">
+                                        <span class="user-name">Gilberto Gil</span>
+                                        <span class="user-at">da</span>
+                                        <span class="user-company">Caixa Econômica</span>
+                                    </div>
+                                    <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="time">3 horas atrás</span>
+                                    </div>
+                                    <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                        <span class="divider hidden-xs"></span>
+                                        <span class="type">Proposta</span>
+                                    </div>
+                                    <div class="ticket-state bg-palegreen">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="ticket-item">
+                            <div class="row">
+                                <a href="#">
+                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                        <img src="~/Content/Images/no_image_available.png" class="user-avatar">
+                                        <span class="user-name">Luis Inácio</span>
+                                        <span class="user-at">do</span>
+                                        <span class="user-company">Itaú Unibanco</span>
+                                    </div>
+                                    <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="time">18 horas atrás</span>
+                                    </div>
+                                    <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                        <span class="divider hidden-xs"></span>
+                                        <span class="type">Acesso</span>
+                                    </div>
+                                    <div class="ticket-state bg-darkorange">
+                                        <i class="fa fa-times"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="ticket-item">
+                            <div class="row">
+                                <a href="#">
+                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                        <img src="~/Content/Images/no_image_available.png" class="user-avatar">
+                                        <span class="user-name">Vera Verão</span>
+                                        <span class="user-at">do</span>
+                                        <span class="user-company">Banco do Brasil</span>
+                                    </div>
+                                    <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="time">2 dias atrás</span>
+                                    </div>
+                                    <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                        <span class="divider hidden-xs"></span>
+                                        <span class="type">Renegociação</span>
+                                    </div>
+                                    <div class="ticket-state bg-palegreen">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="ticket-item">
+                            <div class="row">
+                                <a href="#">
+                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                        <img src="~/Content/Images/no_image_available.png" class="user-avatar">
+                                        <span class="user-name">Zé Firmino</span>
+                                        <span class="user-at">do</span>
+                                        <span class="user-company">Gestor</span>
+                                    </div>
+                                    <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="time">10 dias atrás</span>
+                                    </div>
+                                    <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                        <span class="divider hidden-xs"></span>
+                                        <span class="type">Folha</span>
+                                    </div>
+                                    <div class="ticket-state bg-yellow">
+                                        <i class="fa fa-info"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="widget-footer">
+                    <a class="show-all" href="@Url.Action("Index", "Auditoria")"><i class="fa fa-angle-down"></i> Mostrar todos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Ultimos avisos*@
+    <div class="col-lg-3 col-md-3">
+        <div class="orders-container">
+            <div class="orders-header">
+                <h6>Últimos avisos</h6>
+            </div>
+            <ul class="orders-list">
+                <li class="order-item">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 item-left">
+                            <div class="item-booker">Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</div>
+                            <div class="item-time">
+                                <i class="fa fa-calendar"></i>
+                                <span>10 minutos atrás</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item-more" href="">
+                        <i></i>
+                    </a>
+                </li>
+                <li class="order-item">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 item-left">
+                            <div class="item-booker">Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</div>
+                            <div class="item-time">
+                                <i class="fa fa-calendar"></i>
+                                <span>2 horas atrás</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item-more" href="">
+                        <i></i>
+                    </a>
+                </li>
+                <li class="order-item">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 item-left">
+                            <div class="item-booker">Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</div>
+                            <div class="item-time">
+                                <i class="fa fa-calendar"></i>
+                                <span>Hoje 8 de Julho</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item-more" href="">
+                        <i></i>
+                    </a>
+                </li>
+                <li class="order-item">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 item-left">
+                            <div class="item-booker">Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</div>
+                            <div class="item-time">
+                                <i class="fa fa-calendar"></i>
+                                <span>Ontem 7 de Julho</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item-more" href="">
+                        <i></i>
+                    </a>
+                </li>
+                <li class="order-item">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 item-left">
+                            <div class="item-booker">Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.</div>
+                            <div class="item-time">
+                                <i class="fa fa-calendar"></i>
+                                <span>5 de Julho</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item-more" href="">
+                        <i></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="orders-footer">
+                <a class="show-all" href="@Url.Action("Index", "Aviso")"><i class="fa fa-angle-down"></i> Mostrar todos</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">

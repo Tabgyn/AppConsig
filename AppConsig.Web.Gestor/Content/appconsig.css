@@ -38,6 +38,10 @@
     min-width: 186px;
 }
 
+.navbar .navbar-inner .navbar-header .navbar-account .account-area {
+    right: 10px;
+}
+
 .page-sidebar.menu-compact {
     width: 47px;
 }
@@ -257,34 +261,78 @@ input[type="color"].disabled {
     padding: 0;
 }
 
-input[type=checkbox]~.text, input[type=radio]~.text {
+input[type=checkbox] ~ .text, input[type=radio] ~ .text {
     color: #262626;
 }
 
-input[type=checkbox]:disabled ~ .text, 
-input[type=radio]:disabled ~ .text, 
-input[type=checkbox][disabled] ~ .text, 
-input[type=radio][disabled] ~ .text, 
-input[type=checkbox].disabled ~ .text, 
+input[type=checkbox]:disabled ~ .text,
+input[type=radio]:disabled ~ .text,
+input[type=checkbox][disabled] ~ .text,
+input[type=radio][disabled] ~ .text,
+input[type=checkbox].disabled ~ .text,
 input[type=radio].disabled ~ .text {
     color: #858585;
 }
 
-input[type=checkbox]:disabled~.text:before, 
-input[type=radio]:disabled~.text:before, 
-input[type=checkbox][disabled]~.text:before, 
-input[type=radio][disabled]~.text:before, 
-input[type=checkbox].disabled~.text:before, 
-input[type=radio].disabled~.text:before 
-input[type=checkbox]:disabled~.text:before, 
-input[type=radio]:disabled~.text:before, 
-input[type=checkbox][disabled]~.text:before, 
-input[type=radio][disabled]~.text:before, 
-input[type=checkbox].disabled~.text:before, 
-input[type=radio].disabled~.text:before {
-    color: rgba(0,0,0,0.4);
-}
+    input[type=checkbox]:disabled ~ .text:before,
+    input[type=radio]:disabled ~ .text:before,
+    input[type=checkbox][disabled] ~ .text:before,
+    input[type=radio][disabled] ~ .text:before,
+    input[type=checkbox].disabled ~ .text:before,
+    input[type=radio].disabled ~ .text:before input[type=checkbox]:disabled ~ .text:before,
+    input[type=radio]:disabled ~ .text:before,
+    input[type=checkbox][disabled] ~ .text:before,
+    input[type=radio][disabled] ~ .text:before,
+    input[type=checkbox].disabled ~ .text:before,
+    input[type=radio].disabled ~ .text:before {
+        color: rgba(0,0,0,0.4);
+    }
 
 .alert {
     margin-bottom: 5px;
+}
+
+.databox .databox-text {
+    text-transform: uppercase;
+}
+
+.orders-container .orders-list .order-item .item-left .item-booker {
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashboard-box .box-body {
+    padding: 10px 20px;
+}
+
+.tickets-container .tickets-list .ticket-item a .ticket-user .user-name {
+    color: #444444;
+}
+
+.widget .widget-body .tickets-container {
+    position: relative;
+    padding: 25px 25px 11px;
+    background-color: #f5f5f5;
+}
+
+.widget .widget-footer {
+    position: relative;
+    background-color: #fff;
+    height: 34px;
+    padding: 7px;
+    text-align: center;
+    background-color: #fbfbfb;
+}
+
+.widget .widget-footer a {
+    margin: 0 auto;
+    font-size: 11px;
+    color: #999;
+    font-weight: 500;
+}
+
+.widget .widget-footer a:hover {
+    text-decoration: none;
 }
