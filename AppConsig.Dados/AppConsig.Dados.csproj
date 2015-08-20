@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContexto.cs" />
+    <Compile Include="AuditoriaFactory.cs" />
     <Compile Include="IContexto.cs" />
     <Compile Include="Migrations\201507291636238_201507291330.cs" />
     <Compile Include="Migrations\201507291636238_201507291330.Designer.cs">
