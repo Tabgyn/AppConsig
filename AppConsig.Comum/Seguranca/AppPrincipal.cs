@@ -1,6 +1,6 @@
 ﻿using System.Security.Principal;
 
-namespace AppConsig.Web.Gestor.Seguranca
+namespace AppConsig.Comum.Seguranca
 {
     public class AppPrincipal : IAppPrincipal
     {
@@ -14,7 +14,7 @@ namespace AppConsig.Web.Gestor.Seguranca
             return false;
         }
 
-        public IIdentity Identity { get; private set; }
+        public IIdentity Identity { get; }
         public long Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }

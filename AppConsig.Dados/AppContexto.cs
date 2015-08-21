@@ -18,6 +18,7 @@ namespace AppConsig.Dados
                 new MigrateDatabaseToLatestVersion<AppContexto, Configuration>("AppConsigContexto"));
         }
 
+        public IDbSet<Auditoria> Auditorias { get; set; }
         public IDbSet<Aviso> Avisos { get; set; }
         public IDbSet<Perfil> Perfis { get; set; }
         public IDbSet<Permissao> Permissoes { get; set; }
@@ -26,7 +27,6 @@ namespace AppConsig.Dados
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
             modelBuilder.Configurations.Add(new PerfilConfig());
             modelBuilder.Configurations.Add(new UsuarioConfig());
 
@@ -36,8 +36,10 @@ namespace AppConsig.Dados
         public override int SaveChanges()
         {
             var entradasModificadas = ChangeTracker.Entries()
-                .Where(x => x.Entity is IEntidadeAuditavel
-                            && (x.State == EntityState.Added || x.State == EntityState.Modified));
+                .Where(x => x.Entity is IEntidadeAuditavel &&
+                            (x.State == EntityState.Added ||
+                             x.State == EntityState.Modified ||
+                             x.State == EntityState.Deleted));
 
             foreach (var entrada in entradasModificadas)
             {
@@ -45,23 +47,30 @@ namespace AppConsig.Dados
 
                 if (entidade == null) continue;
 
-                var nomeUsuario = Thread.CurrentPrincipal.Identity.Name;
+                var usuario = Usuarios.First(u => u.Email == Thread.CurrentPrincipal.Identity.Name);
 
                 var dataAgora = DateTime.Now;
 
-                if (entrada.State == EntityState.Added)
+                switch (entrada.State)
                 {
-                    entidade.CriadoPor = nomeUsuario;
-                    entidade.DataCriacao = dataAgora;
-                    entidade.Excluido = false;
-                }
-                else
-                {
-                    Entry(entidade).Property(x => x.CriadoPor).IsModified = false;
-                    Entry(entidade).Property(x => x.DataCriacao).IsModified = false;
+                    case EntityState.Added:
+                        entidade.CriadoPor = usuario.Email;
+                        entidade.DataCriacao = dataAgora;
+                        entidade.Excluido = false;
+                        break;
+                    case EntityState.Modified:
+                        Entry(entidade).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entidade).Property(x => x.DataCriacao).IsModified = false;
+                        break;
+                    case EntityState.Deleted:
+                        entrada.State = EntityState.Modified;
+                        entidade.Excluido = false;
+                        Entry(entidade).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entidade).Property(x => x.DataCriacao).IsModified = false;
+                        break;
                 }
 
-                entidade.AtualizadoPor = nomeUsuario;
+                entidade.AtualizadoPor = usuario.Email;
                 entidade.DataAtualizacao = dataAgora;
             }
 

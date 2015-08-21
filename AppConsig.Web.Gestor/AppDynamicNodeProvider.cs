@@ -4,8 +4,8 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using AppConsig.Comum.Seguranca;
 using AppConsig.Dados;
-using AppConsig.Web.Gestor.Seguranca;
 using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor

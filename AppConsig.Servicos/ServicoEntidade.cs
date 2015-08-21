@@ -49,13 +49,13 @@ namespace AppConsig.Servicos
         /// </summary>
         /// <param name="filtro"></param>
         /// <param name="numeroPagina"></param>
-        /// <param name="tamanhaPagina"></param>
+        /// <param name="tamanhoPagina"></param>
         /// <returns></returns>
-        public virtual IEnumerable<T> ObterTodosPaginado(Expression<Func<T, bool>> filtro = null, int numeroPagina = 1, int tamanhaPagina = 5)
+        public virtual IEnumerable<T> ObterTodosPaginado(Expression<Func<T, bool>> filtro = null, int numeroPagina = 1, int tamanhoPagina = 5)
         {
             return filtro != null
-                ? Dbset.Where(filtro).Skip(tamanhaPagina * (numeroPagina - 1)).Take(tamanhaPagina).AsEnumerable()
-                : Dbset.Skip(tamanhaPagina * (numeroPagina - 1)).Take(tamanhaPagina).AsEnumerable();
+                ? Dbset.Where(filtro).Skip(tamanhoPagina * (numeroPagina - 1)).Take(tamanhoPagina).AsEnumerable()
+                : Dbset.Skip(tamanhoPagina * (numeroPagina - 1)).Take(tamanhoPagina).AsEnumerable();
         }
 
         /// <summary>
@@ -94,15 +94,8 @@ namespace AppConsig.Servicos
             if (entidade == null) throw new ArgumentNullException(nameof(entidade));
 
             // Entidades auditaveis não podem ser excluidas da fonte de dados.
-            // Será setado como verdadeiro na coluna "Excluido" e então atualizado.
             if (entidade is EntidadeAuditavel<long>)
             {
-                var t = entidade.GetType();
-                var propInfo = t.GetProperty("Excluido");
-
-                propInfo.SetValue(entidade, true, null);
-
-                Contexto.Entry(entidade).State = EntityState.Modified;
                 Contexto.SaveChanges();
             }
             else

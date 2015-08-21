@@ -4,9 +4,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using AppConsig.Comum.Seguranca;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
-using AppConsig.Web.Gestor.Seguranca;
 using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -75,7 +75,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError("", exception);
+                    Erro(exception.Message, true);
                 }
             }
 
@@ -109,7 +109,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     }
                     catch (Exception exception)
                     {
-                        ModelState.AddModelError("", exception);
+                        Erro(exception.Message, true);
                     }
                 }
             }

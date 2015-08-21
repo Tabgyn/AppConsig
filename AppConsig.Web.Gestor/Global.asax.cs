@@ -5,8 +5,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using AppConsig.Comum.Seguranca;
 using AppConsig.Web.Gestor.Modulos;
-using AppConsig.Web.Gestor.Seguranca;
 using Autofac;
 using Autofac.Integration.Mvc;
 

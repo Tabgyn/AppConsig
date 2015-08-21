@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using AppConsig.Comum.Seguranca;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
-using AppConsig.Web.Gestor.Seguranca;
 using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers

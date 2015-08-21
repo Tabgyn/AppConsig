@@ -1,4 +1,4 @@
-﻿namespace AppConsig.Web.Gestor.Seguranca
+﻿namespace AppConsig.Comum.Seguranca
 {
     public class AppPrincipalSerializedModel
     {

@@ -49,6 +49,9 @@
     <Compile Include="JsTreeNode.cs" />
     <Compile Include="PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguranca\AppPrincipal.cs" />
+    <Compile Include="Seguranca\AppPrincipalSerializedModel.cs" />
+    <Compile Include="Seguranca\IAppPrincipal.cs" />
     <Compile Include="StringHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
 ﻿using System.Security.Principal;
 
-namespace AppConsig.Web.Gestor.Seguranca
+namespace AppConsig.Comum.Seguranca
 {
     public interface IAppPrincipal : IPrincipal
     {
