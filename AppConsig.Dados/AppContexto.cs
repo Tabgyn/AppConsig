@@ -63,13 +63,13 @@ namespace AppConsig.Dados
                         Entry(entidade).Property(x => x.DataCriacao).IsModified = false;
                         break;
                     case EntityState.Deleted:
+                        entidade.Excluido = true;
                         entrada.State = EntityState.Modified;
-                        entidade.Excluido = false;
                         Entry(entidade).Property(x => x.CriadoPor).IsModified = false;
                         Entry(entidade).Property(x => x.DataCriacao).IsModified = false;
                         break;
                 }
-
+                
                 entidade.AtualizadoPor = usuario.Email;
                 entidade.DataAtualizacao = dataAgora;
             }
