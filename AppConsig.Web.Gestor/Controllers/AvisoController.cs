@@ -44,17 +44,17 @@ namespace AppConsig.Web.Gestor.Controllers
 
             switch (sortOrder)
             {
+                case "own":
+                    avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
+                    break;
                 case "own_desc":
                     avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
                     avisos = avisos.OrderBy(a => a.DataCriacao).ToList();
                     break;
-                case "date_desc":
-                    avisos = avisos.OrderByDescending(a => a.DataCriacao).ToList();
-                    break;
                 default:
-                    avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
+                    avisos = avisos.OrderByDescending(a => a.DataCriacao).ToList();
                     break;
             }
 
