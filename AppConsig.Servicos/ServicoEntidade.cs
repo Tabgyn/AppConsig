@@ -93,17 +93,8 @@ namespace AppConsig.Servicos
         {
             if (entidade == null) throw new ArgumentNullException(nameof(entidade));
 
-            // Entidades auditaveis não podem ser excluidas da fonte de dados.
-            if (entidade is EntidadeAuditavel<long>)
-            {
-                Contexto.SaveChanges();
-            }
-            else
-            {
-                // Entidade é excluida permanentemente da fonte de dados.
-                Dbset.Remove(entidade);
-                Contexto.SaveChanges();
-            }
+            Dbset.Remove(entidade);
+            Contexto.SaveChanges();
         }
     }
 }

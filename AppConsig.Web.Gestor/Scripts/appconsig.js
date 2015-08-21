@@ -40,8 +40,8 @@ function loadWeather(location, woeid) {
 /* End Geolocation */
 
 /* Sidebar Collapse */
-$("#sidebar-collapse").on('click', function () {
-    $(".collapse-icon").toggleClass("fa-angle-double-left");
-    $(".collapse-icon").toggleClass("fa-angle-double-right");
-});
+//$("#sidebar-collapse").on('click', function () {
+//    $(".collapse-icon").toggleClass("fa-angle-double-left");
+//    $(".collapse-icon").toggleClass("fa-angle-double-right");
+//});
 /* End Sidebar Collapse */
