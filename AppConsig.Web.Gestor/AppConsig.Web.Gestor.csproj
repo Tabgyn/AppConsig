@@ -247,6 +247,7 @@
     <Content Include="Scripts\jquery-2.1.4.min.js">
       <DependentUpon>jquery-2.1.4.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery-fileinput.js" />
     <Content Include="Scripts\jquery.dataTables.min.js">
       <DependentUpon>jquery.dataTables.js</DependentUpon>
     </Content>

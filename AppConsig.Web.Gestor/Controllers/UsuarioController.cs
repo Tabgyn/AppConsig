@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -136,6 +137,24 @@ namespace AppConsig.Web.Gestor.Controllers
                     usuario.Facebook = model.Facebook;
                     usuario.Twitter = model.Twitter;
 
+                    var httpPostedFileBase = Request.Files[0];
+
+                    if (httpPostedFileBase != null)
+                    {
+                        var allowedExtensions = new[] { ".jpeg", ".jpg", ".png", ".gif" };
+                        var extension = Path.GetExtension(httpPostedFileBase.FileName);
+                        if (!allowedExtensions.Contains(extension))
+                        {
+                            throw new Exception("É permitido apenas imagens nos formatos .jpeg(.jpg), .png e .gif");
+                        }
+
+                        using (var binaryReader = new BinaryReader(httpPostedFileBase.InputStream))
+                        {
+                            var fileData = binaryReader.ReadBytes(httpPostedFileBase.ContentLength);
+                            usuario.Foto = model.Foto = Convert.ToBase64String(fileData);
+                        }
+                    }
+
                     _servicoUsuario.Atualizar(usuario);
                     Successo("Dados atualizados", true);
                 }
@@ -144,6 +163,8 @@ namespace AppConsig.Web.Gestor.Controllers
                     Erro(exception.Message, true);
                 }
             }
+
+            Session.Add("Avatar", model.Foto);
 
             return View(model);
         }

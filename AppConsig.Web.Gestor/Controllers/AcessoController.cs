@@ -49,6 +49,8 @@ namespace AppConsig.Web.Gestor.Controllers
                             Email = usuario.Email
                         };
 
+                        Session.Add("Avatar", usuario.Foto);
+
                         var serializer = new JavaScriptSerializer();
 
                         var userData = serializer.Serialize(serializeModel);

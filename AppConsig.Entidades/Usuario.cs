@@ -24,7 +24,7 @@ namespace AppConsig.Entidades
         [Required(ErrorMessage = "{0} é obrigatório")]
         public string Senha { get; set; }
 
-        public byte[] Foto { get; set; }
+        public string Foto { get; set; }
 
         [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
         public string Facebook { get; set; }

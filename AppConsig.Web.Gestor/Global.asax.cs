@@ -37,7 +37,7 @@ namespace AppConsig.Web.Gestor
         protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
         {
             var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            
+
             if (authCookie == null) return;
             var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
@@ -47,12 +47,12 @@ namespace AppConsig.Web.Gestor
             var serializeModel = serializer.Deserialize<AppPrincipalSerializedModel>(authTicket.UserData);
 
             var newUser = new AppPrincipal(authTicket.Name)
-                          {
-                              Id = serializeModel.Id,
-                              Nome = serializeModel.Nome,
-                              Sobrenome = serializeModel.Sobrenome,
-                              Email = serializeModel.Email
-                          };
+            {
+                Id = serializeModel.Id,
+                Nome = serializeModel.Nome,
+                Sobrenome = serializeModel.Sobrenome,
+                Email = serializeModel.Email
+            };
 
             HttpContext.Current.User = newUser;
         }
@@ -67,7 +67,7 @@ namespace AppConsig.Web.Gestor
             var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
             Response.Cookies.Add(cookie2);
         }
-        
+
         void Session_End(object sender, EventArgs e)
         {
             // clear authentication cookie

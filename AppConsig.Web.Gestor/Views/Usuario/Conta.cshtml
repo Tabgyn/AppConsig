@@ -6,8 +6,7 @@
     var imageString = Url.Content("~/Content/Images/no_image_available.png");
     if (Model.Foto != null)
     {
-        var base64String = Convert.ToBase64String(Model.Foto);
-        imageString = string.Format("data:image/png;base64,{0}", base64String);
+        imageString = string.Format("data:image/png;base64,{0}", Model.Foto);
     }
 }
 
@@ -15,9 +14,9 @@
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
-                @using (Html.BeginForm("Conta", "Usuario", FormMethod.Post))
+                @using (Html.BeginForm("Conta", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
 
@@ -25,7 +24,7 @@
                         <div class="col-md-4 col-lg-2 text-center">
                             <img src="@imageString" alt="Minha imagem" class="conta-foto">
                             <div class="col-md-12 col-lg-12">
-                                <span class="btn btn-sm btn-primary">Alterar foto</span>
+                                <input type="file" name="avatar" />
                             </div>
                         </div>
                         <div class="col-md-8 col-lg-10">
@@ -44,7 +43,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Nome" })
+                                            @Html.TextBoxFor(m => m.Nome, new {@class = "form-control", @placeholder = "Nome"})
                                             <i class="fa fa-user blue"></i>
                                         </span>
                                     </div>
@@ -52,7 +51,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Sobrenome, new { @class = "form-control", @placeholder = "Sobrenome" })
+                                            @Html.TextBoxFor(m => m.Sobrenome, new {@class = "form-control", @placeholder = "Sobrenome"})
                                             <i class="fa fa-user orange"></i>
                                         </span>
                                     </div>
@@ -65,7 +64,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control", @placeholder = "Telefone" })
+                                            @Html.TextBoxFor(m => m.Telefone, new {@class = "form-control", @placeholder = "Telefone"})
                                             <i class="glyphicon glyphicon-earphone yellow"></i>
                                         </span>
                                     </div>
@@ -73,7 +72,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Celular, new { @class = "form-control", @placeholder = "Celular" })
+                                            @Html.TextBoxFor(m => m.Celular, new {@class = "form-control", @placeholder = "Celular"})
                                             <i class="glyphicon glyphicon-phone palegreen"></i>
                                         </span>
                                     </div>
@@ -83,7 +82,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Endereco, new { @class = "form-control", @placeholder = "Endereço" })
+                                            @Html.TextBoxFor(m => m.Endereco, new {@class = "form-control", @placeholder = "Endereço"})
                                             <i class="glyphicon glyphicon-map-marker red"></i>
                                         </span>
                                     </div>
@@ -91,7 +90,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.EnderecoComplemento, new { @class = "form-control", @placeholder = "Complemento" })
+                                            @Html.TextBoxFor(m => m.EnderecoComplemento, new {@class = "form-control", @placeholder = "Complemento"})
                                             <i class="glyphicon glyphicon-map-marker purple"></i>
                                         </span>
                                     </div>
@@ -104,7 +103,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Facebook, new { @class = "form-control", @placeholder = "Facebook" })
+                                            @Html.TextBoxFor(m => m.Facebook, new {@class = "form-control", @placeholder = "Facebook"})
                                             <i class="fa fa-facebook blue"></i>
                                         </span>
                                     </div>
@@ -112,7 +111,7 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <span class="input-icon icon-right">
-                                            @Html.TextBoxFor(m => m.Twitter, new { @class = "form-control", @placeholder = "Twitter" })
+                                            @Html.TextBoxFor(m => m.Twitter, new {@class = "form-control", @placeholder = "Twitter"})
                                             <i class="fa fa-twitter azure"></i>
                                         </span>
                                     </div>
@@ -128,3 +127,28 @@
         </div>
     </div>
 </div>
+
+@section PageScripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery-fileinput.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[type=file][name=avatar]").fileinput("<span class='btn btn-sm btn-primary'>Alterar foto</span>");
+        });
+
+        function preview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.conta-foto').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("input[type=file][name=avatar]").change(function () {
+            preview(this);
+        });
+    </script>
+}

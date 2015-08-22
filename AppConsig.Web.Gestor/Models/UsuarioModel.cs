@@ -17,7 +17,7 @@ namespace AppConsig.Web.Gestor.Models
         [Display(Name = "Nome completo")]
         public string NomeCompleto => $"{Nome} {Sobrenome}";
 
-        public byte[] Foto { get; set; }
+        public string Foto { get; set; }
 
         [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
         public string Facebook { get; set; }

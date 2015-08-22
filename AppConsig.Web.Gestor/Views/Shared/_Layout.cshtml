@@ -6,6 +6,12 @@
     var dtfi = culture.DateTimeFormat;
     var diaDaSemana = dtfi.GetDayName(data.DayOfWeek).ToUpperInvariant();
     var usuarioLogado = (AppPrincipal) User;
+
+    var imageString = Url.Content("~/Content/Images/no_image_available.png");
+    if (Session["Avatar"] != null)
+    {
+        imageString = string.Format("data:image/png;base64,{0}", Session["Avatar"]);
+    }
 }
 <!DOCTYPE html>
 <html>
@@ -105,7 +111,7 @@
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="Veja seu perfil">
-                                        <img src="~/Content/Images/no_image_available.png">
+                                        <img src="@imageString">
                                     </div>
                                     <section>
                                         <h2><span class="profile"><span>@usuarioLogado.Nome</span></span></h2>
@@ -118,7 +124,7 @@
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="~/Content/Images/no_image_available.png" class="avatar">
+                                            <img src="@imageString" class="avatar">
                                         </div>
                                     </li>
                                     <!--Avatar Area-->
