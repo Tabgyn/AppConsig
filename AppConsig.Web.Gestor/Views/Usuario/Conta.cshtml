@@ -14,17 +14,19 @@
     <div class="col-md-12 col-lg-12">
         <div class="widget">
             <div class="widget-body">
-                @using (Html.BeginForm("Conta", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @{ Html.RenderPartial("_Alerta"); }
+                @using (Html.BeginForm("Conta", "Usuario", FormMethod.Post, new {enctype = "multipart/form-data"}))
                 {
                     @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.Foto)
 
                     <div class="row conta-cabecalho">
                         <div class="col-md-4 col-lg-2 text-center">
                             <img src="@imageString" alt="Minha imagem" class="conta-foto">
                             <div class="col-md-12 col-lg-12">
-                                <input type="file" name="avatar" />
+                                <input type="file" name="avatar"/>
                             </div>
                         </div>
                         <div class="col-md-8 col-lg-10">

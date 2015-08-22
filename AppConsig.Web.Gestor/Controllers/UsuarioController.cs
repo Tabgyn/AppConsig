@@ -139,7 +139,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
                     var httpPostedFileBase = Request.Files[0];
 
-                    if (httpPostedFileBase != null)
+                    if (httpPostedFileBase != null && httpPostedFileBase.ContentLength > 0)
                     {
                         var allowedExtensions = new[] { ".jpeg", ".jpg", ".png", ".gif" };
                         var extension = Path.GetExtension(httpPostedFileBase.FileName);
