@@ -49,6 +49,8 @@ namespace AppConsig.Web.Gestor.Controllers
                             Email = usuario.Email
                         };
 
+                        ClearLoginSessionCookies();
+
                         Session.Add("Avatar", usuario.Foto);
 
                         var serializer = new JavaScriptSerializer();
@@ -127,6 +129,13 @@ namespace AppConsig.Web.Gestor.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
 
+            ClearLoginSessionCookies();
+
+            return RedirectToAction("Index");
+        }
+
+        private void ClearLoginSessionCookies()
+        {
             // clear authentication cookie
             var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
             Response.Cookies.Add(cookie1);
@@ -134,8 +143,6 @@ namespace AppConsig.Web.Gestor.Controllers
             // clear session cookie
             var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
             Response.Cookies.Add(cookie2);
-
-            return RedirectToAction("Index");
         }
     }
 }
