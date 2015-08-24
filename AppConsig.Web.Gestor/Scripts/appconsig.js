@@ -7,6 +7,7 @@ if ("geolocation" in navigator) {
 }
 
 $(document).ready(function () {
+    CheckMenuCompact();
     getWeather(); //Get the initial weather.
     setInterval(getWeather, 600000); //Update the weather every 10 minutes.
 });
@@ -24,10 +25,10 @@ function loadWeather(location, woeid) {
         unit: 'c',
         success: function (weather) {
             //18°c
-            //<i class="wi wi-cloudy"></i>
+            //<i class="weather-icon-0"></i>
             var html = '';
             html += weather.temp + '&deg;' + weather.units.temp;
-            html += '<i class="fa weather-icon-' + weather.code + ' fa-fw"></i>';
+            html += '<i class="weather-icon-' + weather.code + '"></i>';
 
             $("#weather").html(html);
         },
@@ -40,8 +41,16 @@ function loadWeather(location, woeid) {
 /* End Geolocation */
 
 /* Sidebar Collapse */
-//$("#sidebar-collapse").on('click', function () {
-//    $(".collapse-icon").toggleClass("fa-angle-double-left");
-//    $(".collapse-icon").toggleClass("fa-angle-double-right");
-//});
+$("#sidebar-collapse").on('click', function () {
+    createCookie("menu-compact", $('.page-sidebar').hasClass('menu-compact'), 100);
+});
+
+function CheckMenuCompact() {
+    if (readCookie("menu-compact") != null) {
+        if (readCookie("menu-compact") === "true") {
+            $('.page-sidebar').addClass('menu-compact');
+            $('.sidebar-collapse').addClass('active');
+        }
+    }
+}
 /* End Sidebar Collapse */

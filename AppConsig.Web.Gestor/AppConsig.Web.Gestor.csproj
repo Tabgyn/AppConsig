@@ -217,6 +217,7 @@
     <Content Include="Content\skins\skins-mixins.css" />
     <Content Include="Content\skins\teal.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\weathericons-regular-webfont.svg" />
     <Content Include="Scripts\appconsig.js" />
     <Content Include="Scripts\appconsig.min.js">
       <DependentUpon>appconsig.js</DependentUpon>
@@ -331,6 +332,10 @@
       <DependentUpon>appconsig.min.css</DependentUpon>
     </Content>
     <Content Include="Content\beyond.css.map" />
+    <Content Include="fonts\weathericons-regular-webfont.eot" />
+    <Content Include="fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="fonts\weathericons-regular-webfont.woff" />
+    <Content Include="fonts\WeatherIcons-Regular.otf" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
