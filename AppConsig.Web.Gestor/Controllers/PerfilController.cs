@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Base.Entidades;
+using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -91,7 +92,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
 
@@ -102,7 +103,7 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpGet]
         public ActionResult Criar()
         {
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             ViewBag.Permissoes = GetTreeData(permissoes);
 
             return View();
@@ -117,13 +118,23 @@ namespace AppConsig.Web.Gestor.Controllers
             {
                 try
                 {
+                    var defaultList = _servicoPermissao.ObterTodos(p => p.Padrao).ToList();
+
+                    foreach (var d in defaultList)
+                    {
+                        perfil.Permissoes.Add(d);
+                    }
+
                     var ckbSelecionadas =
                         ckbPermissoes.Select(ckb => _servicoPermissao.ObterPeloId(ckb)).ToList();
 
-                    perfil.Permissoes = ckbSelecionadas;
+                    foreach (var p in ckbSelecionadas)
+                    {
+                        perfil.Permissoes.Add(p);
+                    }
 
                     _servicoPerfil.Criar(perfil);
-                    Successo("Novo perfil de usuário criado", true);
+                    Successo(Alertas.PerfilCriado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -133,7 +144,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             ViewBag.Permissoes = GetTreeData(permissoes);
 
             return View(perfil);
@@ -155,7 +166,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
 
@@ -183,7 +194,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     oldPerfil.Permissoes = oldPerfil.Permissoes.Where(p => ckbSelecionadas.Contains(p)).ToList();
 
                     _servicoPerfil.Atualizar(oldPerfil);
-                    Successo("Perfil de usuário atualizado", true);
+                    Successo(Alertas.PerfilAtualizado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -193,7 +204,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
 
@@ -216,7 +227,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var permissoes = _servicoPermissao.ObterTodos().Where(p => p.Visivel || p.IsCrud);
+            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
 
@@ -238,7 +249,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoPerfil.Excluir(perfil);
-                Successo("Perfil de usuário excluído", true);
+                Successo(Alertas.PerfilExcluido, true);
 
                 return RedirectToAction("Index");
             }

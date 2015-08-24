@@ -55,41 +55,9 @@
   <ItemGroup>
     <Compile Include="AppContexto.cs" />
     <Compile Include="IContexto.cs" />
-    <Compile Include="Migrations\201507291636238_201507291330.cs" />
-    <Compile Include="Migrations\201507291636238_201507291330.Designer.cs">
-      <DependentUpon>201507291636238_201507291330.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508101258219_0957.cs" />
-    <Compile Include="Migrations\201508101258219_0957.Designer.cs">
-      <DependentUpon>201508101258219_0957.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508101426276_1126.cs" />
-    <Compile Include="Migrations\201508101426276_1126.Designer.cs">
-      <DependentUpon>201508101426276_1126.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508101607461_1307.cs" />
-    <Compile Include="Migrations\201508101607461_1307.Designer.cs">
-      <DependentUpon>201508101607461_1307.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508101932278_1632.cs" />
-    <Compile Include="Migrations\201508101932278_1632.Designer.cs">
-      <DependentUpon>201508101932278_1632.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508101949439_1649.cs" />
-    <Compile Include="Migrations\201508101949439_1649.Designer.cs">
-      <DependentUpon>201508101949439_1649.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508201849165_1549.cs" />
-    <Compile Include="Migrations\201508201849165_1549.Designer.cs">
-      <DependentUpon>201508201849165_1549.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508211856319_1556.cs" />
-    <Compile Include="Migrations\201508211856319_1556.Designer.cs">
-      <DependentUpon>201508211856319_1556.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508221549578_1249.cs" />
-    <Compile Include="Migrations\201508221549578_1249.Designer.cs">
-      <DependentUpon>201508221549578_1249.cs</DependentUpon>
+    <Compile Include="Migrations\201508241630364_Inicial.cs" />
+    <Compile Include="Migrations\201508241630364_Inicial.Designer.cs">
+      <DependentUpon>201508241630364_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,32 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507291636238_201507291330.resx">
-      <DependentUpon>201507291636238_201507291330.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508101258219_0957.resx">
-      <DependentUpon>201508101258219_0957.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508101426276_1126.resx">
-      <DependentUpon>201508101426276_1126.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508101607461_1307.resx">
-      <DependentUpon>201508101607461_1307.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508101932278_1632.resx">
-      <DependentUpon>201508101932278_1632.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508101949439_1649.resx">
-      <DependentUpon>201508101949439_1649.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508201849165_1549.resx">
-      <DependentUpon>201508201849165_1549.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508211856319_1556.resx">
-      <DependentUpon>201508211856319_1556.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508221549578_1249.resx">
-      <DependentUpon>201508221549578_1249.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508241630364_Inicial.resx">
+      <DependentUpon>201508241630364_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

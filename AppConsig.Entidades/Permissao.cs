@@ -25,16 +25,25 @@ namespace AppConsig.Entidades
         public string Controller { get; set; }
         
         [MaxLength(256)]
+        [ScaffoldColumn(false)]
         public string Icone { get; set; }
 
+        [ScaffoldColumn(false)]
         public long ParenteId { get; set; }
-        
+
+        [ScaffoldColumn(false)]
         public int Ordem { get; set; }
 
-        public bool Visivel { get; set; }
+        [ScaffoldColumn(false)]
+        public bool Padrao { get; set; }
 
-        public bool IsCrud { get; set; }
+        [ScaffoldColumn(false)]
+        public bool MostrarNoMenu { get; set; }
+        
+        [ScaffoldColumn(false)]
+        public bool Crud { get; set; }
 
+        [ScaffoldColumn(false)]
         public string Atributos { get; set; }
     }
 }

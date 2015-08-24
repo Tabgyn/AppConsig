@@ -8,5 +8,6 @@ namespace AppConsig.Comum.Seguranca
         string Nome { get; set; }
         string Sobrenome { get; set; }
         string Email { get; set; }
+        bool Admin { get; set; }
     }
 }

@@ -3,19 +3,36 @@ namespace AppConsig.Dados.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _201507291330 : DbMigration
+    public partial class Inicial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Auditoria",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        UsuarioId = c.Long(nullable: false),
+                        SessionId = c.String(),
+                        DataCriacao = c.DateTime(nullable: false),
+                        Acao = c.String(),
+                        Controle = c.String(),
+                        NomeTabela = c.String(),
+                        RegistroId = c.Long(nullable: false),
+                        ValorOriginal = c.String(),
+                        ValorNovo = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Aviso",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Texto = c.String(nullable: false, maxLength: 256),
-                        CriadoPor = c.String(),
+                        CriadoPor = c.String(maxLength: 256),
                         DataCriacao = c.DateTime(nullable: false),
-                        AtualizadoPor = c.String(),
+                        AtualizadoPor = c.String(maxLength: 256),
                         DataAtualizacao = c.DateTime(nullable: false),
                         Excluido = c.Boolean(nullable: false),
                     })
@@ -28,9 +45,9 @@ namespace AppConsig.Dados.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         Nome = c.String(nullable: false, maxLength: 256),
                         Descricao = c.String(maxLength: 256),
-                        CriadoPor = c.String(),
+                        CriadoPor = c.String(maxLength: 256),
                         DataCriacao = c.DateTime(nullable: false),
-                        AtualizadoPor = c.String(),
+                        AtualizadoPor = c.String(maxLength: 256),
                         DataAtualizacao = c.DateTime(nullable: false),
                         Excluido = c.Boolean(nullable: false),
                     })
@@ -49,7 +66,10 @@ namespace AppConsig.Dados.Migrations
                         Icone = c.String(maxLength: 256),
                         ParenteId = c.Long(nullable: false),
                         Ordem = c.Int(nullable: false),
-                        VisivelNoMenu = c.Boolean(nullable: false),
+                        Padrao = c.Boolean(nullable: false),
+                        MostrarNoMenu = c.Boolean(nullable: false),
+                        Crud = c.Boolean(nullable: false),
+                        Atributos = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -58,15 +78,22 @@ namespace AppConsig.Dados.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Login = c.String(nullable: false, maxLength: 256),
-                        Senha = c.String(nullable: false, maxLength: 256),
                         Nome = c.String(nullable: false, maxLength: 256),
-                        Sobrenome = c.String(),
-                        Email = c.String(),
+                        Sobrenome = c.String(maxLength: 256),
+                        Email = c.String(nullable: false, maxLength: 256),
+                        Senha = c.String(nullable: false),
+                        Foto = c.String(),
+                        Facebook = c.String(maxLength: 256),
+                        Twitter = c.String(maxLength: 256),
+                        Telefone = c.String(maxLength: 256),
+                        Celular = c.String(maxLength: 256),
+                        Endereco = c.String(maxLength: 256),
+                        EnderecoComplemento = c.String(maxLength: 256),
+                        Admin = c.Boolean(nullable: false),
                         PerfilId = c.Long(nullable: false),
-                        CriadoPor = c.String(),
+                        CriadoPor = c.String(maxLength: 256),
                         DataCriacao = c.DateTime(nullable: false),
-                        AtualizadoPor = c.String(),
+                        AtualizadoPor = c.String(maxLength: 256),
                         DataAtualizacao = c.DateTime(nullable: false),
                         Excluido = c.Boolean(nullable: false),
                     })
@@ -102,6 +129,7 @@ namespace AppConsig.Dados.Migrations
             DropTable("dbo.Permissao");
             DropTable("dbo.Perfil");
             DropTable("dbo.Aviso");
+            DropTable("dbo.Auditoria");
         }
     }
 }

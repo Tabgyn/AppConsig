@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using AppConsig.Comum.Seguranca;
 using AppConsig.Dados;
 
@@ -28,6 +27,11 @@ namespace AppConsig.Web.Gestor.Seguranca
             if (usuarioLogado == null)
             {
                 return false;
+            }
+
+            if (usuarioLogado.Admin)
+            {
+                return true;
             }
 
             var action = httpContext.Request.RequestContext.RouteData.Values["action"].ToString();

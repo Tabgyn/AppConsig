@@ -160,6 +160,16 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AcessoController.cs" />
     <Compile Include="Controllers\VisaoGeralController.cs" />
+    <Compile Include="Resources\Alertas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Alertas.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelErrors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelErrors.resx</DependentUpon>
+    </Compile>
     <Compile Include="Seguranca\SecureAuthorizedAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -534,7 +544,6 @@
     <Content Include="Views\Auditoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
@@ -561,6 +570,17 @@
       <Project>{a784d30c-b21c-437a-80f3-14a4a30cb075}</Project>
       <Name>AppConsig.Web.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Alertas.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Alertas.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelErrors.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModelErrors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

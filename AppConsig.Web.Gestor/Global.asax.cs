@@ -51,32 +51,11 @@ namespace AppConsig.Web.Gestor
                 Id = serializeModel.Id,
                 Nome = serializeModel.Nome,
                 Sobrenome = serializeModel.Sobrenome,
-                Email = serializeModel.Email
+                Email = serializeModel.Email,
+                Admin = serializeModel.Admin
             };
 
             HttpContext.Current.User = newUser;
-        }
-
-        protected void Application_End()
-        {
-            // clear authentication cookie
-            var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
-            Response.Cookies.Add(cookie1);
-
-            // clear session cookie
-            var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
-            Response.Cookies.Add(cookie2);
-        }
-
-        void Session_End(object sender, EventArgs e)
-        {
-            // clear authentication cookie
-            var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
-            Response.Cookies.Add(cookie1);
-
-            // clear session cookie
-            var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
-            Response.Cookies.Add(cookie2);
         }
     }
 }

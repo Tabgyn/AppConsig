@@ -24,6 +24,7 @@ namespace AppConsig.Entidades
         [Required(ErrorMessage = "{0} é obrigatório")]
         public string Senha { get; set; }
 
+        [ScaffoldColumn(false)]
         public string Foto { get; set; }
 
         [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
@@ -45,6 +46,9 @@ namespace AppConsig.Entidades
         [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
         [Display(Name = "Complemento")]
         public string EnderecoComplemento { get; set; }
+
+        [ScaffoldColumn(false)]
+        public bool Admin { get; set; }
 
         public long PerfilId { get; set; }
 

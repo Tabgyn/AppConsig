@@ -7,6 +7,7 @@ using System.Web.Security;
 using AppConsig.Comum.Seguranca;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
+using AppConsig.Web.Gestor.Resources;
 using MvcSiteMapProvider;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -46,10 +47,11 @@ namespace AppConsig.Web.Gestor.Controllers
                             Id = usuario.Id,
                             Nome = usuario.Nome,
                             Sobrenome = usuario.Sobrenome,
-                            Email = usuario.Email
+                            Email = usuario.Email,
+                            Admin = usuario.Admin
                         };
 
-                        ClearLoginSessionCookies();
+                        LimparDadosDoUsuario();
 
                         Session.Add("Avatar", usuario.Foto);
 
@@ -61,7 +63,7 @@ namespace AppConsig.Web.Gestor.Controllers
                             1,
                             usuario.Email,
                             DateTime.Now,
-                            DateTime.Now.AddMinutes(20),
+                            DateTime.Now.AddMinutes(30),
                             false,
                             userData);
 
@@ -83,7 +85,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "E-mail e/ou senha inválido(s)");
+            ModelState.AddModelError("", ModelErrors.EmailSenhaInvalido);
 
             return View(model);
         }
@@ -118,24 +120,24 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ModelState.AddModelError("Email", "Não há usuário cadastrado para o e-mail informado");
+            ModelState.AddModelError("Email", ModelErrors.UsuarioInvalido);
 
             return View(model);
         }
 
         public ActionResult Sair()
         {
-            SiteMaps.ReleaseSiteMap();
-            FormsAuthentication.SignOut();
-            Session.Abandon();
-
-            ClearLoginSessionCookies();
+            LimparDadosDoUsuario();
 
             return RedirectToAction("Index");
         }
 
-        private void ClearLoginSessionCookies()
+        private void LimparDadosDoUsuario()
         {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            SiteMaps.ReleaseSiteMap();
+
             // clear authentication cookie
             var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
             Response.Cookies.Add(cookie1);

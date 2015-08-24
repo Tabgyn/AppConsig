@@ -117,10 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Target" xml:space="preserve">
-    <value>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</value>
+  <data name="AcessoAtualizado" xml:space="preserve">
+    <value>Acesso do usuário atualizado</value>
   </data>
-  <data name="DefaultSchema" xml:space="preserve">
-    <value>dbo</value>
+  <data name="AcessoCriado" xml:space="preserve">
+    <value>Novo acesso de usuário criado</value>
+  </data>
+  <data name="AcessoExcluido" xml:space="preserve">
+    <value>Acesso do usuário excluído</value>
+  </data>
+  <data name="AvisoAtualizado" xml:space="preserve">
+    <value>Aviso aos usuários atualizado</value>
+  </data>
+  <data name="AvisoCriado" xml:space="preserve">
+    <value>Novo aviso aos usuários criado</value>
+  </data>
+  <data name="AvisoExcluido" xml:space="preserve">
+    <value>Aviso aos usuários excluído</value>
+  </data>
+  <data name="PerfilAtualizado" xml:space="preserve">
+    <value>Perfil de usuário atualizado</value>
+  </data>
+  <data name="PerfilCriado" xml:space="preserve">
+    <value>Novo perdil de usuário criado</value>
+  </data>
+  <data name="PerfilExcluido" xml:space="preserve">
+    <value>Perfil de usuário excluído</value>
   </data>
 </root>
