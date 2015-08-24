@@ -8,6 +8,7 @@
         public string Titulo { get; set; }
         public string Texto { get; set; }
         public bool Descartavel { get; set; }
+        public string Exception { get; set; }
     }
 
     public static class EstiloAlerta

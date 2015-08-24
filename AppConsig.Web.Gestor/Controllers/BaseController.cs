@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AppConsig.Web.Base.Entidades;
 
@@ -6,27 +7,27 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class BaseController : Controller
     {
-        public void Successo(string message, bool dismissable = false)
+        public void Successo(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Successo, "check", "Sucesso!", message, dismissable);
+            AddAlerta(EstiloAlerta.Successo, "check", "Sucesso!", message, dismissable, exception);
         }
 
-        public void Informacao(string message, bool dismissable = false)
+        public void Informacao(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Informacao, "info", "Info!", message, dismissable);
+            AddAlerta(EstiloAlerta.Informacao, "info", "Info!", message, dismissable, exception);
         }
 
-        public void Atencao(string message, bool dismissable = false)
+        public void Atencao(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Atencao, "warning", "Atenção!", message, dismissable);
+            AddAlerta(EstiloAlerta.Atencao, "warning", "Atenção!", message, dismissable, exception);
         }
 
-        public void Erro(string message, bool dismissable = false)
+        public void Erro(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Erro, "times", "Erro!", message, dismissable);
+            AddAlerta(EstiloAlerta.Erro, "times", "Erro!", message, dismissable, exception);
         }
 
-        private void AddAlerta(string estiloAlerta, string estiloIcone, string titulo, string texto, bool descartavel)
+        private void AddAlerta(string estiloAlerta, string estiloIcone, string titulo, string texto, bool descartavel, Exception exception = null)
         {
             var alertas = TempData.ContainsKey(Alerta.TempDataKey)
                 ? (List<Alerta>)TempData[Alerta.TempDataKey]
@@ -38,9 +39,10 @@ namespace AppConsig.Web.Gestor.Controllers
                 EstiloIcone = estiloIcone,
                 Titulo = titulo,
                 Texto = texto,
-                Descartavel = descartavel
+                Descartavel = descartavel,
+                Exception = exception?.Message ?? ""
             });
-
+            
             TempData[Alerta.TempDataKey] = alertas;
         }
     }

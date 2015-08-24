@@ -38,7 +38,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false).ToList();
+            var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false && a.Admin == false).ToList();
             var models = usuarios.Select(usuario => new UsuarioEditaModel
             {
                 Id = usuario.Id,
@@ -157,7 +157,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     }
 
                     _servicoUsuario.Atualizar(usuario);
-                    Successo(Alertas.ContaAtualizado, true);
+                    Successo(Alertas.Sucesso, true);
                 }
                 catch (Exception exception)
                 {
@@ -220,14 +220,16 @@ namespace AppConsig.Web.Gestor.Controllers
                         Email = model.Email
                     };
 
+                    // TODO: Se nenhum perfil for selecionado, o usuário deverá ser de perfil padrão
+
                     _servicoUsuario.Criar(usuario);
-                    Successo(Alertas.AcessoCriado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -248,6 +250,11 @@ namespace AppConsig.Web.Gestor.Controllers
             if (usuario == null)
             {
                 return HttpNotFound();
+            }
+
+            if (usuario.Admin)
+            {
+                return RedirectToAction("Index");
             }
 
             var model = new UsuarioEditaModel
@@ -272,18 +279,23 @@ namespace AppConsig.Web.Gestor.Controllers
                 {
                     var usuario = _servicoUsuario.ObterPeloId(model.Id);
 
+                    if (usuario.Admin)
+                    {
+                        throw new Exception(Excecoes.AcaoNaoPermitida);
+                    }
+
                     usuario.Nome = model.Nome;
                     usuario.Sobrenome = model.Sobrenome;
                     usuario.Email = model.Email;
 
                     _servicoUsuario.Atualizar(usuario);
-                    Successo(Alertas.AcessoAtualizado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -304,6 +316,11 @@ namespace AppConsig.Web.Gestor.Controllers
             if (usuario == null)
             {
                 return HttpNotFound();
+            }
+
+            if (usuario.Admin)
+            {
+                return RedirectToAction("Index");
             }
 
             var model = new UsuarioEditaModel
@@ -329,16 +346,21 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
+            if (usuario.Admin)
+            {
+                throw new Exception(Excecoes.AcaoNaoPermitida);
+            }
+
             try
             {
                 _servicoUsuario.Excluir(usuario);
-                Successo(Alertas.AcessoExcluido, true);
+                Successo(Alertas.Sucesso, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(exception.Message, true);
+                Erro(Alertas.Erro, true, exception);
             }
 
             var model = new UsuarioEditaModel

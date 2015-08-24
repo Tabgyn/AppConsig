@@ -61,92 +61,20 @@ namespace AppConsig.Web.Gestor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Acesso do usuário atualizado.
+        ///   Looks up a localized string similar to Ocorreu um erro ao tentar realizar a ação.
         /// </summary>
-        public static string AcessoAtualizado {
+        public static string Erro {
             get {
-                return ResourceManager.GetString("AcessoAtualizado", resourceCulture);
+                return ResourceManager.GetString("Erro", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Novo acesso de usuário criado.
+        ///   Looks up a localized string similar to Ação realizada com sucesso..
         /// </summary>
-        public static string AcessoCriado {
+        public static string Sucesso {
             get {
-                return ResourceManager.GetString("AcessoCriado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Acesso do usuário excluído.
-        /// </summary>
-        public static string AcessoExcluido {
-            get {
-                return ResourceManager.GetString("AcessoExcluido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aviso aos usuários atualizado.
-        /// </summary>
-        public static string AvisoAtualizado {
-            get {
-                return ResourceManager.GetString("AvisoAtualizado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Novo aviso aos usuários criado.
-        /// </summary>
-        public static string AvisoCriado {
-            get {
-                return ResourceManager.GetString("AvisoCriado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aviso aos usuários excluído.
-        /// </summary>
-        public static string AvisoExcluido {
-            get {
-                return ResourceManager.GetString("AvisoExcluido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dados atualizados.
-        /// </summary>
-        public static string ContaAtualizado {
-            get {
-                return ResourceManager.GetString("ContaAtualizado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Perfil de usuário atualizado.
-        /// </summary>
-        public static string PerfilAtualizado {
-            get {
-                return ResourceManager.GetString("PerfilAtualizado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Novo perdil de usuário criado.
-        /// </summary>
-        public static string PerfilCriado {
-            get {
-                return ResourceManager.GetString("PerfilCriado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Perfil de usuário excluído.
-        /// </summary>
-        public static string PerfilExcluido {
-            get {
-                return ResourceManager.GetString("PerfilExcluido", resourceCulture);
+                return ResourceManager.GetString("Sucesso", resourceCulture);
             }
         }
     }

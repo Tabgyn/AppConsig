@@ -101,13 +101,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Criar(aviso);
-                    Successo(Alertas.AvisoCriado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -143,13 +143,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Atualizar(aviso);
-                    Successo(Alertas.AvisoAtualizado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -190,13 +190,13 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoAviso.Excluir(aviso);
-                Successo(Alertas.AvisoExcluido, true);
+                Successo(Alertas.Sucesso, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(exception.Message, true);
+                Erro(Alertas.Erro, true, exception);
             }
 
             return View(aviso);

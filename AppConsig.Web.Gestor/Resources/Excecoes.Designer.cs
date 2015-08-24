@@ -61,6 +61,15 @@ namespace AppConsig.Web.Gestor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Essa ação não é permitida.
+        /// </summary>
+        public static string AcaoNaoPermitida {
+            get {
+                return ResourceManager.GetString("AcaoNaoPermitida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail e/ou senha inválido(s).
         /// </summary>
         public static string EmailSenhaInvalido {

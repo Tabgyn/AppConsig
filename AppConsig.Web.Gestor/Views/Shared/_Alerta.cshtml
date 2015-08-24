@@ -16,5 +16,8 @@
             <i class="fa-fw fa fa-@alerta.EstiloIcone"></i>
             <strong>@Html.Raw(alerta.Titulo)</strong> @Html.Raw(alerta.Texto)
         </div>
+        <div class="hidden">
+            @Html.Raw(alerta.Exception)
+        </div>
     }
 }

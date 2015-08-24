@@ -40,7 +40,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var perfis = _servicoPerfil.ObterTodos(a => a.Excluido == false).ToList();
+            var perfis = _servicoPerfil.ObterTodos(a => a.Excluido == false && a.Editavel).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -133,14 +133,16 @@ namespace AppConsig.Web.Gestor.Controllers
                         perfil.Permissoes.Add(p);
                     }
 
+                    perfil.Editavel = true;
+
                     _servicoPerfil.Criar(perfil);
-                    Successo(Alertas.PerfilCriado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -166,6 +168,11 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
+            if (!perfil.Editavel)
+            {
+                return RedirectToAction("Index");
+            }
+
             var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
@@ -176,7 +183,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id, Nome, Descricao, Permissoes")] Perfil perfil, long[] ckbPermissoes)
+        public ActionResult Editar([Bind(Include = "Id, Nome, Descricao")] Perfil perfil, long[] ckbPermissoes)
         {
             if (ModelState.IsValid)
             {
@@ -189,18 +196,23 @@ namespace AppConsig.Web.Gestor.Controllers
 
                     var oldPerfil = _servicoPerfil.ObterPerfilComPermissoes(perfil.Id);
 
+                    if (!oldPerfil.Editavel)
+                    {
+                        throw new Exception(Excecoes.AcaoNaoPermitida);
+                    }
+
                     oldPerfil.Nome = perfil.Nome;
                     oldPerfil.Descricao = perfil.Descricao;
                     oldPerfil.Permissoes = oldPerfil.Permissoes.Where(p => ckbSelecionadas.Contains(p)).ToList();
 
                     _servicoPerfil.Atualizar(oldPerfil);
-                    Successo(Alertas.PerfilAtualizado, true);
+                    Successo(Alertas.Sucesso, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(exception.Message, true);
+                    Erro(Alertas.Erro, true, exception);
                 }
             }
 
@@ -227,6 +239,11 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
+            if (!perfil.Editavel)
+            {
+                return RedirectToAction("Index");
+            }
+
             var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
             var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
@@ -246,16 +263,21 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
+            if (!perfil.Editavel)
+            {
+                throw new Exception(Excecoes.AcaoNaoPermitida);
+            }
+
             try
             {
                 _servicoPerfil.Excluir(perfil);
-                Successo(Alertas.PerfilExcluido, true);
+                Successo(Alertas.Sucesso, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(exception.Message, true);
+                Erro(Alertas.Erro, true, exception);
             }
 
             return View(perfil);

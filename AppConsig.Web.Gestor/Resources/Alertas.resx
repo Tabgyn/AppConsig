@@ -117,34 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AcessoAtualizado" xml:space="preserve">
-    <value>Acesso do usuário atualizado</value>
+  <data name="Erro" xml:space="preserve">
+    <value>Ocorreu um erro ao tentar realizar a ação</value>
   </data>
-  <data name="AcessoCriado" xml:space="preserve">
-    <value>Novo acesso de usuário criado</value>
-  </data>
-  <data name="AcessoExcluido" xml:space="preserve">
-    <value>Acesso do usuário excluído</value>
-  </data>
-  <data name="AvisoAtualizado" xml:space="preserve">
-    <value>Aviso aos usuários atualizado</value>
-  </data>
-  <data name="AvisoCriado" xml:space="preserve">
-    <value>Novo aviso aos usuários criado</value>
-  </data>
-  <data name="AvisoExcluido" xml:space="preserve">
-    <value>Aviso aos usuários excluído</value>
-  </data>
-  <data name="ContaAtualizado" xml:space="preserve">
-    <value>Dados atualizados</value>
-  </data>
-  <data name="PerfilAtualizado" xml:space="preserve">
-    <value>Perfil de usuário atualizado</value>
-  </data>
-  <data name="PerfilCriado" xml:space="preserve">
-    <value>Novo perdil de usuário criado</value>
-  </data>
-  <data name="PerfilExcluido" xml:space="preserve">
-    <value>Perfil de usuário excluído</value>
+  <data name="Sucesso" xml:space="preserve">
+    <value>Ação realizada com sucesso.</value>
   </data>
 </root>

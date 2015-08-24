@@ -9,6 +9,7 @@ GO
 INSERT INTO [dbo].[Perfil]
            ([Nome]
            ,[Descricao]
+		   ,[Editavel]
            ,[CriadoPor]
            ,[DataCriacao]
            ,[AtualizadoPor]
@@ -17,6 +18,7 @@ INSERT INTO [dbo].[Perfil]
      VALUES
            ('Admin'
            ,'Perfil master dos usuários'
+		   ,0
            ,'SysAdmin' --Usuário quando do próprio sistema
            ,GETDATE()
            ,'SysAdmin'
@@ -28,6 +30,7 @@ GO
 INSERT INTO [dbo].[Perfil]
            ([Nome]
            ,[Descricao]
+		   ,[Editavel]
            ,[CriadoPor]
            ,[DataCriacao]
            ,[AtualizadoPor]
@@ -36,6 +39,7 @@ INSERT INTO [dbo].[Perfil]
      VALUES
            ('Padrão'
            ,'Perfil padrão dos usuários'
+		   ,0
            ,'SysAdmin' --Usuário quando do próprio sistema
            ,GETDATE()
            ,'SysAdmin'

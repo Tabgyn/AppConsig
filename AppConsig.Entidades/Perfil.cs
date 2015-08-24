@@ -16,6 +16,9 @@ namespace AppConsig.Entidades
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [ScaffoldColumn(false)]
+        public bool Editavel { get; set; }
+
         [Display(Name = "Permissões")]
         public ICollection<Permissao> Permissoes { get; set; }
     }
