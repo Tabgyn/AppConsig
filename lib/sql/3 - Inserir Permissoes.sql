@@ -20,7 +20,7 @@ INSERT INTO [dbo].[Permissao]
            ,[Crud]
            ,[Atributos])
      VALUES
-            ('Visão Geral','','','Index','VisaoGeral','fa fa-dashboard',0,1,1,1,0,'')
+            ('Visão Geral','Dados e estatísticas','','Index','VisaoGeral','fa fa-dashboard',0,1,1,1,0,'')
 		   ,('Minha conta','','','Conta','Usuario','',0,2,1,0,0,'')
 		   ,('Arquivos','','/0','','','fa fa-archive',0,3,0,1,0,'')
 		   ,('Controles','','/1','','','fa fa-cogs',0,4,0,1,0,'')

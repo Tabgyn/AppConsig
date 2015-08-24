@@ -165,10 +165,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Alertas.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\ModelErrors.Designer.cs">
+    <Compile Include="Resources\Excecoes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelErrors.resx</DependentUpon>
+      <DependentUpon>Excecoes.resx</DependentUpon>
     </Compile>
     <Compile Include="Seguranca\SecureAuthorizedAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -577,9 +577,10 @@
       <LastGenOutput>Alertas.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ModelErrors.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ModelErrors.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Resources\Excecoes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Excecoes.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

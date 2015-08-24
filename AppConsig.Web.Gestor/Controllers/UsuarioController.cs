@@ -7,6 +7,7 @@ using AppConsig.Comum.Seguranca;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
+using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -145,7 +146,7 @@ namespace AppConsig.Web.Gestor.Controllers
                         var extension = Path.GetExtension(httpPostedFileBase.FileName);
                         if (!allowedExtensions.Contains(extension))
                         {
-                            throw new Exception("É permitido apenas imagens nos formatos .jpeg(.jpg), .png e .gif");
+                            throw new Exception(Excecoes.ImagemFormatoIncorreto);
                         }
 
                         using (var binaryReader = new BinaryReader(httpPostedFileBase.InputStream))
@@ -156,7 +157,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     }
 
                     _servicoUsuario.Atualizar(usuario);
-                    Successo("Dados atualizados", true);
+                    Successo(Alertas.ContaAtualizado, true);
                 }
                 catch (Exception exception)
                 {
@@ -220,7 +221,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     };
 
                     _servicoUsuario.Criar(usuario);
-                    Successo("Novo acesso de usuário criado", true);
+                    Successo(Alertas.AcessoCriado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -276,7 +277,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     usuario.Email = model.Email;
 
                     _servicoUsuario.Atualizar(usuario);
-                    Successo("Acesso de usuário atualizado", true);
+                    Successo(Alertas.AcessoAtualizado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -331,7 +332,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoUsuario.Excluir(usuario);
-                Successo("Acesso de usuário excluído", true);
+                Successo(Alertas.AcessoExcluido, true);
 
                 return RedirectToAction("Index");
             }

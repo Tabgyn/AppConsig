@@ -85,7 +85,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ModelState.AddModelError("", ModelErrors.EmailSenhaInvalido);
+            ModelState.AddModelError("", Excecoes.EmailSenhaInvalido);
 
             return View(model);
         }
@@ -120,7 +120,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ModelState.AddModelError("Email", ModelErrors.UsuarioInvalido);
+            ModelState.AddModelError("Email", Excecoes.UsuarioInvalido);
 
             return View(model);
         }

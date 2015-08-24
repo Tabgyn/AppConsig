@@ -115,6 +115,15 @@ namespace AppConsig.Web.Gestor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dados atualizados.
+        /// </summary>
+        public static string ContaAtualizado {
+            get {
+                return ResourceManager.GetString("ContaAtualizado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Perfil de usuário atualizado.
         /// </summary>
         public static string PerfilAtualizado {

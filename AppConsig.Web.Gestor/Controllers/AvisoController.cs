@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
+using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -100,7 +101,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Criar(aviso);
-                    Successo("Novo aviso aos usuários criado", true);
+                    Successo(Alertas.AvisoCriado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -142,7 +143,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Atualizar(aviso);
-                    Successo("Aviso aos usuários atualizado", true);
+                    Successo(Alertas.AvisoAtualizado, true);
 
                     return RedirectToAction("Index");
                 }
@@ -189,7 +190,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoAviso.Excluir(aviso);
-                Successo("Aviso aos usuários excluído", true);
+                Successo(Alertas.AvisoExcluido, true);
 
                 return RedirectToAction("Index");
             }

@@ -22,24 +22,24 @@ namespace AppConsig.Web.Gestor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ModelErrors {
+    public class Excecoes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ModelErrors() {
+        internal Excecoes() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AppConsig.Web.Gestor.Resources.ModelErrors", typeof(ModelErrors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AppConsig.Web.Gestor.Resources.Excecoes", typeof(Excecoes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AppConsig.Web.Gestor.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace AppConsig.Web.Gestor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to E-mail e/ou senha inválido(s).
         /// </summary>
-        internal static string EmailSenhaInvalido {
+        public static string EmailSenhaInvalido {
             get {
                 return ResourceManager.GetString("EmailSenhaInvalido", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É permitido apenas imagens nos formatos .jpeg(.jpg), .png e .gif.
+        /// </summary>
+        public static string ImagemFormatoIncorreto {
+            get {
+                return ResourceManager.GetString("ImagemFormatoIncorreto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuário inválido ou não cadastrado.
         /// </summary>
-        internal static string UsuarioInvalido {
+        public static string UsuarioInvalido {
             get {
                 return ResourceManager.GetString("UsuarioInvalido", resourceCulture);
             }

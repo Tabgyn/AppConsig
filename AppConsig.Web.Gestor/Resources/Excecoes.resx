@@ -120,6 +120,9 @@
   <data name="EmailSenhaInvalido" xml:space="preserve">
     <value>E-mail e/ou senha inválido(s)</value>
   </data>
+  <data name="ImagemFormatoIncorreto" xml:space="preserve">
+    <value>É permitido apenas imagens nos formatos .jpeg(.jpg), .png e .gif</value>
+  </data>
   <data name="UsuarioInvalido" xml:space="preserve">
     <value>Usuário inválido ou não cadastrado</value>
   </data>

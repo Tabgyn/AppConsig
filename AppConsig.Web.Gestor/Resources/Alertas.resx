@@ -135,6 +135,9 @@
   <data name="AvisoExcluido" xml:space="preserve">
     <value>Aviso aos usuários excluído</value>
   </data>
+  <data name="ContaAtualizado" xml:space="preserve">
+    <value>Dados atualizados</value>
+  </data>
   <data name="PerfilAtualizado" xml:space="preserve">
     <value>Perfil de usuário atualizado</value>
   </data>
