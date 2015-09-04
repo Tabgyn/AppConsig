@@ -59,6 +59,10 @@
             color: #717171;
         }
 
+.login-alert {
+    padding: 30px 0 10px;
+}
+
 @media only screen and (max-width: 760px) {
     .navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area {
         -moz-min-width: inherit !important;
@@ -379,3 +383,7 @@ input[type=radio].disabled ~ .text {
         .widget .widget-footer a:hover {
             text-decoration: none;
         }
+
+.weather {
+    text-transform: lowercase;
+}
