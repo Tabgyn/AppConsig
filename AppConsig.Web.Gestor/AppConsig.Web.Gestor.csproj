@@ -204,6 +204,15 @@
     <Content Include="Content\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
+    <Content Include="Content\Images\alf.jpg" />
+    <Content Include="Content\Images\gil.jpg" />
+    <Content Include="Content\Images\lula.jpg" />
+    <Content Include="Content\Images\maria.jpg" />
+    <Content Include="Content\Images\user-01.jpeg" />
+    <Content Include="Content\Images\user-02.jpeg" />
+    <Content Include="Content\Images\user-03.jpg" />
+    <Content Include="Content\Images\user-04.jpg" />
+    <Content Include="Content\Images\vera.jpg" />
     <Content Include="Content\jstree\d.gif" />
     <Content Include="Content\jstree\d.png" />
     <Content Include="Content\jstree\style.css" />
