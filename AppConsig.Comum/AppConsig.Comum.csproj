@@ -81,6 +81,7 @@
     <Compile Include="Seguranca\AppPrincipalSerializedModel.cs" />
     <Compile Include="Seguranca\IAppPrincipal.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="TimeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
