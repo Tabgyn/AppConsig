@@ -51,7 +51,8 @@ namespace AppConsig.Servicos
         /// <param name="numeroPagina"></param>
         /// <param name="tamanhoPagina"></param>
         /// <returns></returns>
-        public virtual IEnumerable<T> ObterTodosPaginado(Expression<Func<T, bool>> filtro = null, int numeroPagina = 1, int tamanhoPagina = 5)
+        public virtual IEnumerable<T> ObterTodosPaginado(Expression<Func<T, bool>> filtro = null, int numeroPagina = 1,
+            int tamanhoPagina = 5)
         {
             return filtro != null
                 ? Dbset.Where(filtro).Skip(tamanhoPagina * (numeroPagina - 1)).Take(tamanhoPagina).AsEnumerable()

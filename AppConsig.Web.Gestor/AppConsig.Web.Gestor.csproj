@@ -151,6 +151,7 @@
     <Compile Include="Controllers\AuditoriaController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -170,7 +171,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Excecoes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Seguranca\SecureAuthorizedAttribute.cs" />
+    <Compile Include="Filtros\AppAuthorizedAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -529,9 +530,9 @@
     <Content Include="Views\Arquivo\Retorno.cshtml" />
     <Content Include="Views\Usuario\Conta.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Error\401.cshtml" />
-    <Content Include="Views\Shared\Error\404.cshtml" />
-    <Content Include="Views\Shared\Error\500.cshtml" />
+    <Content Include="Views\Shared\Error\Unauthorized.cshtml" />
+    <Content Include="Views\Shared\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\Error\Unexpected.cshtml" />
     <Content Include="Views\Perfil\Detalhar.cshtml" />
     <Content Include="Views\Perfil\Criar.cshtml" />
     <Content Include="Views\Perfil\Editar.cshtml" />
@@ -544,7 +545,7 @@
     <Content Include="Views\Auditoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Filters\" />
+    <Folder Include="Seguranca\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

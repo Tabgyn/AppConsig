@@ -6,10 +6,10 @@ using System.Web.Mvc;
 using AppConsig.Comum.Seguranca;
 using AppConsig.Dados;
 
-namespace AppConsig.Web.Gestor.Seguranca
+namespace AppConsig.Web.Gestor.Filtros
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public class SecureAuthorizedAttribute : AuthorizeAttribute
+    public class AppAuthorizedAttribute : AuthorizeAttribute
     {
         private readonly AppContexto _contexto = new AppContexto();
 

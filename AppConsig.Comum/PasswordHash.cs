@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using static System.Int32;
 
 namespace AppConsig.Comum
 {
@@ -10,12 +11,12 @@ namespace AppConsig.Comum
     public class PasswordHash
     {
         // As seguintes constantes podem ser alteradas sem quebrar hashes existentes.
-        public const int SALT_BYTE_SIZE = 24;
-        public const int HASH_BYTE_SIZE = 24;
-        public const int PBKDF2_ITERATIONS = 9999;
-        public const int ITERATION_INDEX = 0;
-        public const int SALT_INDEX = 1;
-        public const int PBKDF2_INDEX = 2;
+        public const int SaltByteSize = 24;
+        public const int HashByteSize = 24;
+        public const int Pbkdf2Iterations = 9999;
+        public const int IterationIndex = 0;
+        public const int SaltIndex = 1;
+        public const int Pbkdf2Index = 2;
 
         /// <summary>
         /// Cria uma criptografia PBKDF2 com salt da senha.
@@ -26,13 +27,13 @@ namespace AppConsig.Comum
         {
             // Gerar um salt aleatório.
             var csprng = new RNGCryptoServiceProvider();
-            var salt = new byte[SALT_BYTE_SIZE];
+            var salt = new byte[SaltByteSize];
             csprng.GetBytes(salt);
 
             // Criptografar a senha e codificar os parâmetros.
-            var hash = PBKDF2(senha, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+            var hash = Pbkdf2(senha, salt, Pbkdf2Iterations, HashByteSize);
 
-            return PBKDF2_ITERATIONS + ":" +
+            return Pbkdf2Iterations + ":" +
                 Convert.ToBase64String(salt) + ":" +
                 Convert.ToBase64String(hash);
         }
@@ -48,10 +49,10 @@ namespace AppConsig.Comum
             // Extrair os parâmetros a partir da criptografia
             char[] delimiter = { ':' };
             var split = criptografiaCorreta.Split(delimiter);
-            var iterations = Int32.Parse(split[ITERATION_INDEX]);
-            var salt = Convert.FromBase64String(split[SALT_INDEX]);
-            var hash = Convert.FromBase64String(split[PBKDF2_INDEX]);
-            var testHash = PBKDF2(senha, salt, iterations, hash.Length);
+            var iterations = Parse(split[IterationIndex]);
+            var salt = Convert.FromBase64String(split[SaltIndex]);
+            var hash = Convert.FromBase64String(split[Pbkdf2Index]);
+            var testHash = Pbkdf2(senha, salt, iterations, hash.Length);
 
             return SlowEquals(hash, testHash);
         }
@@ -81,7 +82,7 @@ namespace AppConsig.Comum
         /// <param name="iterations">The PBKDF2 iteration count.</param>
         /// <param name="outputBytes">The length of the hash to generate, in bytes.</param>
         /// <returns>A hash of the password.</returns>
-        private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
+        private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
         {
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt) { IterationCount = iterations };
 

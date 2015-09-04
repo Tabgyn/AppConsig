@@ -26,7 +26,7 @@ namespace AppConsig.Comum
                     message.Bcc.Add(ComCopia);
                 }
 
-                if (!String.IsNullOrEmpty(AttachmentFile))
+                if (!string.IsNullOrEmpty(AttachmentFile))
                 {
                     if (File.Exists(AttachmentFile))
                     {
@@ -39,15 +39,14 @@ namespace AppConsig.Comum
 
                 smtp.Send(message);
 
-                if (att != null)
-                    att.Dispose();
+                att?.Dispose();
 
                 message.Dispose();
                 smtp.Dispose();
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format("Não foi possível enviar o e-mail para {0}", Para), ex.InnerException);
+                throw new Exception($"Não foi possível enviar o e-mail para {Para}", ex.InnerException);
             }
         }
 
@@ -70,10 +69,10 @@ namespace AppConsig.Comum
             strEmailBody.AppendLine("</head>");
             strEmailBody.AppendLine("<body>");
             strEmailBody.AppendLine("<p>");
-            strEmailBody.AppendLine(string.Format("Olá {0} {1},", nome, sobrenome));
+            strEmailBody.AppendLine($"Olá {nome} {sobrenome},");
             strEmailBody.AppendLine("</p>");
             strEmailBody.AppendLine("<p>");
-            strEmailBody.AppendLine(string.Format("Sua senha de acesso ao AppConsig é: {0}", senha));
+            strEmailBody.AppendLine($"Sua senha de acesso ao AppConsig é: {senha}");
             strEmailBody.AppendLine("</p>");
             strEmailBody.AppendLine("<p>Administração AppConsig</p>");
             strEmailBody.AppendLine("</body>");
