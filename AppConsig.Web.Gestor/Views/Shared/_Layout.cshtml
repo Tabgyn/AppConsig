@@ -1,12 +1,5 @@
 ﻿@using System.Globalization
-@using AppConsig.Comum.Seguranca
 @{
-    var data = DateTime.Now;
-    var culture = new CultureInfo("pt-BR");
-    var dtfi = culture.DateTimeFormat;
-    var diaDaSemana = dtfi.GetDayName(data.DayOfWeek).ToUpperInvariant();
-    var usuarioLogado = (AppPrincipal) User;
-
     var imageString = Url.Content("~/Content/Images/no_image_available.png");
     if (Session["Avatar"] != null)
     {
@@ -101,7 +94,7 @@
                                     </li>
                                     <li class="dropdown-footer">
                                         <span>
-                                            @diaDaSemana, @DateTime.Now.ToString("dd/MM/yyyy")
+                                            @CurrentDay.ToUpperInvariant(), @CurrentDate
                                         </span>
                                         <span id="weather" class="weather pull-right"></span>
                                     </li>
@@ -111,20 +104,20 @@
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="Veja seu perfil">
-                                        <img src="@imageString">
+                                        <img src="@Avatar">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>@usuarioLogado.Nome</span></span></h2>
+                                        <h2><span class="profile"><span>@User.Nome</span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>@usuarioLogado.Identity.Name</a></li>
-                                    <li class="email"><a>@usuarioLogado.Email</a></li>
+                                    <li class="username"><a>@User.Identity.Name</a></li>
+                                    <li class="email"><a>@User.Email</a></li>
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="@imageString" class="avatar">
+                                            <img src="@Avatar" class="avatar">
                                         </div>
                                     </li>
                                     <!--Avatar Area-->

@@ -383,3 +383,7 @@ input[type=radio].disabled ~ .text {
         .widget .widget-footer a:hover {
             text-decoration: none;
         }
+
+.weather {
+    text-transform: lowercase;
+}

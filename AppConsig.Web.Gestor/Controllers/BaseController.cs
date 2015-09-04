@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AppConsig.Comum.Seguranca;
 using AppConsig.Web.Base.Entidades;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
     public class BaseController : Controller
     {
+        protected virtual new AppPrincipal User => HttpContext.User as AppPrincipal;
+
         public void Successo(string message, bool dismissable = false, Exception exception = null)
         {
             AddAlerta(EstiloAlerta.Successo, "check", "Sucesso!", message, dismissable, exception);

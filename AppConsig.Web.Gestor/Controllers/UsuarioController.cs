@@ -81,7 +81,7 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpGet]
         public ActionResult Conta()
         {
-            var usuarioLogado = User as AppPrincipal;
+            var usuarioLogado = User;
 
             if (usuarioLogado == null)
             {
