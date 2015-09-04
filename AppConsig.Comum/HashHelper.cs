@@ -8,7 +8,7 @@ namespace AppConsig.Comum
     /// Salted password hashing with PBKDF2-SHA1.
     /// Compatibility: .NET 3.0 and later.
     /// </summary>
-    public class PasswordHash
+    public class HashHelper
     {
         // As seguintes constantes podem ser alteradas sem quebrar hashes existentes.
         public const int SaltByteSize = 24;
@@ -19,11 +19,11 @@ namespace AppConsig.Comum
         public const int Pbkdf2Index = 2;
 
         /// <summary>
-        /// Cria uma criptografia PBKDF2 com salt da senha.
+        /// Cria uma criptografia PBKDF2 com salt do valor.
         /// </summary>
-        /// <param name="senha">A senha para criptografar.</param>
+        /// <param name="valor">A senha para criptografar.</param>
         /// <returns>A criptografia da senha.</returns>
-        public static string CriarCriptografia(string senha)
+        public static string HashPbkdf2(string valor)
         {
             // Gerar um salt aleatório.
             var csprng = new RNGCryptoServiceProvider();
@@ -31,7 +31,7 @@ namespace AppConsig.Comum
             csprng.GetBytes(salt);
 
             // Criptografar a senha e codificar os parâmetros.
-            var hash = Pbkdf2(senha, salt, Pbkdf2Iterations, HashByteSize);
+            var hash = Pbkdf2(valor, salt, Pbkdf2Iterations, HashByteSize);
 
             return Pbkdf2Iterations + ":" +
                 Convert.ToBase64String(salt) + ":" +
@@ -39,12 +39,12 @@ namespace AppConsig.Comum
         }
 
         /// <summary>
-        /// Valida uma senha com sua criptografia correta.
+        /// Valida um valor com sua criptografia correta.
         /// </summary>
-        /// <param name="senha">A senha para validar.</param>
+        /// <param name="valor">O valor para validar.</param>
         /// <param name="criptografiaCorreta">a criptografia correta da senha.</param>
-        /// <returns>True se a senha está correta. False caso contrário.</returns>
-        public static bool ValidarSenha(string senha, string criptografiaCorreta)
+        /// <returns>True se o valor está correto. False caso contrário.</returns>
+        public static bool ValidarHash(string valor, string criptografiaCorreta)
         {
             // Extrair os parâmetros a partir da criptografia
             char[] delimiter = { ':' };
@@ -52,7 +52,7 @@ namespace AppConsig.Comum
             var iterations = Parse(split[IterationIndex]);
             var salt = Convert.FromBase64String(split[SaltIndex]);
             var hash = Convert.FromBase64String(split[Pbkdf2Index]);
-            var testHash = Pbkdf2(senha, salt, iterations, hash.Length);
+            var testHash = Pbkdf2(valor, salt, iterations, hash.Length);
 
             return SlowEquals(hash, testHash);
         }

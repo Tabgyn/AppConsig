@@ -22,7 +22,7 @@ namespace AppConsig.Servicos
             // Gera uma nova senha.
             var strSenha = StringHelper.ObterTextoAleatorio();
             // Criptografa a senha.
-            usuario.Senha = PasswordHash.CriarCriptografia(strSenha);
+            usuario.Senha = HashHelper.HashPbkdf2(strSenha);
 
             // Envia um e-mail ao usuário informando sua senha.
             var email = new EmailHelper
@@ -44,7 +44,7 @@ namespace AppConsig.Servicos
         {
             var usuario = Dbset.FirstOrDefault(x => x.Email == email);
 
-            return usuario != null && PasswordHash.ValidarSenha(senha, usuario.Senha);
+            return usuario != null && HashHelper.ValidarHash(senha, usuario.Senha);
         }
 
         public void ReeviarSenha(Usuario usuario)
@@ -52,7 +52,7 @@ namespace AppConsig.Servicos
             // Gera uma nova senha.
             var strSenha = StringHelper.ObterTextoAleatorio();
             // Criptografa a senha.
-            usuario.Senha = PasswordHash.CriarCriptografia(strSenha);
+            usuario.Senha = HashHelper.HashPbkdf2(strSenha);
 
             // Envia um e-mail ao usuário informando sua senha.
             var email = new EmailHelper
