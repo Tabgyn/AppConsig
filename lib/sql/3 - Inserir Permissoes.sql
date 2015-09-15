@@ -74,7 +74,7 @@ INSERT INTO [dbo].[Permissao]
            ,[Atributos])
      VALUES
             ('Acessos','Controle de acessos dos usuários','','Index','Usuario','',@id,1,0,1,0,'')
-		   ,('Auditoria','Controle de auditoria','','Index','Auditoria','',@id,2,0,1,0,'')
+		   ,('Trilhas de auditoria','Controle de auditoria','','Index','Auditoria','',@id,2,0,1,0,'')
 		   ,('Avisos','Controle de avisos aos usuários','','Index','Aviso','',@id,3,0,1,0,'')
 		   ,('Orgãos','Controle de orgãos dos servidores','','Index','Orgao','',@id,4,0,1,0,'')
 		   ,('Parâmetros','Controle de parâmetros do portal','','Index','Parametro','',@id,5,0,1,0,'')

@@ -51,7 +51,7 @@ namespace AppConsig.Web.Gestor.Controllers
             switch (sortOrder)
             {
                 case "name_desc":
-                    perfis = perfis.OrderByDescending(a => a.CriadoPor).ToList();
+                    perfis = perfis.OrderByDescending(a => a.Nome).ToList();
                     break;
                 case "own":
                     perfis = perfis.OrderBy(a => a.CriadoPor).ToList();

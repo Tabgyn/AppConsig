@@ -20,8 +20,10 @@ namespace AppConsig.Dados
 
         public IDbSet<Auditoria> Auditorias { get; set; }
         public IDbSet<Aviso> Avisos { get; set; }
+        public IDbSet<Orgao> Orgaos { get; set; }
         public IDbSet<Perfil> Perfis { get; set; }
         public IDbSet<Permissao> Permissoes { get; set; }
+        public IDbSet<SistemaFolha> SistemasFolha { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

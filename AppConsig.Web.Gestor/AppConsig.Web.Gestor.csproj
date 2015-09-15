@@ -150,6 +150,7 @@
     <Compile Include="AppView.cs" />
     <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
+    <Compile Include="Controllers\OrgaoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
@@ -553,6 +554,11 @@
     <Content Include="Views\Usuario\Editar.cshtml" />
     <Content Include="Views\Usuario\Excluir.cshtml" />
     <Content Include="Views\Auditoria\Index.cshtml" />
+    <Content Include="Views\Orgao\Index.cshtml" />
+    <Content Include="Views\Orgao\Detalhar.cshtml" />
+    <Content Include="Views\Orgao\Criar.cshtml" />
+    <Content Include="Views\Orgao\Editar.cshtml" />
+    <Content Include="Views\Orgao\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />

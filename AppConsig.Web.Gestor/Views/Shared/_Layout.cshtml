@@ -1,12 +1,4 @@
-﻿@using System.Globalization
-@{
-    var imageString = Url.Content("~/Content/Images/no_image_available.png");
-    if (Session["Avatar"] != null)
-    {
-        imageString = string.Format("data:image/png;base64,{0}", Session["Avatar"]);
-    }
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="pt-br">
     <meta charset="utf-8" />
