@@ -34,6 +34,9 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -70,7 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Alerta.cs" />
+    <Compile Include="Entidades\CaptchaResponse.cs" />
     <Compile Include="Entidades\TreeViewNode.cs" />
+    <Compile Include="Helpers\Captcha.cs" />
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
