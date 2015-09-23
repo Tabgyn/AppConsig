@@ -1,30 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using AppConsig.Comum;
 
 namespace AppConsig.Entidades
 {
-    public class Auditoria : Entidade<Guid>
+    [Table("Auditoria")]
+    public class Auditoria : Entidade<long>
     {
-        [ScaffoldColumn(false)]
-        public long UsuarioId { get; set; }
+        public string Usuario { get; set; }
 
-        [ScaffoldColumn(false)]
-        public string SessionId { get; set; }
+        [Required]
+        public DateTime DataEvento { get; set; }
 
-        public DateTime DataCriacao { get; set; }
+        [Required]
+        public TipoEvento TipoEvento { get; set; }
 
-        public string Acao { get; set; }
+        [Required]
+        public string NomeEntidade { get; set; }
 
-        public string Controle { get; set; }
-        
-        public string NomeTabela { get; set; }
+        [Required]
+        public string RegistroId { get; set; }
 
-        [ScaffoldColumn(false)]
-        public long RegistroId { get; set; }
-
-        public string ValorOriginal { get; set; }
-
-        public string ValorNovo { get; set; }
+        public virtual ICollection<DetalheAuditoria> DetalhesAuditoria { get; set; } = new List<DetalheAuditoria>();
     }
 }

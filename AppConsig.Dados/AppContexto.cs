@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using System.Threading;
 using AppConsig.Comum.Interfaces;
 using AppConsig.Dados.Migrations;
 using AppConsig.Entidades;
@@ -19,6 +18,7 @@ namespace AppConsig.Dados
         }
 
         public IDbSet<Auditoria> Auditorias { get; set; }
+        public IDbSet<DetalheAuditoria> DetalhesAuditoria{ get; set; }
         public IDbSet<Aviso> Avisos { get; set; }
         public IDbSet<Orgao> Orgaos { get; set; }
         public IDbSet<Perfil> Perfis { get; set; }
@@ -35,7 +35,7 @@ namespace AppConsig.Dados
             base.OnModelCreating(modelBuilder);
         }
 
-        public override int SaveChanges()
+        public virtual int SaveChanges(object nomeUsuario)
         {
             var entradasModificadas = ChangeTracker.Entries()
                 .Where(x => x.Entity is IEntidadeAuditavel &&
@@ -49,15 +49,13 @@ namespace AppConsig.Dados
 
                 if (entidade == null) continue;
 
-                var usuario = Usuarios.First(u => u.Email == Thread.CurrentPrincipal.Identity.Name);
-
-                var dataAgora = DateTime.Now;
+                var agora = DateTime.Now;
 
                 switch (entrada.State)
                 {
                     case EntityState.Added:
-                        entidade.CriadoPor = usuario.Email;
-                        entidade.DataCriacao = dataAgora;
+                        entidade.CriadoPor = nomeUsuario.ToString();
+                        entidade.DataCriacao = agora;
                         entidade.Excluido = false;
                         break;
                     case EntityState.Modified:
@@ -72,11 +70,20 @@ namespace AppConsig.Dados
                         break;
                 }
                 
-                entidade.AtualizadoPor = usuario.Email;
-                entidade.DataAtualizacao = dataAgora;
+                entidade.AtualizadoPor = nomeUsuario.ToString();
+                entidade.DataAtualizacao = agora;
             }
 
-            return base.SaveChanges();
+            var result = base.SaveChanges();
+            
+            AuditoriaRastreio.Auditar(this, nomeUsuario);
+
+            return result;
+        }
+
+        public override int SaveChanges()
+        {
+            return SaveChanges(null);
         }
     }
 }

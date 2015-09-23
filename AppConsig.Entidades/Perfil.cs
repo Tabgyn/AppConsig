@@ -9,14 +9,13 @@ namespace AppConsig.Entidades
     public class Perfil : EntidadeAuditavel<long>
     {
         [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256)]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Nome { get; set; }
 
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        [ScaffoldColumn(false)]
         public bool Editavel { get; set; }
 
         [Display(Name = "Permissões")]

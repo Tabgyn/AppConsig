@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auditoria.cs" />
+    <Compile Include="DetalheAuditoria.cs" />
     <Compile Include="Orgao.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Permissao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aviso.cs" />
     <Compile Include="SistemaFolha.cs" />
+    <Compile Include="TipoEvento.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>

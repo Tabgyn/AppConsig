@@ -8,42 +8,36 @@ namespace AppConsig.Entidades
     public class Permissao : Entidade<long>
     {
         [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Nome { get; set; }
         
         [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Descricao { get; set; }
-        
-        [MaxLength(256)]
-        public string Url { get; set; }
-        
-        [MaxLength(256)]
-        public string Action { get; set; }
-        
-        [MaxLength(256)]
-        public string Controller { get; set; }
-        
-        [MaxLength(256)]
-        [ScaffoldColumn(false)]
-        public string Icone { get; set; }
 
-        [ScaffoldColumn(false)]
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
+        public string Url { get; set; }
+
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
+        public string Action { get; set; }
+
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
+        public string Controller { get; set; }
+
+        [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
+        public string Icone { get; set; }
+        
         public long ParenteId { get; set; }
 
-        [ScaffoldColumn(false)]
         public int Ordem { get; set; }
 
-        [ScaffoldColumn(false)]
+        
         public bool Padrao { get; set; }
 
-        [ScaffoldColumn(false)]
         public bool MostrarNoMenu { get; set; }
         
-        [ScaffoldColumn(false)]
         public bool Crud { get; set; }
 
-        [ScaffoldColumn(false)]
         public string Atributos { get; set; }
     }
 }

@@ -8,15 +8,15 @@ namespace AppConsig.Entidades
     public class Usuario : EntidadeAuditavel<long>
     {
         [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Nome { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Sobrenome { get; set; }
         
         [DataType(DataType.EmailAddress, ErrorMessage = "{0} é inválido")]
         [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
@@ -24,30 +24,28 @@ namespace AppConsig.Entidades
         [Required(ErrorMessage = "{0} é obrigatório")]
         public string Senha { get; set; }
 
-        [ScaffoldColumn(false)]
         public string Foto { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Facebook { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Twitter { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Telefone { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Celular { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         [Display(Name = "Endereço")]
         public string Endereco { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         [Display(Name = "Complemento")]
         public string EnderecoComplemento { get; set; }
 
-        [ScaffoldColumn(false)]
         public bool Admin { get; set; }
 
         public long PerfilId { get; set; }
