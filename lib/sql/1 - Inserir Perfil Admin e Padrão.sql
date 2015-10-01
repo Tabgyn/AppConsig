@@ -7,7 +7,8 @@ GO
 
 --INSERIR PERFIL ADMIN
 INSERT INTO [dbo].[Perfil]
-           ([Nome]
+           ([Id]
+		   ,[Nome]
            ,[Descricao]
 		   ,[Editavel]
            ,[CriadoPor]
@@ -16,7 +17,8 @@ INSERT INTO [dbo].[Perfil]
            ,[DataAtualizacao]
            ,[Excluido])
      VALUES
-           ('Admin'
+           (NEWID()
+		   ,'Admin'
            ,'Perfil master dos usuários'
 		   ,0
            ,'SysAdmin' --Usuário quando do próprio sistema
@@ -28,7 +30,8 @@ GO
 
 --INSERIR PERFIL PADRAO
 INSERT INTO [dbo].[Perfil]
-           ([Nome]
+           ([Id]
+		   ,[Nome]
            ,[Descricao]
 		   ,[Editavel]
            ,[CriadoPor]
@@ -37,7 +40,8 @@ INSERT INTO [dbo].[Perfil]
            ,[DataAtualizacao]
            ,[Excluido])
      VALUES
-           ('Padrão'
+           (NEWID()
+		   ,'Padrão'
            ,'Perfil padrão dos usuários'
 		   ,0
            ,'SysAdmin' --Usuário quando do próprio sistema

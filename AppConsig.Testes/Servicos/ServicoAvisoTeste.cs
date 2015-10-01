@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AppConsig.Dados;
@@ -17,15 +18,16 @@ namespace AppConsig.Testes.Servicos
         Mock<IContexto> _contextoMock;
         Mock<DbSet<Aviso>> _setMock;
         IQueryable<Aviso> _listaAvisos;
+        Guid _guid = new Guid();
 
         [TestInitialize]
         public void Initialize()
         {
             _listaAvisos = new List<Aviso>
                            {
-                               new Aviso() {Id = 1, Texto = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-                               new Aviso() {Id = 2, Texto = "Duis aute irure dolor in reprehenderit in voluptate velit."},
-                               new Aviso() {Id = 3, Texto = "Excepteur sint occaecat cupidatat non proident, sunt in culpa."}
+                               new Aviso() {Id = _guid, Texto = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+                               new Aviso() {Id = new Guid(), Texto = "Duis aute irure dolor in reprehenderit in voluptate velit."},
+                               new Aviso() {Id = new Guid(), Texto = "Excepteur sint occaecat cupidatat non proident, sunt in culpa."}
                            }.AsQueryable();
 
             _setMock = new Mock<DbSet<Aviso>>();
@@ -56,12 +58,11 @@ namespace AppConsig.Testes.Servicos
         public void CriarAviso()
         {
             //Arrange
-            int Id = 1;
             Aviso aviso = new Aviso() { Texto = "xxx yyy zzz" };
 
             _setMock.Setup(m => m.Add(aviso)).Returns((Aviso e) =>
                                                       {
-                                                          e.Id = Id;
+                                                          e.Id = _guid;
                                                           return e;
                                                       });
 
@@ -69,7 +70,7 @@ namespace AppConsig.Testes.Servicos
             _servicoAvisoMock.Criar(aviso);
 
             //Assert
-            Assert.AreEqual(Id, aviso.Id);
+            Assert.AreEqual(_guid, aviso.Id);
             _contextoMock.Verify(m => m.SaveChanges(), Times.Once());
         }
     }

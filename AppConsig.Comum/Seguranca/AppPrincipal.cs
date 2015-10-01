@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Security.Principal;
 
 namespace AppConsig.Comum.Seguranca
 {
@@ -15,7 +16,7 @@ namespace AppConsig.Comum.Seguranca
         }
 
         public IIdentity Identity { get; }
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Email { get; set; }

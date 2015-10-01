@@ -6,10 +6,11 @@ USE [AppConsig]
 GO
 
 --INSERIR USUARIO MASTER
-DECLARE @id bigint;
+DECLARE @id uniqueidentifier;
 SET @id = (SELECT [Id] FROM [dbo].[Perfil] WHERE [Nome] = 'Admin')
 INSERT INTO [dbo].[Usuario]
-           ([Nome]
+           ([Id]
+		   ,[Nome]
            ,[Sobrenome]
            ,[Email]
            ,[Senha]
@@ -21,7 +22,8 @@ INSERT INTO [dbo].[Usuario]
            ,[DataAtualizacao]
            ,[Excluido])
      VALUES
-           ('Administrador'
+           (NEWID()
+		   ,'Administrador'
            ,''
            ,'admin@appconsig.com.br'
 		   ,'9999:1VCja1oXqOrMxIp7BPZxqZLRBUfFQBa2:zlB+uCANJVV+p8nyMaLi0QsRYbwL+Hgv' --123
@@ -35,10 +37,11 @@ INSERT INTO [dbo].[Usuario]
 GO
 
 --INSERIR USUARIO PADRAO
-DECLARE @id bigint;
+DECLARE @id uniqueidentifier;
 SET @id = (SELECT [Id] FROM [dbo].[Perfil] WHERE [Nome] = 'Padrão')
 INSERT INTO [dbo].[Usuario]
-           ([Nome]
+           ([Id]
+		   ,[Nome]
            ,[Sobrenome]
            ,[Email]
            ,[Senha]
@@ -50,7 +53,8 @@ INSERT INTO [dbo].[Usuario]
            ,[DataAtualizacao]
            ,[Excluido])
      VALUES
-           ('Usuário'
+           (NEWID()
+		   ,'Usuário'
            ,''
            ,'usuario@appconsig.com.br'
 		   ,'9999:1VCja1oXqOrMxIp7BPZxqZLRBUfFQBa2:zlB+uCANJVV+p8nyMaLi0QsRYbwL+Hgv' --123

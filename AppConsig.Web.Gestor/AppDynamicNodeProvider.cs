@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using AppConsig.Comum.Seguranca;
@@ -27,8 +26,8 @@ namespace AppConsig.Web.Gestor
             {
                 var dNode = new DynamicNode
                 {
-                    Key = permissao.Id.ToString(CultureInfo.InvariantCulture),
-                    ParentKey = permissao.ParenteId.ToString(CultureInfo.InvariantCulture),
+                    Key = permissao.Id.ToString(),
+                    ParentKey = permissao.ParenteId.ToString(),
                     Title = permissao.Nome,
                     Description = permissao.Descricao,
                     Url = permissao.Url,

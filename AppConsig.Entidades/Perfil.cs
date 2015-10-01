@@ -6,7 +6,7 @@ using AppConsig.Comum;
 namespace AppConsig.Entidades
 {
     [Table("Perfil")]
-    public class Perfil : EntidadeAuditavel<long>
+    public class Perfil : EntidadeAuditavel
     {
         [Required(ErrorMessage = "{0} é obrigatório")]
         [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]

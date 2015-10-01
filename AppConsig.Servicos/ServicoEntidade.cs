@@ -29,7 +29,7 @@ namespace AppConsig.Servicos
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T ObterPeloId(long id)
+        public T ObterPeloId(Guid id)
         {
             return Dbset.Find(id);
         }

@@ -78,7 +78,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Perfil/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(long? id)
+        public ActionResult Detalhar(Guid? id)
         {
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, long[] ckbPermissoes)
+        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, Guid[] ckbPermissoes)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +154,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Perfil/Editar/5
         [HttpGet]
-        public ActionResult Editar(long? id)
+        public ActionResult Editar(Guid? id)
         {
             if (id == null)
             {
@@ -183,7 +183,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id, Nome, Descricao")] Perfil perfil, long[] ckbPermissoes)
+        public ActionResult Editar([Bind(Include = "Id, Nome, Descricao")] Perfil perfil, Guid[] ckbPermissoes)
         {
             if (ModelState.IsValid)
             {
@@ -225,7 +225,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Perfil/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(long? id)
+        public ActionResult Excluir(Guid? id)
         {
             if (id == null)
             {
@@ -254,7 +254,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(long id)
+        public ActionResult ConfirmarExcluir(Guid id)
         {
             var perfil = _servicoPerfil.ObterPeloId(id);
 
@@ -283,7 +283,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(perfil);
         }
 
-        private static List<TreeViewNode> GetTreeData(IEnumerable<Permissao> permissoes, IEnumerable<Permissao> permissoesSelecionadas = null, long parentNodeId = 0)
+        private static List<TreeViewNode> GetTreeData(IEnumerable<Permissao> permissoes, IEnumerable<Permissao> permissoesSelecionadas = null, Guid parentNodeId = default(Guid))
         {
             var lista = permissoes.ToList();
 

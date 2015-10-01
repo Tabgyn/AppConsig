@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AppConsig.Comum;
 
 namespace AppConsig.Entidades
 {
     [Table("Permissao")]
-    public class Permissao : Entidade<long>
+    public class Permissao : Entidade
     {
         [Required]
         [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
@@ -27,7 +28,7 @@ namespace AppConsig.Entidades
         [MaxLength(256, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Icone { get; set; }
         
-        public long ParenteId { get; set; }
+        public Guid? ParenteId { get; set; }
 
         public int Ordem { get; set; }
 

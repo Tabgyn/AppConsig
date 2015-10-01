@@ -4,7 +4,7 @@ using AppConsig.Comum.Interfaces;
 
 namespace AppConsig.Comum
 {
-    public abstract class EntidadeAuditavel<T> : Entidade<T>, IEntidadeAuditavel
+    public abstract class EntidadeAuditavel : Entidade, IEntidadeAuditavel
     {
         [MaxLength(256)]
         public string CriadoPor { get; set; }

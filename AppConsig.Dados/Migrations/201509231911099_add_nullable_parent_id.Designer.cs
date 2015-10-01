@@ -7,13 +7,13 @@ namespace AppConsig.Dados.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _1645 : IMigrationMetadata
+    public sealed partial class add_nullable_parent_id : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_1645));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_nullable_parent_id));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508241945285_1645"; }
+            get { return "201509231911099_add_nullable_parent_id"; }
         }
         
         string IMigrationMetadata.Source

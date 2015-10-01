@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using AppConsig.Comum.Seguranca;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
 using AppConsig.Web.Gestor.Models;
@@ -172,7 +171,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Usuario/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(long? id)
+        public ActionResult Detalhar(Guid? id)
         {
             if (id == null)
             {
@@ -238,7 +237,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Usuario/Editar/5
         [HttpGet]
-        public ActionResult Editar(long? id)
+        public ActionResult Editar(Guid? id)
         {
             if (id == null)
             {
@@ -304,7 +303,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Usuario/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(long? id)
+        public ActionResult Excluir(Guid? id)
         {
             if (id == null)
             {
@@ -337,7 +336,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(long id)
+        public ActionResult ConfirmarExcluir(Guid id)
         {
             var usuario = _servicoUsuario.ObterPeloId(id);
 

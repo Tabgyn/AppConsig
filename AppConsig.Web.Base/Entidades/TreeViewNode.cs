@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AppConsig.Web.Base.Entidades
 {
@@ -8,9 +9,9 @@ namespace AppConsig.Web.Base.Entidades
         {
             Filhos = new HashSet<TreeViewNode>();
         }
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string Texto { get; set; }
-        public long? ParenteId { get; set; }
+        public Guid? ParenteId { get; set; }
         public bool Selecionado { get; set; }
 
         public ICollection<TreeViewNode> Filhos { get; set; }

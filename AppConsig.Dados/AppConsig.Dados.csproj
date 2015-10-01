@@ -54,35 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContexto.cs" />
-    <Compile Include="Auditor.cs" />
     <Compile Include="AuditoriaConfig.cs" />
-    <Compile Include="AuditoriaRastreio.cs" />
-    <Compile Include="DbEntryExtensions.cs" />
     <Compile Include="IContexto.cs" />
-    <Compile Include="Migrations\201508241630364_Inicial.cs" />
-    <Compile Include="Migrations\201508241630364_Inicial.Designer.cs">
-      <DependentUpon>201508241630364_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201509231856155_Initial.cs" />
+    <Compile Include="Migrations\201509231856155_Initial.Designer.cs">
+      <DependentUpon>201509231856155_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508241945285_1645.cs" />
-    <Compile Include="Migrations\201508241945285_1645.Designer.cs">
-      <DependentUpon>201508241945285_1645.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509151740015_add_orgao.cs" />
-    <Compile Include="Migrations\201509151740015_add_orgao.Designer.cs">
-      <DependentUpon>201509151740015_add_orgao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509151810334_upd_orgao.cs" />
-    <Compile Include="Migrations\201509151810334_upd_orgao.Designer.cs">
-      <DependentUpon>201509151810334_upd_orgao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509230114423_0914.cs" />
-    <Compile Include="Migrations\201509230114423_0914.Designer.cs">
-      <DependentUpon>201509230114423_0914.cs</DependentUpon>
+    <Compile Include="Migrations\201509231911099_add_nullable_parent_id.cs" />
+    <Compile Include="Migrations\201509231911099_add_nullable_parent_id.Designer.cs">
+      <DependentUpon>201509231911099_add_nullable_parent_id.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PerfilConfig.cs" />
-    <Compile Include="TypeExtensions.cs" />
     <Compile Include="UsuarioConfig.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,20 +84,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508241630364_Inicial.resx">
-      <DependentUpon>201508241630364_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509231856155_Initial.resx">
+      <DependentUpon>201509231856155_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508241945285_1645.resx">
-      <DependentUpon>201508241945285_1645.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509151740015_add_orgao.resx">
-      <DependentUpon>201509151740015_add_orgao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509151810334_upd_orgao.resx">
-      <DependentUpon>201509151810334_upd_orgao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509230114423_0914.resx">
-      <DependentUpon>201509230114423_0914.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509231911099_add_nullable_parent_id.resx">
+      <DependentUpon>201509231911099_add_nullable_parent_id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using AppConsig.Comum.Interfaces;
+﻿using System;
+using AppConsig.Comum.Interfaces;
 
 namespace AppConsig.Comum
 {
@@ -7,8 +8,8 @@ namespace AppConsig.Comum
         
     }
 
-    public abstract class Entidade<T> : EntidadeBase, IEntidade<T>
+    public class Entidade : EntidadeBase, IEntidade
     {
-        public virtual T Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

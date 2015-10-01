@@ -3,16 +3,16 @@ namespace AppConsig.Dados.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class upd_orgao : DbMigration
+    public partial class add_nullable_parent_id : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.Orgao", "Nome", c => c.String(nullable: false));
+            AlterColumn("dbo.Permissao", "ParenteId", c => c.Guid());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Orgao", "Nome", c => c.String());
+            AlterColumn("dbo.Permissao", "ParenteId", c => c.Guid(nullable: false));
         }
     }
 }

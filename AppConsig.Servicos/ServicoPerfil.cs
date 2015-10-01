@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using AppConsig.Dados;
 using AppConsig.Entidades;
@@ -15,7 +16,7 @@ namespace AppConsig.Servicos
             Dbset = Contexto.Set<Perfil>();
         }
 
-        public Perfil ObterPerfilComPermissoes(long id)
+        public Perfil ObterPerfilComPermissoes(Guid id)
         {
             return Contexto.Perfis.Where(p => p.Id == id)
                 .Include(p => p.Permissoes)

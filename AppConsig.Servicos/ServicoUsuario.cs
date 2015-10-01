@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AppConsig.Comum;
@@ -70,7 +71,7 @@ namespace AppConsig.Servicos
             Atualizar(usuario);
         }
 
-        public List<Permissao> ObterPermissoesDoUsuario(long usuarioId)
+        public List<Permissao> ObterPermissoesDoUsuario(Guid usuarioId)
         {
             var usuario = Dbset.Find(usuarioId);
             var permissoes =

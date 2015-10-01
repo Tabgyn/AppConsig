@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AppConsig.Dados;
@@ -16,7 +17,7 @@ namespace AppConsig.Servicos
             Dbset = Contexto.Set<Permissao>();
         }
 
-        public IEnumerable<Permissao> ObterPermissoesDoPerfil(long perfilId)
+        public IEnumerable<Permissao> ObterPermissoesDoPerfil(Guid perfilId)
         {
             var permissoes =
                 Contexto.Perfis.Where(p => p.Id == perfilId)

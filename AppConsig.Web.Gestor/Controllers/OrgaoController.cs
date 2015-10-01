@@ -74,7 +74,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Orgao/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(long? id)
+        public ActionResult Detalhar(Guid? id)
         {
             if (id == null)
             {
@@ -127,7 +127,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Orgao/Editar/5
         [HttpGet]
-        public ActionResult Editar(long? id)
+        public ActionResult Editar(Guid? id)
         {
             if (id == null)
             {
@@ -173,7 +173,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Orgao/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(long? id)
+        public ActionResult Excluir(Guid? id)
         {
             if (id == null)
             {
@@ -193,7 +193,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Orgao/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(long id)
+        public ActionResult ConfirmarExcluir(Guid id)
         {
             var orgao = _servicoOrgao.ObterPeloId(id);
 

@@ -61,7 +61,27 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvcSiteMapProvider, Version=4.6.18.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcSiteMapProvider.MVC5.Core.4.6.18\lib\net45\MvcSiteMapProvider.dll</HintPath>
       <Private>True</Private>
@@ -72,6 +92,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -154,7 +178,9 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
+    <Compile Include="Hubs\TaskHub.cs" />
     <Compile Include="Models\AcessoModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -180,6 +206,7 @@
     <Compile Include="Modulos\ModuloEF.cs" />
     <Compile Include="Modulos\ModuloServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -202,9 +229,8 @@
     <Content Include="Content\dataTables.bootstrap.min.css">
       <DependentUpon>dataTables.bootstrap.css</DependentUpon>
     </Content>
-    <Content Include="Content\font-awesome.min.css">
-      <DependentUpon>font-awesome.css</DependentUpon>
-    </Content>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\alf.jpg" />
     <Content Include="Content\Images\gil.jpg" />
     <Content Include="Content\Images\lula.jpg" />
@@ -238,6 +264,7 @@
     <Content Include="Content\skins\purple.css" />
     <Content Include="Content\skins\skins-mixins.css" />
     <Content Include="Content\skins\teal.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\weathericons-regular-webfont.svg" />
     <Content Include="Scripts\appconsig.js" />
@@ -274,6 +301,8 @@
     <Content Include="Scripts\jquery.dataTables.min.js">
       <DependentUpon>jquery.dataTables.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.simpleWeather.js" />
     <Content Include="Scripts\jquery.simpleWeather.min.js">
       <DependentUpon>jquery.simpleWeather.js</DependentUpon>
@@ -281,12 +310,11 @@
     <Content Include="Scripts\jquery.slimscroll.min.js">
       <DependentUpon>jquery.slimscroll.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery.validate-vsdoc.min.js">
-      <DependentUpon>jquery.validate-vsdoc.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate.min.js">
-      <DependentUpon>jquery.validate.js</DependentUpon>
-    </Content>
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
@@ -312,16 +340,10 @@
     </Content>
     <Content Include="Content\appconsig.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
-    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Images\no_image_available.png" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Mvc.sitemap">
       <SubType>Designer</SubType>
     </Content>
@@ -341,9 +363,6 @@
     <Content Include="Content\dataTables.bootstrap.min.css.gz">
       <DependentUpon>dataTables.bootstrap.min.css</DependentUpon>
     </Content>
-    <Content Include="Content\font-awesome.min.css.gz">
-      <DependentUpon>font-awesome.min.css</DependentUpon>
-    </Content>
     <Content Include="Content\PagedList.min.css.gz">
       <DependentUpon>PagedList.min.css</DependentUpon>
     </Content>
@@ -358,6 +377,11 @@
     <Content Include="fonts\weathericons-regular-webfont.ttf" />
     <Content Include="fonts\weathericons-regular-webfont.woff" />
     <Content Include="fonts\WeatherIcons-Regular.otf" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -439,10 +463,8 @@
     <Content Include="Scripts\jquery.slimscroll.min.js.map">
       <DependentUpon>jquery.slimscroll.min.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -481,18 +503,6 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
-    <Content Include="Scripts\jquery.validate-vsdoc.min.js.gz">
-      <DependentUpon>jquery.validate-vsdoc.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate-vsdoc.min.js.map">
-      <DependentUpon>jquery.validate-vsdoc.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate.min.js.gz">
-      <DependentUpon>jquery.validate.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate.min.js.map">
-      <DependentUpon>jquery.validate.min.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js.gz">
       <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
     </Content>

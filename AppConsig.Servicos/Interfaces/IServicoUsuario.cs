@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AppConsig.Entidades;
 
 namespace AppConsig.Servicos.Interfaces
@@ -7,6 +8,6 @@ namespace AppConsig.Servicos.Interfaces
     {
         bool ValidarUsuario(string login, string senha);
         void ReeviarSenha(Usuario usuario);
-        List<Permissao> ObterPermissoesDoUsuario(long usuarioId);
+        List<Permissao> ObterPermissoesDoUsuario(Guid usuarioId);
     }
 }

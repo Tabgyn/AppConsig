@@ -1,7 +1,9 @@
-﻿namespace AppConsig.Comum.Interfaces
+﻿using System;
+
+namespace AppConsig.Comum.Interfaces
 {
-    public interface IEntidade<T>
+    public interface IEntidade
     {
-        T Id { get; set; }
+        Guid Id { get; set; }
     }
 }

@@ -7,7 +7,9 @@ namespace AppConsig.Dados
     {
         public AuditoriaConfig()
         {
-            HasMany(a => a.DetalhesAuditoria);
+            HasMany(a => a.DetalhesAuditoria)
+                .WithRequired(a => a.Auditoria)
+                .HasForeignKey(a => a.AuditoriaId);
         }
     }
 }

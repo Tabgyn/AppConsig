@@ -7,7 +7,7 @@ using AppConsig.Comum;
 namespace AppConsig.Entidades
 {
     [Table("Auditoria")]
-    public class Auditoria : Entidade<long>
+    public class Auditoria : Entidade
     {
         public string Usuario { get; set; }
 
@@ -15,7 +15,7 @@ namespace AppConsig.Entidades
         public DateTime DataEvento { get; set; }
 
         [Required]
-        public TipoEvento TipoEvento { get; set; }
+        public string TipoEvento { get; set; }
 
         [Required]
         public string NomeEntidade { get; set; }

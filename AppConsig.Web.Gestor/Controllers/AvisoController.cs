@@ -67,7 +67,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Aviso/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(long? id)
+        public ActionResult Detalhar(Guid? id)
         {
             if (id == null)
             {
@@ -88,6 +88,7 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpGet]
         public ActionResult Criar()
         {
+            var aviso = new Aviso();
             return View();
         }
 
@@ -116,7 +117,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Aviso/Editar/5
         [HttpGet]
-        public ActionResult Editar(long? id)
+        public ActionResult Editar(Guid? id)
         {
             if (id == null)
             {
@@ -158,7 +159,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Aviso/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(long? id)
+        public ActionResult Excluir(Guid? id)
         {
             if (id == null)
             {
@@ -178,7 +179,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(long id)
+        public ActionResult ConfirmarExcluir(Guid id)
         {
             var aviso = _servicoAviso.ObterPeloId(id);
 

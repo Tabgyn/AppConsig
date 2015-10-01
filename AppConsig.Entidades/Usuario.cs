@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AppConsig.Comum;
 
 namespace AppConsig.Entidades
 {
     [Table("Usuario")]
-    public class Usuario : EntidadeAuditavel<long>
+    public class Usuario : EntidadeAuditavel
     {
         [Required(ErrorMessage = "{0} é obrigatório")]
         [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
@@ -48,7 +49,7 @@ namespace AppConsig.Entidades
 
         public bool Admin { get; set; }
 
-        public long PerfilId { get; set; }
+        public Guid PerfilId { get; set; }
 
         public Perfil Perfil { get; set; }
     }

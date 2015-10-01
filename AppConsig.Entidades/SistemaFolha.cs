@@ -3,7 +3,7 @@ using AppConsig.Comum;
 
 namespace AppConsig.Entidades
 {
-    public class SistemaFolha : Entidade<long>
+    public class SistemaFolha : Entidade
     {
         [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Nome { get; set; }

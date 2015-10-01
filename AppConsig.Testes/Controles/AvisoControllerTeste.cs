@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AppConsig.Entidades;
 using AppConsig.Servicos.Interfaces;
@@ -14,6 +15,7 @@ namespace AppConsig.Testes.Controles
         private Mock<IServicoAviso> _servicoMock;
         AvisoController _avisoController;
         List<Aviso> _listaAvisos;
+        Guid _guid = new Guid();
 
         [TestInitialize]
         public void Initialize()
@@ -23,9 +25,9 @@ namespace AppConsig.Testes.Controles
             _avisoController = new AvisoController(_servicoMock.Object);
             _listaAvisos = new List<Aviso>()
                            {
-                               new Aviso() {Id = 1, Texto = "XXX"},
-                               new Aviso() {Id = 2, Texto = "YYY"},
-                               new Aviso() {Id = 3, Texto = "ZZZ"}
+                               new Aviso() {Id = _guid, Texto = "XXX"},
+                               new Aviso() {Id = new Guid(), Texto = "YYY"},
+                               new Aviso() {Id = new Guid(), Texto = "ZZZ"}
                            };
         }
 
