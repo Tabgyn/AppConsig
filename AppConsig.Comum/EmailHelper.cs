@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Web.Configuration;
 
 namespace AppConsig.Comum
 {
@@ -35,7 +37,19 @@ namespace AppConsig.Comum
                     }
                 }
 
-                var smtp = new SmtpClient();
+                var credentials = new NetworkCredential
+                {
+                    UserName = WebConfigurationManager.AppSettings["EmailUser"],
+                    Password = WebConfigurationManager.AppSettings["EmailPassword"]
+                };
+
+                var smtp = new SmtpClient
+                {
+                    Credentials = credentials,
+                    Host = WebConfigurationManager.AppSettings["SmtpHost"],
+                    Port = Convert.ToInt32(WebConfigurationManager.AppSettings["SmtpPort"]),
+                    EnableSsl = true
+                };
 
                 smtp.Send(message);
 
