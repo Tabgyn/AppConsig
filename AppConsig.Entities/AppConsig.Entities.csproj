@@ -51,7 +51,7 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppConsig.Comum\AppConsig.Common.csproj">
+    <ProjectReference Include="..\AppConsig.Common\AppConsig.Common.csproj">
       <Project>{ED85BF36-AA9E-417B-8E9C-EBBE9B2213A4}</Project>
       <Name>AppConsig.Common</Name>
     </ProjectReference>

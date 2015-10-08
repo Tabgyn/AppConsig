@@ -581,19 +581,19 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppConsig.Comum\AppConsig.Common.csproj">
+    <ProjectReference Include="..\AppConsig.Common\AppConsig.Common.csproj">
       <Project>{ED85BF36-AA9E-417B-8E9C-EBBE9B2213A4}</Project>
       <Name>AppConsig.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Dados\AppConsig.Data.csproj">
+    <ProjectReference Include="..\AppConsig.Data\AppConsig.Data.csproj">
       <Project>{A21FE55F-CA29-48DB-B5CC-711A356C318B}</Project>
       <Name>AppConsig.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Entidades\AppConsig.Entities.csproj">
+    <ProjectReference Include="..\AppConsig.Entities\AppConsig.Entities.csproj">
       <Project>{8BACA6CC-384A-4BB5-8852-DEE2EF1A86ED}</Project>
       <Name>AppConsig.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Servicos\AppConsig.Services.csproj">
+    <ProjectReference Include="..\AppConsig.Services\AppConsig.Services.csproj">
       <Project>{955288B4-D19C-438E-AC64-0F5E35CB6DDD}</Project>
       <Name>AppConsig.Services</Name>
     </ProjectReference>

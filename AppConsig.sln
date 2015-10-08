@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
@@ -11,15 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Web.Servidor", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Web.Portal", "AppConsig.Web.Portal\AppConsig.Web.Portal.csproj", "{3C42796A-888E-4236-8B2C-319D6CABD77F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Common", "AppConsig.Comum\AppConsig.Common.csproj", "{ED85BF36-AA9E-417B-8E9C-EBBE9B2213A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Common", "AppConsig.Common\AppConsig.Common.csproj", "{ED85BF36-AA9E-417B-8E9C-EBBE9B2213A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Data", "AppConsig.Dados\AppConsig.Data.csproj", "{A21FE55F-CA29-48DB-B5CC-711A356C318B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Data", "AppConsig.Data\AppConsig.Data.csproj", "{A21FE55F-CA29-48DB-B5CC-711A356C318B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Entities", "AppConsig.Entidades\AppConsig.Entities.csproj", "{8BACA6CC-384A-4BB5-8852-DEE2EF1A86ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Entities", "AppConsig.Entities\AppConsig.Entities.csproj", "{8BACA6CC-384A-4BB5-8852-DEE2EF1A86ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Services", "AppConsig.Servicos\AppConsig.Services.csproj", "{955288B4-D19C-438E-AC64-0F5E35CB6DDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Services", "AppConsig.Services\AppConsig.Services.csproj", "{955288B4-D19C-438E-AC64-0F5E35CB6DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Tests", "AppConsig.Testes\AppConsig.Tests.csproj", "{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Tests", "AppConsig.Tests\AppConsig.Tests.csproj", "{3BF492C0-BD1D-4B5C-91B4-CB6E299DD259}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsig.Web.Base", "AppConsig.Web.Base\AppConsig.Web.Base.csproj", "{A784D30C-B21C-437A-80F3-14A4A30CB075}"
 EndProject
