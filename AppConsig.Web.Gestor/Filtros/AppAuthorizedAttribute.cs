@@ -3,15 +3,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AppConsig.Comum.Seguranca;
-using AppConsig.Dados;
+using AppConsig.Common.Security;
+using AppConsig.Data;
 
 namespace AppConsig.Web.Gestor.Filtros
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class AppAuthorizedAttribute : AuthorizeAttribute
     {
-        private readonly AppContexto _contexto = new AppContexto();
+        private readonly AppContext _context = new AppContext();
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -22,27 +22,28 @@ namespace AppConsig.Web.Gestor.Filtros
                 return false;
             }
 
-            var usuarioLogado = httpContext.User as AppPrincipal;
+            var loggedUser = httpContext.User as AppPrincipal;
 
-            if (usuarioLogado == null)
+            if (loggedUser == null)
             {
                 return false;
             }
 
-            if (usuarioLogado.Admin)
+            if (loggedUser.IsAdmin)
             {
                 return true;
             }
 
             var action = httpContext.Request.RequestContext.RouteData.Values["action"].ToString();
             var controller = httpContext.Request.RequestContext.RouteData.Values["controller"].ToString();
-            var permissoes =
-                _contexto.Usuarios.Include(u => u.Perfil)
-                    .Include(u => u.Perfil.Permissoes)
-                    .First(u => u.Id == usuarioLogado.Id).Perfil.Permissoes;
-            var autorizado = permissoes.Any(permissao => permissao.Controller == controller && permissao.Action == action);
+            var permissions =
+                _context.Users.Include(u => u.Profile)
+                    .Include(u => u.Profile.Permissions)
+                    .First(u => u.Id == loggedUser.Id).Profile.Permissions;
 
-            return autorizado;
+            authorized = permissions.Any(permissao => permissao.Controller == controller && permissao.Action == action);
+
+            return authorized;
         }
     }
 }

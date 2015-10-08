@@ -5,7 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.Security;
-using AppConsig.Comum.Seguranca;
+using AppConsig.Common.Security;
 using AppConsig.Web.Gestor.Modulos;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -26,8 +26,8 @@ namespace AppConsig.Web.Gestor
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
 
-            builder.RegisterModule(new ModuloServico());
-            builder.RegisterModule(new ModuloEF());
+            builder.RegisterModule(new ServiceModule());
+            builder.RegisterModule(new EntityModule());
 
             var container = builder.Build();
 
@@ -49,10 +49,10 @@ namespace AppConsig.Web.Gestor
             var newUser = new AppPrincipal(authTicket.Name)
             {
                 Id = serializeModel.Id,
-                Nome = serializeModel.Nome,
-                Sobrenome = serializeModel.Sobrenome,
+                Name = serializeModel.Name,
+                Surname = serializeModel.Surname,
                 Email = serializeModel.Email,
-                Admin = serializeModel.Admin
+                IsAdmin = serializeModel.IsAdmin
             };
 
             HttpContext.Current.User = newUser;

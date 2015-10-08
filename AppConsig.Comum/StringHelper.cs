@@ -1,31 +1,25 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace AppConsig.Comum
+namespace AppConsig.Common
 {
     public class StringHelper
     {
-        public static string ObterTextoAleatorio(int tamanho = 10)
+        public static string GetRandomText(int lenght = 10)
         {
-            // Apenas para manter um padrão de tamanho mínimo para as senhas.
-            if (tamanho < 10)
+            string randomString;
+
+            using (var randomNumberGenerator = new RNGCryptoServiceProvider())
             {
-                throw new InvalidOperationException("tamanho não pode ser menor que 10");
+                var data = new byte[64];
+                randomNumberGenerator.GetBytes(data);
+
+                randomString = Convert.ToBase64String(data);
             }
 
-            string valor;
+            randomString = randomString.Substring(0, lenght);
 
-            using (var geradorNumeroAleatorio = new RNGCryptoServiceProvider())
-            {
-                var numeroAleatorio = new byte[64];
-                geradorNumeroAleatorio.GetBytes(numeroAleatorio);
-
-                valor = Convert.ToBase64String(numeroAleatorio);
-            }
-
-            valor = valor.Substring(0, tamanho);
-
-            return valor;
+            return randomString;
         }
     }
 }

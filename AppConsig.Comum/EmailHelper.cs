@@ -5,15 +5,15 @@ using System.Net.Mail;
 using System.Text;
 using System.Web.Configuration;
 
-namespace AppConsig.Comum
+namespace AppConsig.Common
 {
     public class EmailHelper
     {
-        public string De { get; set; }
-        public string Para { get; set; }
-        public string ComCopia { get; set; }
-        public string Assunto { get; set; }
-        public string Corpo { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public string CopyTo { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
         public string AttachmentFile { get; set; }
 
         public void Send()
@@ -21,11 +21,11 @@ namespace AppConsig.Comum
             try
             {
                 Attachment att = null;
-                var message = new MailMessage(De, Para, Assunto, Corpo) { IsBodyHtml = true };
+                var message = new MailMessage(From, To, Subject, Body) { IsBodyHtml = true };
 
-                if (ComCopia != null)
+                if (CopyTo != null)
                 {
-                    message.Bcc.Add(ComCopia);
+                    message.Bcc.Add(CopyTo);
                 }
 
                 if (!string.IsNullOrEmpty(AttachmentFile))
@@ -60,18 +60,18 @@ namespace AppConsig.Comum
             }
             catch (Exception ex)
             {
-                throw new Exception($"Não foi possível enviar o e-mail para {Para}", ex.InnerException);
+                throw new Exception($"Não foi possível enviar o e-mail para {To}", ex.InnerException);
             }
         }
 
         /// <summary>
         /// Retorna string formatada para corpo de e-mail de senha
         /// </summary>
-        /// <param name="nome"></param>
-        /// <param name="sobrenome"></param>
-        /// <param name="senha"></param>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public string CorpoSenha(string nome, string sobrenome, string senha)
+        public string PasswordBody(string name, string surname, string password)
         {
             var strEmailBody = new StringBuilder();
 
@@ -83,10 +83,10 @@ namespace AppConsig.Comum
             strEmailBody.AppendLine("</head>");
             strEmailBody.AppendLine("<body>");
             strEmailBody.AppendLine("<p>");
-            strEmailBody.AppendLine($"Olá {nome} {sobrenome},");
+            strEmailBody.AppendLine($"Olá {name} {surname},");
             strEmailBody.AppendLine("</p>");
             strEmailBody.AppendLine("<p>");
-            strEmailBody.AppendLine($"Sua senha de acesso ao AppConsig é: {senha}");
+            strEmailBody.AppendLine($"Sua senha de acesso ao AppConsig é: {password}");
             strEmailBody.AppendLine("</p>");
             strEmailBody.AppendLine("<p>Administração AppConsig</p>");
             strEmailBody.AppendLine("</body>");

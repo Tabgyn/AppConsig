@@ -4,8 +4,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Security;
-using AppConsig.Comum.Seguranca;
-using AppConsig.Servicos.Interfaces;
+using AppConsig.Common.Security;
+using AppConsig.Services.Interfaces;
+using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Resources;
 using MvcSiteMapProvider;
@@ -15,15 +16,15 @@ namespace AppConsig.Web.Gestor.Controllers
     [AllowAnonymous]
     public class AcessoController : BaseController
     {
-        readonly IServicoUsuario _servicoUsuario;
+        readonly IUserService _userService;
 
-        public AcessoController(IServicoUsuario servicoUsuario)
+        public AcessoController(IUserService userService)
         {
-            _servicoUsuario = servicoUsuario;
+            _userService = userService;
         }
 
         // GET: Acesso
-        public ActionResult Index(string returnUrl)
+        public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -32,28 +33,29 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: Acesso
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(AcessoModel model, string returnUrl)
+        [Audit]
+        public ActionResult Login(AcessoModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (_servicoUsuario.ValidarUsuario(model.Email, model.Senha))
+                    if (_userService.ValidateUser(model.Email, model.Senha))
                     {
-                        var usuario = _servicoUsuario.ObterTodos(u => u.Email == model.Email).First();
+                        var user = _userService.GetAll(u => u.Email == model.Email).First();
 
                         var serializeModel = new AppPrincipalSerializedModel
                         {
-                            Id = usuario.Id,
-                            Nome = usuario.Nome,
-                            Sobrenome = usuario.Sobrenome,
-                            Email = usuario.Email,
-                            Admin = usuario.Admin
+                            Id = user.Id,
+                            Name = user.Name,
+                            Surname = user.Surname,
+                            Email = user.Email,
+                            IsAdmin = user.IsAdmin
                         };
 
                         LimparDadosDoUsuario();
 
-                        Session.Add("Avatar", usuario.Foto);
+                        Session.Add("Avatar", user.Picture);
 
                         var serializer = new JavaScriptSerializer();
 
@@ -61,7 +63,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
                         var authTicket = new FormsAuthenticationTicket(
                             1,
-                            usuario.Email,
+                            user.Email,
                             DateTime.Now,
                             DateTime.Now.AddMinutes(30),
                             false,
@@ -86,7 +88,7 @@ namespace AppConsig.Web.Gestor.Controllers
             }
 
             //ModelState.AddModelError("", Excecoes.EmailSenhaInvalido);
-            Erro(Excecoes.EmailSenhaInvalido, true);
+            Erro(Exceptions.LoginOrPasswordInvalid, true);
 
             return View(model);
         }
@@ -100,19 +102,20 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: ReeviarSenha
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public ActionResult CriarNovaSenha(CriarNovaSenhaModel model)
         {
             if (ModelState.IsValid)
             {
-                var usuario = _servicoUsuario.ObterTodos(u => u.Email == model.Email).FirstOrDefault();
+                var user = _userService.GetAll(u => u.Email == model.Email).FirstOrDefault();
 
-                if (usuario != null)
+                if (user != null)
                 {
                     try
                     {
-                        _servicoUsuario.ReeviarSenha(usuario);
+                        _userService.ResetPassword(user);
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Login");
                     }
                     catch (Exception exception)
                     {
@@ -121,16 +124,17 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ModelState.AddModelError("Email", Excecoes.UsuarioInvalido);
+            ModelState.AddModelError("Email", Exceptions.InvalidUser);
 
             return View(model);
         }
 
-        public ActionResult Sair()
+        [Audit]
+        public ActionResult Logout()
         {
             LimparDadosDoUsuario();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         private void LimparDadosDoUsuario()

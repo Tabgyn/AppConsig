@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 
-namespace AppConsig.Comum
+namespace AppConsig.Common
 {
     public class TimeHelper
     {
-        public static string ObterDiferencaTempo(DateTime reference)
+        public static string GetDiffTime(DateTime reference)
         {
             var culture = new CultureInfo("pt-BR");
             var now = DateTime.Now;

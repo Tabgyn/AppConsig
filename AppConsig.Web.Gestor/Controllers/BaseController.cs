@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using AppConsig.Comum.Seguranca;
-using AppConsig.Web.Base.Entidades;
+using AppConsig.Common.Security;
+using AppConsig.Web.Base.Entities;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
@@ -10,43 +10,43 @@ namespace AppConsig.Web.Gestor.Controllers
     {
         protected virtual new AppPrincipal User => HttpContext.User as AppPrincipal;
 
-        public void Successo(string message, bool dismissable = false, Exception exception = null)
+        public void Success(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Successo, "check", "Sucesso!", message, dismissable, exception);
+            AddAlert(AlertMessageStyle.Success, "check", "Sucesso!", message, dismissable, exception);
         }
 
-        public void Informacao(string message, bool dismissable = false, Exception exception = null)
+        public void Info(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Informacao, "info", "Info!", message, dismissable, exception);
+            AddAlert(AlertMessageStyle.Info, "info", "Info!", message, dismissable, exception);
         }
 
-        public void Atencao(string message, bool dismissable = false, Exception exception = null)
+        public void Warning(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Atencao, "warning", "Atenção!", message, dismissable, exception);
+            AddAlert(AlertMessageStyle.Warning, "warning", "Atenção!", message, dismissable, exception);
         }
 
         public void Erro(string message, bool dismissable = false, Exception exception = null)
         {
-            AddAlerta(EstiloAlerta.Erro, "times", "Erro!", message, dismissable, exception);
+            AddAlert(AlertMessageStyle.Erro, "times", "Erro!", message, dismissable, exception);
         }
 
-        private void AddAlerta(string estiloAlerta, string estiloIcone, string titulo, string texto, bool descartavel, Exception exception = null)
+        private void AddAlert(string alertMessageStyle, string iconClass, string title, string text, bool disposable, Exception exception = null)
         {
-            var alertas = TempData.ContainsKey(Alerta.TempDataKey)
-                ? (List<Alerta>)TempData[Alerta.TempDataKey]
-                : new List<Alerta>();
+            var alerts = TempData.ContainsKey(AlertMessage.TempDataKey)
+                ? (List<AlertMessage>)TempData[AlertMessage.TempDataKey]
+                : new List<AlertMessage>();
 
-            alertas.Add(new Alerta
+            alerts.Add(new AlertMessage
             {
-                EstiloAlerta = estiloAlerta,
-                EstiloIcone = estiloIcone,
-                Titulo = titulo,
-                Texto = texto,
-                Descartavel = descartavel,
+                AlertMessageStyle = alertMessageStyle,
+                IconClass = iconClass,
+                Title = title,
+                Text = text,
+                Disposable = disposable,
                 Exception = exception?.Message ?? ""
             });
-            
-            TempData[Alerta.TempDataKey] = alertas;
+
+            TempData[AlertMessage.TempDataKey] = alerts;
         }
     }
 }

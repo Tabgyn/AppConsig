@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Web.Mvc;
-using AppConsig.Comum.Seguranca;
-using AppConsig.Dados;
+using AppConsig.Common.Security;
+using AppConsig.Data;
 
 namespace AppConsig.Web.Gestor
 {
@@ -28,13 +28,13 @@ namespace AppConsig.Web.Gestor
         {
             get
             {
-                var contexto = new AppContexto();
+                var contexto = new AppContext();
 
                 if (!User.Identity.IsAuthenticated) return Url.Content("~/Content/Images/no_image_available.png");
-                var foto = contexto.Usuarios.Find(User.Id).Foto;
+                var avatar = contexto.Users.Find(User.Id).Picture;
 
-                return !string.IsNullOrEmpty(foto)
-                    ? $"data:image/png;base64,{foto}"
+                return !string.IsNullOrEmpty(avatar)
+                    ? $"data:image/png;base64,{avatar}"
                     : Url.Content("~/Content/Images/no_image_available.png");
             }
         }
@@ -62,13 +62,13 @@ namespace AppConsig.Web.Gestor
         {
             get
             {
-                var contexto = new AppContexto();
+                var contexto = new AppContext();
 
                 if (!User.Identity.IsAuthenticated) return Url.Content("~/Content/Images/no_image_available.png");
-                var foto = contexto.Usuarios.Find(User.Id).Foto;
+                var avatar = contexto.Users.Find(User.Id).Picture;
 
-                return !string.IsNullOrEmpty(foto)
-                    ? $"data:image/png;base64,{foto}"
+                return !string.IsNullOrEmpty(avatar)
+                    ? $"data:image/png;base64,{avatar}"
                     : Url.Content("~/Content/Images/no_image_available.png");
             }
         }

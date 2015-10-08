@@ -27,10 +27,10 @@
                                 @Html.DropDownList("ItemsPerPage",
                                     new List<SelectListItem>
                                     {
-                                        new SelectListItem {Text = "5", Value = "5", Selected = @Model.PageSize == 5},
-                                        new SelectListItem {Text = "10", Value = "10", Selected = @Model.PageSize == 10},
-                                        new SelectListItem {Text = "25", Value = "25", Selected = @Model.PageSize == 25},
-                                        new SelectListItem {Text = "50", Value = "50", Selected = @Model.PageSize == 50}
+                                        new SelectListItem {Text = @"5", Value = "5", Selected = @Model.PageSize == 5},
+                                        new SelectListItem {Text = @"10", Value = "10", Selected = @Model.PageSize == 10},
+                                        new SelectListItem {Text = @"25", Value = "25", Selected = @Model.PageSize == 25},
+                                        new SelectListItem {Text = @"50", Value = "50", Selected = @Model.PageSize == 50}
                                     }, new { @class = "form-control input-sm", onchange = "this.form.submit();" })
                             </label>
                         </div>

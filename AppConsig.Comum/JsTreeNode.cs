@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppConsig.Comum
+namespace AppConsig.Common
 {
     public class JsTreeNode
     {

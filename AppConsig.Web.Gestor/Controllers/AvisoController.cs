@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using AppConsig.Entidades;
-using AppConsig.Servicos.Interfaces;
+using AppConsig.Entities;
+using AppConsig.Services.Interfaces;
+using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -11,11 +12,11 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class AvisoController : BaseController
     {
-        readonly IServicoAviso _servicoAviso;
+        readonly INoticeService _noticeService;
 
-        public AvisoController(IServicoAviso servicoAviso)
+        public AvisoController(INoticeService noticeService)
         {
-            _servicoAviso = servicoAviso;
+            _noticeService = noticeService;
         }
 
         // GET: /Aviso
@@ -35,172 +36,174 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var avisos = _servicoAviso.ObterTodos(a => a.Excluido == false).ToList();
+            var notices = _noticeService.GetAll(a => a.Deleted == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
-                || a.Texto.Contains(searchString)).ToList();
+                notices = notices.Where(a => a.CreateBy.Contains(searchString)
+                || a.Text.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
                 case "own":
-                    avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
+                    notices = notices.OrderBy(a => a.CreateBy).ToList();
                     break;
                 case "own_desc":
-                    avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
+                    notices = notices.OrderByDescending(a => a.CreateBy).ToList();
                     break;
                 case "date":
-                    avisos = avisos.OrderBy(a => a.DataCriacao).ToList();
+                    notices = notices.OrderBy(a => a.CreateDate).ToList();
                     break;
                 default:
-                    avisos = avisos.OrderByDescending(a => a.DataCriacao).ToList();
+                    notices = notices.OrderByDescending(a => a.CreateDate).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(avisos.ToPagedList(pageNumber, pageSize));
+            return View(notices.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Aviso/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(Guid? id)
+        public ActionResult Detalhar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var aviso = _servicoAviso.ObterPeloId(id.Value);
+            var notice = _noticeService.GetById(id.Value);
 
-            if (aviso == null)
+            if (notice == null)
             {
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            return View(notice);
         }
 
         // GET: /Aviso/Criar
         [HttpGet]
         public ActionResult Criar()
         {
-            var aviso = new Aviso();
             return View();
         }
 
         // POST: /Aviso/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Texto")] Aviso aviso)
+        [Audit]
+        public ActionResult Criar([Bind(Include = "Text")] Notice notice)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoAviso.Criar(aviso);
-                    Successo(Alertas.Sucesso, true);
+                    _noticeService.Insert(notice);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            return View(aviso);
+            return View(notice);
         }
 
         // GET: /Aviso/Editar/5
         [HttpGet]
-        public ActionResult Editar(Guid? id)
+        public ActionResult Editar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var aviso = _servicoAviso.ObterPeloId(id.Value);
+            var notice = _noticeService.GetById(id.Value);
 
-            if (aviso == null)
+            if (notice == null)
             {
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            return View(notice);
         }
 
         // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Texto")] Aviso aviso)
+        [Audit]
+        public ActionResult Editar([Bind(Include = "Id,Text")] Notice notice)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoAviso.Atualizar(aviso);
-                    Successo(Alertas.Sucesso, true);
+                    _noticeService.Update(notice);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            return View(aviso);
+            return View(notice);
         }
 
         // GET: /Aviso/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(Guid? id)
+        public ActionResult Excluir(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var aviso = _servicoAviso.ObterPeloId(id.Value);
+            var notice = _noticeService.GetById(id.Value);
 
-            if (aviso == null)
+            if (notice == null)
             {
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            return View(notice);
         }
 
         // POST: /Aviso/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(Guid id)
+        [Audit]
+        public ActionResult ConfirmarExcluir(long id)
         {
-            var aviso = _servicoAviso.ObterPeloId(id);
+            var notice = _noticeService.GetById(id);
 
-            if (aviso == null)
+            if (notice == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                _servicoAviso.Excluir(aviso);
-                Successo(Alertas.Sucesso, true);
+                _noticeService.Delete(notice);
+                Success(Alerts.Sucess, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(Alertas.Erro, true, exception);
+                Erro(Alerts.Erro, true, exception);
             }
 
-            return View(aviso);
+            return View(notice);
         }
     }
 }

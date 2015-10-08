@@ -176,8 +176,10 @@
     <Compile Include="Controllers\AuditoriaController.cs" />
     <Compile Include="Controllers\OrgaoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
+    <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
@@ -189,22 +191,22 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AcessoController.cs" />
     <Compile Include="Controllers\VisaoGeralController.cs" />
-    <Compile Include="Resources\Alertas.Designer.cs">
+    <Compile Include="Resources\Alerts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Alertas.resx</DependentUpon>
+      <DependentUpon>Alerts.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Excecoes.Designer.cs">
+    <Compile Include="Resources\Exceptions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Excecoes.resx</DependentUpon>
+      <DependentUpon>Exceptions.resx</DependentUpon>
     </Compile>
     <Compile Include="Filtros\AppAuthorizedAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Modulos\ModuloEF.cs" />
-    <Compile Include="Modulos\ModuloServico.cs" />
+    <Compile Include="Modulos\EntityModule.cs" />
+    <Compile Include="Modulos\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -493,7 +495,7 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\VisaoGeral\Index.cshtml" />
-    <Content Include="Views\Acesso\Index.cshtml" />
+    <Content Include="Views\Acesso\Login.cshtml" />
     <Content Include="Views\Shared\_Unauthorized.cshtml" />
     <Content Include="Views\Acesso\CriarNovaSenha.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
@@ -569,6 +571,8 @@
     <Content Include="Views\Orgao\Criar.cshtml" />
     <Content Include="Views\Orgao\Editar.cshtml" />
     <Content Include="Views\Orgao\Excluir.cshtml" />
+    <Content Include="Views\Relatorio\Contrato.cshtml" />
+    <Content Include="Views\Relatorio\Servidor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />
@@ -577,21 +581,21 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppConsig.Comum\AppConsig.Comum.csproj">
+    <ProjectReference Include="..\AppConsig.Comum\AppConsig.Common.csproj">
       <Project>{ED85BF36-AA9E-417B-8E9C-EBBE9B2213A4}</Project>
-      <Name>AppConsig.Comum</Name>
+      <Name>AppConsig.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Dados\AppConsig.Dados.csproj">
+    <ProjectReference Include="..\AppConsig.Dados\AppConsig.Data.csproj">
       <Project>{A21FE55F-CA29-48DB-B5CC-711A356C318B}</Project>
-      <Name>AppConsig.Dados</Name>
+      <Name>AppConsig.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Entidades\AppConsig.Entidades.csproj">
+    <ProjectReference Include="..\AppConsig.Entidades\AppConsig.Entities.csproj">
       <Project>{8BACA6CC-384A-4BB5-8852-DEE2EF1A86ED}</Project>
-      <Name>AppConsig.Entidades</Name>
+      <Name>AppConsig.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppConsig.Servicos\AppConsig.Servicos.csproj">
+    <ProjectReference Include="..\AppConsig.Servicos\AppConsig.Services.csproj">
       <Project>{955288B4-D19C-438E-AC64-0F5E35CB6DDD}</Project>
-      <Name>AppConsig.Servicos</Name>
+      <Name>AppConsig.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\AppConsig.Web.Base\AppConsig.Web.Base.csproj">
       <Project>{a784d30c-b21c-437a-80f3-14a4a30cb075}</Project>
@@ -599,15 +603,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Alertas.resx">
+    <EmbeddedResource Include="Resources\Alerts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Alertas.Designer.cs</LastGenOutput>
+      <LastGenOutput>Alerts.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Excecoes.resx">
+    <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Excecoes.Designer.cs</LastGenOutput>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

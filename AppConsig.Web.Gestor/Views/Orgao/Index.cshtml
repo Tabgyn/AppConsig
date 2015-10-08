@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<AppConsig.Entidades.Orgao>
+﻿@model PagedList.IPagedList<AppConsig.Entities.Department>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
@@ -27,10 +27,10 @@
                                 @Html.DropDownList("ItemsPerPage",
                                     new List<SelectListItem>
                                     {
-                                        new SelectListItem {Text = "5", Value = "5", Selected = @Model.PageSize == 5},
-                                        new SelectListItem {Text = "10", Value = "10", Selected = @Model.PageSize == 10},
-                                        new SelectListItem {Text = "25", Value = "25", Selected = @Model.PageSize == 25},
-                                        new SelectListItem {Text = "50", Value = "50", Selected = @Model.PageSize == 50}
+                                        new SelectListItem {Text = @"5", Value = "5", Selected = @Model.PageSize == 5},
+                                        new SelectListItem {Text = @"10", Value = "10", Selected = @Model.PageSize == 10},
+                                        new SelectListItem {Text = @"25", Value = "25", Selected = @Model.PageSize == 25},
+                                        new SelectListItem {Text = @"50", Value = "50", Selected = @Model.PageSize == 50}
                                     }, new { @class = "form-control input-sm", onchange = "this.form.submit();" })
                             </label>
                         </div>
@@ -49,10 +49,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="col-md-1 col-lg-1 text-overflow">@item.Codigo</td>
-                                        <td class="col-md-4 col-lg-4 text-overflow">@item.Nome</td>
-                                        <td class="col-md-3 col-lg-2">@item.CriadoPor</td>
-                                        <td class="hidden-md col-lg-2">@item.DataCriacao</td>
+                                        <td class="col-md-1 col-lg-1 text-overflow">@item.DepartmentCode</td>
+                                        <td class="col-md-4 col-lg-4 text-overflow">@item.Name</td>
+                                        <td class="col-md-3 col-lg-2">@item.CreateBy</td>
+                                        <td class="hidden-md col-lg-2">@item.CreateDate</td>
                                         <td class="col-md-4 col-lg-3 text-align-center">
                                             <a href="@Url.Action("Editar", new {id = @item.Id})" class="btn btn-info btn-xs"><i class="fa fa-edit"></i>Editar</a>
                                             <a href="@Url.Action("Detalhar", new {id = @item.Id})" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i>Detalhar</a>

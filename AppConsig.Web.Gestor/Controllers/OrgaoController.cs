@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using AppConsig.Entidades;
-using AppConsig.Servicos.Interfaces;
+using AppConsig.Entities;
+using AppConsig.Services.Interfaces;
+using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -11,11 +12,11 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class OrgaoController : BaseController
     {
-        readonly IServicoOrgao _servicoOrgao;
+        readonly IDepartamentService _departamentService;
 
-        public OrgaoController(IServicoOrgao servicoOrgao)
+        public OrgaoController(IDepartamentService departamentService)
         {
-            _servicoOrgao = servicoOrgao;
+            _departamentService = departamentService;
         }
 
         // GET: Orgao
@@ -36,66 +37,66 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var orgaos = _servicoOrgao.ObterTodos(a => a.Excluido == false).ToList();
+            var departments = _departamentService.GetAll(a => a.Deleted == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                orgaos = orgaos.Where(a => a.CriadoPor.ToUpper().Contains(searchString.ToUpper())
-                || a.Nome.ToUpper().Contains(searchString.ToUpper())).ToList();
+                departments = departments.Where(a => a.CreateBy.ToUpper().Contains(searchString.ToUpper())
+                || a.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    orgaos = orgaos.OrderByDescending(a => a.Nome).ToList();
+                    departments = departments.OrderByDescending(a => a.Name).ToList();
                     break;
                 case "own":
-                    orgaos = orgaos.OrderBy(a => a.CriadoPor).ToList();
+                    departments = departments.OrderBy(a => a.CreateBy).ToList();
                     break;
                 case "own_desc":
-                    orgaos = orgaos.OrderByDescending(a => a.CriadoPor).ToList();
+                    departments = departments.OrderByDescending(a => a.CreateBy).ToList();
                     break;
                 case "date":
-                    orgaos = orgaos.OrderBy(a => a.DataCriacao).ToList();
+                    departments = departments.OrderBy(a => a.CreateDate).ToList();
                     break;
                 case "date_desc":
-                    orgaos = orgaos.OrderByDescending(a => a.DataCriacao).ToList();
+                    departments = departments.OrderByDescending(a => a.CreateDate).ToList();
                     break;
                 default:
-                    orgaos = orgaos.OrderBy(a => a.Nome).ToList();
+                    departments = departments.OrderBy(a => a.Name).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(orgaos.ToPagedList(pageNumber, pageSize));
+            return View(departments.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Orgao/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(Guid? id)
+        public ActionResult Detalhar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var orgao = _servicoOrgao.ObterPeloId(id.Value);
+            var department = _departamentService.GetById(id.Value);
 
-            if (orgao == null)
+            if (department == null)
             {
                 return HttpNotFound();
             }
 
-            return View(orgao);
+            return View(department);
         }
 
         // GET: /Orgao/Criar
         [HttpGet]
         public ActionResult Criar()
         {
-            ViewBag.SistemasFolha = _servicoOrgao.ObterSistemasFolha();
+            ViewBag.SistemasFolha = _departamentService.GetHumanResourceSystems();
 
             return View();
         }
@@ -103,118 +104,121 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Orgao/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Codigo,Nome,Descricao,SistemaFolhaId")] Orgao orgao)
+        [Audit]
+        public ActionResult Criar([Bind(Include = "Codigo,Nome,Descricao,SistemaFolhaId")] Department department)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoOrgao.Criar(orgao);
-                    Successo(Alertas.Sucesso, true);
+                    _departamentService.Insert(department);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            ViewBag.SistemasFolha = _servicoOrgao.ObterSistemasFolha();
+            ViewBag.SistemasFolha = _departamentService.GetHumanResourceSystems();
 
-            return View(orgao);
+            return View(department);
         }
 
         // GET: /Orgao/Editar/5
         [HttpGet]
-        public ActionResult Editar(Guid? id)
+        public ActionResult Editar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var orgao = _servicoOrgao.ObterPeloId(id.Value);
+            var department = _departamentService.GetById(id.Value);
 
-            if (orgao == null)
+            if (department == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.SistemasFolha = _servicoOrgao.ObterSistemasFolha();
+            ViewBag.SistemasFolha = _departamentService.GetHumanResourceSystems();
 
-            return View(orgao);
+            return View(department);
         }
 
         // POST: /Orgao/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Codigo,Nome,Descricao,SistemaFolhaId")] Orgao orgao)
+        [Audit]
+        public ActionResult Editar([Bind(Include = "Id,Codigo,Nome,Descricao,SistemaFolhaId")] Department department)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoOrgao.Atualizar(orgao);
-                    Successo(Alertas.Sucesso, true);
+                    _departamentService.Update(department);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            ViewBag.SistemasFolha = _servicoOrgao.ObterSistemasFolha();
+            ViewBag.SistemasFolha = _departamentService.GetHumanResourceSystems();
 
-            return View(orgao);
+            return View(department);
         }
 
         // GET: /Orgao/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(Guid? id)
+        public ActionResult Excluir(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var orgao = _servicoOrgao.ObterPeloId(id.Value);
+            var department = _departamentService.GetById(id.Value);
 
-            if (orgao == null)
+            if (department == null)
             {
                 return HttpNotFound();
             }
 
-            return View(orgao);
+            return View(department);
         }
 
         // POST: /Orgao/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(Guid id)
+        [Audit]
+        public ActionResult ConfirmarExcluir(long id)
         {
-            var orgao = _servicoOrgao.ObterPeloId(id);
+            var department = _departamentService.GetById(id);
 
-            if (orgao == null)
+            if (department == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                _servicoOrgao.Excluir(orgao);
-                Successo(Alertas.Sucesso, true);
+                _departamentService.Delete(department);
+                Success(Alerts.Sucess, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(Alertas.Erro, true, exception);
+                Erro(Alerts.Erro, true, exception);
             }
 
-            return View(orgao);
+            return View(department);
         }
     }
 }

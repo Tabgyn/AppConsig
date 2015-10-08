@@ -36,9 +36,9 @@
             @if (node.Children.Any())
             {
                 <a class="menu-dropdown" href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
-                    @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
+                    @if (!string.IsNullOrEmpty(node.Attributes["icon"].ToString()))
                     {
-                        <i class="menu-icon @Html.Raw(node.Attributes["icone"])"></i>
+                        <i class="menu-icon @Html.Raw(node.Attributes["icon"])"></i>
                     }
                     <span class="menu-text">@Html.Raw(node.Title)</span>
                     <i class="menu-expand"></i>
@@ -47,9 +47,9 @@
             else
             {
                 <a href="@(!string.IsNullOrEmpty(node.Url) ? Html.Raw(node.Url) : Html.Action(node.Action, node.Controller))">
-                    @if (!string.IsNullOrEmpty(node.Attributes["icone"].ToString()))
+                    @if (!string.IsNullOrEmpty(node.Attributes["icon"].ToString()))
                     {
-                        <i class="menu-icon @Html.Raw(node.Attributes["icone"])"></i>
+                        <i class="menu-icon @Html.Raw(node.Attributes["icon"])"></i>
                     }
                     <span class="menu-text">@Html.Raw(node.Title)</span>
                 </a>

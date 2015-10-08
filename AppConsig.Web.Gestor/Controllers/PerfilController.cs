@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using AppConsig.Entidades;
-using AppConsig.Servicos.Interfaces;
-using AppConsig.Web.Base.Entidades;
+using AppConsig.Entities;
+using AppConsig.Services.Interfaces;
+using AppConsig.Web.Base.Entities;
+using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -13,13 +14,13 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class PerfilController : BaseController
     {
-        readonly IServicoPerfil _servicoPerfil;
-        readonly IServicoPermissao _servicoPermissao;
+        readonly IProfileService _profileService;
+        readonly IPermissionService _permissionService;
 
-        public PerfilController(IServicoPerfil servicoPerfil, IServicoPermissao servicoPermissao)
+        public PerfilController(IProfileService profileService, IPermissionService permissionService)
         {
-            _servicoPerfil = servicoPerfil;
-            _servicoPermissao = servicoPermissao;
+            _profileService = profileService;
+            _permissionService = permissionService;
         }
 
         // GET: /Perfil
@@ -40,33 +41,33 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var perfis = _servicoPerfil.ObterTodos(a => a.Excluido == false && a.Editavel).ToList();
+            var perfis = _profileService.GetAll(a => a.Deleted == false && a.IsEditable).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                perfis = perfis.Where(a => a.CriadoPor.Contains(searchString)
-                || a.Nome.Contains(searchString)).ToList();
+                perfis = perfis.Where(a => a.CreateBy.Contains(searchString)
+                || a.Name.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    perfis = perfis.OrderByDescending(a => a.Nome).ToList();
+                    perfis = perfis.OrderByDescending(a => a.Name).ToList();
                     break;
                 case "own":
-                    perfis = perfis.OrderBy(a => a.CriadoPor).ToList();
+                    perfis = perfis.OrderBy(a => a.CreateBy).ToList();
                     break;
                 case "own_desc":
-                    perfis = perfis.OrderByDescending(a => a.CriadoPor).ToList();
+                    perfis = perfis.OrderByDescending(a => a.CreateBy).ToList();
                     break;
                 case "date":
-                    perfis = perfis.OrderBy(a => a.DataCriacao).ToList();
+                    perfis = perfis.OrderBy(a => a.CreateDate).ToList();
                     break;
                 case "date_desc":
-                    perfis = perfis.OrderByDescending(a => a.DataCriacao).ToList();
+                    perfis = perfis.OrderByDescending(a => a.CreateDate).ToList();
                     break;
                 default:
-                    perfis = perfis.OrderBy(a => a.Nome).ToList();
+                    perfis = perfis.OrderBy(a => a.Name).ToList();
                     break;
             }
 
@@ -78,32 +79,32 @@ namespace AppConsig.Web.Gestor.Controllers
 
         // GET: /Perfil/Detalhar/5
         [HttpGet]
-        public ActionResult Detalhar(Guid? id)
+        public ActionResult Detalhar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var perfil = _servicoPerfil.ObterPeloId(id.Value);
+            var profile = _profileService.GetById(id.Value);
 
-            if (perfil == null)
+            if (profile == null)
             {
                 return HttpNotFound();
             }
 
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
-            var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
-            ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
+            var permissions = _permissionService.GetAll(p => p.IsStandard == false);
+            var selectedPermissions = _permissionService.GetProfilePermissions(profile.Id);
+            ViewBag.Permissoes = GetTreeData(permissions, selectedPermissions);
 
-            return View(perfil);
+            return View(profile);
         }
 
         // GET: /Perfil/Criar
         [HttpGet]
         public ActionResult Criar()
         {
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
+            var permissoes = _permissionService.GetAll(p => p.IsStandard == false);
             ViewBag.Permissoes = GetTreeData(permissoes);
 
             return View();
@@ -112,70 +113,71 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, Guid[] ckbPermissoes)
+        [Audit]
+        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Profile profile, long[] ckbPermissionsLongs)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var defaultList = _servicoPermissao.ObterTodos(p => p.Padrao).ToList();
+                    var defaultList = _permissionService.GetAll(p => p.IsStandard).ToList();
 
                     foreach (var d in defaultList)
                     {
-                        perfil.Permissoes.Add(d);
+                        profile.Permissions.Add(d);
                     }
 
-                    var ckbSelecionadas =
-                        ckbPermissoes.Select(ckb => _servicoPermissao.ObterPeloId(ckb)).ToList();
+                    var ckbSelected =
+                        ckbPermissionsLongs.Select(ckb => _permissionService.GetById(ckb)).ToList();
 
-                    foreach (var p in ckbSelecionadas)
+                    foreach (var p in ckbSelected)
                     {
-                        perfil.Permissoes.Add(p);
+                        profile.Permissions.Add(p);
                     }
 
-                    perfil.Editavel = true;
+                    profile.IsEditable = true;
 
-                    _servicoPerfil.Criar(perfil);
-                    Successo(Alertas.Sucesso, true);
+                    _profileService.Insert(profile);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
-            ViewBag.Permissoes = GetTreeData(permissoes);
+            var permissions = _permissionService.GetAll(p => p.IsStandard == false);
+            ViewBag.Permissoes = GetTreeData(permissions);
 
-            return View(perfil);
+            return View(profile);
         }
 
         // GET: /Perfil/Editar/5
         [HttpGet]
-        public ActionResult Editar(Guid? id)
+        public ActionResult Editar(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var perfil = _servicoPerfil.ObterPeloId(id.Value);
+            var perfil = _profileService.GetById(id.Value);
 
             if (perfil == null)
             {
                 return HttpNotFound();
             }
 
-            if (!perfil.Editavel)
+            if (!perfil.IsEditable)
             {
                 return RedirectToAction("Index");
             }
 
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
-            var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
-            ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
+            var permissions = _permissionService.GetAll(p => p.IsStandard == false);
+            var selectedPermissions = _permissionService.GetProfilePermissions(perfil.Id);
+            ViewBag.Permissoes = GetTreeData(permissions, selectedPermissions);
 
             return View(perfil);
         }
@@ -183,69 +185,70 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id, Nome, Descricao")] Perfil perfil, Guid[] ckbPermissoes)
+        [Audit]
+        public ActionResult Editar([Bind(Include = "Id, Name, Description")] Profile profile, long[] ckbPermissions)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     var ckbSelecionadas =
-                        ckbPermissoes.Select(ckb => _servicoPermissao.ObterPeloId(ckb)).ToList();
+                        ckbPermissions.Select(ckb => _permissionService.GetById(ckb)).ToList();
 
-                    perfil.Permissoes = ckbSelecionadas;
+                    profile.Permissions = ckbSelecionadas;
 
-                    var oldPerfil = _servicoPerfil.ObterPerfilComPermissoes(perfil.Id);
+                    var oldPerfil = _profileService.GetProfileWithPermissions(profile.Id);
 
-                    if (!oldPerfil.Editavel)
+                    if (!oldPerfil.IsEditable)
                     {
-                        throw new Exception(Excecoes.AcaoNaoPermitida);
+                        throw new Exception(Exceptions.ActionNotAllowed);
                     }
 
-                    oldPerfil.Nome = perfil.Nome;
-                    oldPerfil.Descricao = perfil.Descricao;
-                    oldPerfil.Permissoes = oldPerfil.Permissoes.Where(p => ckbSelecionadas.Contains(p)).ToList();
+                    oldPerfil.Name = profile.Name;
+                    oldPerfil.Description = profile.Description;
+                    oldPerfil.Permissions = oldPerfil.Permissions.Where(p => ckbSelecionadas.Contains(p)).ToList();
 
-                    _servicoPerfil.Atualizar(oldPerfil);
-                    Successo(Alertas.Sucesso, true);
+                    _profileService.Update(oldPerfil);
+                    Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception exception)
                 {
-                    Erro(Alertas.Erro, true, exception);
+                    Erro(Alerts.Erro, true, exception);
                 }
             }
 
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
-            var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
-            ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
+            var permissions = _permissionService.GetAll(p => p.IsStandard == false);
+            var selectedPermissions = _permissionService.GetProfilePermissions(profile.Id);
+            ViewBag.Permissoes = GetTreeData(permissions, selectedPermissions);
 
-            return View(perfil);
+            return View(profile);
         }
 
         // GET: /Perfil/Excluir/5
         [HttpGet]
-        public ActionResult Excluir(Guid? id)
+        public ActionResult Excluir(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var perfil = _servicoPerfil.ObterPeloId(id.Value);
+            var perfil = _profileService.GetById(id.Value);
 
             if (perfil == null)
             {
                 return HttpNotFound();
             }
 
-            if (!perfil.Editavel)
+            if (!perfil.IsEditable)
             {
                 return RedirectToAction("Index");
             }
 
-            var permissoes = _servicoPermissao.ObterTodos(p => p.Padrao == false);
-            var permissoesSelecionadas = _servicoPermissao.ObterPermissoesDoPerfil(perfil.Id);
+            var permissoes = _permissionService.GetAll(p => p.IsStandard == false);
+            var permissoesSelecionadas = _permissionService.GetProfilePermissions(perfil.Id);
             ViewBag.Permissoes = GetTreeData(permissoes, permissoesSelecionadas);
 
             return View(perfil);
@@ -254,51 +257,52 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarExcluir(Guid id)
+        [Audit]
+        public ActionResult ConfirmarExcluir(long id)
         {
-            var perfil = _servicoPerfil.ObterPeloId(id);
+            var perfil = _profileService.GetById(id);
 
             if (perfil == null)
             {
                 return HttpNotFound();
             }
 
-            if (!perfil.Editavel)
+            if (!perfil.IsEditable)
             {
-                throw new Exception(Excecoes.AcaoNaoPermitida);
+                throw new Exception(Exceptions.ActionNotAllowed);
             }
 
             try
             {
-                _servicoPerfil.Excluir(perfil);
-                Successo(Alertas.Sucesso, true);
+                _profileService.Delete(perfil);
+                Success(Alerts.Sucess, true);
 
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                Erro(Alertas.Erro, true, exception);
+                Erro(Alerts.Erro, true, exception);
             }
 
             return View(perfil);
         }
 
-        private static List<TreeViewNode> GetTreeData(IEnumerable<Permissao> permissoes, IEnumerable<Permissao> permissoesSelecionadas = null, Guid parentNodeId = default(Guid))
+        private static List<TreeViewNode> GetTreeData(IEnumerable<Permission> permissions, IEnumerable<Permission> selectedPermissions = null, long parentNodeId = 0)
         {
-            var lista = permissoes.ToList();
+            var list = permissions.ToList();
 
-            IList<Permissao> listaUsuario = permissoesSelecionadas?.ToList() ?? new List<Permissao>();
+            IList<Permission> userList = selectedPermissions?.ToList() ?? new List<Permission>();
 
-            var pList = lista.Where(p => p.ParenteId == parentNodeId) as IList<Permissao> ??
-                             lista.Where(p => p.ParenteId == parentNodeId).ToList();
+            var pList = list.Where(p => p.ParentId == parentNodeId) as IList<Permission> ??
+                             list.Where(p => p.ParentId == parentNodeId).ToList();
 
             return pList.Select(item => new TreeViewNode
             {
                 Id = item.Id,
-                Texto = item.Nome,
-                ParenteId = item.ParenteId,
-                Selecionado = listaUsuario.Any(p => p.Id == item.Id),
-                Filhos = GetTreeData(lista, listaUsuario, item.Id)
+                Text = item.Name,
+                ParentId = item.ParentId,
+                Selected = userList.Any(p => p.Id == item.Id),
+                Children = GetTreeData(list, userList, item.Id)
             }).ToList();
         }
     }

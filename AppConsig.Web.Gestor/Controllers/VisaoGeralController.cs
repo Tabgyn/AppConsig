@@ -7,13 +7,13 @@ namespace AppConsig.Web.Gestor.Controllers
         // GET: VisaoGeral
         public ActionResult Index()
         {
-            Atencao(
+            Warning(
                 "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
                 true);
-            Successo(
+            Success(
                 "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
                 true);
-            Informacao(
+            Info(
                 "Lorem ipsum dolor sit amet, usu mucius audiam admodum at. Eam duis sadipscing an, ad pro vivendo perfecto.",
                 true);
             Erro(

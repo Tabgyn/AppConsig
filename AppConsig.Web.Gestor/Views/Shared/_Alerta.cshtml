@@ -1,20 +1,20 @@
-﻿@using AppConsig.Web.Base.Entidades
+﻿@using AppConsig.Web.Base.Entities
 @{
-    var alertas = TempData.ContainsKey(Alerta.TempDataKey)
-                ? (List<Alerta>)TempData[Alerta.TempDataKey]
-                : new List<Alerta>();
+    var alertas = TempData.ContainsKey(AlertMessage.TempDataKey)
+                ? (List<AlertMessage>)TempData[AlertMessage.TempDataKey]
+                : new List<AlertMessage>();
     
     foreach (var alerta in alertas)
     {
-        <div class="alert alert-@alerta.EstiloAlerta fade in">
-            @if (alerta.Descartavel)
+        <div class="alert alert-@alerta.AlertMessageStyle fade in">
+            @if (alerta.Disposable)
             {
                 <button class="close" data-dismiss="alert">
                     ×
                 </button>
             }
-            <i class="fa-fw fa fa-@alerta.EstiloIcone"></i>
-            <strong>@Html.Raw(alerta.Titulo)</strong> @Html.Raw(alerta.Texto)
+            <i class="fa-fw fa fa-@alerta.IconClass"></i>
+            <strong>@Html.Raw(alerta.Title)</strong> @Html.Raw(alerta.Text)
         </div>
         <div class="hidden">
             @Html.Raw(alerta.Exception)
