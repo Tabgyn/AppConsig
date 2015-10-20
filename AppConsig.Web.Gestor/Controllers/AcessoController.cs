@@ -34,7 +34,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: Acesso
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Index(AcessoModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -101,7 +100,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: ReeviarSenha
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult ResetarSenha(CriarNovaSenhaModel model)
         {
             if (ModelState.IsValid)
@@ -130,7 +128,6 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model);
         }
 
-        [Audit]
         public ActionResult Sair()
         {
             LimparDadosDoUsuario();

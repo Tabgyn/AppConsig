@@ -15,35 +15,35 @@ namespace AppConsig.Web.Gestor
 
         public IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
-            var loggedUser = ((AppPrincipal)HttpContext.Current.User);
-            var permissions = _context.Usuarios.Include(u => u.Perfil)
+            var usuarioLogado = ((AppPrincipal)HttpContext.Current.User);
+            var permissoes = _context.Usuarios.Include(u => u.Perfil)
                 .Include(u => u.Perfil.Permissoes)
-                .First(u => u.Id == loggedUser.Id).Perfil.Permissoes;
+                .First(u => u.Id == usuarioLogado.Id).Perfil.Permissoes;
 
             var nodeList = new List<DynamicNode>();
-            foreach (var permission in permissions)
+            foreach (var permissao in permissoes)
             {
                 var dNode = new DynamicNode
                 {
-                    Key = permission.Id.ToString(),
-                    ParentKey = permission.ParenteId.ToString(),
-                    Title = permission.Nome,
-                    Description = permission.Descricao,
-                    Url = permission.Url,
-                    Action = permission.Acao,
-                    Controller = permission.Controle,
-                    Order = permission.Ordem
+                    Key = permissao.Id.ToString(),
+                    ParentKey = permissao.ParenteId.ToString(),
+                    Title = permissao.Nome,
+                    Description = permissao.Descricao,
+                    Url = permissao.Url,
+                    Action = permissao.Acao,
+                    Controller = permissao.Controle,
+                    Order = permissao.Ordem
                 };
 
                 //Quando for CRUD
-                if (permission.EhCRUD)
+                if (permissao.EhCRUD)
                 {
-                    var cList = permission.Atributos.Split(';');
+                    var cList = permissao.Atributos.Split(';');
                     dNode.PreservedRouteParameters = cList;
                 }
 
-                dNode.Attributes.Add("icon", permission.ClasseIcone);
-                dNode.Attributes.Add("visibility", permission.MostrarNoMenu ? "" : "!MenuHelper");
+                dNode.Attributes.Add("icon", permissao.ClasseIcone);
+                dNode.Attributes.Add("visibility", permissao.MostrarNoMenu ? string.Empty : "!MenuHelper");
 
                 nodeList.Add(dNode);
             }

@@ -104,7 +104,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Departamento/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Criar([Bind(Include = "Codigo,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
         {
             if (ModelState.IsValid)
@@ -151,7 +150,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Departamento/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Editar([Bind(Include = "Id,Codigo,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
         {
             if (ModelState.IsValid)
@@ -196,7 +194,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Departamento/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
             var departamento = _servicoDepartamento.ObterPeloId(id);

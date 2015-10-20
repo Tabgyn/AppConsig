@@ -115,7 +115,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, long[] ckbPermissoesSelecionadas)
         {
             if (ModelState.IsValid)
@@ -189,7 +188,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Editar([Bind(Include = "Id, Nome, Descricao")] Perfil perfil, long[] ckbPermissoesSelecionadas)
         {
             if (ModelState.IsValid)
@@ -260,7 +258,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
             var perfil = _servicoPerfil.ObterPeloId(id);

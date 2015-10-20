@@ -205,7 +205,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
         {
             if (ModelState.IsValid)
@@ -270,7 +269,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
         {
             if (ModelState.IsValid)
@@ -337,7 +335,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
             var usuario = _servicoUsuario.ObterPeloId(id);

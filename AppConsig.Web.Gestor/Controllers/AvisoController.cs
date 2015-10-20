@@ -95,7 +95,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Criar([Bind(Include = "Texto")] Aviso aviso)
         {
             if (ModelState.IsValid)
@@ -138,7 +137,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult Editar([Bind(Include = "Id,Texto")] Aviso aviso)
         {
             if (ModelState.IsValid)
@@ -181,7 +179,6 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
             var aviso = _servicoAviso.ObterPeloId(id);
