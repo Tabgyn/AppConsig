@@ -12,11 +12,11 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class AvisoController : BaseController
     {
-        readonly INoticeService _noticeService;
+        readonly IServicoAviso _servicoAviso;
 
-        public AvisoController(INoticeService noticeService)
+        public AvisoController(IServicoAviso servicoAviso)
         {
-            _noticeService = noticeService;
+            _servicoAviso = servicoAviso;
         }
 
         // GET: /Aviso
@@ -36,34 +36,34 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var notices = _noticeService.GetAll(a => a.Deleted == false).ToList();
+            var avisos = _servicoAviso.ObterTodos(a => a.Deleted == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                notices = notices.Where(a => a.CreateBy.Contains(searchString)
-                || a.Text.Contains(searchString)).ToList();
+                avisos = avisos.Where(a => a.CreateBy.Contains(searchString)
+                || a.Texto.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
                 case "own":
-                    notices = notices.OrderBy(a => a.CreateBy).ToList();
+                    avisos = avisos.OrderBy(a => a.CreateBy).ToList();
                     break;
                 case "own_desc":
-                    notices = notices.OrderByDescending(a => a.CreateBy).ToList();
+                    avisos = avisos.OrderByDescending(a => a.CreateBy).ToList();
                     break;
                 case "date":
-                    notices = notices.OrderBy(a => a.CreateDate).ToList();
+                    avisos = avisos.OrderBy(a => a.CreateDate).ToList();
                     break;
                 default:
-                    notices = notices.OrderByDescending(a => a.CreateDate).ToList();
+                    avisos = avisos.OrderByDescending(a => a.CreateDate).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(notices.ToPagedList(pageNumber, pageSize));
+            return View(avisos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Aviso/Detalhar/5
@@ -75,14 +75,14 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var notice = _noticeService.GetById(id.Value);
+            var aviso = _servicoAviso.ObterPeloId(id.Value);
 
-            if (notice == null)
+            if (aviso == null)
             {
                 return HttpNotFound();
             }
 
-            return View(notice);
+            return View(aviso);
         }
 
         // GET: /Aviso/Criar
@@ -96,13 +96,13 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult Criar([Bind(Include = "Text")] Notice notice)
+        public ActionResult Criar([Bind(Include = "Texto")] Aviso aviso)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _noticeService.Insert(notice);
+                    _servicoAviso.Criar(aviso);
                     Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
@@ -113,7 +113,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(notice);
+            return View(aviso);
         }
 
         // GET: /Aviso/Editar/5
@@ -125,27 +125,27 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var notice = _noticeService.GetById(id.Value);
+            var aviso = _servicoAviso.ObterPeloId(id.Value);
 
-            if (notice == null)
+            if (aviso == null)
             {
                 return HttpNotFound();
             }
 
-            return View(notice);
+            return View(aviso);
         }
 
         // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult Editar([Bind(Include = "Id,Text")] Notice notice)
+        public ActionResult Editar([Bind(Include = "Id,Texto")] Aviso aviso)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _noticeService.Update(notice);
+                    _servicoAviso.Atualizar(aviso);
                     Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
@@ -156,7 +156,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(notice);
+            return View(aviso);
         }
 
         // GET: /Aviso/Excluir/5
@@ -168,14 +168,14 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var notice = _noticeService.GetById(id.Value);
+            var aviso = _servicoAviso.ObterPeloId(id.Value);
 
-            if (notice == null)
+            if (aviso == null)
             {
                 return HttpNotFound();
             }
 
-            return View(notice);
+            return View(aviso);
         }
 
         // POST: /Aviso/Excluir/5
@@ -184,16 +184,16 @@ namespace AppConsig.Web.Gestor.Controllers
         [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
-            var notice = _noticeService.GetById(id);
+            var aviso = _servicoAviso.ObterPeloId(id);
 
-            if (notice == null)
+            if (aviso == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                _noticeService.Delete(notice);
+                _servicoAviso.Excluir(aviso);
                 Success(Alerts.Sucess, true);
 
                 return RedirectToAction("Index");
@@ -203,7 +203,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            return View(notice);
+            return View(aviso);
         }
     }
 }

@@ -28,10 +28,10 @@ namespace AppConsig.Web.Gestor
         {
             get
             {
-                var contexto = new AppContext();
+                var context = new AppContext();
 
                 if (!User.Identity.IsAuthenticated) return Url.Content("~/Content/Images/no_image_available.png");
-                var avatar = contexto.Users.Find(User.Id).Picture;
+                var avatar = context.Usuarios.Find(User.Id).Foto;
 
                 return !string.IsNullOrEmpty(avatar)
                     ? $"data:image/png;base64,{avatar}"
@@ -62,10 +62,10 @@ namespace AppConsig.Web.Gestor
         {
             get
             {
-                var contexto = new AppContext();
+                var context = new AppContext();
 
                 if (!User.Identity.IsAuthenticated) return Url.Content("~/Content/Images/no_image_available.png");
-                var avatar = contexto.Users.Find(User.Id).Picture;
+                var avatar = context.Usuarios.Find(User.Id).Foto;
 
                 return !string.IsNullOrEmpty(avatar)
                     ? $"data:image/png;base64,{avatar}"

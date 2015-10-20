@@ -6,13 +6,13 @@ namespace AppConsig.Data
 {
     public interface IContext
     {
-        IDbSet<Audit> Audits { get; set; }
-        IDbSet<Notice> Notices { get; set; }
-        IDbSet<Department> Departments { get; set; }
-        IDbSet<Profile> Profiles { get; set; }
-        IDbSet<Permission> Permissions { get; set; }
-        IDbSet<HumanResourceSystem> HumanResourceSystems { get; set; }
-        IDbSet<User> Users { get; set; }
+        IDbSet<Auditoria> Auditorias { get; set; }
+        IDbSet<Aviso> Avisos { get; set; }
+        IDbSet<Departamento> Departamentos { get; set; }
+        IDbSet<Perfil> Perfis { get; set; }
+        IDbSet<Permissao> Permissoes { get; set; }
+        IDbSet<SistemaFolha> SistemasFolha { get; set; }
+        IDbSet<Usuario> Usuarios { get; set; }
         
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

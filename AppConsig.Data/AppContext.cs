@@ -18,26 +18,26 @@ namespace AppConsig.Data
                 new MigrateDatabaseToLatestVersion<AppContext, Migrations.Configuration>("AppConsigContexto"));
         }
 
-        public IDbSet<Audit> Audits { get; set; }
-        public IDbSet<Notice> Notices { get; set; }
-        public IDbSet<Department> Departments { get; set; }
-        public IDbSet<Profile> Profiles { get; set; }
-        public IDbSet<Permission> Permissions { get; set; }
-        public IDbSet<HumanResourceSystem> HumanResourceSystems { get; set; }
-        public IDbSet<User> Users { get; set; }
+        public IDbSet<Auditoria> Auditorias { get; set; }
+        public IDbSet<Aviso> Avisos { get; set; }
+        public IDbSet<Departamento> Departamentos { get; set; }
+        public IDbSet<Perfil> Perfis { get; set; }
+        public IDbSet<Permissao> Permissoes { get; set; }
+        public IDbSet<SistemaFolha> SistemasFolha { get; set; }
+        public IDbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             //Add entities config
-            modelBuilder.Configurations.Add(new AuditConfig());
-            modelBuilder.Configurations.Add(new DepartamentConfig());
-            modelBuilder.Configurations.Add(new HumanResourceSystemConfig());
-            modelBuilder.Configurations.Add(new NoticeConfig());
-            modelBuilder.Configurations.Add(new PermissionConfig());
-            modelBuilder.Configurations.Add(new ProfileConfig());
-            modelBuilder.Configurations.Add(new UserConfig());
+            modelBuilder.Configurations.Add(new AuditoriaConfig());
+            modelBuilder.Configurations.Add(new DepartamentoConfig());
+            modelBuilder.Configurations.Add(new SistemaFolhaConfig());
+            modelBuilder.Configurations.Add(new AvisoConfig());
+            modelBuilder.Configurations.Add(new PermissaoConfig());
+            modelBuilder.Configurations.Add(new PerfilConfig());
+            modelBuilder.Configurations.Add(new UsuarioConfig());
 
             base.OnModelCreating(modelBuilder);
         }

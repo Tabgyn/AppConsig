@@ -2,7 +2,7 @@ USE [AppConsig]
 GO
 
 INSERT INTO [dbo].[SistemaFolha]
-           ([Id],[Nome])
+           ([Nome])
      VALUES
-           (NEWID(),'Recursos Humanos')
+           ('Recursos Humanos')
 GO

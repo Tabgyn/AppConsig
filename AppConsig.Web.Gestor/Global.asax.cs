@@ -25,7 +25,6 @@ namespace AppConsig.Web.Gestor
             var builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
-
             builder.RegisterModule(new ServiceModule());
             builder.RegisterModule(new EntityModule());
 

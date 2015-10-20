@@ -14,11 +14,11 @@ namespace AppConsig.Web.Gestor.Controllers
 {
     public class UsuarioController : BaseController
     {
-        readonly IUserService _userService;
+        readonly IServicoUsuario _servicoUsuario;
 
-        public UsuarioController(IUserService userService)
+        public UsuarioController(IServicoUsuario servicoUsuario)
         {
-            _userService = userService;
+            _servicoUsuario = servicoUsuario;
         }
 
         // GET: /Usuario
@@ -38,12 +38,12 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var users = _userService.GetAll(a => a.Deleted == false && a.IsAdmin == false).ToList();
-            var models = users.Select(usuario => new UsuarioEditaModel
+            var usuarios = _servicoUsuario.ObterTodos(a => a.Deleted == false && a.EhAdministrador == false).ToList();
+            var modelos = usuarios.Select(usuario => new UsuarioEditaModel
             {
                 Id = usuario.Id,
-                Nome = usuario.Name,
-                Sobrenome = usuario.Surname,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
                 Email = usuario.Email,
                 CriadoPor = usuario.CreateBy,
                 DataCriacao = usuario.CreateDate
@@ -51,92 +51,92 @@ namespace AppConsig.Web.Gestor.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                models = models.Where(a => a.CriadoPor.Contains(searchString)
+                modelos = modelos.Where(a => a.CriadoPor.Contains(searchString)
                 || a.NomeCompleto.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
                 case "own_desc":
-                    models = models.OrderByDescending(a => a.CriadoPor).ToList();
+                    modelos = modelos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
-                    models = models.OrderBy(a => a.DataCriacao).ToList();
+                    modelos = modelos.OrderBy(a => a.DataCriacao).ToList();
                     break;
                 case "date_desc":
-                    models = models.OrderByDescending(a => a.DataCriacao).ToList();
+                    modelos = modelos.OrderByDescending(a => a.DataCriacao).ToList();
                     break;
                 default:
-                    models = models.OrderBy(a => a.CriadoPor).ToList();
+                    modelos = modelos.OrderBy(a => a.CriadoPor).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(models.ToPagedList(pageNumber, pageSize));
+            return View(modelos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Usuario/Conta
         [HttpGet]
         public ActionResult Conta()
         {
-            var loggedUser = User;
+            var usuarioLogado = User;
 
-            if (loggedUser == null)
+            if (usuarioLogado == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            var user = _userService.GetById(loggedUser.Id);
+            var usuario = _servicoUsuario.ObterPeloId(usuarioLogado.Id);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            var model = new UsuarioContaModel
+            var modelo = new UsuarioContaModel
             {
-                Id = user.Id,
-                Nome = user.Name,
-                Sobrenome = user.Surname,
-                Foto = user.Picture,
-                Telefone = user.PhoneNumber,
-                Celular = user.MobileNumber,
-                Endereco = user.Address,
-                EnderecoComplemento = user.ComplementAddress,
-                Facebook = user.Facebook,
-                Twitter = user.Twitter
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Foto = usuario.Foto,
+                Telefone = usuario.Telefone,
+                Celular = usuario.Celular,
+                Endereco = usuario.Endereco,
+                EnderecoComplemento = usuario.EnderecoComplemento,
+                Facebook = usuario.Facebook,
+                Twitter = usuario.Twitter
             };
 
-            return View(model);
+            return View(modelo);
         }
 
         // POST: Usuario/Conta
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Conta(UsuarioContaModel model)
+        public ActionResult Conta(UsuarioContaModel modelo)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var user = _userService.GetById(model.Id);
+                    var usuario = _servicoUsuario.ObterPeloId(modelo.Id);
 
-                    if (user == null)
+                    if (usuario == null)
                     {
                         return HttpNotFound();
                     }
 
-                    user.Name = model.Nome;
-                    user.Surname = model.Sobrenome;
-                    user.Picture = model.Foto;
-                    user.PhoneNumber = model.Telefone;
-                    user.MobileNumber = model.Celular;
-                    user.Address = model.Endereco;
-                    user.ComplementAddress = model.EnderecoComplemento;
-                    user.Facebook = model.Facebook;
-                    user.Twitter = model.Twitter;
+                    usuario.Nome = modelo.Nome;
+                    usuario.Sobrenome = modelo.Sobrenome;
+                    usuario.Foto = modelo.Foto;
+                    usuario.Telefone = modelo.Telefone;
+                    usuario.Celular = modelo.Celular;
+                    usuario.Endereco = modelo.Endereco;
+                    usuario.EnderecoComplemento = modelo.EnderecoComplemento;
+                    usuario.Facebook = modelo.Facebook;
+                    usuario.Twitter = modelo.Twitter;
 
                     var httpPostedFileBase = Request.Files[0];
 
@@ -152,11 +152,11 @@ namespace AppConsig.Web.Gestor.Controllers
                         using (var binaryReader = new BinaryReader(httpPostedFileBase.InputStream))
                         {
                             var fileData = binaryReader.ReadBytes(httpPostedFileBase.ContentLength);
-                            user.Picture = model.Foto = Convert.ToBase64String(fileData);
+                            usuario.Foto = modelo.Foto = Convert.ToBase64String(fileData);
                         }
                     }
 
-                    _userService.Update(user);
+                    _servicoUsuario.Atualizar(usuario);
                     Success(Alerts.Sucess, true);
                 }
                 catch (Exception exception)
@@ -164,10 +164,8 @@ namespace AppConsig.Web.Gestor.Controllers
                     Erro(exception.Message, true);
                 }
             }
-
-            Session.Add("Avatar", model.Foto);
-
-            return View(model);
+            
+            return View(modelo);
         }
 
         // GET: /Usuario/Detalhar/5
@@ -179,19 +177,19 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = _userService.GetById(id.Value);
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
 
             var model = new UsuarioEditaModel
             {
-                Id = user.Id,
-                Nome = user.Name,
-                Sobrenome = user.Surname,
-                Email = user.Email,
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
             };
 
             return View(model);
@@ -208,22 +206,22 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditaModel model)
+        public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var usuario = new User
+                    var usuario = new Usuario
                     {
-                        Name = model.Nome,
-                        Surname = model.Sobrenome,
-                        Email = model.Email
+                        Nome = modelo.Nome,
+                        Sobrenome = modelo.Sobrenome,
+                        Email = modelo.Email
                     };
 
                     // TODO: Se nenhum perfil for selecionado, o usuário deverá ser de perfil padrão
 
-                    _userService.Insert(usuario);
+                    _servicoUsuario.Criar(usuario);
                     Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
@@ -234,7 +232,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(model);
+            return View(modelo);
         }
 
         // GET: /Usuario/Editar/5
@@ -246,24 +244,24 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = _userService.GetById(id.Value);
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            if (user.IsAdmin)
+            if (usuario.EhAdministrador)
             {
                 return RedirectToAction("Index");
             }
 
             var model = new UsuarioEditaModel
             {
-                Id = user.Id,
-                Nome = user.Name,
-                Sobrenome = user.Surname,
-                Email = user.Email,
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
             };
 
             return View(model);
@@ -273,24 +271,24 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditaModel model)
+        public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var user = _userService.GetById(model.Id);
+                    var usuario = _servicoUsuario.ObterPeloId(modelo.Id);
 
-                    if (user.IsAdmin)
+                    if (usuario.EhAdministrador)
                     {
                         throw new Exception(Exceptions.ActionNotAllowed);
                     }
 
-                    user.Name = model.Nome;
-                    user.Surname = model.Sobrenome;
-                    user.Email = model.Email;
+                    usuario.Nome = modelo.Nome;
+                    usuario.Sobrenome = modelo.Sobrenome;
+                    usuario.Email = modelo.Email;
 
-                    _userService.Update(user);
+                    _servicoUsuario.Atualizar(usuario);
                     Success(Alerts.Sucess, true);
 
                     return RedirectToAction("Index");
@@ -301,7 +299,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(model);
+            return View(modelo);
         }
 
         // GET: /Usuario/Excluir/5
@@ -313,27 +311,27 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = _userService.GetById(id.Value);
+            var usuario = _servicoUsuario.ObterPeloId(id.Value);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            if (user.IsAdmin)
+            if (usuario.EhAdministrador)
             {
                 return RedirectToAction("Index");
             }
 
-            var model = new UsuarioEditaModel
+            var modelo = new UsuarioEditaModel
             {
-                Id = user.Id,
-                Nome = user.Name,
-                Sobrenome = user.Surname,
-                Email = user.Email,
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
             };
 
-            return View(model);
+            return View(modelo);
         }
 
         // POST: /Usuario/Excluir/5
@@ -342,21 +340,21 @@ namespace AppConsig.Web.Gestor.Controllers
         [Audit]
         public ActionResult ConfirmarExcluir(long id)
         {
-            var user = _userService.GetById(id);
+            var usuario = _servicoUsuario.ObterPeloId(id);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            if (user.IsAdmin)
+            if (usuario.EhAdministrador)
             {
                 throw new Exception(Exceptions.ActionNotAllowed);
             }
 
             try
             {
-                _userService.Delete(user);
+                _servicoUsuario.Excluir(usuario);
                 Success(Alerts.Sucess, true);
 
                 return RedirectToAction("Index");
@@ -366,15 +364,15 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            var model = new UsuarioEditaModel
+            var modelo = new UsuarioEditaModel
             {
-                Id = user.Id,
-                Nome = user.Name,
-                Sobrenome = user.Surname,
-                Email = user.Email,
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Sobrenome = usuario.Sobrenome,
+                Email = usuario.Email,
             };
 
-            return View(model);
+            return View(modelo);
         }
     }
 }

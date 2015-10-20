@@ -2,12 +2,6 @@
 @{
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
-
-    var imageString = Url.Content("~/Content/Images/no_image_available.png");
-    if (Model.Foto != null)
-    {
-        imageString = string.Format("data:image/png;base64,{0}", Model.Foto);
-    }
 }
 
 <div class="row">
@@ -24,7 +18,7 @@
 
                     <div class="row conta-cabecalho">
                         <div class="col-md-4 col-lg-2 text-center">
-                            <img src="@imageString" alt="Minha imagem" class="conta-foto">
+                            <img src="@Avatar" alt="Minha imagem" class="conta-foto">
                             <div class="col-md-12 col-lg-12">
                                 <input type="file" name="avatar"/>
                             </div>

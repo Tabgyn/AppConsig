@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<AppConsig.Entities.Profile>
+﻿@model PagedList.IPagedList<AppConsig.Entities.Perfil>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
@@ -48,7 +48,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="col-md-5 col-lg-5 text-overflow">@item.Name</td>
+                                    <td class="col-md-5 col-lg-5 text-overflow">@item.Nome</td>
                                     <td class="col-md-3 col-lg-2">@item.CreateBy</td>
                                     <td class="hidden-md col-lg-2">@item.CreateDate</td>
                                     <td class="col-md-4 col-lg-3 text-align-center">

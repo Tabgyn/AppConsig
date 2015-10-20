@@ -16,17 +16,18 @@ namespace AppConsig.Web.Gestor.Controllers
     [AllowAnonymous]
     public class AcessoController : BaseController
     {
-        readonly IUserService _userService;
+        readonly IServicoUsuario _servicoUsuario;
 
-        public AcessoController(IUserService userService)
+        public AcessoController(IServicoUsuario servicoUsuario)
         {
-            _userService = userService;
+            _servicoUsuario = servicoUsuario;
         }
 
         // GET: Acesso
-        public ActionResult Login(string returnUrl)
+        public ActionResult Index(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
@@ -34,28 +35,26 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult Login(AcessoModel model, string returnUrl)
+        public ActionResult Index(AcessoModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (_userService.ValidateUser(model.Email, model.Senha))
+                    if (_servicoUsuario.ValidarUsuario(model.Email, model.Senha))
                     {
-                        var user = _userService.GetAll(u => u.Email == model.Email).First();
+                        var user = _servicoUsuario.ObterTodos(u => u.Email == model.Email).First();
 
                         var serializeModel = new AppPrincipalSerializedModel
                         {
                             Id = user.Id,
-                            Name = user.Name,
-                            Surname = user.Surname,
+                            Name = user.Nome,
+                            Surname = user.Sobrenome,
                             Email = user.Email,
-                            IsAdmin = user.IsAdmin
+                            IsAdmin = user.EhAdministrador
                         };
 
                         LimparDadosDoUsuario();
-
-                        Session.Add("Avatar", user.Picture);
 
                         var serializer = new JavaScriptSerializer();
 
@@ -94,7 +93,7 @@ namespace AppConsig.Web.Gestor.Controllers
         }
 
         // GET: ReeviarSenha
-        public ActionResult CriarNovaSenha()
+        public ActionResult ResetarSenha()
         {
             return View();
         }
@@ -103,19 +102,21 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult CriarNovaSenha(CriarNovaSenhaModel model)
+        public ActionResult ResetarSenha(CriarNovaSenhaModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = _userService.GetAll(u => u.Email == model.Email).FirstOrDefault();
+                var user = _servicoUsuario.ObterTodos(u => u.Email == model.Email).FirstOrDefault();
 
                 if (user != null)
                 {
                     try
                     {
-                        _userService.ResetPassword(user);
+                        _servicoUsuario.ResetarSenha(user);
 
-                        return RedirectToAction("Login");
+                        Success("Uma nova senha foi criada, por favor verique seu e-mail", true);
+
+                        return RedirectToAction("Index");
                     }
                     catch (Exception exception)
                     {
@@ -130,11 +131,11 @@ namespace AppConsig.Web.Gestor.Controllers
         }
 
         [Audit]
-        public ActionResult Logout()
+        public ActionResult Sair()
         {
             LimparDadosDoUsuario();
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
 
         private void LimparDadosDoUsuario()

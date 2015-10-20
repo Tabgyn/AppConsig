@@ -52,6 +52,10 @@
       <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
@@ -93,8 +97,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\TestNoticeController.cs" />
-    <Compile Include="Services\TestNoticeService.cs" />
+    <Compile Include="Controllers\TesteAvisoController.cs" />
+    <Compile Include="Services\TesteAvisoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

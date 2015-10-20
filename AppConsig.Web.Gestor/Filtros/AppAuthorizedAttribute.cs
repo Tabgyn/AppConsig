@@ -22,26 +22,26 @@ namespace AppConsig.Web.Gestor.Filtros
                 return false;
             }
 
-            var loggedUser = httpContext.User as AppPrincipal;
+            var usuarioLogado = httpContext.User as AppPrincipal;
 
-            if (loggedUser == null)
+            if (usuarioLogado == null)
             {
                 return false;
             }
 
-            if (loggedUser.IsAdmin)
+            if (usuarioLogado.IsAdmin)
             {
                 return true;
             }
 
-            var action = httpContext.Request.RequestContext.RouteData.Values["action"].ToString();
-            var controller = httpContext.Request.RequestContext.RouteData.Values["controller"].ToString();
-            var permissions =
-                _context.Users.Include(u => u.Profile)
-                    .Include(u => u.Profile.Permissions)
-                    .First(u => u.Id == loggedUser.Id).Profile.Permissions;
+            var acao = httpContext.Request.RequestContext.RouteData.Values["action"].ToString();
+            var controle = httpContext.Request.RequestContext.RouteData.Values["controller"].ToString();
+            var permissoes =
+                _context.Usuarios.Include(u => u.Perfil)
+                    .Include(u => u.Perfil.Permissoes)
+                    .First(u => u.Id == usuarioLogado.Id).Perfil.Permissoes;
 
-            authorized = permissions.Any(permissao => permissao.Controller == controller && permissao.Action == action);
+            authorized = permissoes.Any(permissao => permissao.Controle == controle && permissao.Acao == acao);
 
             return authorized;
         }

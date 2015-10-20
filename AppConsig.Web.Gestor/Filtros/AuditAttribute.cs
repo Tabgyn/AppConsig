@@ -28,19 +28,19 @@ namespace AppConsig.Web.Gestor.Filtros
             var sessionId = request.Cookies[FormsAuthentication.FormsCookieName] != null
                 ? request.Cookies[FormsAuthentication.FormsCookieName].Value
                 : "NoSession";
-            var audit = new Audit
+            var audit = new Auditoria
             {
-                UserName = userName,
+                Usuario = userName,
                 SessaoId = sessionId,
-                Action = action,
-                Controller = controller,
-                IpAddress = ipAddress,
-                AuditDate = DateTime.Now,
-                Data = data
+                Acao = action,
+                Controle = controller,
+                EnderecoIP = ipAddress,
+                DataEvento = DateTime.Now,
+                Dados = data
             };
             var context = new AppContext();
 
-            context.Audits.Add(audit);
+            context.Auditorias.Add(audit);
             context.SaveChanges();
 
             base.OnActionExecuting(filterContext);

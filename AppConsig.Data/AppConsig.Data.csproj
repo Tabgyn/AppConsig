@@ -54,16 +54,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
-    <Compile Include="Configuration\AuditConfig.cs" />
-    <Compile Include="Configuration\DepartamentConfig.cs" />
-    <Compile Include="Configuration\HumanResourceSystemConfig.cs" />
-    <Compile Include="Configuration\NoticeConfig.cs" />
-    <Compile Include="Configuration\PermissionConfig.cs" />
+    <Compile Include="Configuration\AuditoriaConfig.cs" />
+    <Compile Include="Configuration\DepartamentoConfig.cs" />
+    <Compile Include="Configuration\SistemaFolhaConfig.cs" />
+    <Compile Include="Configuration\AvisoConfig.cs" />
+    <Compile Include="Configuration\PermissaoConfig.cs" />
     <Compile Include="IContext.cs" />
+    <Compile Include="Migrations\201510191844026_Inicial.cs" />
+    <Compile Include="Migrations\201510191844026_Inicial.Designer.cs">
+      <DependentUpon>201510191844026_Inicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\ProfileConfig.cs" />
-    <Compile Include="Configuration\UserConfig.cs" />
+    <Compile Include="Configuration\PerfilConfig.cs" />
+    <Compile Include="Configuration\UsuarioConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,6 +82,11 @@
       <Project>{8BACA6CC-384A-4BB5-8852-DEE2EF1A86ED}</Project>
       <Name>AppConsig.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510191844026_Inicial.resx">
+      <DependentUpon>201510191844026_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

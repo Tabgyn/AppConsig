@@ -61,14 +61,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -174,13 +166,12 @@
     <Compile Include="AppView.cs" />
     <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
-    <Compile Include="Controllers\OrgaoController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Filtros\AuditAttribute.cs" />
-    <Compile Include="Hubs\TaskHub.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -208,7 +199,6 @@
     <Compile Include="Modulos\EntityModule.cs" />
     <Compile Include="Modulos\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -303,8 +293,6 @@
     <Content Include="Scripts\jquery.dataTables.min.js">
       <DependentUpon>jquery.dataTables.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.simpleWeather.js" />
     <Content Include="Scripts\jquery.simpleWeather.min.js">
       <DependentUpon>jquery.simpleWeather.js</DependentUpon>
@@ -495,9 +483,9 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\VisaoGeral\Index.cshtml" />
-    <Content Include="Views\Acesso\Login.cshtml" />
+    <Content Include="Views\Acesso\Index.cshtml" />
     <Content Include="Views\Shared\_Unauthorized.cshtml" />
-    <Content Include="Views\Acesso\CriarNovaSenha.cshtml" />
+    <Content Include="Views\Acesso\ResetarSenha.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
@@ -566,11 +554,11 @@
     <Content Include="Views\Usuario\Editar.cshtml" />
     <Content Include="Views\Usuario\Excluir.cshtml" />
     <Content Include="Views\Auditoria\Index.cshtml" />
-    <Content Include="Views\Orgao\Index.cshtml" />
-    <Content Include="Views\Orgao\Detalhar.cshtml" />
-    <Content Include="Views\Orgao\Criar.cshtml" />
-    <Content Include="Views\Orgao\Editar.cshtml" />
-    <Content Include="Views\Orgao\Excluir.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
+    <Content Include="Views\Departamento\Detalhar.cshtml" />
+    <Content Include="Views\Departamento\Criar.cshtml" />
+    <Content Include="Views\Departamento\Editar.cshtml" />
+    <Content Include="Views\Departamento\Excluir.cshtml" />
     <Content Include="Views\Relatorio\Contrato.cshtml" />
     <Content Include="Views\Relatorio\Servidor.cshtml" />
   </ItemGroup>

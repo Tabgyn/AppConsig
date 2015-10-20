@@ -6,26 +6,26 @@ USE [AppConsig]
 GO
 
 --INSERIR USUARIO MASTER
-DECLARE @id uniqueidentifier;
+DECLARE @id bigint;
 SET @id = (SELECT [Id] FROM [dbo].[Perfil] WHERE [Nome] = 'Admin')
 INSERT INTO [dbo].[Usuario]
-           ([Id]
-		   ,[Nome]
+           ([Nome]
            ,[Sobrenome]
            ,[Email]
+           ,[NomeDeUsuario]
            ,[Senha]
-           ,[Admin]
+           ,[EhAdministrador]
            ,[PerfilId]
            ,[CriadoPor]
-           ,[DataCriacao]
+           ,[CriadoEm]
            ,[AtualizadoPor]
-           ,[DataAtualizacao]
+           ,[AtualizadoEm]
            ,[Excluido])
      VALUES
-           (NEWID()
-		   ,'Administrador'
+           ('Administrador'
            ,''
            ,'admin@appconsig.com.br'
+		   ,'admin@appconsig.com.br'
 		   ,'9999:1VCja1oXqOrMxIp7BPZxqZLRBUfFQBa2:zlB+uCANJVV+p8nyMaLi0QsRYbwL+Hgv' --123
            ,1
 		   ,@id
@@ -37,26 +37,26 @@ INSERT INTO [dbo].[Usuario]
 GO
 
 --INSERIR USUARIO PADRAO
-DECLARE @id uniqueidentifier;
+DECLARE @id bigint;
 SET @id = (SELECT [Id] FROM [dbo].[Perfil] WHERE [Nome] = 'Padrão')
 INSERT INTO [dbo].[Usuario]
-           ([Id]
-		   ,[Nome]
+           ([Nome]
            ,[Sobrenome]
            ,[Email]
+           ,[NomeDeUsuario]
            ,[Senha]
-           ,[Admin]
+           ,[EhAdministrador]
            ,[PerfilId]
            ,[CriadoPor]
-           ,[DataCriacao]
+           ,[CriadoEm]
            ,[AtualizadoPor]
-           ,[DataAtualizacao]
+           ,[AtualizadoEm]
            ,[Excluido])
      VALUES
-           (NEWID()
-		   ,'Usuário'
+           ('Usuário'
            ,''
            ,'usuario@appconsig.com.br'
+		   ,'usuario@appconsig.com.br'
 		   ,'9999:1VCja1oXqOrMxIp7BPZxqZLRBUfFQBa2:zlB+uCANJVV+p8nyMaLi0QsRYbwL+Hgv' --123
            ,0
 		   ,@id

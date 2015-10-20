@@ -50,19 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IService.cs" />
-    <Compile Include="Interfaces\INoticeService.cs" />
-    <Compile Include="Interfaces\IEntityService.cs" />
-    <Compile Include="Interfaces\IDepartementService.cs" />
-    <Compile Include="Interfaces\IProfileService.cs" />
-    <Compile Include="Interfaces\IPermissionService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Interfaces\IServicoAviso.cs" />
+    <Compile Include="Interfaces\IServicoBasico.cs" />
+    <Compile Include="Interfaces\IServicoDepartamento.cs" />
+    <Compile Include="Interfaces\IServicoPerfil.cs" />
+    <Compile Include="Interfaces\IServicoPermissao.cs" />
+    <Compile Include="Interfaces\IServicoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NoticeService.cs" />
-    <Compile Include="EntityService.cs" />
-    <Compile Include="DepartmentService.cs" />
-    <Compile Include="ProfileService.cs" />
-    <Compile Include="PermissionService.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="ServicoAviso.cs" />
+    <Compile Include="ServicoBasico.cs" />
+    <Compile Include="ServidoDepartamento.cs" />
+    <Compile Include="ServicoPerfil.cs" />
+    <Compile Include="ServicoPermissao.cs" />
+    <Compile Include="ServicoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppConsig.Common\AppConsig.Common.csproj">

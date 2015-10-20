@@ -1,0 +1,51 @@
+﻿@using AppConsig.Entities
+@model Departamento
+@{
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @{ Html.RenderPartial("_Alerta"); }
+                @using (Html.BeginForm("Criar", "Departamento", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CodigoDepartamento, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CodigoDepartamento, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CodigoDepartamento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SistemaFolhaId, new { @class = "control-label" })
+                        @Html.DropDownListFor(m => m.SistemaFolhaId,
+                            ((IEnumerable<SistemaFolha>)ViewBag.SistemasFolha).Select(option => new SelectListItem
+                            {
+                                Text = option.Nome,
+                                Value = option.Id.ToString(),
+                                Selected = (Model != null) && (option.Id == Model.SistemaFolhaId)
+                            }), "Escolha uma opção...", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SistemaFolhaId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

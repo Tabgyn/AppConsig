@@ -1,4 +1,4 @@
-﻿@model AppConsig.Entities.Notice
+﻿@model AppConsig.Entities.Aviso
 @{
     ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
     ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
@@ -16,8 +16,8 @@
 
                     <p>Deseja realmente excluir?</p>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Text, new {@class = "control-label"})
-                        @Html.TextAreaFor(m => m.Text, new {@class = "form-control", disabled = "disabled"})
+                        @Html.LabelFor(m => m.Texto, new {@class = "control-label"})
+                        @Html.TextAreaFor(m => m.Texto, new {@class = "form-control", disabled = "disabled"})
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Excluir</button>

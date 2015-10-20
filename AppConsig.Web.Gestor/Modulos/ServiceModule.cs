@@ -9,7 +9,7 @@ namespace AppConsig.Web.Gestor.Modulos
         {
             builder.RegisterAssemblyTypes(Assembly.Load("AppConsig.Services"))
 
-                      .Where(t => t.Name.EndsWith("Service"))
+                      .Where(t => t.Name.StartsWith("Service"))
 
                       .AsImplementedInterfaces()
 

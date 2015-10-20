@@ -41,14 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audit.cs" />
-    <Compile Include="Department.cs" />
-    <Compile Include="Profile.cs" />
-    <Compile Include="Permission.cs" />
+    <Compile Include="Auditoria.cs" />
+    <Compile Include="Departamento.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="Permissao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Notice.cs" />
-    <Compile Include="HumanResourceSystem.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Aviso.cs" />
+    <Compile Include="SistemaFolha.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppConsig.Common\AppConsig.Common.csproj">
