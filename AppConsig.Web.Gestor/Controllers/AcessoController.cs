@@ -6,7 +6,6 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 using AppConsig.Common.Security;
 using AppConsig.Services.Interfaces;
-using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Resources;
 using MvcSiteMapProvider;
