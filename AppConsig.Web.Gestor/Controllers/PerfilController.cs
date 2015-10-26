@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
 using AppConsig.Web.Base.Entities;
-using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -296,7 +295,7 @@ namespace AppConsig.Web.Gestor.Controllers
             var pList = list.Where(p => p.ParenteId == parentNodeId) as IList<Permissao> ??
                              list.Where(p => p.ParenteId == parentNodeId).ToList();
 
-            return pList.Select(item => new TreeViewNode
+            var tList = pList.Select(item => new TreeViewNode
             {
                 Id = item.Id,
                 Text = item.Nome,
@@ -304,6 +303,8 @@ namespace AppConsig.Web.Gestor.Controllers
                 Selected = userList.Any(p => p.Id == item.Id),
                 Children = GetTreeData(list, userList, item.Id)
             }).ToList();
+
+            return tList;
         }
     }
 }

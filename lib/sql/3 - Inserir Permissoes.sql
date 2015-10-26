@@ -20,15 +20,15 @@ INSERT INTO [dbo].[Permissao]
            ,[EhCRUD]
            ,[Atributos])
      VALUES
-            ('Visão Geral','Dados e estatísticas','','Index','VisaoGeral','fa fa-dashboard',NULL,1,1,1,0,'')
-		   ,('Minha conta','','','Conta','Usuario','',NULL,2,1,0,0,'')
-		   ,('Arquivos','','/0','','','fa fa-archive',NULL,3,0,1,0,'')
-		   ,('Controles','','/1','','','fa fa-cogs',NULL,4,0,1,0,'')
-		   ,('Consignações','Cadastro de consignações','','Index','Consignacao','fa fa-certificate',NULL,5,0,1,0,'')
-		   ,('Consignatárias','Cadastro de consignatárias','','Index','Consignataria','fa fa-bank',NULL,6,0,1,0,'')
-		   ,('Contratos','Contratos e propostas','','Index','Contrato','fa fa-money',NULL,7,0,1,0,'')
-		   ,('Relatórios','','/2','','','fa fa-bar-chart',NULL,8,0,1,0,'')
-		   ,('Servidores','Cadastro de servidores','','Index','Servidor','fa fa-users',NULL,9,0,1,0,'')
+            ('Visão Geral','Dados e estatísticas','','Index','VisaoGeral','fa fa-dashboard',0,1,1,1,0,'')
+		   ,('Minha conta','','','Conta','Usuario','',0,2,1,0,0,'')
+		   ,('Arquivos','','/0','','','fa fa-archive',0,3,0,1,0,'')
+		   ,('Controles','','/1','','','fa fa-cogs',0,4,0,1,0,'')
+		   ,('Consignações','Cadastro de consignações','','Index','Consignacao','fa fa-certificate',0,5,0,1,0,'')
+		   ,('Consignatárias','Cadastro de consignatárias','','Index','Consignataria','fa fa-bank',0,6,0,1,0,'')
+		   ,('Contratos','Contratos e propostas','','Index','Contrato','fa fa-money',0,7,0,1,0,'')
+		   ,('Relatórios','','/2','','','fa fa-bar-chart',0,8,0,1,0,'')
+		   ,('Servidores','Cadastro de servidores','','Index','Servidor','fa fa-users',0,9,0,1,0,'')
 GO
 
 --INSERIR PERMISSOES FILHO

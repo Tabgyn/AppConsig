@@ -16,24 +16,24 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Nome, new {@class = "control-label"})
-                        @Html.TextBoxFor(m => m.Nome, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.Nome, "", new {@class = "text-danger"})
+                        @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Descricao, new {@class = "control-label"})
-                        @Html.TextBoxFor(m => m.Descricao, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.Descricao, "", new {@class = "text-danger"})
+                        @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Permissoes, new {@class = "control-label"})
+                        @Html.LabelFor(m => m.Permissoes, new { @class = "control-label" })
                         <div id="tree">
-                            @Html.TreeView(@ViewBag.Permissoes as List<TreeViewNode>).EmptyContent("").Children(m => m.Children).HtmlAttributes(new {id = "treeList"}).ChildrenHtmlAttributes(new {@class = "subItem"}).ItemText(m => m.Text).ItemTemplate(@<div class="checkbox"><label><input id="@Html.Raw("ckb-" + item.Id)" name="ckbPermissoes" type="checkbox" value="@item.Id" @Html.Raw(item.Selected ? "checked" : "")><span class="text">@item.Text</span></label></div>)
+                            @Html.TreeView(@ViewBag.Permissoes as List<TreeViewNode>).EmptyContent("").Children(m => m.Children).HtmlAttributes(new { id = "treeList" }).ChildrenHtmlAttributes(new { @class = "subItem" }).ItemText(m => m.Text).ItemTemplate(@<div class="checkbox"><label><input id="@Html.Raw("ckb-" + item.Id)" name="ckbPermissoes" type="checkbox" value="@item.Id" @Html.Raw(item.Selected ? "checked" : "")><span class="text">@item.Text</span></label></div>)
                         </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-link"})
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
                     </div>
                 }
             </div>
@@ -50,12 +50,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#tree').jstree({
-                "core" : {
-                    "expand_selected_onload" : true
+                "core": {
+                    "expand_selected_onload": true
                 },
                 "themes": {
-                    "theme" : "default",
-                    "dots" : false
+                    "theme": "default",
+                    "dots": false
                 }
             });
         });
