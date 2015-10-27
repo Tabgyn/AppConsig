@@ -46,7 +46,7 @@ namespace AppConsig.Services
         {
             var usuario = Dbset.FirstOrDefault(x => x.NomeDeUsuario == nomeDeUsuario);
 
-            return usuario != null && HashHelper.ValidatePassword(senha, usuario.Senha);
+            return usuario != null && HashHelper.ValidateHash(senha, usuario.Senha);
         }
 
         public void ResetarSenha(Usuario usuario)
