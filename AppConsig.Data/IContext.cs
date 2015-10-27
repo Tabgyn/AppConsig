@@ -1,5 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Threading;
+using System.Threading.Tasks;
 using AppConsig.Entities;
 
 namespace AppConsig.Data
@@ -17,6 +19,7 @@ namespace AppConsig.Data
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
-        int SaveChanges(); 
+        int SaveChanges();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

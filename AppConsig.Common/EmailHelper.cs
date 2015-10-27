@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 
 namespace AppConsig.Common
@@ -52,6 +53,54 @@ namespace AppConsig.Common
                 };
 
                 smtp.Send(message);
+
+                att?.Dispose();
+
+                message.Dispose();
+                smtp.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Não foi possível enviar o e-mail para {To}", ex.InnerException);
+            }
+        }
+
+        public async Task SendAsync()
+        {
+            try
+            {
+                Attachment att = null;
+                var message = new MailMessage(From, To, Subject, Body) { IsBodyHtml = true };
+
+                if (CopyTo != null)
+                {
+                    message.Bcc.Add(CopyTo);
+                }
+
+                if (!string.IsNullOrEmpty(AttachmentFile))
+                {
+                    if (File.Exists(AttachmentFile))
+                    {
+                        att = new Attachment(AttachmentFile);
+                        message.Attachments.Add(att);
+                    }
+                }
+
+                var credentials = new NetworkCredential
+                {
+                    UserName = WebConfigurationManager.AppSettings["EmailUser"],
+                    Password = WebConfigurationManager.AppSettings["EmailPassword"]
+                };
+
+                var smtp = new SmtpClient
+                {
+                    Credentials = credentials,
+                    Host = WebConfigurationManager.AppSettings["SmtpHost"],
+                    Port = Convert.ToInt32(WebConfigurationManager.AppSettings["SmtpPort"]),
+                    EnableSsl = true
+                };
+
+                await smtp.SendMailAsync(message);
 
                 att?.Dispose();
 

@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using AppConsig.Common.Interfaces;
 using AppConsig.Data.Configuration;
 using AppConsig.Entities;
@@ -82,6 +83,48 @@ namespace AppConsig.Data
             }
 
             return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            var userName = Thread.CurrentPrincipal.Identity.Name;
+            var timestamp = DateTime.Now;
+            var entries = ChangeTracker.Entries()
+                .Where(x => x.Entity is IAuditEntity &&
+                            (x.State == EntityState.Added ||
+                             x.State == EntityState.Modified ||
+                             x.State == EntityState.Deleted));
+
+            foreach (var entry in entries)
+            {
+                var entity = entry.Entity as IAuditEntity;
+
+                if (entity == null) continue;
+
+                entity.UpdateBy = userName;
+                entity.UpdateDate = timestamp;
+
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entity.CreateBy = userName;
+                        entity.CreateDate = timestamp;
+                        entity.Deleted = false;
+                        break;
+                    case EntityState.Modified:
+                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
+                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        break;
+                    case EntityState.Deleted:
+                        entity.Deleted = true;
+                        entry.State = EntityState.Modified;
+                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
+                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using AppConsig.Common;
 using AppConsig.Data;
 using AppConsig.Services.Interfaces;
@@ -29,9 +31,19 @@ namespace AppConsig.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T ObterPeloId(long id)
+        public virtual T ObterPeloId(long id)
         {
             return Dbset.Find(id);
+        }
+
+        /// <summary>
+        /// Retorna a entidade buscando pelo seu Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual async Task<T> ObterPeloIdAsync(long id)
+        {
+            return await ((DbSet<T>)Dbset).FindAsync(id);
         }
 
         /// <summary>
@@ -43,7 +55,17 @@ namespace AppConsig.Services
         {
             return filterExpression != null ? Dbset.Where(filterExpression).AsEnumerable() : Dbset.AsEnumerable();
         }
-        
+
+        /// <summary>
+        /// Retorna todas as entidades.
+        /// </summary>
+        /// <param name="filterExpression"></param>
+        /// <returns></returns>
+        public virtual async Task<IEnumerable<T>> ObterTodosAsync(Expression<Func<T, bool>> filterExpression = null)
+        {
+            return filterExpression != null ? await Dbset.Where(filterExpression).ToListAsync() : await Dbset.ToListAsync();
+        }
+
         /// <summary>
         /// Cria uma nova entidade.
         /// </summary>
@@ -60,6 +82,22 @@ namespace AppConsig.Services
         }
 
         /// <summary>
+        /// Cria uma nova entidade.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task CriarAsync(T entity, CancellationToken cancellationToken)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            Dbset.Add(entity);
+            await Context.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
         /// Atualiza uma entidade.
         /// </summary>
         /// <param name="entity"></param>
@@ -72,6 +110,19 @@ namespace AppConsig.Services
         }
 
         /// <summary>
+        /// Atualiza uma entidade.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task AtualizarAsync(T entity, CancellationToken cancellationToken)
+        {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+
+            Context.Entry(entity).State = EntityState.Modified;
+            await Context.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
         /// Exclui uma entidade.
         /// </summary>
         /// <param name="entity"></param>
@@ -81,6 +132,19 @@ namespace AppConsig.Services
 
             Dbset.Remove(entity);
             Context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Exclui uma entidade.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task ExcluirAsync(T entity, CancellationToken cancellationToken)
+        {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+
+            Dbset.Remove(entity);
+            await Context.SaveChangesAsync(cancellationToken);
         }
     }
 }
