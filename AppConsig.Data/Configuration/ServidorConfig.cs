@@ -3,29 +3,32 @@ using AppConsig.Entities;
 
 namespace AppConsig.Data.Configuration
 {
-    public class DepartamentoConfig : EntityTypeConfiguration<Departamento>
+    public class ServidorConfig : EntityTypeConfiguration<Servidor>
     {
-        public DepartamentoConfig()
+        public ServidorConfig()
         {
-            ToTable("Departamento");
+            ToTable("Servidor");
 
             HasKey(e => e.Id);
 
             Property(e => e.Nome).HasColumnName("Nome").IsRequired();
-            Property(e => e.Descricao).HasColumnName("Descricao").IsOptional();
-            Property(e => e.CodigoDepartamento).HasColumnName("CodigoDepartamento").IsRequired();
-            Property(e => e.SistemaFolhaId).HasColumnName("SistemaFolhaId").IsRequired();
-
+            Property(e => e.CPF).HasColumnName("CPF").IsRequired();
+            Property(e => e.Matricula).HasColumnName("Matricula").IsRequired();
+            Property(e => e.NascidoEm).HasColumnName("NascidoEm").IsOptional();
+            Property(e => e.Foto).HasColumnName("Foto").IsOptional();
+            Property(e => e.AdmitidoEm).HasColumnName("AdmitidoEm").IsOptional();
+            Property(e => e.AfastadoEm).HasColumnName("AfastadoEm").IsOptional();
+            
             //IsAuditable
             Property(e => e.CriadoPor).HasColumnName("CriadoPor").IsRequired();
             Property(e => e.CriadoEm).HasColumnName("CriadoEm").IsRequired();
             Property(e => e.AtualizadoPor).HasColumnName("AtualizadoPor").IsRequired();
             Property(e => e.AtualizadoEm).HasColumnName("AtualizadoEm").IsRequired();
             Property(e => e.Excluido).HasColumnName("Excluido").IsRequired();
-            
-            HasRequired(u => u.SistemaFolha)
+
+            HasRequired(u => u.Departamento)
                 .WithMany()
-                .HasForeignKey(u => u.SistemaFolhaId);
+                .HasForeignKey(u => u.DepartamentoId);
         }
     }
 }

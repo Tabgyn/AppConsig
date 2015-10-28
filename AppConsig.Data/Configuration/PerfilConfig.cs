@@ -16,11 +16,11 @@ namespace AppConsig.Data.Configuration
             Property(e => e.EhEditavel).HasColumnName("EhEditavel").IsRequired();
 
             //IsAuditable
-            Property(e => e.CreateBy).HasColumnName("CriadoPor").IsRequired();
-            Property(e => e.CreateDate).HasColumnName("CriadoEm").IsRequired();
-            Property(e => e.UpdateBy).HasColumnName("AtualizadoPor").IsRequired();
-            Property(e => e.UpdateDate).HasColumnName("AtualizadoEm").IsRequired();
-            Property(e => e.Deleted).HasColumnName("Excluido").IsRequired();
+            Property(e => e.CriadoPor).HasColumnName("CriadoPor").IsRequired();
+            Property(e => e.CriadoEm).HasColumnName("CriadoEm").IsRequired();
+            Property(e => e.AtualizadoPor).HasColumnName("AtualizadoPor").IsRequired();
+            Property(e => e.AtualizadoEm).HasColumnName("AtualizadoEm").IsRequired();
+            Property(e => e.Excluido).HasColumnName("Excluido").IsRequired();
 
             HasMany(u => u.Permissoes)
                 .WithMany()

@@ -63,7 +63,6 @@ $(window)
         }, 1000);
     });
 
-
 /*Account Area --> Setting Button*/
 $('#btn-setting')
     .on('click', function (e) {
@@ -192,7 +191,6 @@ function InitiateSideMenu() {
 
     });
     //End Sidebar Collapse
-
 
     //Sidebar Menu Handle
     $(".sidebar-menu").on('click', function (e) {
@@ -352,8 +350,7 @@ function InitiateSettings() {
             $('.page-header').addClass('page-header-fixed');
         }
     }
-
-
+    
     $('#checkbox_fixednavbar')
         .change(function () {
             $('.navbar')
@@ -562,7 +559,6 @@ function getcolor(colorString) {
 }
 /*#endregion Get Colors*/
 
-
 //Switch Classes Function
 function switchClasses(firstClass, secondClass) {
 
@@ -593,7 +589,6 @@ function switchClasses(firstClass, secondClass) {
         }
     }
 }
-
 
 //Add Classes Function
 function addClass(elem, cls) {

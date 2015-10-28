@@ -4,10 +4,10 @@ namespace AppConsig.Common.Interfaces
 {
     public interface IAuditEntity
     {
-        string CreateBy { get; set; }
-        DateTime CreateDate { get; set; }
-        string UpdateBy { get; set; }
-        DateTime UpdateDate { get; set; }
-        bool Deleted { get; set; }
+        string CriadoPor { get; set; }
+        DateTime CriadoEm { get; set; }
+        string AtualizadoPor { get; set; }
+        DateTime AtualizadoEm { get; set; }
+        bool Excluido { get; set; }
     }
 }

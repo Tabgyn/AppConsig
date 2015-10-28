@@ -20,7 +20,7 @@ INSERT INTO [dbo].[Permissao]
            ,[EhCRUD]
            ,[Atributos])
      VALUES
-            ('Visão Geral','Dados e estatísticas','','Index','VisaoGeral','fa fa-dashboard',0,1,1,1,0,'')
+            ('Visão Geral','Dados e informações gerais','','Index','VisaoGeral','fa fa-dashboard',0,1,1,1,0,'')
 		   ,('Minha conta','','','Conta','Usuario','',0,2,1,0,0,'')
 		   ,('Arquivos','','/0','','','fa fa-archive',0,3,0,1,0,'')
 		   ,('Controles','','/1','','','fa fa-cogs',0,4,0,1,0,'')
@@ -76,7 +76,7 @@ INSERT INTO [dbo].[Permissao]
             ('Acessos','Controle de acessos dos usuários','','Index','Usuario','',@id,1,0,1,0,'')
 		   ,('Trilhas de auditoria','Controle de auditoria','','Index','Auditoria','',@id,2,0,1,0,'')
 		   ,('Avisos','Controle de avisos aos usuários','','Index','Aviso','',@id,3,0,1,0,'')
-		   ,('Orgãos','Controle de orgãos dos servidores','','Index','Orgao','',@id,4,0,1,0,'')
+		   ,('Departamentos','Controle de departamentos dos servidores','','Index','Departamento','',@id,4,0,1,0,'')
 		   ,('Parâmetros','Controle de parâmetros do portal','','Index','Parametro','',@id,5,0,1,0,'')
 		   ,('Perfis','Controle de perfis dos usuários','','Index','Perfil','',@id,6,0,1,0,'')
 		   ,('Serviços','Controle de tipos de serviços','','Index','Servico','',@id,7,0,1,0,'')
@@ -146,14 +146,14 @@ INSERT INTO [dbo].[Permissao]
            ,[Atributos])
      VALUES
             ('Criar aviso','Criar novo aviso aos usuários','','Criar','Aviso','',@id,1,0,0,1,'id')
-		   ,('Detalhar aviso','Detalhar aviso aos usuários','','Detalhar','Aviso','',@id,2,0,0,1,'id')
-		   ,('Editar aviso','Editar aviso aos usuários','','Editar','Aviso','',@id,3,0,0,1,'id')
-		   ,('Excluir aviso','Excluir aviso aos usuários','','Excluir','Aviso','',@id,4,0,0,1,'id')
+		   ,('Detalhar aviso','Detalhar aviso dos usuários','','Detalhar','Aviso','',@id,2,0,0,1,'id')
+		   ,('Editar aviso','Editar aviso dos usuários','','Editar','Aviso','',@id,3,0,0,1,'id')
+		   ,('Excluir aviso','Excluir aviso dos usuários','','Excluir','Aviso','',@id,4,0,0,1,'id')
 GO
 
 --Orgãos
 DECLARE @id bigint;
-SET @id = (SELECT [Id] FROM [dbo].[Permissao] WHERE [Nome] = 'Orgãos')
+SET @id = (SELECT [Id] FROM [dbo].[Permissao] WHERE [Nome] = 'Departamentos')
 INSERT INTO [dbo].[Permissao]
            ([Nome]
            ,[Descricao]
@@ -168,10 +168,10 @@ INSERT INTO [dbo].[Permissao]
            ,[EhCRUD]
            ,[Atributos])
      VALUES
-            ('Criar orgão','Criar novo orgão aos servidores','','Criar','Orgao','',@id,1,0,0,1,'id')
-		   ,('Detalhar orgão','Detalhar orgão aos servidores','','Detalhar','Orgao','',@id,2,0,0,1,'id')
-		   ,('Editar orgão','Editar orgão aos servidores','','Editar','Orgao','',@id,3,0,0,1,'id')
-		   ,('Excluir orgão','Excluir orgão aos servidores','','Excluir','Orgao','',@id,4,0,0,1,'id')
+            ('Criar departamento','Criar novo departamento aos servidores','','Criar','Departamento','',@id,1,0,0,1,'id')
+		   ,('Detalhar departamento','Detalhar departamento dos servidores','','Detalhar','Departamento','',@id,2,0,0,1,'id')
+		   ,('Editar departamento','Editar departamento dos servidores','','Editar','Departamento','',@id,3,0,0,1,'id')
+		   ,('Excluir departamento','Excluir departamento dos servidores','','Excluir','Departamento','',@id,4,0,0,1,'id')
 GO
 
 --Perfis
@@ -192,9 +192,9 @@ INSERT INTO [dbo].[Permissao]
            ,[Atributos])
      VALUES
             ('Criar perfil','Criar novo perfil aos usuários','','Criar','Perfil','',@id,1,0,0,1,'id')
-		   ,('Detalhar perfil','Detalhar perfil aos usuários','','Detalhar','Perfil','',@id,2,0,0,1,'id')
-		   ,('Editar perfil','Editar perfil aos usuários','','Editar','Perfil','',@id,3,0,0,1,'id')
-		   ,('Excluir perfil','Excluir perfil aos usuários','','Excluir','Perfil','',@id,4,0,0,1,'id')
+		   ,('Detalhar perfil','Detalhar perfil dos usuários','','Detalhar','Perfil','',@id,2,0,0,1,'id')
+		   ,('Editar perfil','Editar perfil dos usuários','','Editar','Perfil','',@id,3,0,0,1,'id')
+		   ,('Excluir perfil','Excluir perfil dos usuários','','Excluir','Perfil','',@id,4,0,0,1,'id')
 GO
 
 --Serviços
@@ -215,9 +215,9 @@ INSERT INTO [dbo].[Permissao]
            ,[Atributos])
      VALUES
             ('Criar serviço','Criar novo tipo de serviço as consignações','','Criar','Servico','',@id,1,0,0,1,'id')
-		   ,('Detalhar serviço','Detalhar tipo de serviço as consignações','','Detalhar','Servico','',@id,2,0,0,1,'id')
-		   ,('Editar serviço','Editar tipo de serviço as consignações','','Editar','Servico','',@id,3,0,0,1,'id')
-		   ,('Excluir serviço','Excluir tipo de serviço as consignações','','Excluir','Servico','',@id,4,0,0,1,'id')
+		   ,('Detalhar serviço','Detalhar tipo de serviço das consignações','','Detalhar','Servico','',@id,2,0,0,1,'id')
+		   ,('Editar serviço','Editar tipo de serviço das consignações','','Editar','Servico','',@id,3,0,0,1,'id')
+		   ,('Excluir serviço','Excluir tipo de serviço das consignações','','Excluir','Servico','',@id,4,0,0,1,'id')
 GO
 
 --Consignações

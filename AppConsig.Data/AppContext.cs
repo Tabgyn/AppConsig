@@ -26,6 +26,10 @@ namespace AppConsig.Data
         public IDbSet<Permissao> Permissoes { get; set; }
         public IDbSet<SistemaFolha> SistemasFolha { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
+        public IDbSet<Consignacao> Consignacoes { get; set; }
+        public IDbSet<Consignataria> Consignatarias { get; set; }
+        public IDbSet<Servico> Servicos { get; set; }
+        public IDbSet<Servidor> Servidores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,6 +43,10 @@ namespace AppConsig.Data
             modelBuilder.Configurations.Add(new PermissaoConfig());
             modelBuilder.Configurations.Add(new PerfilConfig());
             modelBuilder.Configurations.Add(new UsuarioConfig());
+            modelBuilder.Configurations.Add(new ConsignacaoConfig());
+            modelBuilder.Configurations.Add(new ConsignatariaConfig());
+            modelBuilder.Configurations.Add(new ServicoConfig());
+            modelBuilder.Configurations.Add(new ServidorConfig());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -59,25 +67,25 @@ namespace AppConsig.Data
 
                 if (entity == null) continue;
 
-                entity.UpdateBy = userName;
-                entity.UpdateDate = timestamp;
+                entity.AtualizadoPor = userName;
+                entity.AtualizadoEm = timestamp;
 
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entity.CreateBy = userName;
-                        entity.CreateDate = timestamp;
-                        entity.Deleted = false;
+                        entity.CriadoPor = userName;
+                        entity.CriadoEm = timestamp;
+                        entity.Excluido = false;
                         break;
                     case EntityState.Modified:
-                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
-                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoEm).IsModified = false;
                         break;
                     case EntityState.Deleted:
-                        entity.Deleted = true;
+                        entity.Excluido = true;
                         entry.State = EntityState.Modified;
-                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
-                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoEm).IsModified = false;
                         break;
                 }
             }
@@ -101,25 +109,25 @@ namespace AppConsig.Data
 
                 if (entity == null) continue;
 
-                entity.UpdateBy = userName;
-                entity.UpdateDate = timestamp;
+                entity.AtualizadoPor = userName;
+                entity.AtualizadoEm = timestamp;
 
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entity.CreateBy = userName;
-                        entity.CreateDate = timestamp;
-                        entity.Deleted = false;
+                        entity.CriadoPor = userName;
+                        entity.CriadoEm = timestamp;
+                        entity.Excluido = false;
                         break;
                     case EntityState.Modified:
-                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
-                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoEm).IsModified = false;
                         break;
                     case EntityState.Deleted:
-                        entity.Deleted = true;
+                        entity.Excluido = true;
                         entry.State = EntityState.Modified;
-                        Entry(entity).Property(x => x.CreateBy).IsModified = false;
-                        Entry(entity).Property(x => x.CreateDate).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoPor).IsModified = false;
+                        Entry(entity).Property(x => x.CriadoEm).IsModified = false;
                         break;
                 }
             }

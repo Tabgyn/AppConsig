@@ -59,7 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoAviso.cs" />
     <Compile Include="ServicoBasico.cs" />
-    <Compile Include="ServidoDepartamento.cs" />
+    <Compile Include="ServicoDepartamento.cs" />
     <Compile Include="ServicoPerfil.cs" />
     <Compile Include="ServicoPermissao.cs" />
     <Compile Include="ServicoUsuario.cs" />

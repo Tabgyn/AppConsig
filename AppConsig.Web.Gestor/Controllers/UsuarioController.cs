@@ -5,7 +5,6 @@ using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
-using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
@@ -38,15 +37,15 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var usuarios = _servicoUsuario.ObterTodos(a => a.Deleted == false && a.EhAdministrador == false).ToList();
+            var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false && a.EhAdministrador == false).ToList();
             var modelos = usuarios.Select(usuario => new UsuarioEditaModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
                 Sobrenome = usuario.Sobrenome,
                 Email = usuario.Email,
-                CriadoPor = usuario.CreateBy,
-                DataCriacao = usuario.CreateDate
+                CriadoPor = usuario.CriadoPor,
+                DataCriacao = usuario.CriadoEm
             }).ToList();
 
             if (!string.IsNullOrEmpty(searchString))

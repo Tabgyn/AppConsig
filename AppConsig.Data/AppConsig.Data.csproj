@@ -55,7 +55,11 @@
   <ItemGroup>
     <Compile Include="AppContext.cs" />
     <Compile Include="Configuration\AuditoriaConfig.cs" />
+    <Compile Include="Configuration\ConsignacaoConfig.cs" />
+    <Compile Include="Configuration\ConsignatariaConfig.cs" />
     <Compile Include="Configuration\DepartamentoConfig.cs" />
+    <Compile Include="Configuration\ServicoConfig.cs" />
+    <Compile Include="Configuration\ServidorConfig.cs" />
     <Compile Include="Configuration\SistemaFolhaConfig.cs" />
     <Compile Include="Configuration\AvisoConfig.cs" />
     <Compile Include="Configuration\PermissaoConfig.cs" />
@@ -63,6 +67,14 @@
     <Compile Include="Migrations\201510191844026_Inicial.cs" />
     <Compile Include="Migrations\201510191844026_Inicial.Designer.cs">
       <DependentUpon>201510191844026_Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510271717152_CodigoDepartamentoString.cs" />
+    <Compile Include="Migrations\201510271717152_CodigoDepartamentoString.Designer.cs">
+      <DependentUpon>201510271717152_CodigoDepartamentoString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510281158304_Consignacao_Consignataria_Servico_Servidor.cs" />
+    <Compile Include="Migrations\201510281158304_Consignacao_Consignataria_Servico_Servidor.Designer.cs">
+      <DependentUpon>201510281158304_Consignacao_Consignataria_Servico_Servidor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +98,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510191844026_Inicial.resx">
       <DependentUpon>201510191844026_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510271717152_CodigoDepartamentoString.resx">
+      <DependentUpon>201510271717152_CodigoDepartamentoString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510281158304_Consignacao_Consignataria_Servico_Servidor.resx">
+      <DependentUpon>201510281158304_Consignacao_Consignataria_Servico_Servidor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

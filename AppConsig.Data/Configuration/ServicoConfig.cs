@@ -3,15 +3,19 @@ using AppConsig.Entities;
 
 namespace AppConsig.Data.Configuration
 {
-    public class AvisoConfig : EntityTypeConfiguration<Aviso>
+    public class ServicoConfig : EntityTypeConfiguration<Servico>
     {
-        public AvisoConfig()
+        public ServicoConfig()
         {
-            ToTable("Aviso");
+            ToTable("Servico");
 
             HasKey(e => e.Id);
 
-            Property(e => e.Texto).HasColumnName("Texto").IsRequired();
+            Property(e => e.Nome).HasColumnName("Nome").IsRequired();
+            Property(e => e.Descricao).HasColumnName("Descricao").IsOptional();
+            Property(e => e.TipoServicoRelacao).HasColumnName("TipoServicoRelacao").IsRequired();
+            Property(e => e.TipoServicoInerente).HasColumnName("TipoServicoInerente").IsRequired();
+            Property(e => e.Ordem).HasColumnName("Ordem").IsRequired();
 
             //IsAuditable
             Property(e => e.CriadoPor).HasColumnName("CriadoPor").IsRequired();

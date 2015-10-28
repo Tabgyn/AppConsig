@@ -7,15 +7,15 @@ namespace AppConsig.Common
     public abstract class AuditEntity<T> : Entity<T>, IAuditEntity
     {
         [MaxLength(256)]
-        public string CreateBy { get; set; }
+        public string CriadoPor { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public DateTime CriadoEm { get; set; }
 
         [MaxLength(256)]
-        public string UpdateBy { get; set; }
+        public string AtualizadoPor { get; set; }
 
-        public DateTime UpdateDate { get; set; }
+        public DateTime AtualizadoEm { get; set; }
 
-        public bool Deleted { get; set; }
+        public bool Excluido { get; set; }
     }
 }

@@ -6,9 +6,9 @@ using AppConsig.Services.Interfaces;
 
 namespace AppConsig.Services
 {
-    public class ServidoDepartamento : ServicoBasico<Departamento>, IServicoDepartamento
+    public class ServicoDepartamento : ServicoBasico<Departamento>, IServicoDepartamento
     {
-        public ServidoDepartamento(IContext context) : base(context)
+        public ServicoDepartamento(IContext context) : base(context)
         {
             Context = context;
             Dbset = Context.Set<Departamento>();

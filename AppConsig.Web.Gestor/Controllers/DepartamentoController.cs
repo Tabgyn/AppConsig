@@ -4,7 +4,6 @@ using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
-using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -37,11 +36,11 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var departamentos = _servicoDepartamento.ObterTodos(a => a.Deleted == false).ToList();
+            var departamentos = _servicoDepartamento.ObterTodos(a => a.Excluido == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                departamentos = departamentos.Where(a => a.CreateBy.ToUpper().Contains(searchString.ToUpper())
+                departamentos = departamentos.Where(a => a.CriadoPor.ToUpper().Contains(searchString.ToUpper())
                 || a.Nome.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
 
@@ -51,16 +50,16 @@ namespace AppConsig.Web.Gestor.Controllers
                     departamentos = departamentos.OrderByDescending(a => a.Nome).ToList();
                     break;
                 case "own":
-                    departamentos = departamentos.OrderBy(a => a.CreateBy).ToList();
+                    departamentos = departamentos.OrderBy(a => a.CriadoPor).ToList();
                     break;
                 case "own_desc":
-                    departamentos = departamentos.OrderByDescending(a => a.CreateBy).ToList();
+                    departamentos = departamentos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
-                    departamentos = departamentos.OrderBy(a => a.CreateDate).ToList();
+                    departamentos = departamentos.OrderBy(a => a.CriadoEm).ToList();
                     break;
                 case "date_desc":
-                    departamentos = departamentos.OrderByDescending(a => a.CreateDate).ToList();
+                    departamentos = departamentos.OrderByDescending(a => a.CriadoEm).ToList();
                     break;
                 default:
                     departamentos = departamentos.OrderBy(a => a.Nome).ToList();
@@ -104,7 +103,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Departamento/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Codigo,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
+        public ActionResult Criar([Bind(Include = "CodigoDepartamento,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
@@ -150,7 +149,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Departamento/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Codigo,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
+        public ActionResult Editar([Bind(Include = "Id,CodigoDepartamento,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {

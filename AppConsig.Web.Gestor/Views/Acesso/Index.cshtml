@@ -1,4 +1,5 @@
-﻿@model AcessoModel
+﻿@using System.Web.Configuration
+@model AcessoModel
 @{
     ViewBag.Title = "Acesso";
     ViewBag.Description = "Acesso de usuarios";
@@ -19,24 +20,22 @@
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
             <div class="loginbox-textbox">
-                @Html.PasswordFor(m => m.Senha, new {@class = "form-control", @placeholder = "Senha"})
-                @Html.ValidationMessageFor(m => m.Senha, "", new {@class = "text-danger"})
+                @Html.PasswordFor(m => m.Senha, new { @class = "form-control", @placeholder = "Senha" })
+                @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
             </div>
             <div class="loginbox-textbox">
-                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                <div class="g-recaptcha" data-sitekey="6LeYMw0TAAAAAA-lJV2Z-r7l_vu0f4wICLmS8np5"></div>
-                @*@Html.Captcha().PublicKey(WebConfigurationManager.AppSettings["CaptchaPublicKey"]).Theme(Captcha.CaptchaTheme.Light).Type(Captcha.CaptchaType.Image).Language("pt-BR");*@
-                @Html.ValidationMessage("Captcha")
-            </div>
-            <div class="loginbox-forgot">
-                @Html.ActionLink("Solicitar nova senha?", "ResetarSenha")
+                <div class="g-recaptcha" data-sitekey="@WebConfigurationManager.AppSettings["CaptchaSiteKey"]"></div>
             </div>
             <div class="loginbox-submit">
                 <button class="btn btn-block btn-primary" type="submit">Acessar</button>
+            </div>
+            <div class="loginbox-forgot">
+                @Html.ActionLink("Solicitar nova senha?", "ResetarSenha")
             </div>
         }
     </div>
 </div>
 @section PageScripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 }

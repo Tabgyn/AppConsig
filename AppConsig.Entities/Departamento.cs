@@ -7,7 +7,7 @@ namespace AppConsig.Entities
     {
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Display(Name = "Código do departamento")]
-        public long CodigoDepartamento { get; set; }
+        public string CodigoDepartamento { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]

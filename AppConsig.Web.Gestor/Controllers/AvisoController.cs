@@ -4,7 +4,6 @@ using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
-using AppConsig.Web.Gestor.Filtros;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -36,27 +35,27 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var avisos = _servicoAviso.ObterTodos(a => a.Deleted == false).ToList();
+            var avisos = _servicoAviso.ObterTodos(a => a.Excluido == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                avisos = avisos.Where(a => a.CreateBy.Contains(searchString)
+                avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
                 || a.Texto.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
                 case "own":
-                    avisos = avisos.OrderBy(a => a.CreateBy).ToList();
+                    avisos = avisos.OrderBy(a => a.CriadoPor).ToList();
                     break;
                 case "own_desc":
-                    avisos = avisos.OrderByDescending(a => a.CreateBy).ToList();
+                    avisos = avisos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
-                    avisos = avisos.OrderBy(a => a.CreateDate).ToList();
+                    avisos = avisos.OrderBy(a => a.CriadoEm).ToList();
                     break;
                 default:
-                    avisos = avisos.OrderByDescending(a => a.CreateDate).ToList();
+                    avisos = avisos.OrderByDescending(a => a.CriadoEm).ToList();
                     break;
             }
 

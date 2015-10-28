@@ -71,6 +71,10 @@
     width: 382px !important;
 }
 
+.login-container .loginbox .loginbox-submit {
+    padding: 10px 150px;
+}
+
 @media only screen and (max-width: 760px) {
     .navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area {
         -moz-min-width: inherit !important;
@@ -140,6 +144,20 @@
 
 .page-sidebar:hover .sidebar-collapse .collapse-icon {
     color: #bbbbbb !important;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+    -ms-border-bottom-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    -ms-border-top-left-radius: 0!important;
+    border-top-left-radius: 0!important;
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+    -ms-border-top-right-radius: 0!important;
+    border-top-right-radius: 0!important;
+    -ms-border-bottom-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
 }
 
 .table .text-overflow {
@@ -394,4 +412,46 @@ input[type=radio].disabled ~ .text {
 
 .weather {
     text-transform: lowercase;
+}
+
+select.form-control {
+    -ms-border-radius: 0;
+    border-radius: 0;
+}
+
+.w-12 {
+  width: 100%;
+}
+.w-11 {
+  width: 91.66666667%;
+}
+.w-10 {
+  width: 83.33333333%;
+}
+.w-9 {
+  width: 75%;
+}
+.w-8 {
+  width: 66.66666667%;
+}
+.w-7 {
+  width: 58.33333333%;
+}
+.w-6 {
+  width: 50%;
+}
+.w-5 {
+  width: 41.66666667%;
+}
+.w-4 {
+  width: 33.33333333%;
+}
+.w-3 {
+  width: 25%;
+}
+.w-2 {
+  width: 16.66666667%;
+}
+.w-1 {
+  width: 8.33333333%;
 }

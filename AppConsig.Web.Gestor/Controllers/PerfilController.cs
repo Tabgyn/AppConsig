@@ -40,11 +40,11 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var perfis = _servicoPerfil.ObterTodos(a => a.Deleted == false && a.EhEditavel).ToList();
+            var perfis = _servicoPerfil.ObterTodos(a => a.Excluido == false && a.EhEditavel).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                perfis = perfis.Where(a => a.CreateBy.Contains(searchString)
+                perfis = perfis.Where(a => a.CriadoPor.Contains(searchString)
                 || a.Nome.Contains(searchString)).ToList();
             }
 
@@ -54,16 +54,16 @@ namespace AppConsig.Web.Gestor.Controllers
                     perfis = perfis.OrderByDescending(a => a.Nome).ToList();
                     break;
                 case "own":
-                    perfis = perfis.OrderBy(a => a.CreateBy).ToList();
+                    perfis = perfis.OrderBy(a => a.CriadoPor).ToList();
                     break;
                 case "own_desc":
-                    perfis = perfis.OrderByDescending(a => a.CreateBy).ToList();
+                    perfis = perfis.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
-                    perfis = perfis.OrderBy(a => a.CreateDate).ToList();
+                    perfis = perfis.OrderBy(a => a.CriadoEm).ToList();
                     break;
                 case "date_desc":
-                    perfis = perfis.OrderByDescending(a => a.CreateDate).ToList();
+                    perfis = perfis.OrderByDescending(a => a.CriadoEm).ToList();
                     break;
                 default:
                     perfis = perfis.OrderBy(a => a.Nome).ToList();
@@ -114,7 +114,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Perfil/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, long[] ckbPermissoesSelecionadas)
+        public ActionResult Criar([Bind(Include = "Nome, Descricao")] Perfil perfil, long[] ckbPermissoes)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +128,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     }
 
                     var permissoesSeleciondas =
-                        ckbPermissoesSelecionadas.Select(ckb => _servicoPermissao.ObterPeloId(ckb)).ToList();
+                        ckbPermissoes.Select(ckb => _servicoPermissao.ObterPeloId(ckb)).ToList();
 
                     foreach (var s in permissoesSeleciondas)
                     {
