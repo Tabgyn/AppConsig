@@ -185,9 +185,9 @@ namespace AppConsig.Web.Gestor.Controllers
 
         private void LimparDadosDoUsuario()
         {
+            SiteMaps.ReleaseSiteMap();
             FormsAuthentication.SignOut();
             Session.Abandon();
-            SiteMaps.ReleaseSiteMap();
 
             // clear authentication cookie
             var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "") { Expires = DateTime.Now.AddYears(-1) };
