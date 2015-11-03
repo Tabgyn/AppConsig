@@ -156,7 +156,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     }
 
                     _servicoUsuario.Atualizar(usuario);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
                 }
                 catch (Exception exception)
                 {
@@ -220,7 +220,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     // TODO: Se nenhum perfil for selecionado, o usuário deverá ser de perfil padrão
 
                     _servicoUsuario.Criar(usuario);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -286,7 +286,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     usuario.Email = modelo.Email;
 
                     _servicoUsuario.Atualizar(usuario);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -351,7 +351,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoUsuario.Excluir(usuario);
-                Success(Alerts.Sucess, true);
+                Success(Alerts.Success, true);
 
                 return RedirectToAction("Index");
             }

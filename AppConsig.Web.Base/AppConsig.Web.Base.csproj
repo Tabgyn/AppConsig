@@ -76,6 +76,7 @@
     <Compile Include="Entities\CaptchaResponse.cs" />
     <Compile Include="Entities\TreeViewNode.cs" />
     <Compile Include="Helpers\Captcha.cs" />
+    <Compile Include="Helpers\DropDownHelper.cs" />
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

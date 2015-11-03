@@ -138,7 +138,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     perfil.EhEditavel = true;
 
                     _servicoPerfil.Criar(perfil);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -207,7 +207,7 @@ namespace AppConsig.Web.Gestor.Controllers
                     perfilOriginal.Permissoes = perfilOriginal.Permissoes.Where(p => permissoesSelecionadas.Contains(p)).ToList();
 
                     _servicoPerfil.Atualizar(perfilOriginal);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -274,7 +274,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoPerfil.Excluir(perfil);
-                Success(Alerts.Sucess, true);
+                Success(Alerts.Success, true);
 
                 return RedirectToAction("Index");
             }

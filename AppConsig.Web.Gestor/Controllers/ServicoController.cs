@@ -9,23 +9,22 @@ using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
 {
-    public class DepartamentoController : BaseController
+    public class ServicoController : BaseController
     {
-        readonly IServicoDepartamento _servicoDepartamento;
+        readonly IServicoTipoServico _servicoTipoServico;
 
-        public DepartamentoController(IServicoDepartamento servicoDepartamento)
+        public ServicoController(IServicoTipoServico servicoTipoServico)
         {
-            _servicoDepartamento = servicoDepartamento;
+            _servicoTipoServico = servicoTipoServico;
         }
 
-        // GET: Departamento
+        // GET: Servico
         [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "" : "name_desc";
             ViewBag.OwnerSortParam = sortOrder == "own" ? "own_desc" : "own";
-            ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
+            ViewBag.DateSortParam = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
 
             if (searchString != null)
             {
@@ -36,43 +35,37 @@ namespace AppConsig.Web.Gestor.Controllers
                 searchString = currentFilter;
             }
 
-            var departamentos = _servicoDepartamento.ObterTodos(a => a.Excluido == false).ToList();
+            var servicos = _servicoTipoServico.ObterTodos(a => a.Excluido == false).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                departamentos = departamentos.Where(a => a.CriadoPor.ToUpper().Contains(searchString.ToUpper())
-                || a.Nome.ToUpper().Contains(searchString.ToUpper())).ToList();
+                servicos = servicos.Where(a => a.CriadoPor.Contains(searchString)
+                || a.Nome.Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
             {
-                case "name_desc":
-                    departamentos = departamentos.OrderByDescending(a => a.Nome).ToList();
-                    break;
                 case "own":
-                    departamentos = departamentos.OrderBy(a => a.CriadoPor).ToList();
+                    servicos = servicos.OrderBy(a => a.CriadoPor).ToList();
                     break;
                 case "own_desc":
-                    departamentos = departamentos.OrderByDescending(a => a.CriadoPor).ToList();
+                    servicos = servicos.OrderByDescending(a => a.CriadoPor).ToList();
                     break;
                 case "date":
-                    departamentos = departamentos.OrderBy(a => a.CriadoEm).ToList();
-                    break;
-                case "date_desc":
-                    departamentos = departamentos.OrderByDescending(a => a.CriadoEm).ToList();
+                    servicos = servicos.OrderBy(a => a.CriadoEm).ToList();
                     break;
                 default:
-                    departamentos = departamentos.OrderBy(a => a.Nome).ToList();
+                    servicos = servicos.OrderByDescending(a => a.CriadoEm).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(departamentos.ToPagedList(pageNumber, pageSize));
+            return View(servicos.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: /Departamento/Detalhar/5
+        // GET: /Aviso/Detalhar/5
         [HttpGet]
         public ActionResult Detalhar(long? id)
         {
@@ -81,35 +74,33 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var departamento = _servicoDepartamento.ObterPeloId(id.Value);
+            var servico = _servicoTipoServico.ObterPeloId(id.Value);
 
-            if (departamento == null)
+            if (servico == null)
             {
                 return HttpNotFound();
             }
 
-            return View(departamento);
+            return View(servico);
         }
 
-        // GET: /Departamento/Criar
+        // GET: /Aviso/Criar
         [HttpGet]
         public ActionResult Criar()
         {
-            ViewBag.SistemasFolha = _servicoDepartamento.ObterSistemasFolha();
-
             return View();
         }
 
-        // POST: /Departamento/Criar
+        // POST: /Aviso/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "CodigoDepartamento,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
+        public ActionResult Criar([Bind(Include = "Nome,Descricao,TipoServicoRelacao,TipoServicoInerente,Ordem")] Servico servico)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoDepartamento.Criar(departamento);
+                    _servicoTipoServico.Criar(servico);
                     Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
@@ -120,12 +111,10 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ViewBag.SistemasFolha = _servicoDepartamento.ObterSistemasFolha();
-
-            return View(departamento);
+            return View(servico);
         }
 
-        // GET: /Departamento/Editar/5
+        // GET: /Aviso/Editar/5
         [HttpGet]
         public ActionResult Editar(long? id)
         {
@@ -134,28 +123,26 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var departamento = _servicoDepartamento.ObterPeloId(id.Value);
+            var servico = _servicoTipoServico.ObterPeloId(id.Value);
 
-            if (departamento == null)
+            if (servico == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.SistemasFolha = _servicoDepartamento.ObterSistemasFolha();
-
-            return View(departamento);
+            return View(servico);
         }
 
-        // POST: /Departamento/Editar/5
+        // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,CodigoDepartamento,Nome,Descricao,SistemaFolhaId")] Departamento departamento)
+        public ActionResult Editar([Bind(Include = "Id,Nome,Descricao,TipoServicoRelacao,TipoServicoInerente,Ordem")] Servico servico)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _servicoDepartamento.Atualizar(departamento);
+                    _servicoTipoServico.Atualizar(servico);
                     Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
@@ -166,12 +153,10 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            ViewBag.SistemasFolha = _servicoDepartamento.ObterSistemasFolha();
-
-            return View(departamento);
+            return View(servico);
         }
 
-        // GET: /Departamento/Excluir/5
+        // GET: /Aviso/Excluir/5
         [HttpGet]
         public ActionResult Excluir(long? id)
         {
@@ -180,31 +165,31 @@ namespace AppConsig.Web.Gestor.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var departamento = _servicoDepartamento.ObterPeloId(id.Value);
+            var servico = _servicoTipoServico.ObterPeloId(id.Value);
 
-            if (departamento == null)
+            if (servico == null)
             {
                 return HttpNotFound();
             }
 
-            return View(departamento);
+            return View(servico);
         }
 
-        // POST: /Departamento/Excluir/5
+        // POST: /Aviso/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarExcluir(long id)
         {
-            var departamento = _servicoDepartamento.ObterPeloId(id);
+            var servico = _servicoTipoServico.ObterPeloId(id);
 
-            if (departamento == null)
+            if (servico == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                _servicoDepartamento.Excluir(departamento);
+                _servicoTipoServico.Excluir(servico);
                 Success(Alerts.Success, true);
 
                 return RedirectToAction("Index");
@@ -214,7 +199,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            return View(departamento);
+            return View(servico);
         }
     }
 }

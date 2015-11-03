@@ -101,7 +101,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Criar(aviso);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -143,7 +143,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 try
                 {
                     _servicoAviso.Atualizar(aviso);
-                    Success(Alerts.Sucess, true);
+                    Success(Alerts.Success, true);
 
                     return RedirectToAction("Index");
                 }
@@ -190,7 +190,7 @@ namespace AppConsig.Web.Gestor.Controllers
             try
             {
                 _servicoAviso.Excluir(aviso);
-                Success(Alerts.Sucess, true);
+                Success(Alerts.Success, true);
 
                 return RedirectToAction("Index");
             }

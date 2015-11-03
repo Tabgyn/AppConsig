@@ -72,9 +72,9 @@ namespace AppConsig.Web.Gestor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Ação realizada com sucesso..
         /// </summary>
-        public static string Sucess {
+        public static string Success {
             get {
-                return ResourceManager.GetString("Sucess", resourceCulture);
+                return ResourceManager.GetString("Success", resourceCulture);
             }
         }
     }

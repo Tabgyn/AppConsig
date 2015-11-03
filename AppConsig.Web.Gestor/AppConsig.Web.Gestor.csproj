@@ -153,10 +153,12 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Models\AcessoModel.cs" />
+    <Compile Include="Models\ServicoModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -578,6 +580,11 @@
     <Content Include="Views\Departamento\Excluir.cshtml" />
     <Content Include="Views\Relatorio\Contrato.cshtml" />
     <Content Include="Views\Relatorio\Servidor.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\Excluir.cshtml" />
+    <Content Include="Views\Servico\Editar.cshtml" />
+    <Content Include="Views\Servico\Criar.cshtml" />
+    <Content Include="Views\Servico\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />
@@ -612,6 +619,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Alerts.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

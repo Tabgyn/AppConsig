@@ -120,7 +120,7 @@
   <data name="Erro" xml:space="preserve">
     <value>Ocorreu um erro ao tentar realizar a ação</value>
   </data>
-  <data name="Sucess" xml:space="preserve">
+  <data name="Success" xml:space="preserve">
     <value>Ação realizada com sucesso.</value>
   </data>
 </root>
