@@ -37,7 +37,7 @@ namespace AppConsig.Web.Gestor
                 "~/Content/bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/css/appconsig").Include(
-                "~/Content/appconsig.css"));
+                "~/Content/appconsig.min.css"));
 
             bundles.Add(new StyleBundle("~/css/beyond").Include(
                 "~/Content/beyond.min.css",

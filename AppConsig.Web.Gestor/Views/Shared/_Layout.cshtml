@@ -8,14 +8,14 @@
     <title>@ViewBag.Title - AppConsig</title>
     <!--Basic Styles-->
     @Styles.Render("~/css/bootstrap")
-    
+
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
           rel="stylesheet" type="text/css">
 
     <!--Beyond styles-->
     @Styles.Render("~/css/beyond")
-    <link href="~/Content/skins/black.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css" />
 
     <!--AppConsig styles-->
     @Styles.Render("~/css/appconsig")
@@ -31,8 +31,8 @@
 <body>
     <!-- Loading Container -->
     @*<div class="loading-container">
-        <div class="loader"></div>
-    </div>*@
+            <div class="loader"></div>
+        </div>*@
     <!--  /Loading Container -->
     <!-- Navbar -->
     <div class="navbar navbar-fixed-top">
@@ -119,18 +119,18 @@
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/Content/skins/blue.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/Content/skins/azure.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/Content/skins/teal.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/Content/skins/green.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/Content/skins/orange.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/Content/skins/pink.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/Content/skins/darkred.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/Content/skins/purple.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/Content/skins/darkblue.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/Content/skins/gray.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/Content/skins/black.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/Content/skins/deepblue.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/Content/skins/blue.min.css" title="Blue"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/Content/skins/azure.min.css" title="Azure"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/Content/skins/teal.min.css" title="Teal"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/Content/skins/green.min.css" title="Green"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/Content/skins/orange.min.css" title="Orange"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/Content/skins/pink.min.css" title="Pink"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/Content/skins/darkred.min.css" title="Dark Red"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/Content/skins/purple.min.css" title="Purple"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/Content/skins/darkblue.min.css" title="Dark Blue"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/Content/skins/gray.min.css" title="Gray"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/Content/skins/black.min.css" title="Black"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/Content/skins/deepblue.min.css" title="Deep Blue"></a></li>
                                         </ul>
                                     </li>
                                     <!--/Theme Selector Area-->
@@ -148,28 +148,28 @@
                             <!-- Settings -->
                         </ul>
                         @*<div class="setting">
-                            <a id="btn-setting" title="Setting" href="#">
-                                <i class="icon glyphicon glyphicon-cog"></i>
-                            </a>
-                        </div>
-                        <div class="setting-container">
-                            <label>
-                                <input type="checkbox" id="checkbox_fixednavbar">
-                                <span class="text">Fixed Navbar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedsidebar">
-                                <span class="text">Fixed SideBar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
-                                <span class="text">Fixed BreadCrumbs</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedheader">
-                                <span class="text">Fixed Header</span>
-                            </label>
-                        </div>*@
+                                <a id="btn-setting" title="Setting" href="#">
+                                    <i class="icon glyphicon glyphicon-cog"></i>
+                                </a>
+                            </div>
+                            <div class="setting-container">
+                                <label>
+                                    <input type="checkbox" id="checkbox_fixednavbar">
+                                    <span class="text">Fixed Navbar</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="checkbox_fixedsidebar">
+                                    <span class="text">Fixed SideBar</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="checkbox_fixedbreadcrumbs">
+                                    <span class="text">Fixed BreadCrumbs</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="checkbox_fixedheader">
+                                    <span class="text">Fixed Header</span>
+                                </label>
+                            </div>*@
                         <!-- Settings -->
                     </div>
                 </div>
@@ -196,18 +196,18 @@
                 <!-- /Sidebar Menu -->
                 <!-- Sidebar Collapse -->
                 @*<div class="sidebar-collapse sidebar-toggler" id="sidebar-collapse" title="Menu compacto">
-                    <i class="collapse-icon fa fa-angle-double-left"></i>
-                </div>*@
+                        <i class="collapse-icon fa fa-angle-double-left"></i>
+                    </div>*@
                 <!-- /Sidebar Collapse -->
             </div>
             <!-- /Page Sidebar -->
             <!-- Page Content -->
             <div class="page-content">
                 @*<!-- Loading Container -->
-                <div class="loading-container">
-                    <div class="loader"></div>
-                </div>
-                <!--  /Loading Container -->*@
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                    <!--  /Loading Container -->*@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs breadcrumbs-fixed">
                     <div class="page-breadcrumb-bordered  bg-themeprimary"></div>
@@ -256,7 +256,7 @@
     @Scripts.Render("~/bundles/weather")
     @Scripts.Render("~/bundles/appconsig")
     <script type="text/javascript">
-        
+
     </script>
     <!--Page Related Scripts-->
     @RenderSection("PageScripts", required: false)

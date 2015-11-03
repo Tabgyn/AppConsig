@@ -228,18 +228,53 @@
       <DependentUpon>simpleWeather.css</DependentUpon>
     </Content>
     <Content Include="Content\skins\azure.css" />
+    <Content Include="Content\skins\azure.min.css">
+      <DependentUpon>azure.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\black.css" />
+    <Content Include="Content\skins\black.min.css">
+      <DependentUpon>black.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\blue.css" />
+    <Content Include="Content\skins\blue.min.css">
+      <DependentUpon>blue.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\darkblue.css" />
+    <Content Include="Content\skins\darkblue.min.css">
+      <DependentUpon>darkblue.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\darkred.css" />
+    <Content Include="Content\skins\darkred.min.css">
+      <DependentUpon>darkred.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\deepblue.css" />
+    <Content Include="Content\skins\deepblue.min.css">
+      <DependentUpon>deepblue.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\gray.css" />
+    <Content Include="Content\skins\gray.min.css">
+      <DependentUpon>gray.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\green.css" />
+    <Content Include="Content\skins\green.min.css">
+      <DependentUpon>green.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\orange.css" />
+    <Content Include="Content\skins\orange.min.css">
+      <DependentUpon>orange.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\pink.css" />
+    <Content Include="Content\skins\pink.min.css">
+      <DependentUpon>pink.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\purple.css" />
-    <Content Include="Content\skins\skins-mixins.css" />
+    <Content Include="Content\skins\purple.min.css">
+      <DependentUpon>purple.css</DependentUpon>
+    </Content>
     <Content Include="Content\skins\teal.css" />
+    <Content Include="Content\skins\teal.min.css">
+      <DependentUpon>teal.css</DependentUpon>
+    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\weathericons-regular-webfont.svg" />
