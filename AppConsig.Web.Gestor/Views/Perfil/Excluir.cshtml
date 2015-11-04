@@ -14,8 +14,7 @@
                 @using (Html.BeginForm("Excluir", "Perfil", new {id = @Model.Id}, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.Id)
-
+                    
                     <div class="form-group">
                         @Html.LabelFor(m => m.Nome, new {@class = "control-label"})
                         @Html.TextBoxFor(m => m.Nome, new {@class = "form-control", disabled = "disabled"})

@@ -15,7 +15,11 @@ namespace AppConsig.Data
         IDbSet<Permissao> Permissoes { get; set; }
         IDbSet<SistemaFolha> SistemasFolha { get; set; }
         IDbSet<Usuario> Usuarios { get; set; }
-        
+        IDbSet<Consignacao> Consignacoes { get; set; }
+        IDbSet<Consignataria> Consignatarias { get; set; }
+        IDbSet<Servico> Servicos { get; set; }
+        IDbSet<Servidor> Servidores { get; set; }
+
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 

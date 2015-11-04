@@ -6,15 +6,15 @@ namespace AppConsig.Web.Gestor.Models
     {
         public string Nome { get; set; }
 
-        [Display(Name = "Descrição")]
+        [Display(Name = @"Descrição")]
         public string Descricao { get; set; }
 
         public int Ordem { get; set; }
 
-        [Display(Name = "Tipo relação")]
+        [Display(Name = @"Tipo relação")]
         public int TipoServicoRelacao { get; set; }
 
-        [Display(Name = "Tipo inerente")]
+        [Display(Name = @"Tipo inerente")]
         public int TipoServicoInerente { get; set; }
     }
 }

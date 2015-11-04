@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201510281158304_Consignacao_Consignataria_Servico_Servidor.Designer.cs">
       <DependentUpon>201510281158304_Consignacao_Consignataria_Servico_Servidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511041729379_AvisoModel.cs" />
+    <Compile Include="Migrations\201511041729379_AvisoModel.Designer.cs">
+      <DependentUpon>201511041729379_AvisoModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\PerfilConfig.cs" />
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510281158304_Consignacao_Consignataria_Servico_Servidor.resx">
       <DependentUpon>201510281158304_Consignacao_Consignataria_Servico_Servidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511041729379_AvisoModel.resx">
+      <DependentUpon>201511041729379_AvisoModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

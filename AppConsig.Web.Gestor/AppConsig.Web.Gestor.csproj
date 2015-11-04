@@ -158,8 +158,8 @@
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Models\AcessoModel.cs" />
+    <Compile Include="Models\AvisoModel.cs" />
     <Compile Include="Models\ServicoModel.cs" />
-    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -172,6 +172,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Alerts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Annotations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Annotations.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Exceptions.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -620,6 +625,10 @@
       <LastGenOutput>Alerts.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppConsig.Web.Gestor.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Annotations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Annotations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using AppConsig.Web.Gestor.Resources;
 
 namespace AppConsig.Web.Gestor.Models
 {
@@ -7,36 +8,36 @@ namespace AppConsig.Web.Gestor.Models
     {
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Nome { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Sobrenome { get; set; }
 
-        [Display(Name = "Nome completo")]
+        [Display(Name = @"Nome completo")]
         public string NomeCompleto => $"{Nome} {Sobrenome}";
 
         public string Foto { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Facebook { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Twitter { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Telefone { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Celular { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
-        [Display(Name = "Endereço")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
+        [Display(Name = @"Endereço")]
         public string Endereco { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
-        [Display(Name = "Complemento")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
+        [Display(Name = @"Complemento")]
         public string EnderecoComplemento { get; set; }
     }
 
@@ -44,18 +45,18 @@ namespace AppConsig.Web.Gestor.Models
     {
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Nome { get; set; }
 
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         public string Sobrenome { get; set; }
 
-        [Display(Name = "Nome completo")]
+        [Display(Name = @"Nome completo")]
         public string NomeCompleto => $"{Nome} {Sobrenome}";
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
-        [MaxLength(256, ErrorMessage = "{0} deve ter no máx. 256 caracteres")]
+        [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
+        [MaxLength(256, ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "MaxLength")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

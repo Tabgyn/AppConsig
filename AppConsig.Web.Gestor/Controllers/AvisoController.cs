@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
+using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Resources;
 using PagedList;
 
@@ -22,9 +23,10 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
+            sortOrder = string.IsNullOrEmpty(sortOrder) ? "date_desc" : sortOrder;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.OwnerSortParam = sortOrder == "own" ? "own_desc" : "own";
-            ViewBag.DateSortParam = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
 
             if (searchString != null)
             {
@@ -34,6 +36,8 @@ namespace AppConsig.Web.Gestor.Controllers
             {
                 searchString = currentFilter;
             }
+
+            ViewBag.CurrentFilter = searchString;
 
             var avisos = _servicoAviso.ObterTodos(a => a.Excluido == false).ToList();
 
@@ -94,12 +98,13 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Aviso/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Texto")] Aviso aviso)
+        public ActionResult Criar([Bind(Include = "Texto")] AvisoEditModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var aviso = new Aviso { Texto = model.Texto };
                     _servicoAviso.Criar(aviso);
                     Success(Alerts.Success, true);
 
@@ -111,7 +116,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(aviso);
+            return View(model);
         }
 
         // GET: /Aviso/Editar/5
@@ -130,18 +135,27 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            var model = new AvisoEditModel
+            {
+                Id = aviso.Id,
+                Texto = aviso.Texto
+            };
+
+            return View(model);
         }
 
         // POST: /Aviso/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Texto")] Aviso aviso)
+        public ActionResult Editar([Bind(Include = "Id,Texto")] AvisoEditModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var aviso = _servicoAviso.ObterPeloId(model.Id);
+
+                    aviso.Texto = model.Texto;
                     _servicoAviso.Atualizar(aviso);
                     Success(Alerts.Success, true);
 
@@ -153,7 +167,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
-            return View(aviso);
+            return View(model);
         }
 
         // GET: /Aviso/Excluir/5
@@ -172,7 +186,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            var model = new AvisoEditModel
+            {
+                Id = aviso.Id,
+                Texto = aviso.Texto
+            };
+
+            return View(model);
         }
 
         // POST: /Aviso/Excluir/5
@@ -199,7 +219,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            return View(aviso);
+            var model = new AvisoEditModel
+            {
+                Id = aviso.Id,
+                Texto = aviso.Texto
+            };
+
+            return View(model);
         }
     }
 }
