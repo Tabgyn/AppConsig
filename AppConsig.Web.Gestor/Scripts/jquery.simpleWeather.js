@@ -3,7 +3,7 @@
   "use strict";
 
   function getAltTemp(unit, temp) {
-    if(unit === 'f') {
+    if(unit === "f") {
       return Math.round((5.0/9.0)*(temp-32.0));
     } else {
       return Math.round((9.0/5.0)*temp+32.0);
@@ -13,19 +13,19 @@
   $.extend({
     simpleWeather: function(options){
       options = $.extend({
-        location: '',
-        woeid: '',
-        unit: 'f',
+        location: "",
+        woeid: "",
+        unit: "f",
         success: function(weather){},
         error: function(message){}
       }, options);
 
       var now = new Date();
-      var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&rnd='+now.getFullYear()+now.getMonth()+now.getDay()+now.getHours()+'&diagnostics=true&callback=?&q=';
-      if(options.location !== '') {
-        weatherUrl += 'select * from weather.forecast where woeid in (select woeid from geo.placefinder where text="'+options.location+'" and gflags="R" limit 1) and u="'+options.unit+'"';
-      } else if(options.woeid !== '') {
-        weatherUrl += 'select * from weather.forecast where woeid='+options.woeid+' and u="'+options.unit+'"';
+      var weatherUrl = "https://query.yahooapis.com/v1/public/yql?format=json&rnd="+now.getFullYear()+now.getMonth()+now.getDay()+now.getHours()+"&diagnostics=true&callback=?&q=";
+      if(options.location !== "") {
+        weatherUrl += "select * from weather.forecast where woeid in (select woeid from geo.placefinder where text=\""+options.location+"\" and gflags=\"R\" limit 1) and u=\""+options.unit+"\"";
+      } else if(options.woeid !== "") {
+        weatherUrl += "select * from weather.forecast where woeid="+options.woeid+" and u=\""+options.unit+"\"";
       } else {
         options.error({message: "Could not retrieve weather due to an invalid location."});
         return false;
@@ -34,11 +34,11 @@
       $.getJSON(
         encodeURI(weatherUrl),
         function(data) {
-          if(data !== null && data.query !== null && data.query.results !== null && data.query.results.channel.description !== 'Yahoo! Weather Error') {
+          if(data !== null && data.query !== null && data.query.results !== null && data.query.results.channel.description !== "Yahoo! Weather Error") {
             var result = data.query.results.channel,
                 weather = {},
                 forecast,
-                compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'],
+                compass = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"],
                 image404 = "https://s.yimg.com/os/mit/media/m/weather/images/icons/l/44d-100567.png";
 
             weather.title = result.item.title;
@@ -79,10 +79,10 @@
             }
 
             weather.alt = {temp: getAltTemp(options.unit, result.item.condition.temp), high: getAltTemp(options.unit, result.item.forecast[0].high), low: getAltTemp(options.unit, result.item.forecast[0].low)};
-            if(options.unit === 'f') {
-              weather.alt.unit = 'c';
+            if(options.unit === "f") {
+              weather.alt.unit = "c";
             } else {
-              weather.alt.unit = 'f';
+              weather.alt.unit = "f";
             }
 
             weather.forecast = [];

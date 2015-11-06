@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
 using AppConsig.Web.Gestor.Controllers;
+using AppConsig.Web.Gestor.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PagedList;
@@ -55,7 +56,7 @@ namespace AppConsig.Tests.Controllers
             Aviso c = new Aviso() { Texto = "XXX YYY ZZZ" };
 
             //Act 
-            var result = (RedirectToRouteResult)_avisoController.Criar(c);
+            var result = (RedirectToRouteResult)_avisoController.Criar(new AvisoEditModel {Id = c.Id, Texto = c.Texto});
 
             //Assert 
             _servicoMock.Verify(m => m.Criar(c), Times.Once);
@@ -71,7 +72,7 @@ namespace AppConsig.Tests.Controllers
             _avisoController.ModelState.AddModelError("Error", "Something went wrong");
 
             //Act 
-            var result = (ViewResult)_avisoController.Criar(c);
+            var result = (ViewResult)_avisoController.Criar(new AvisoEditModel { Id = c.Id, Texto = c.Texto });
 
             //Assert 
             _servicoMock.Verify(m => m.Criar(c), Times.Never);

@@ -88,5 +88,29 @@
     "inputFiles": [
       "Content/appconsig.css"
     ]
+  },
+  {
+    "outputFileName": "Content/datatables.css",
+    "inputFiles": [
+      "Content/datatables.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/datatables.js",
+    "inputFiles": [
+      "Scripts/datatables.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.simpleWeather.js",
+    "inputFiles": [
+      "Scripts/jquery.simpleWeather.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/appconsig.js",
+    "inputFiles": [
+      "Scripts/appconsig.js"
+    ]
   }
 ]

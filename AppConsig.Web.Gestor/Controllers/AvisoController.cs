@@ -43,8 +43,16 @@ namespace AppConsig.Web.Gestor.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
-                || a.Texto.Contains(searchString)).ToList();
+                DateTime dateString;
+                if (DateTime.TryParse(searchString, out dateString))
+                {
+                    avisos = avisos.Where(a => a.CriadoEm.Date <= dateString.Date).ToList();
+                }
+                else
+                {
+                    avisos = avisos.Where(a => a.CriadoPor.Contains(searchString)
+                    || a.Texto.Contains(searchString)).ToList();
+                }
             }
 
             switch (sortOrder)
@@ -66,7 +74,17 @@ namespace AppConsig.Web.Gestor.Controllers
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            return View(avisos.ToPagedList(pageNumber, pageSize));
+            var avisosModel = avisos.Select(aviso => new AvisoListModel
+            {
+                Id = aviso.Id,
+                Texto = aviso.Texto,
+                CriadoPor = aviso.CriadoPor,
+                CriadoEm = aviso.CriadoEm.ToString("dd/MM/yyyy hh:mm:ss")
+            }).ToList();
+
+            ViewBag.TotalRegisters = avisosModel.Count;
+
+            return View(avisosModel.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Aviso/Detalhar/5
@@ -85,7 +103,13 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            return View(aviso);
+            var avisoModel = new AvisoEditModel
+            {
+                Id = aviso.Id,
+                Texto = aviso.Texto
+            };
+
+            return View(avisoModel);
         }
 
         // GET: /Aviso/Criar

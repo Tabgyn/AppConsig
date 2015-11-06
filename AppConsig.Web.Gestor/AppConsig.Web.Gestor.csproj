@@ -154,12 +154,14 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
+    <Compile Include="Controllers\ServidorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\AvisoModel.cs" />
     <Compile Include="Models\ServicoModel.cs" />
+    <Compile Include="Models\ServidorModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -590,6 +592,8 @@
     <Content Include="Views\Servico\Editar.cshtml" />
     <Content Include="Views\Servico\Criar.cshtml" />
     <Content Include="Views\Servico\Detalhar.cshtml" />
+    <Content Include="Views\Servidor\Index.cshtml" />
+    <Content Include="Views\Servidor\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />

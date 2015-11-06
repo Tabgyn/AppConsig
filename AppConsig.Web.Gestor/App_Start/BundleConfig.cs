@@ -26,9 +26,6 @@ namespace AppConsig.Web.Gestor
                 "~/Scripts/beyond.min.js",
                 "~/Scripts/toastr.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/weather").Include(
-                "~/Scripts/jquery.simpleWeather.min.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/appconsig").Include(
                 "~/Scripts/appconsig.min.js"));
 
@@ -44,9 +41,6 @@ namespace AppConsig.Web.Gestor
                 "~/Content/font-awesome.min.css",
                 "~/Content/animate.min.css"
                 ));
-
-            bundles.Add(new StyleBundle("~/css/weather").Include(
-                "~/Content/simpleWeather.min.css"));
         }
     }
 }
