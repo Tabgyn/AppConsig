@@ -17,13 +17,15 @@ namespace AppConsig.Data.Configuration
             Property(e => e.NomeDeUsuario).HasColumnName("NomeDeUsuario").IsRequired();
             Property(e => e.Senha).HasColumnName("Senha").IsRequired();
             Property(e => e.EhAdministrador).HasColumnName("EhAdministrador").IsRequired();
-            Property(e => e.Endereco).HasColumnName("Endereco");
-            Property(e => e.EnderecoComplemento).HasColumnName("EnderecoComplemento");
-            Property(e => e.Foto).HasColumnName("Foto");
-            Property(e => e.Telefone).HasColumnName("Telefone");
-            Property(e => e.Celular).HasColumnName("Celular");
-            Property(e => e.Facebook).HasColumnName("Facebook");
-            Property(e => e.Twitter).HasColumnName("Twitter");
+            Property(e => e.Endereco).HasColumnName("Endereco").IsOptional();
+            Property(e => e.EnderecoComplemento).HasColumnName("EnderecoComplemento").IsOptional();
+            Property(e => e.Foto).HasColumnName("Foto").IsOptional();
+            Property(e => e.UltimoAcesso).HasColumnName("UltimoAcesso").IsOptional();
+            Property(e => e.Bloqueado).HasColumnName("Bloqueado").IsOptional();
+            Property(e => e.Telefone).HasColumnName("Telefone").IsOptional();
+            Property(e => e.Celular).HasColumnName("Celular").IsOptional();
+            Property(e => e.Facebook).HasColumnName("Facebook").IsOptional();
+            Property(e => e.Twitter).HasColumnName("Twitter").IsOptional();
             Property(e => e.PerfilId).HasColumnName("PerfilId");
 
             //IsAuditable

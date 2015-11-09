@@ -41,7 +41,7 @@ namespace AppConsig.Web.Gestor.Models
         public string EnderecoComplemento { get; set; }
     }
 
-    public class UsuarioEditaModel
+    public class UsuarioEditModel
     {
         public long Id { get; set; }
 

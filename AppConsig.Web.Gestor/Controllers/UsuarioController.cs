@@ -38,7 +38,7 @@ namespace AppConsig.Web.Gestor.Controllers
             }
 
             var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false && a.EhAdministrador == false).ToList();
-            var modelos = usuarios.Select(usuario => new UsuarioEditaModel
+            var modelos = usuarios.Select(usuario => new UsuarioEditModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
@@ -183,7 +183,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var model = new UsuarioEditaModel
+            var model = new UsuarioEditModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
@@ -204,7 +204,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
+        public ActionResult Criar([Bind(Include = "Nome,Sobrenome,Email")] UsuarioEditModel modelo)
         {
             if (ModelState.IsValid)
             {
@@ -254,7 +254,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = new UsuarioEditaModel
+            var model = new UsuarioEditModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
@@ -268,7 +268,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Usuario/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditaModel modelo)
+        public ActionResult Editar([Bind(Include = "Id,Nome,Sobrenome,Email")] UsuarioEditModel modelo)
         {
             if (ModelState.IsValid)
             {
@@ -320,7 +320,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return RedirectToAction("Index");
             }
 
-            var modelo = new UsuarioEditaModel
+            var modelo = new UsuarioEditModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
@@ -360,7 +360,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            var modelo = new UsuarioEditaModel
+            var modelo = new UsuarioEditModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,

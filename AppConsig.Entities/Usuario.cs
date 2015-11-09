@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using AppConsig.Common;
 
 namespace AppConsig.Entities
@@ -26,6 +27,10 @@ namespace AppConsig.Entities
         public string Senha { get; set; }
 
         public string Foto { get; set; }
+
+        public DateTime? UltimoAcesso { get; set; }
+
+        public bool Bloqueado { get; set; }
 
         [MaxLength(100, ErrorMessage = "{0} deve ter no máximo {1} caracteres")]
         public string Facebook { get; set; }

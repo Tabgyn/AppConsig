@@ -80,6 +80,14 @@
     <Compile Include="Migrations\201511041729379_AvisoModel.Designer.cs">
       <DependentUpon>201511041729379_AvisoModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511091222050_UltimoAcessoUsuario.cs" />
+    <Compile Include="Migrations\201511091222050_UltimoAcessoUsuario.Designer.cs">
+      <DependentUpon>201511091222050_UltimoAcessoUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511091305542_UsuarioBloqueado.cs" />
+    <Compile Include="Migrations\201511091305542_UsuarioBloqueado.Designer.cs">
+      <DependentUpon>201511091305542_UsuarioBloqueado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\PerfilConfig.cs" />
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511041729379_AvisoModel.resx">
       <DependentUpon>201511041729379_AvisoModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511091222050_UltimoAcessoUsuario.resx">
+      <DependentUpon>201511091222050_UltimoAcessoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511091305542_UsuarioBloqueado.resx">
+      <DependentUpon>201511091305542_UsuarioBloqueado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

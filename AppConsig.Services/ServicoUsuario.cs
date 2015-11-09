@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading;
@@ -73,15 +74,15 @@ namespace AppConsig.Services
         {
             var usuario = Dbset.FirstOrDefault(x => x.NomeDeUsuario == nomeDeUsuario);
 
-            return usuario != null && HashHelper.ValidateHash(senha, usuario.Senha);
+            if (usuario == null) return false;
+
+            var validado = HashHelper.ValidateHash(senha, usuario.Senha);
+            usuario.UltimoAcesso = DateTime.Now;
+
+            Atualizar(usuario);
+
+            return validado;
         }
-
-        //public async Task<bool> ValidarUsuarioAsync(string nomeDeUsuario, string senha)
-        //{
-        //    var usuario = Dbset.FirstOrDefaultAsync(x => x.NomeDeUsuario == nomeDeUsuario);
-
-        //    await usuario != null && HashHelper.ValidatePassword(senha, usuario.Senha);
-        //}
 
         public void ResetarSenha(Usuario usuario)
         {

@@ -48,6 +48,18 @@ namespace AppConsig.Web.Gestor.Controllers
                 {
                     var user = _servicoUsuario.ObterTodos(u => u.Email == model.Email).First();
 
+                    if (!user.EhAdministrador && 
+                        (user.UltimoAcesso.HasValue && Math.Abs(user.UltimoAcesso.Value.Subtract(DateTime.Now).Days) > 30))
+                    {
+                        user.Bloqueado = true;
+                        _servicoUsuario.Atualizar(user);
+                        Erro("Este usuário foi bloqueado por inatividade", true);
+
+                        return View(model);
+                    }
+
+                    LimparDadosDoUsuario();
+
                     var serializeModel = new AppPrincipalSerializedModel
                     {
                         Id = user.Id,
@@ -56,8 +68,6 @@ namespace AppConsig.Web.Gestor.Controllers
                         Email = user.Email,
                         IsAdmin = user.EhAdministrador
                     };
-
-                    LimparDadosDoUsuario();
 
                     var serializer = new JavaScriptSerializer();
 

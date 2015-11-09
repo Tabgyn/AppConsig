@@ -150,6 +150,7 @@
     <Compile Include="AppView.cs" />
     <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
+    <Compile Include="Controllers\ConsignatariaController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\AvisoModel.cs" />
+    <Compile Include="Models\ConsignatariaModel.cs" />
     <Compile Include="Models\ServicoModel.cs" />
     <Compile Include="Models\ServidorModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -594,6 +596,11 @@
     <Content Include="Views\Servico\Detalhar.cshtml" />
     <Content Include="Views\Servidor\Index.cshtml" />
     <Content Include="Views\Servidor\Detalhar.cshtml" />
+    <Content Include="Views\Consignataria\Index.cshtml" />
+    <Content Include="Views\Consignataria\Detalhar.cshtml" />
+    <Content Include="Views\Consignataria\Criar.cshtml" />
+    <Content Include="Views\Consignataria\Editar.cshtml" />
+    <Content Include="Views\Consignataria\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />
