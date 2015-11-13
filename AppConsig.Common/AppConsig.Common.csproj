@@ -73,6 +73,9 @@
     <Compile Include="EmailHelper.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="AuditEntity.cs" />
+    <Compile Include="Enums\TipoRepresentante.cs" />
+    <Compile Include="Enums\TipoServicoInerente.cs" />
+    <Compile Include="Enums\TipoServicoRelacao.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IAuditEntity.cs" />
     <Compile Include="JsTreeNode.cs" />

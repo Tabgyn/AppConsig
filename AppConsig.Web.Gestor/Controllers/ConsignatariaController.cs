@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
 using AppConsig.Web.Gestor.Models;
 using AppConsig.Web.Gestor.Resources;
+using AutoMapper;
 using PagedList;
 
 namespace AppConsig.Web.Gestor.Controllers
@@ -23,8 +25,10 @@ namespace AppConsig.Web.Gestor.Controllers
         [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
-            sortOrder = string.IsNullOrEmpty(sortOrder) ? "date_desc" : sortOrder;
+            //Baseado no default
+            sortOrder = string.IsNullOrEmpty(sortOrder) ? "name" : sortOrder;
             ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParam = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.OwnerSortParam = sortOrder == "own" ? "own_desc" : "own";
             ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
 
@@ -66,25 +70,25 @@ namespace AppConsig.Web.Gestor.Controllers
                 case "date":
                     consignatarias = consignatarias.OrderBy(a => a.CriadoEm).ToList();
                     break;
-                default:
+                case "date_desc":
                     consignatarias = consignatarias.OrderByDescending(a => a.CriadoEm).ToList();
+                    break;
+                case "name_desc":
+                    consignatarias = consignatarias.OrderByDescending(a => a.Nome).ToList();
+                    break;
+                default:
+                    consignatarias = consignatarias.OrderBy(a => a.Nome).ToList();
                     break;
             }
 
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            var consignatariasModel = consignatarias.Select(aviso => new ConsignatariaListModel
-            {
-                Id = aviso.Id,
-                Nome = aviso.Nome,
-                CriadoPor = aviso.CriadoPor,
-                CriadoEm = aviso.CriadoEm.ToString("dd/MM/yyyy hh:mm:ss")
-            }).ToList();
+            var model = Mapper.Map<IList<ConsignatariaListModel>>(consignatarias);
 
-            ViewBag.TotalRegisters = consignatariasModel.Count;
+            ViewBag.TotalRegisters = model.Count;
 
-            return View(consignatariasModel.ToPagedList(pageNumber, pageSize));
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Consignataria/Detalhar/5
@@ -103,13 +107,9 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var consignatariaModel = new ConsignatariaEditModel
-            {
-                Id = consignataria.Id,
-                Nome = consignataria.Nome
-            };
+            var model = Mapper.Map<ConsignatariaEditModel>(consignataria);
 
-            return View(consignatariaModel);
+            return View(model);
         }
 
         // GET: /Consignataria/Criar
@@ -122,13 +122,14 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Consignataria/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar([Bind(Include = "Nome")] ConsignatariaEditModel model)
+        public ActionResult Criar([Bind(Include = "Nome,Sigla,Codigo,CNPJ,Email,TipoRepresentante")] ConsignatariaEditModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var consignataria = new Consignataria { Nome = model.Nome };
+                    var consignataria = Mapper.Map<Consignataria>(model);
+
                     _servicoConsignataria.Criar(consignataria);
                     Success(Alerts.Success, true);
 
@@ -159,11 +160,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ConsignatariaEditModel
-            {
-                Id = consignataria.Id,
-                Nome = consignataria.Nome
-            };
+            var model = Mapper.Map<ConsignatariaEditModel>(consignataria);
 
             return View(model);
         }
@@ -171,7 +168,7 @@ namespace AppConsig.Web.Gestor.Controllers
         // POST: /Consignataria/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Nome")] ConsignatariaEditModel model)
+        public ActionResult Editar([Bind(Include = "Id,Nome,Sigla,Codigo,CNPJ,Email,TipoRepresentante")] ConsignatariaEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -179,7 +176,8 @@ namespace AppConsig.Web.Gestor.Controllers
                 {
                     var consignataria = _servicoConsignataria.ObterPeloId(model.Id);
 
-                    consignataria.Nome = model.Nome;
+                    Mapper.Map(model, consignataria);
+
                     _servicoConsignataria.Atualizar(consignataria);
                     Success(Alerts.Success, true);
 
@@ -210,11 +208,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ConsignatariaEditModel
-            {
-                Id = consignataria.Id,
-                Nome = consignataria.Nome
-            };
+            var model = Mapper.Map<ConsignatariaEditModel>(consignataria);
 
             return View(model);
         }
@@ -243,11 +237,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 Erro(Alerts.Erro, true, exception);
             }
 
-            var model = new ConsignatariaEditModel
-            {
-                Id = consignataria.Id,
-                Nome = consignataria.Nome
-            };
+            var model = Mapper.Map<ConsignatariaEditModel>(consignataria);
 
             return View(model);
         }

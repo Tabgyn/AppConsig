@@ -11,6 +11,11 @@
                 @{ Html.RenderPartial("_Alerta"); }
                 @using (Html.BeginForm("Index", "Consignataria", FormMethod.Get))
                 {
+                    <div class="table-toolbar">
+                        <a href="@Url.Action("Criar")" class="btn btn-default">
+                            Criar novo
+                        </a>
+                    </div>
                     <div class="dataTables_wrapper">
                         <div class="dataTables_filter">
                             <label>
@@ -32,7 +37,10 @@
                         <table class="table table-responsive table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Texto</th>
+                                    <th style="width: 60px">Código</th>
+                                    <th>@Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+                                    <th class="hidden-md" style="width: 50px">Sigla</th>
+                                    <th class="hidden-md" style="width: 140px">CNPJ</th>
                                     <th style="width: 150px">@Html.ActionLink("Criado por", "Index", new { sortOrder = ViewBag.OwnerSortParam, currentFilter = ViewBag.CurrentFilter })</th>
                                     <th style="width: 145px">@Html.ActionLink("Criado em", "Index", new { sortOrder = ViewBag.DateSortParam, currentFilter = ViewBag.CurrentFilter })</th>
                                     <th style="width: 115px"></th>
@@ -43,7 +51,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td class="text-overflow">@item.Codigo</td>
                                         <td class="text-overflow">@item.Nome</td>
+                                        <td class="hidden-md text-overflow">@item.Sigla</td>
+                                        <td class="hidden-md">@item.CNPJ</td>
                                         <td class="text-overflow">@item.CriadoPor</td>
                                         <td>@item.CriadoEm</td>
                                         <td class="text-align-center">

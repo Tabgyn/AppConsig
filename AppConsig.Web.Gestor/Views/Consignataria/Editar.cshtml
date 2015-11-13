@@ -1,7 +1,56 @@
-﻿
+﻿@using AppConsig.Web.Base.Helpers
+@model ConsignatariaEditModel
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = Html.MvcSiteMap().SiteMap.CurrentNode.Title;
+    ViewBag.Description = Html.MvcSiteMap().SiteMap.CurrentNode.Description;
 }
 
-<h2>Editar</h2>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="widget">
+            <div class="widget-body">
+                @{ Html.RenderPartial("_Alerta"); }
+                @using (Html.BeginForm("Editar", "Consignataria", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
 
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Sigla, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control w-1" })
+                        @Html.ValidationMessageFor(m => m.Sigla, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Codigo, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control w-1" })
+                        @Html.ValidationMessageFor(m => m.Codigo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CNPJ, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CNPJ, new { @class = "form-control w-2", onkeypress = "MascaraCNPJ(this)", onblur = "MascaraCNPJ(this)", maxlength = 18 })
+                        @Html.ValidationMessageFor(m => m.CNPJ, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TipoRepresentante, new { @class = "control-label" })
+                        @Html.CustomEnumDropDownListFor(m => m.TipoRepresentante, "Escolha uma opção...", new { @class = "form-control w-2" })
+                        @Html.ValidationMessageFor(m => m.TipoRepresentante, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

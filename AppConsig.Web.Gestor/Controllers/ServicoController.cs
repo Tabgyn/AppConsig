@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using AppConsig.Common.Enums;
 using AppConsig.Entities;
 using AppConsig.Services.Interfaces;
 using AppConsig.Web.Gestor.Models;
@@ -100,8 +101,8 @@ namespace AppConsig.Web.Gestor.Controllers
                 Ordem = servico.Ordem,
 
                 //TODO: Ver como trabalhar com enumerador nos models
-                TipoServicoRelacao = (int) servico.TipoServicoRelacao,
-                TipoServicoInerente = (int) servico.TipoServicoInerente,
+                TipoServicoRelacao = servico.TipoServicoRelacao,
+                TipoServicoInerente = servico.TipoServicoInerente,
             };
 
             return View(servico);
@@ -128,8 +129,8 @@ namespace AppConsig.Web.Gestor.Controllers
                         Nome = model.Nome,
                         Descricao = model.Descricao,
                         Ordem = model.Ordem,
-                        TipoServicoInerente = (TipoServicoInerente) model.TipoServicoInerente,
-                        TipoServicoRelacao = (TipoServicoRelacao) model.TipoServicoRelacao,
+                        TipoServicoInerente = model.TipoServicoInerente,
+                        TipoServicoRelacao = model.TipoServicoRelacao
                     };
 
                     _servicoTipoServico.Criar(servico);

@@ -6,6 +6,7 @@ using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using AppConsig.Common.Security;
+using AppConsig.Web.Gestor.Mapping;
 using AppConsig.Web.Gestor.Modulos;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -31,6 +32,8 @@ namespace AppConsig.Web.Gestor
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            AutoMapperConfiguration.Configure();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

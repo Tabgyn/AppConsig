@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using AppConsig.Common.Enums;
 using AppConsig.Web.Gestor.Resources;
 
 namespace AppConsig.Web.Gestor.Models
@@ -8,6 +10,8 @@ namespace AppConsig.Web.Gestor.Models
         public long Id { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
+
+        [DisplayFormat(DataFormatString = @"{0:00\.000\.000\/0000\-00}", ApplyFormatInEditMode = true)]
         public string CNPJ { get; set; }
 
         [Display(Name = @"Código")]
@@ -17,7 +21,7 @@ namespace AppConsig.Web.Gestor.Models
         public string CriadoPor { get; set; }
 
         [Display(Name = @"Criado em")]
-        public string CriadoEm { get; set; }
+        public DateTime CriadoEm { get; set; }
     }
 
     public class ConsignatariaEditModel
@@ -32,6 +36,7 @@ namespace AppConsig.Web.Gestor.Models
         public string Sigla { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
+        [DisplayFormat(DataFormatString = @"{0:00\.000\.000\/0000\-00}", ApplyFormatInEditMode = true)]
         public string CNPJ { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
@@ -44,6 +49,6 @@ namespace AppConsig.Web.Gestor.Models
 
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
         [Display(Name = @"Tipo representante")]
-        public int TipoRepresentante { get; set; }
+        public TipoRepresentante TipoRepresentante { get; set; }
     }
 }

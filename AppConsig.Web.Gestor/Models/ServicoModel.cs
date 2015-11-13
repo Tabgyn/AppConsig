@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using AppConsig.Common.Enums;
 
 namespace AppConsig.Web.Gestor.Models
 {
@@ -24,9 +25,9 @@ namespace AppConsig.Web.Gestor.Models
         public int Ordem { get; set; }
 
         [Display(Name = @"Tipo relação")]
-        public int TipoServicoRelacao { get; set; }
+        public TipoServicoRelacao TipoServicoRelacao { get; set; }
 
         [Display(Name = @"Tipo inerente")]
-        public int TipoServicoInerente { get; set; }
+        public TipoServicoInerente TipoServicoInerente { get; set; }
     }
 }

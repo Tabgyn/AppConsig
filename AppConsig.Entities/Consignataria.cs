@@ -1,4 +1,5 @@
 ﻿using AppConsig.Common;
+using AppConsig.Common.Enums;
 
 namespace AppConsig.Entities
 {
@@ -10,15 +11,5 @@ namespace AppConsig.Entities
         public string Codigo { get; set; }
         public string Email { get; set; }
         public TipoRepresentante TipoRepresentante { get; set; }
-    }
-
-    public enum TipoRepresentante
-    {
-        Matriz = 1,
-        Escritorio = 2,
-        RepresentanteLegal = 3,
-        Agencia = 4,
-        Filial = 5,
-        Sucursal = 6
     }
 }

@@ -11,6 +11,11 @@
                 @{ Html.RenderPartial("_Alerta"); }
                 @using (Html.BeginForm("Index", "Aviso", FormMethod.Get))
                 {
+                    <div class="table-toolbar">
+                        <a href="@Url.Action("Criar")" class="btn btn-default">
+                            Criar novo
+                        </a>
+                    </div>
                     <div class="dataTables_wrapper">
                         <div class="dataTables_filter">
                             <label>

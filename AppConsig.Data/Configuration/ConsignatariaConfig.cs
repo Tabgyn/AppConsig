@@ -13,7 +13,7 @@ namespace AppConsig.Data.Configuration
 
             Property(e => e.Nome).HasColumnName("Nome").IsRequired();
             Property(e => e.Sigla).HasColumnName("Sigla").IsRequired();
-            Property(e => e.CNPJ).HasColumnName("CNPJ").IsRequired();
+            Property(e => e.CNPJ).HasColumnName("CNPJ").IsFixedLength().HasMaxLength(14).IsRequired();
             Property(e => e.Codigo).HasColumnName("Codigo").IsRequired();
             Property(e => e.Email).HasColumnName("Email").IsRequired();
             Property(e => e.TipoRepresentante).HasColumnName("TipoRepresentante").IsRequired();

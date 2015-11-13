@@ -12,7 +12,7 @@ namespace AppConsig.Data.Configuration
             HasKey(e => e.Id);
 
             Property(e => e.Nome).HasColumnName("Nome").IsRequired();
-            Property(e => e.CPF).HasColumnName("CPF").IsRequired();
+            Property(e => e.CPF).HasColumnName("CPF").IsFixedLength().HasMaxLength(11).IsRequired();
             Property(e => e.Matricula).HasColumnName("Matricula").IsRequired();
             Property(e => e.NascidoEm).HasColumnName("NascidoEm").IsOptional();
             Property(e => e.Foto).HasColumnName("Foto").IsOptional();

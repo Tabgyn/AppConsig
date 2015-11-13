@@ -21,22 +21,22 @@
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Sigla, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control w-1" })
                         @Html.ValidationMessageFor(m => m.Sigla, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Codigo, new {@class = "control-label"})
-                        @Html.TextBoxFor(m => m.Codigo, new {@class = "form-control w-1"})
-                        @Html.ValidationMessageFor(m => m.Codigo, "", new {@class = "text-danger"})
+                        @Html.LabelFor(m => m.Codigo, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control w-1" })
+                        @Html.ValidationMessageFor(m => m.Codigo, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.CNPJ, new {@class = "control-label"})
-                        @Html.TextBoxFor(m => m.CNPJ, new {@class = "form-control w-1"})
-                        @Html.ValidationMessageFor(m => m.CNPJ, "", new {@class = "text-danger"})
+                        @Html.LabelFor(m => m.CNPJ, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CNPJ, new { @class = "form-control w-2", onkeypress = "MascaraCNPJ(this)", onblur = "MascaraCNPJ(this)", maxlength = 18 })
+                        @Html.ValidationMessageFor(m => m.CNPJ, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control w-1" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using AppConsig.Common;
+using AppConsig.Common.Enums;
 
 namespace AppConsig.Entities
 {
@@ -19,25 +20,5 @@ namespace AppConsig.Entities
         [Required]
         [Display(Name = "Ordem de desconto")]
         public int Ordem { get; set; }
-    }
-
-    public enum TipoServicoInerente
-    {
-        [Description("Cartão")]
-        Cartao = 1,
-        [Description("Empréstimo")]
-        Emprestimo = 2,
-        [Description("Seguro")]
-        Seguro = 3
-    }
-
-    public enum TipoServicoRelacao
-    {
-        [Description("Comissionado")]
-        Comissionado = 1,
-        [Description("Efetivo")]
-        Efetivo = 2,
-        [Description("Temporário")]
-        Temporario = 3
     }
 }

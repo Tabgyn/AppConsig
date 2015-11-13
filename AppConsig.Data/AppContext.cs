@@ -17,6 +17,9 @@ namespace AppConsig.Data
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<AppContext, Migrations.Configuration>("AppConsigContexto"));
+
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public IDbSet<Auditoria> Auditorias { get; set; }
