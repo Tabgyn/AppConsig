@@ -455,3 +455,7 @@ select.form-control {
 .w-1 {
   width: 8.33333333%;
 }
+
+.datepicker {
+    margin-top: inherit;
+}

@@ -9,38 +9,43 @@ namespace AppConsig.Web.Gestor
         {
             //Scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-2.1.4.min.js"));
+                        "~/Scripts/jquery-2.1.4.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/widgets").Include(
+                        "~/Scripts/datepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate.min.js"));
+                        "~/Scripts/jquery.validate.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/bootstrap.min.js",
-                        "~/Scripts/respond.min.js",
-                        "~/Scripts/jquery.slimscroll.min.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js",
+                        "~/Scripts/jquery.slimscroll.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/skin").Include(
-                      "~/Scripts/skins.min.js"));
+                      "~/Scripts/skins.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/beyond").Include(
-                "~/Scripts/beyond.min.js",
-                "~/Scripts/toastr.min.js"));
+                "~/Scripts/beyond.js",
+                "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/appconsig").Include(
-                "~/Scripts/appconsig.min.js"));
+                "~/Scripts/appconsig.js"));
 
             //Styles
             bundles.Add(new StyleBundle("~/css/bootstrap").Include(
-                "~/Content/bootstrap.min.css"));
+                "~/Content/bootstrap.css"));
 
             bundles.Add(new StyleBundle("~/css/appconsig").Include(
-                "~/Content/appconsig.min.css"));
+                "~/Content/appconsig.css"));
 
             bundles.Add(new StyleBundle("~/css/beyond").Include(
-                "~/Content/beyond.min.css",
-                "~/Content/font-awesome.min.css",
-                "~/Content/animate.min.css"
+                "~/Content/beyond.css",
+                "~/Content/font-awesome.css",
+                "~/Content/animate.css"
                 ));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IServicoAviso.cs" />
     <Compile Include="Interfaces\IServicoBasico.cs" />
+    <Compile Include="Interfaces\IServicoConsignacao.cs" />
     <Compile Include="Interfaces\IServicoConsignataria.cs" />
     <Compile Include="Interfaces\IServicoDepartamento.cs" />
     <Compile Include="Interfaces\IServicoPerfil.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoAviso.cs" />
     <Compile Include="ServicoBasico.cs" />
+    <Compile Include="ServicoConsignacao.cs" />
     <Compile Include="ServicoConsignataria.cs" />
     <Compile Include="ServicoDepartamento.cs" />
     <Compile Include="ServicoPerfil.cs" />

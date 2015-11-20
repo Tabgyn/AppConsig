@@ -154,6 +154,7 @@
     <Compile Include="AppView.cs" />
     <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
+    <Compile Include="Controllers\ConsignacaoController.cs" />
     <Compile Include="Controllers\ConsignatariaController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -164,9 +165,11 @@
     <Compile Include="Filtros\AppHandleErrorAttribute.cs" />
     <Compile Include="Filtros\AuditAttribute.cs" />
     <Compile Include="Mapping\AutoMapperConfiguration.cs" />
+    <Compile Include="Mapping\ConsignacaoMapping.cs" />
     <Compile Include="Mapping\ConsignatariaMapping.cs" />
     <Compile Include="Models\AcessoModel.cs" />
     <Compile Include="Models\AvisoModel.cs" />
+    <Compile Include="Models\ConsignacaoModel.cs" />
     <Compile Include="Models\ConsignatariaModel.cs" />
     <Compile Include="Models\ServicoModel.cs" />
     <Compile Include="Models\ServidorModel.cs" />
@@ -222,10 +225,25 @@
     <Content Include="Content\dataTables.bootstrap.min.css">
       <DependentUpon>dataTables.bootstrap.css</DependentUpon>
     </Content>
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\datepicker.min.css">
+      <DependentUpon>datepicker.css</DependentUpon>
+    </Content>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\alf.jpg" />
     <Content Include="Content\Images\gil.jpg" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Images\jquery-ui\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Images\jquery-ui\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Images\jquery-ui\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Images\jquery-ui\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Images\jquery-ui\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Images\jquery-ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\Images\lula.jpg" />
     <Content Include="Content\Images\maria.jpg" />
     <Content Include="Content\Images\user-01.jpeg" />
@@ -319,6 +337,7 @@
     <Content Include="Scripts\dataTables.tableTools.min.js">
       <DependentUpon>dataTables.tableTools.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\jquery-2.1.4.intellisense.min.js">
       <DependentUpon>jquery-2.1.4.intellisense.js</DependentUpon>
     </Content>
@@ -336,7 +355,6 @@
     <Content Include="Scripts\jquery.slimscroll.min.js">
       <DependentUpon>jquery.slimscroll.js</DependentUpon>
     </Content>
-    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -346,6 +364,9 @@
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
     <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js">
+      <DependentUpon>jstree.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\modernizr-2.8.3.min.js">
       <DependentUpon>modernizr-2.8.3.js</DependentUpon>
     </Content>
@@ -607,6 +628,9 @@
     <Content Include="Views\Consignataria\Criar.cshtml" />
     <Content Include="Views\Consignataria\Editar.cshtml" />
     <Content Include="Views\Consignataria\Excluir.cshtml" />
+    <Content Include="Views\Consignacao\Index.cshtml" />
+    <Content Include="Views\Consignacao\Detalhar.cshtml" />
+    <Content Include="Views\Consignacao\Criar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />

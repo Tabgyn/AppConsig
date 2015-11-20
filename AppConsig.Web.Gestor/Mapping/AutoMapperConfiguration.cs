@@ -9,6 +9,7 @@ namespace AppConsig.Web.Gestor.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile(new ConsignatariaMapping());
+                cfg.AddProfile(new ConsignacaoMapping());
             });
 
             Mapper.AssertConfigurationIsValid();

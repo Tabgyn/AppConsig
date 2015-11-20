@@ -1,13 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head lang="pt-br">
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@ViewBag.Description" />
+    <meta name="description" content="@ViewBag.Description"/>
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
     <title>@ViewBag.Title - AppConsig</title>
     <!--Basic Styles-->
     @Styles.Render("~/css/bootstrap")
+
+    <!--Widgets styles-->
+    @*@Styles.Render("~/css/widgets")*@
 
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
@@ -15,7 +18,7 @@
 
     <!--Beyond styles-->
     @Styles.Render("~/css/beyond")
-    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/skins/black.min.css" rel="stylesheet" type="text/css"/>
 
     <!--AppConsig styles-->
     @Styles.Render("~/css/appconsig")
@@ -192,6 +195,7 @@
     <!--Basic Scripts-->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/widgets")
 
     <!--Beyond Scripts-->
     @Scripts.Render("~/bundles/beyond")
