@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.ValorMinimo, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.ValorMinimo, new { @class = "form-control w-1" })
+                        @Html.TextBoxFor(m => m.ValorMinimo, new { @class = "form-control w-1 decimal" })
                         @Html.ValidationMessageFor(m => m.ValorMinimo, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
@@ -95,5 +95,6 @@
 {
     <script type="text/javascript">
         $(".datepicker").datepicker();
+        $(".decimal").decimalMask();
     </script>
 }

@@ -41,7 +41,7 @@ namespace AppConsig.Web.Gestor.Models
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
         public string Codigo { get; set; }
 
-        [Display(Name = @"Máx. parcelas")]
+        [Display(Name = @"Máx. de parcelas")]
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
         public int MaximoParcela { get; set; }
 
@@ -54,7 +54,7 @@ namespace AppConsig.Web.Gestor.Models
         public DateTime InicioDaVigenciaEm { get; set; }
 
         [Display(Name = @"Fim da vigência")]
-        public DateTime FimDaVigenciaEm { get; set; }
+        public DateTime? FimDaVigenciaEm { get; set; }
 
         [Display(Name = @"Permite desconto parcial")]
         [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
