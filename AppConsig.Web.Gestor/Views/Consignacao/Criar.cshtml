@@ -7,54 +7,54 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="widget">
-            <div class="widget-body">
+            <div class="widget-body  col-md-12 col-lg-12">
                 @{ Html.RenderPartial("_Alerta"); }
                 @using (Html.BeginForm("Criar", "Consignacao", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-group">
+                    <div class="form-group col-md-12 col-lg-12">
+                        @Html.LabelFor(m => m.Codigo, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control", style = "width: 50px;" })
+                        @Html.ValidationMessageFor(m => m.Codigo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12 col-lg-6">
                         @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
                         @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12 col-lg-6">
                         @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
                         @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Codigo, new {@class = "control-label"})
-                        @Html.TextBoxFor(m => m.Codigo, new {@class = "form-control w-1"})
-                        @Html.ValidationMessageFor(m => m.Codigo, "", new {@class = "text-danger"})
-                    </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6 col-lg-6">
                         @Html.LabelFor(m => m.InicioDaVigenciaEm, new { @class = "control-label" })
-                        <div class="input-group w-2">
-                            @Html.TextBoxFor(m => m.InicioDaVigenciaEm, new { @class = "form-control w-2 datepicker" })
+                        <div class="input-group" style="width: 235px">
+                            @Html.TextBoxFor(m => m.InicioDaVigenciaEm, new { @class = "form-control datepicker" })
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.InicioDaVigenciaEm, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6 col-lg-6">
                         @Html.LabelFor(m => m.FimDaVigenciaEm, new { @class = "control-label" })
-                        <div class="input-group w-2">
-                            @Html.TextBoxFor(m => m.FimDaVigenciaEm, new { @class = "form-control w-2 datepicker" })
+                        <div class="input-group" style="width: 235px">
+                            @Html.TextBoxFor(m => m.FimDaVigenciaEm, new { @class = "form-control datepicker" })
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                         @Html.ValidationMessageFor(m => m.FimDaVigenciaEm, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6 col-lg-6">
                         @Html.LabelFor(m => m.MaximoParcela, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.MaximoParcela, new { @class = "form-control w-1" })
+                        @Html.TextBoxFor(m => m.MaximoParcela, new { @class = "form-control", type="number", min = "1", max = "99", style = "width: 65px;" })
                         @Html.ValidationMessageFor(m => m.MaximoParcela, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6 col-lg-6">
                         @Html.LabelFor(m => m.ValorMinimo, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.ValorMinimo, new { @class = "form-control w-1 decimal" })
+                        @Html.TextBoxFor(m => m.ValorMinimo, new { @class = "form-control decimal", style = "width: 100px;" })
                         @Html.ValidationMessageFor(m => m.ValorMinimo, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12 col-lg-12">
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBox("PermiteLancamentoManual")
@@ -62,8 +62,6 @@
                             </label>
                         </div>
                         @Html.ValidationMessageFor(m => m.PermiteLancamentoManual, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBox("PermiteDescontoParcial")
@@ -71,8 +69,6 @@
                             </label>
                         </div>
                         @Html.ValidationMessageFor(m => m.PermiteDescontoParcial, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBox("PermiteOutrasOcorrencias")
@@ -81,7 +77,7 @@
                         </div>
                         @Html.ValidationMessageFor(m => m.PermiteOutrasOcorrencias, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12 col-lg-12">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-link" })
                     </div>

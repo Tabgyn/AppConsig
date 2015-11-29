@@ -20,7 +20,8 @@ INSERT INTO [dbo].[Usuario]
            ,[CriadoEm]
            ,[AtualizadoPor]
            ,[AtualizadoEm]
-           ,[Excluido])
+           ,[Excluido]
+           ,[Bloqueado])
      VALUES
            ('Administrador'
            ,''
@@ -33,7 +34,8 @@ INSERT INTO [dbo].[Usuario]
            ,GETDATE()
            ,'SysAdmin'
            ,GETDATE()
-           ,0)
+           ,0
+		   ,0)
 GO
 
 --INSERIR USUARIO PADRAO
@@ -51,7 +53,8 @@ INSERT INTO [dbo].[Usuario]
            ,[CriadoEm]
            ,[AtualizadoPor]
            ,[AtualizadoEm]
-           ,[Excluido])
+           ,[Excluido]
+           ,[Bloqueado])
      VALUES
            ('Usuário'
            ,''
@@ -64,5 +67,6 @@ INSERT INTO [dbo].[Usuario]
            ,GETDATE()
            ,'SysAdmin'
            ,GETDATE()
-           ,0)
+           ,0
+		   ,0)
 GO
