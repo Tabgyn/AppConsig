@@ -117,7 +117,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 CPF = StringHelper.MascaraCnpjCpf(servidor.CPF),
                 Matricula = servidor.Matricula,
                 AdmitidoEm = servidor.AdmitidoEm.ToString("dd/MM/yyyy"),
-                AfastadoEm = servidor.AfastadoEm.ToString("dd/MM/yyyy"),
+                AfastadoEm = servidor.AfastadoEm?.ToString("dd/MM/yyyy") ?? "",
                 Departamento = servidor.Departamento.Nome,
                 Foto = servidor.Foto,
                 NascidoEm = servidor.NascidoEm.ToString("dd/MM/yyyy")

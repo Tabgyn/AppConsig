@@ -14,12 +14,12 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-group col-md-12 col-lg-12">
+                    <div class="form-group col-md-12 col-lg-6">
                         @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
                         @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-12 col-lg-12">
+                    <div class="form-group col-md-12 col-lg-6">
                         @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
                         @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "text-danger" })

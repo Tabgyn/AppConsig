@@ -11,7 +11,7 @@ namespace AppConsig.Entities
         public int MaximoParcela { get; set; }
         public decimal ValorMinimo { get; set; }
         public DateTime InicioDaVigenciaEm { get; set; }
-        public DateTime FimDaVigenciaEm { get; set; }
+        public DateTime? FimDaVigenciaEm { get; set; }
         public bool PermiteDescontoParcial { get; set; }
         public bool PermiteLancamentoManual { get; set; }
         public bool PermiteOutrasOcorrencias { get; set; }

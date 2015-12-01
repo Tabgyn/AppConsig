@@ -11,7 +11,7 @@ namespace AppConsig.Entities
         public DateTime NascidoEm { get; set; }
         public string Foto { get; set; }
         public DateTime AdmitidoEm { get; set; }
-        public DateTime AfastadoEm { get; set; }
+        public DateTime? AfastadoEm { get; set; }
 
         public long DepartamentoId { get; set; }
         public Departamento Departamento { get; set; }

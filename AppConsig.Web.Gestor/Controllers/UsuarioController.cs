@@ -38,6 +38,33 @@ namespace AppConsig.Web.Gestor.Controllers
             }
 
             var usuarios = _servicoUsuario.ObterTodos(a => a.Excluido == false && a.EhAdministrador == false).ToList();
+            
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                usuarios = usuarios.Where(a => a.CriadoPor.Contains(searchString)
+                || a.Nome.Contains(searchString)
+                || a.Sobrenome.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "own_desc":
+                    usuarios = usuarios.OrderByDescending(a => a.CriadoPor).ToList();
+                    break;
+                case "date":
+                    usuarios = usuarios.OrderBy(a => a.CriadoEm).ToList();
+                    break;
+                case "date_desc":
+                    usuarios = usuarios.OrderByDescending(a => a.CriadoEm).ToList();
+                    break;
+                default:
+                    usuarios = usuarios.OrderBy(a => a.CriadoPor).ToList();
+                    break;
+            }
+
+            var pageSize = itemsPerPage ?? 5;
+            var pageNumber = (page ?? 1);
+
             var modelos = usuarios.Select(usuario => new UsuarioEditModel
             {
                 Id = usuario.Id,
@@ -48,30 +75,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 DataCriacao = usuario.CriadoEm
             }).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                modelos = modelos.Where(a => a.CriadoPor.Contains(searchString)
-                || a.NomeCompleto.Contains(searchString)).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "own_desc":
-                    modelos = modelos.OrderByDescending(a => a.CriadoPor).ToList();
-                    break;
-                case "date":
-                    modelos = modelos.OrderBy(a => a.DataCriacao).ToList();
-                    break;
-                case "date_desc":
-                    modelos = modelos.OrderByDescending(a => a.DataCriacao).ToList();
-                    break;
-                default:
-                    modelos = modelos.OrderBy(a => a.CriadoPor).ToList();
-                    break;
-            }
-
-            var pageSize = itemsPerPage ?? 5;
-            var pageNumber = (page ?? 1);
+            ViewBag.TotalRegisters = modelos.Count;
 
             return View(modelos.ToPagedList(pageNumber, pageSize));
         }
