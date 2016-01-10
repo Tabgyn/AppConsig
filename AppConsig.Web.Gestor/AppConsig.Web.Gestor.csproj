@@ -206,29 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
-    <Content Include="Content\animate.min.css">
-      <DependentUpon>animate.css</DependentUpon>
-    </Content>
-    <Content Include="Content\appconsig.min.css">
-      <DependentUpon>appconsig.css</DependentUpon>
-    </Content>
     <Content Include="Content\beyond.css" />
-    <Content Include="Content\beyond.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css">
-      <DependentUpon>bootstrap-theme.css</DependentUpon>
-    </Content>
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css">
-      <DependentUpon>bootstrap.css</DependentUpon>
-    </Content>
-    <Content Include="Content\dataTables.bootstrap.min.css">
-      <DependentUpon>dataTables.bootstrap.css</DependentUpon>
-    </Content>
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datepicker.css" />
-    <Content Include="Content\datepicker.min.css">
-      <DependentUpon>datepicker.css</DependentUpon>
-    </Content>
     <Content Include="Content\datepicker.standalone.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -256,13 +239,7 @@
     <Content Include="Content\jstree\d.png" />
     <Content Include="Content\jstree\style.css" />
     <Content Include="Content\jstree\throbber.gif" />
-    <Content Include="Content\PagedList.min.css">
-      <DependentUpon>PagedList.css</DependentUpon>
-    </Content>
     <Content Include="Content\simpleWeather.css" />
-    <Content Include="Content\simpleWeather.min.css">
-      <DependentUpon>simpleWeather.css</DependentUpon>
-    </Content>
     <Content Include="Content\skins\azure.css" />
     <Content Include="Content\skins\azure.min.css">
       <DependentUpon>azure.css</DependentUpon>
@@ -323,9 +300,7 @@
       <DependentUpon>beyond.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js">
-      <DependentUpon>bootstrap.js</DependentUpon>
-    </Content>
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrapValidator.min.js">
       <DependentUpon>bootstrapValidator.js</DependentUpon>
     </Content>
@@ -356,6 +331,14 @@
     <Content Include="Scripts\jquery.slimscroll.min.js">
       <DependentUpon>jquery.slimscroll.js</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -396,32 +379,6 @@
     <Content Include="Mvc.sitemap">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\animate.min.css.gz">
-      <DependentUpon>animate.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\bootstrap-theme.min.css.gz">
-      <DependentUpon>bootstrap-theme.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\bootstrap.min.css.gz">
-      <DependentUpon>bootstrap.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\dataTables.bootstrap.min.css.gz">
-      <DependentUpon>dataTables.bootstrap.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\PagedList.min.css.gz">
-      <DependentUpon>PagedList.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\simpleWeather.min.css.gz">
-      <DependentUpon>simpleWeather.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\appconsig.min.css.gz">
-      <DependentUpon>appconsig.min.css</DependentUpon>
-    </Content>
-    <Content Include="Content\beyond.css.map" />
     <Content Include="fonts\weathericons-regular-webfont.eot" />
     <Content Include="fonts\weathericons-regular-webfont.ttf" />
     <Content Include="fonts\weathericons-regular-webfont.woff" />
@@ -431,12 +388,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Scripts\bootstrap.min.js.gz">
-      <DependentUpon>bootstrap.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bootstrap.min.js.map">
-      <DependentUpon>bootstrap.min.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrapValidator.min.js.gz">
       <DependentUpon>bootstrapValidator.min.js</DependentUpon>
     </Content>
@@ -527,7 +478,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Aviso\Index.cshtml" />

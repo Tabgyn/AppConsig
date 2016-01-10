@@ -140,11 +140,11 @@ h6.row-title:before {
   color: #8c0095;
 }
 .page-header .header-buttons a.fullscreen:before {
-  background-color: #a0d468;
+  background-color: #ffce55;
 }
 .page-header .header-buttons a.fullscreen:hover,
 .page-header .header-buttons a.fullscreen.active {
-  color: #a0d468;
+  color: #ffce55;
 }
 .page-header .header-buttons a.sidebar-toggler:before {
   background-color: #8c0095;

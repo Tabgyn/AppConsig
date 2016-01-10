@@ -69,7 +69,7 @@ namespace AppConsig.Web.Gestor.Controllers
             var pageSize = itemsPerPage ?? 5;
             var pageNumber = (page ?? 1);
 
-            ViewBag.TotalRegisters = departamentos.Count;
+            ViewBag.ItemsPerPage = itemsPerPage;
 
             return View(departamentos.ToPagedList(pageNumber, pageSize));
         }

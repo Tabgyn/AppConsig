@@ -89,7 +89,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 Matricula = s.Matricula
             }).ToList();
 
-            ViewBag.TotalRegisters = servidoresModel.Count;
+            ViewBag.ItemsPerPage = itemsPerPage;
 
             return View(servidoresModel.ToPagedList(pageNumber, pageSize));
         }

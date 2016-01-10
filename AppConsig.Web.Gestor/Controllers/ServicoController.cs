@@ -72,7 +72,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 CriadoEm = aviso.CriadoEm.ToString("dd/MM/yyyy hh:mm:ss")
             }).ToList();
 
-            ViewBag.TotalRegisters = servicosModel.Count;
+            ViewBag.ItemsPerPage = itemsPerPage;
 
             return View(servicosModel.ToPagedList(pageNumber, pageSize));
         }

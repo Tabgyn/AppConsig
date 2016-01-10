@@ -75,7 +75,7 @@ namespace AppConsig.Web.Gestor.Controllers
                 DataCriacao = usuario.CriadoEm
             }).ToList();
 
-            ViewBag.TotalRegisters = modelos.Count;
+            ViewBag.ItemsPerPage = itemsPerPage;
 
             return View(modelos.ToPagedList(pageNumber, pageSize));
         }

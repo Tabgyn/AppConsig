@@ -419,7 +419,7 @@ function CheckMenuCompact() {
 
 // Função que adiciona mascara ao cpf
 function MascaraCPF(cpf) {
-    if (mascaraInteiro(cpf) === false) {
+    if (MascaraInteiro(cpf) === false) {
         event.returnValue = false;
     }
     return formataCampo(cpf, "000.000.000-00", event);
@@ -427,7 +427,7 @@ function MascaraCPF(cpf) {
 
 // Função que adiciona mascara de cnpj
 function MascaraCNPJ(cnpj) {
-    if (mascaraInteiro(cnpj) === false) {
+    if (MascaraInteiro(cnpj) === false) {
         event.returnValue = false;
     }
     return formataCampo(cnpj, "00.000.000/0000-00", event);
@@ -435,7 +435,7 @@ function MascaraCNPJ(cnpj) {
 
 // Função que adiciona mascara de cep
 function MascaraCep(cep) {
-    if (mascaraInteiro(cep) === false) {
+    if (MascaraInteiro(cep) === false) {
         event.returnValue = false;
     }
     return formataCampo(cep, "00.000-000", event);
@@ -443,7 +443,7 @@ function MascaraCep(cep) {
 
 // Função que adiciona mascara de data
 function MascaraData(data) {
-    if (mascaraInteiro(data) === false) {
+    if (MascaraInteiro(data) === false) {
         event.returnValue = false;
     }
     return formataCampo(data, "00/00/0000", event);
@@ -451,14 +451,14 @@ function MascaraData(data) {
 
 // Função que adiciona mascara ao telefone
 function MascaraTelefone(tel) {
-    if (mascaraInteiro(tel) === false) {
+    if (MascaraInteiro(tel) === false) {
         event.returnValue = false;
     }
     return formataCampo(tel, "(00) 0000-0000", event);
 }
 
 // Função que valida numero inteiro com mascara
-function mascaraInteiro() {
+function MascaraInteiro() {
     if (event.keyCode < 48 || event.keyCode > 57) {
         event.returnValue = false;
         return false;
@@ -466,11 +466,20 @@ function mascaraInteiro() {
     return true;
 }
 
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode !== 46 && charCode > 31
+      && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}
+
 // Função que formata de forma generica os campos
-function formataCampo(campo, mascara, evento) {
+function FormataCampo(campo, mascara, evento) {
     var boleanoMascara;
 
-    var digitato = evento.keyCode;
+    var digitado = evento.keyCode;
     var exp = /\-|\.|\/|\(|\)| /g;
     var campoSoNumeros = campo.value.toString().replace(exp, "");
 
@@ -478,7 +487,7 @@ function formataCampo(campo, mascara, evento) {
     var novoValorCampo = "";
     var tamanhoMascara = campoSoNumeros.length;;
 
-    if (digitato !== 8) { // backspace 
+    if (digitado !== 8) { // backspace 
         for (var i = 0; i <= tamanhoMascara; i++) {
             boleanoMascara = ((mascara.charAt(i) === "-") || (mascara.charAt(i) === ".")
                                                     || (mascara.charAt(i) === "/"));

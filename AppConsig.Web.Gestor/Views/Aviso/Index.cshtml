@@ -63,13 +63,13 @@
                         <div class="row">
                             <div class="col-md-5 col-lg-5">
                                 <div class="dataTables_info">
-                                    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount (Mostrando @Model.Count de @ViewBag.TotalRegisters)
+                                    @Model.FirstItemOnPage a @Model.LastItemOnPage de @Model.TotalItemCount registros
                                 </div>
                             </div>
                             <div class="col-md-7 col-lg-7">
                                 <div class="dataTables_paginate">
                                     @Html.PagedListPager(Model, page => Url.Action("Index",
-                                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+                                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, itemsPerPage = ViewBag.ItemsPerPage }),
                                             new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })
                                 </div>
                             </div>

@@ -86,7 +86,7 @@ namespace AppConsig.Web.Gestor.Controllers
 
             var model = Mapper.Map<IList<ConsignatariaListModel>>(consignatarias);
 
-            ViewBag.TotalRegisters = model.Count;
+            ViewBag.ItemsPerPage = itemsPerPage;
 
             return View(model.ToPagedList(pageNumber, pageSize));
         }
