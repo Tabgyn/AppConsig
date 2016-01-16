@@ -360,6 +360,8 @@
     <Content Include="Scripts\respond.min.js">
       <DependentUpon>respond.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\select2.full.js" />
+    <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\skins.min.js">
       <DependentUpon>skins.js</DependentUpon>
     </Content>
@@ -585,6 +587,8 @@
     <Content Include="Views\Consignacao\Index.cshtml" />
     <Content Include="Views\Consignacao\Detalhar.cshtml" />
     <Content Include="Views\Consignacao\Criar.cshtml" />
+    <Content Include="Views\Consignacao\Editar.cshtml" />
+    <Content Include="Views\Consignacao\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Seguranca\" />

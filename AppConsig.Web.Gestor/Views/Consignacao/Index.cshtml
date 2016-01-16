@@ -39,6 +39,8 @@
                                 <tr>
                                     <th style="width: 60px">Código</th>
                                     <th>@Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+                                    <th style="width: 150px">Serviço</th>
+                                    <th style="width: 150px">Consignatária</th>
                                     <th style="width: 150px">@Html.ActionLink("Criado por", "Index", new { sortOrder = ViewBag.OwnerSortParam, currentFilter = ViewBag.CurrentFilter })</th>
                                     <th style="width: 145px">@Html.ActionLink("Criado em", "Index", new { sortOrder = ViewBag.DateSortParam, currentFilter = ViewBag.CurrentFilter })</th>
                                     <th style="width: 115px"></th>
@@ -51,6 +53,8 @@
                                     <tr>
                                         <td class="text-overflow">@item.Codigo</td>
                                         <td class="text-overflow">@item.Nome</td>
+                                        <td class="text-overflow">@item.Servico</td>
+                                        <td class="text-overflow">@item.Consignataria</td>
                                         <td class="text-overflow">@item.CriadoPor</td>
                                         <td>@item.CriadoEm</td>
                                         <td class="text-align-center">

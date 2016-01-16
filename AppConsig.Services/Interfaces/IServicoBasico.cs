@@ -11,7 +11,7 @@ namespace AppConsig.Services.Interfaces
     {
         T ObterPeloId(long id);
         Task<T> ObterPeloIdAsync(long id);
-        IEnumerable<T> ObterTodos(Expression<Func<T, bool>> filter = null);
+        IEnumerable<T> ObterTodos(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includeExpressions);
         Task<IEnumerable<T>> ObterTodosAsync(Expression<Func<T, bool>> filterExpression = null);
         void Criar(T entity);
         Task CriarAsync(T entity, CancellationToken cancellationToken);

@@ -32,6 +32,10 @@ namespace AppConsig.Web.Gestor
             bundles.Add(new ScriptBundle("~/bundles/appconsig").Include(
                 "~/Scripts/appconsig.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/select2").Include(
+                "~/Scripts/select2.full.js",
+                "~/Scripts/select2.js"));
+
             //Styles
             bundles.Add(new StyleBundle("~/css/bootstrap").Include(
                 "~/Content/bootstrap.css"));

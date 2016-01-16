@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,13 +17,17 @@ namespace AppConsig.Web.Gestor.Controllers
     public class ConsignacaoController : BaseController
     {
         readonly IServicoConsignacao _servicoConsignacao;
+        readonly IServicoConsignataria _servicoConsignataria;
+        readonly IServicoTipoServico _servicoTipoServico;
 
-        public ConsignacaoController(IServicoConsignacao servicoConsignacao)
+        public ConsignacaoController(IServicoConsignacao servicoConsignacao, IServicoConsignataria servicoConsignataria, IServicoTipoServico servicoTipoServico)
         {
             _servicoConsignacao = servicoConsignacao;
+            _servicoConsignataria = servicoConsignataria;
+            _servicoTipoServico = servicoTipoServico;
         }
 
-        // GET: /Consignataria
+        // GET: /Consignacao
         [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, int? itemsPerPage)
         {
@@ -44,7 +49,8 @@ namespace AppConsig.Web.Gestor.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var consignacoes = _servicoConsignacao.ObterTodos(a => a.Excluido == false).ToList();
+            var consignacoes =
+                _servicoConsignacao.ObterTodos(a => a.Excluido == false, c => c.Consignataria, c => c.Servico).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -92,7 +98,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: /Consignataria/Detalhar/5
+        // GET: /Consignacao/Detalhar/5
         [HttpGet]
         public ActionResult Detalhar(long? id)
         {
@@ -113,14 +119,20 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model);
         }
 
-        // GET: /Consignataria/Criar
+        // GET: /Consignacao/Criar
         [HttpGet]
         public ActionResult Criar()
         {
+            var consignatarias = _servicoConsignataria.ObterTodos(c => c.Excluido == false);
+            var servicos = _servicoTipoServico.ObterTodos(s => s.Excluido == false);
+
+            ViewBag.Consignatarias = consignatarias.OrderBy(c => c.Nome);
+            ViewBag.Servicos = servicos.OrderBy(s => s.Nome);
+
             return View();
         }
 
-        // POST: /Consignataria/Criar
+        // POST: /Consignacao/Criar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar(
@@ -145,10 +157,16 @@ namespace AppConsig.Web.Gestor.Controllers
                 }
             }
 
+            var consignatarias = _servicoConsignataria.ObterTodos(c => c.Excluido == false);
+            var servicos = _servicoTipoServico.ObterTodos(c => c.Excluido == false);
+
+            ViewBag.Consignatarias = consignatarias;
+            ViewBag.Servicos = servicos;
+
             return View(model);
         }
 
-        // GET: /Consignataria/Editar/5
+        // GET: /Consignacao/Editar/5
         [HttpGet]
         public ActionResult Editar(long? id)
         {
@@ -169,7 +187,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model);
         }
 
-        // POST: /Consignataria/Editar/5
+        // POST: /Consignacao/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar([Bind(Include = "Id,Nome,Descricao,Codigo,MaximoParcela,ValorMinimo,InicioDaVigenciaEm," +
@@ -198,7 +216,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model);
         }
 
-        // GET: /Consignataria/Excluir/5
+        // GET: /Consignacao/Excluir/5
         [HttpGet]
         public ActionResult Excluir(long? id)
         {
@@ -219,7 +237,7 @@ namespace AppConsig.Web.Gestor.Controllers
             return View(model);
         }
 
-        // POST: /Consignataria/Excluir/5
+        // POST: /Consignacao/Excluir/5
         [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarExcluir(long id)

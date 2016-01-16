@@ -69,9 +69,11 @@ namespace AppConsig.Web.Gestor.Models
         public bool PermiteOutrasOcorrencias { get; set; }
 
         [Display(Name = @"Consignatária")]
+        [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
         public long ConsignatariaId { get; set; }
         
         [Display(Name = @"Tipo de serviço")]
+        [Required(ErrorMessageResourceType = typeof(Annotations), ErrorMessageResourceName = "IsRequired")]
         public long ServicoId { get; set; }
     }
 }

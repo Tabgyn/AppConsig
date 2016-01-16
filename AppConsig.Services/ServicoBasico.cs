@@ -50,10 +50,18 @@ namespace AppConsig.Services
         /// Retorna todas as entidades.
         /// </summary>
         /// <param name="filterExpression"></param>
+        /// <param name="includeExpressions"></param>
         /// <returns></returns>
-        public virtual IEnumerable<T> ObterTodos(Expression<Func<T, bool>> filterExpression = null)
+        public virtual IEnumerable<T> ObterTodos(Expression<Func<T, bool>> filterExpression = null, params Expression<Func<T, object>>[] includeExpressions)
         {
-            return filterExpression != null ? Dbset.Where(filterExpression).AsEnumerable() : Dbset.AsEnumerable();
+            var includeSet = includeExpressions.Aggregate<Expression<Func<T, object>>, IQueryable<T>>
+                (Dbset, (current, expression) => current.Include(expression));
+
+            var list = filterExpression != null
+                ? includeSet.Where(filterExpression).AsEnumerable()
+                : includeSet.AsEnumerable();
+
+            return list;
         }
 
         /// <summary>
